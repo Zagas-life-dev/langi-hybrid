@@ -1,0 +1,453 @@
+{
+  "slug": "es-a2-travel",
+  "title": "Travel & Directions",
+  "description": "Get around, book a room and ask the way when you travel.",
+  "level": "A2",
+  "topic": "travel",
+  "order": 10,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el viaje",
+      "translation": "the trip/journey",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el aeropuerto",
+      "translation": "the airport",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el avión",
+      "translation": "the plane",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el tren",
+      "translation": "the train",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la estación",
+      "translation": "the station",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el autobús",
+      "translation": "the bus",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el metro",
+      "translation": "the metro/subway",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el coche",
+      "translation": "the car",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el taxi",
+      "translation": "the taxi",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el barco",
+      "translation": "the boat/ship",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la bicicleta",
+      "translation": "the bicycle",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el billete",
+      "translation": "the ticket",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el pasaporte",
+      "translation": "the passport",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la maleta",
+      "translation": "the suitcase",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el equipaje",
+      "translation": "the luggage",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hotel",
+      "translation": "the hotel",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la reserva",
+      "translation": "the reservation",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el mapa",
+      "translation": "the map",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la dirección",
+      "translation": "the address/direction",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la calle",
+      "translation": "the street",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la avenida",
+      "translation": "the avenue",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la plaza",
+      "translation": "the square",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la esquina",
+      "translation": "the corner",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el semáforo",
+      "translation": "the traffic light",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "a la derecha",
+      "translation": "to the right",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "a la izquierda",
+      "translation": "to the left",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "recto",
+      "translation": "straight ahead",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "cerca",
+      "translation": "near",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "lejos",
+      "translation": "far",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "aquí",
+      "translation": "here",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "allí",
+      "translation": "there",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "el norte",
+      "translation": "the north",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el sur",
+      "translation": "the south",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el este",
+      "translation": "the east",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el oeste",
+      "translation": "the west",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la frontera",
+      "translation": "the border",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la aduana",
+      "translation": "customs",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el turista",
+      "translation": "the tourist",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la playa",
+      "translation": "the beach",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la montaña",
+      "translation": "the mountain",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el campo",
+      "translation": "the countryside",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la ciudad",
+      "translation": "the city",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pueblo",
+      "translation": "the town/village",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el extranjero",
+      "translation": "abroad/foreigner",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "perderse",
+      "translation": "to get lost",
+      "partOfSpeech": "verb",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "term": "el destino",
+      "translation": "the destination",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la llegada",
+      "translation": "the arrival",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la salida",
+      "translation": "the departure/exit",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el viajero",
+      "translation": "the traveller",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la entrada",
+      "translation": "the entrance/ticket",
+      "partOfSpeech": "noun",
+      "tags": [
+        "travel"
+      ],
+      "gender": "f"
+    }
+  ]
+}

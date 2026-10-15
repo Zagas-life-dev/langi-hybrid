@@ -1,0 +1,436 @@
+{
+  "slug": "es-c2-literary-vocab",
+  "title": "Literary & Rare Vocabulary (C2)",
+  "description": "Literary, near-native words and expressions for mastery of register.",
+  "level": "C2",
+  "topic": "abstract",
+  "order": 17,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el ocaso",
+      "translation": "the dusk/decline",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el albor",
+      "translation": "the dawn",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la quimera",
+      "translation": "the pipe dream",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sosiego",
+      "translation": "the calm/serenity",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la congoja",
+      "translation": "the anguish",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el desasosiego",
+      "translation": "the unease",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la añoranza",
+      "translation": "the longing/nostalgia",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la inquina",
+      "translation": "the ill will",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la zozobra",
+      "translation": "the anxiety/turmoil",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el hastío",
+      "translation": "the weariness/tedium",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el ímpetu",
+      "translation": "the impetus/drive",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mesura",
+      "translation": "the moderation",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la pesadumbre",
+      "translation": "the sorrow",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el arrebato",
+      "translation": "the outburst/fit",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la vorágine",
+      "translation": "the whirlwind/maelstrom",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sino",
+      "translation": "the fate/destiny",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "efímero",
+      "translation": "ephemeral",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "inefable",
+      "translation": "ineffable",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "inexorable",
+      "translation": "inexorable",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "sempiterno",
+      "translation": "everlasting",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "baladí",
+      "translation": "trivial",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "aciago",
+      "translation": "ill-fated",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "ufano",
+      "translation": "proud/smug",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "taciturno",
+      "translation": "taciturn",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "adusto",
+      "translation": "stern/austere",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "lánguido",
+      "translation": "languid",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "prístino",
+      "translation": "pristine",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "diáfano",
+      "translation": "clear/diaphanous",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "fugaz",
+      "translation": "fleeting",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "perenne",
+      "translation": "perennial",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "denodado",
+      "translation": "tireless/dauntless",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "ímprobo",
+      "translation": "arduous",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "sucinto",
+      "translation": "succinct",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "prolijo",
+      "translation": "long-winded",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "dilucidar",
+      "translation": "to elucidate",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "vituperar",
+      "translation": "to vituperate/revile",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "ensalzar",
+      "translation": "to extol",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "denostar",
+      "translation": "to vilify",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "claudicar",
+      "translation": "to give in/capitulate",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "sucumbir",
+      "translation": "to succumb",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "menoscabar",
+      "translation": "to undermine/impair",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "dirimir",
+      "translation": "to settle/resolve",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "coadyuvar",
+      "translation": "to contribute/assist",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "esbozar",
+      "translation": "to sketch/outline",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a la sazón",
+      "translation": "at that time",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "sin ambages",
+      "translation": "without beating about the bush",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a la postre",
+      "translation": "in the end",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a la zaga",
+      "translation": "lagging behind",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "en ciernes",
+      "translation": "budding/in the making",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "de consuno",
+      "translation": "jointly/in unison",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "el devenir",
+      "translation": "the course/evolution",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    }
+  ]
+}

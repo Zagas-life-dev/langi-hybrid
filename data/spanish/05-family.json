@@ -1,0 +1,459 @@
+{
+  "slug": "es-a1-family",
+  "title": "Family & People",
+  "description": "Talk about your family, friends and the people around you.",
+  "level": "A1",
+  "topic": "family",
+  "order": 5,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la familia",
+      "translation": "the family",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el padre",
+      "translation": "the father",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la madre",
+      "translation": "the mother",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "los padres",
+      "translation": "the parents",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hijo",
+      "translation": "the son",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la hija",
+      "translation": "the daughter",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el hermano",
+      "translation": "the brother",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la hermana",
+      "translation": "the sister",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el abuelo",
+      "translation": "the grandfather",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la abuela",
+      "translation": "the grandmother",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el tío",
+      "translation": "the uncle",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la tía",
+      "translation": "the aunt",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el primo",
+      "translation": "the cousin (m)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la prima",
+      "translation": "the cousin (f)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sobrino",
+      "translation": "the nephew",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la sobrina",
+      "translation": "the niece",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el nieto",
+      "translation": "the grandson",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la nieta",
+      "translation": "the granddaughter",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el marido",
+      "translation": "the husband",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la esposa",
+      "translation": "the wife",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el novio",
+      "translation": "the boyfriend",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la novia",
+      "translation": "the girlfriend",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el bebé",
+      "translation": "the baby",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el niño",
+      "translation": "the boy/child",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la niña",
+      "translation": "the girl",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el hombre",
+      "translation": "the man",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mujer",
+      "translation": "the woman",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el amigo",
+      "translation": "the friend (m)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la amiga",
+      "translation": "the friend (f)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el vecino",
+      "translation": "the neighbour",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la gente",
+      "translation": "the people",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la persona",
+      "translation": "the person",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el señor",
+      "translation": "the gentleman/Mr",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la señora",
+      "translation": "the lady/Mrs",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la señorita",
+      "translation": "the young lady/Miss",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el apellido",
+      "translation": "the surname",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "casado",
+      "translation": "married",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "family"
+      ]
+    },
+    {
+      "term": "soltero",
+      "translation": "single",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "family"
+      ]
+    },
+    {
+      "term": "el suegro",
+      "translation": "the father-in-law",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la suegra",
+      "translation": "the mother-in-law",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cuñado",
+      "translation": "the brother-in-law",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pareja",
+      "translation": "the couple/partner",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el padrino",
+      "translation": "the godfather",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la madrina",
+      "translation": "the godmother",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "los gemelos",
+      "translation": "the twins",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el adulto",
+      "translation": "the adult",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el adolescente",
+      "translation": "the teenager",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hijo único",
+      "translation": "the only child",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mascota",
+      "translation": "the pet",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el nombre",
+      "translation": "the (first) name",
+      "partOfSpeech": "noun",
+      "tags": [
+        "family"
+      ],
+      "gender": "m"
+    }
+  ]
+}

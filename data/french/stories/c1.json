@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "fr-c1-l-inconnu-du-cafe",
+    "level": "C1",
+    "topic": "observation & introspection",
+    "title": "L'inconnu du café",
+    "titleTranslation": "The stranger in the café",
+    "sentences": [
+      { "text": "Tous les jours, à la même heure, le même homme s'installait au fond du café.", "translation": "Every day, at the same hour, the same man would settle at the back of the café." },
+      { "text": "Il commandait un expresso, ouvrait un carnet et écrivait sans relâche.", "translation": "He would order an espresso, open a notebook and write without pause." },
+      { "text": "Les habitués avaient fini par échafauder mille hypothèses à son sujet.", "translation": "The regulars had ended up building a thousand hypotheses about him." },
+      { "text": "Pour les uns, c'était un romancier en quête d'inspiration ; pour les autres, un espion.", "translation": "For some, he was a novelist in search of inspiration; for others, a spy." },
+      { "text": "Or, nul n'osait l'aborder, de peur de rompre le charme de ce mystère.", "translation": "Yet no one dared approach him, for fear of breaking the spell of this mystery." },
+      { "text": "Un jour d'automne, sa chaise est restée désespérément vide.", "translation": "One autumn day, his chair remained hopelessly empty." },
+      { "text": "Le serveur a alors retrouvé, oublié sous la table, le fameux carnet.", "translation": "The waiter then found, forgotten under the table, the famous notebook." },
+      { "text": "Toutes les pages, sans exception, ne contenaient qu'une seule phrase, recopiée à l'infini.", "translation": "Every page, without exception, contained but a single sentence, copied endlessly." },
+      { "text": "« Demain, je leur parlerai. »", "translation": "\"Tomorrow, I will speak to them.\"" },
+      { "text": "Le serveur a refermé le carnet, soudain conscient d'avoir, lui aussi, trop longtemps attendu.", "translation": "The waiter closed the notebook, suddenly aware that he too had waited too long." }
+    ],
+    "glossary": [
+      { "term": "sans relâche", "translation": "without respite/relentlessly" },
+      { "term": "échafauder", "translation": "to construct/concoct (theories)" },
+      { "term": "aborder (quelqu'un)", "translation": "to approach/strike up a conversation with" },
+      { "term": "le carnet", "translation": "the notebook" },
+      { "term": "à l'infini", "translation": "endlessly/ad infinitum" }
+    ],
+    "questions": [
+      { "question": "Why did no one approach the stranger?", "options": ["He was rude", "They feared breaking the mystery's spell", "He spoke no French", "He was always busy"], "answer": 1 },
+      { "question": "What did every page of the notebook contain?", "options": ["A different story", "Drawings", "The same sentence repeated", "Nothing"], "answer": 2 },
+      { "question": "What does the waiter realise at the end?", "options": ["The man was a spy", "He too had waited too long to act", "The notebook was worthless", "The man would return"], "answer": 1 }
+    ]
+  },
+  {
+    "slug": "fr-c1-le-demenagement",
+    "level": "C1",
+    "topic": "change & nostalgia",
+    "title": "Le déménagement",
+    "titleTranslation": "The move",
+    "sentences": [
+      { "text": "À mesure que les cartons s'empilaient, l'appartement perdait peu à peu son âme.", "translation": "As the boxes piled up, the flat gradually lost its soul." },
+      { "text": "Sur les murs nus subsistaient les traces pâles des cadres décrochés.", "translation": "On the bare walls remained the pale marks of the frames taken down." },
+      { "text": "Hélène errait d'une pièce à l'autre, partagée entre l'impatience et le regret.", "translation": "Hélène wandered from room to room, torn between impatience and regret." },
+      { "text": "Chaque objet emballé ravivait un souvenir qu'elle croyait pourtant oublié.", "translation": "Each packed object revived a memory she had nevertheless thought forgotten." },
+      { "text": "Dans la cuisine, une simple éraflure sur le carrelage lui a serré le cœur.", "translation": "In the kitchen, a mere scratch on the tiles tightened her heart." },
+      { "text": "C'était là que ses enfants, jadis, avaient fait leurs premiers pas.", "translation": "It was there that her children had once taken their first steps." },
+      { "text": "Elle savait bien qu'un logement n'est, au fond, qu'un assemblage de murs.", "translation": "She knew full well that a home is, deep down, only an assembly of walls." },
+      { "text": "Et pourtant, c'était toute une vie qu'elle s'apprêtait à laisser derrière elle.", "translation": "And yet, it was a whole life she was about to leave behind." },
+      { "text": "En fermant la porte, elle a murmuré un adieu que personne n'a entendu.", "translation": "Closing the door, she murmured a farewell that no one heard." }
+    ],
+    "glossary": [
+      { "term": "s'empiler", "translation": "to pile up" },
+      { "term": "décrocher", "translation": "to take down/unhook" },
+      { "term": "errer", "translation": "to wander/roam" },
+      { "term": "raviver", "translation": "to revive/rekindle" },
+      { "term": "l'éraflure (f)", "translation": "the scratch/scuff" }
+    ],
+    "questions": [
+      { "question": "What remained visible on the bare walls?", "options": ["Fresh paint", "Pale marks of the removed frames", "Children's drawings", "Cracks"], "answer": 1 },
+      { "question": "Why did the scratch on the tiles move her?", "options": ["It needed repair", "It was where her children took their first steps", "It was new", "It ruined the kitchen"], "answer": 1 },
+      { "question": "What is the central tension Hélène feels?", "options": ["Fear and anger", "Impatience and regret", "Joy and pride", "Boredom and fatigue"], "answer": 1 }
+    ]
+  }
+]

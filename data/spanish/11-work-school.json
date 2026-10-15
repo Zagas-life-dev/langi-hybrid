@@ -1,0 +1,456 @@
+{
+  "slug": "es-a2-work",
+  "title": "Work & School",
+  "description": "Talk about jobs, studies and daily life at the office or in class.",
+  "level": "A2",
+  "topic": "work",
+  "order": 11,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el trabajo",
+      "translation": "the work/job",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la oficina",
+      "translation": "the office",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la empresa",
+      "translation": "the company",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el jefe",
+      "translation": "the boss",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el empleado",
+      "translation": "the employee",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el colega",
+      "translation": "the colleague",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la reunión",
+      "translation": "the meeting",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sueldo",
+      "translation": "the salary",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el horario",
+      "translation": "the schedule",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el cliente",
+      "translation": "the client",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el proyecto",
+      "translation": "the project",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la tarea",
+      "translation": "the task/homework",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el correo",
+      "translation": "the mail/email",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la profesión",
+      "translation": "the profession",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el profesor",
+      "translation": "the teacher",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el estudiante",
+      "translation": "the student",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el ingeniero",
+      "translation": "the engineer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el abogado",
+      "translation": "the lawyer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el enfermero",
+      "translation": "the nurse",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el cocinero",
+      "translation": "the cook",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el camarero",
+      "translation": "the waiter",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el policía",
+      "translation": "the police officer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el agricultor",
+      "translation": "the farmer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la escuela",
+      "translation": "the school",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la universidad",
+      "translation": "the university",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la clase",
+      "translation": "the class",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el aula",
+      "translation": "the classroom",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el examen",
+      "translation": "the exam",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la nota",
+      "translation": "the grade/mark",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la asignatura",
+      "translation": "the subject",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "las matemáticas",
+      "translation": "mathematics",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la historia",
+      "translation": "history",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la ciencia",
+      "translation": "science",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el idioma",
+      "translation": "the language",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el cuaderno",
+      "translation": "the notebook",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pizarra",
+      "translation": "the board",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el recreo",
+      "translation": "the break/recess",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "aprobar",
+      "translation": "to pass",
+      "partOfSpeech": "verb",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "term": "suspender",
+      "translation": "to fail",
+      "partOfSpeech": "verb",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "term": "la carrera",
+      "translation": "the degree/career",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el título",
+      "translation": "the degree/qualification",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la beca",
+      "translation": "the scholarship",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "jubilarse",
+      "translation": "to retire",
+      "partOfSpeech": "verb",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "term": "contratar",
+      "translation": "to hire",
+      "partOfSpeech": "verb",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "term": "el negocio",
+      "translation": "the business",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el sindicato",
+      "translation": "the labour union",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el contrato",
+      "translation": "the contract",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la entrevista",
+      "translation": "the interview",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el curriculum",
+      "translation": "the résumé/CV",
+      "partOfSpeech": "noun",
+      "tags": [
+        "work"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "ganar",
+      "translation": "to earn/win",
+      "partOfSpeech": "verb",
+      "tags": [
+        "work"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "slug": "es-a1-verbs",
+  "title": "Essential Verbs",
+  "description": "The fifty everyday verbs that power almost every Spanish sentence.",
+  "level": "A1",
+  "topic": "verbs",
+  "order": 7,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "ser",
+      "translation": "to be (permanent)",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "estar",
+      "translation": "to be (state/place)",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "tener",
+      "translation": "to have",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "hacer",
+      "translation": "to do/make",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "ir",
+      "translation": "to go",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "venir",
+      "translation": "to come",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "ver",
+      "translation": "to see",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "dar",
+      "translation": "to give",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "decir",
+      "translation": "to say/tell",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "poder",
+      "translation": "to be able to/can",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "querer",
+      "translation": "to want/love",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "saber",
+      "translation": "to know (facts)",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "conocer",
+      "translation": "to know (people)",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "poner",
+      "translation": "to put",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "hablar",
+      "translation": "to speak/talk",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "comer",
+      "translation": "to eat",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "beber",
+      "translation": "to drink",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "vivir",
+      "translation": "to live",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "comprar",
+      "translation": "to buy",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "vender",
+      "translation": "to sell",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "trabajar",
+      "translation": "to work",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "estudiar",
+      "translation": "to study",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "leer",
+      "translation": "to read",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "escribir",
+      "translation": "to write",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "escuchar",
+      "translation": "to listen",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "mirar",
+      "translation": "to look/watch",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "abrir",
+      "translation": "to open",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "cerrar",
+      "translation": "to close",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "empezar",
+      "translation": "to begin",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "terminar",
+      "translation": "to finish",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "llegar",
+      "translation": "to arrive",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "salir",
+      "translation": "to leave/go out",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "entrar",
+      "translation": "to enter",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "dormir",
+      "translation": "to sleep",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "comprender",
+      "translation": "to understand",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "aprender",
+      "translation": "to learn",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "enseñar",
+      "translation": "to teach",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "ayudar",
+      "translation": "to help",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "buscar",
+      "translation": "to look for",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "encontrar",
+      "translation": "to find",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "pensar",
+      "translation": "to think",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "creer",
+      "translation": "to believe",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "esperar",
+      "translation": "to wait/hope",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "necesitar",
+      "translation": "to need",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "gustar",
+      "translation": "to be pleasing/like",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "jugar",
+      "translation": "to play",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "correr",
+      "translation": "to run",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "caminar",
+      "translation": "to walk",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "viajar",
+      "translation": "to travel",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    },
+    {
+      "term": "pagar",
+      "translation": "to pay",
+      "partOfSpeech": "verb",
+      "tags": [
+        "verbs"
+      ]
+    }
+  ]
+}

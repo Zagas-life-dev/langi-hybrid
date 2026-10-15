@@ -1,0 +1,461 @@
+{
+  "slug": "es-a1-home",
+  "title": "Home & Everyday Objects",
+  "description": "Describe your home and the objects you use every day.",
+  "level": "A1",
+  "topic": "home",
+  "order": 8,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la casa",
+      "translation": "the house",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el piso",
+      "translation": "the flat/apartment",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la habitación",
+      "translation": "the room",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el dormitorio",
+      "translation": "the bedroom",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cocina",
+      "translation": "the kitchen",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el baño",
+      "translation": "the bathroom",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el salón",
+      "translation": "the living room",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el comedor",
+      "translation": "the dining room",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el jardín",
+      "translation": "the garden",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la puerta",
+      "translation": "the door",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la ventana",
+      "translation": "the window",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la pared",
+      "translation": "the wall",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el suelo",
+      "translation": "the floor",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el techo",
+      "translation": "the ceiling/roof",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mesa",
+      "translation": "the table",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la silla",
+      "translation": "the chair",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sofá",
+      "translation": "the sofa",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cama",
+      "translation": "the bed",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el armario",
+      "translation": "the wardrobe",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el espejo",
+      "translation": "the mirror",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la lámpara",
+      "translation": "the lamp",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la nevera",
+      "translation": "the fridge",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el horno",
+      "translation": "the oven",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la ducha",
+      "translation": "the shower",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cuadro",
+      "translation": "the painting",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la alfombra",
+      "translation": "the rug/carpet",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la llave",
+      "translation": "the key",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el reloj",
+      "translation": "the clock/watch",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la televisión",
+      "translation": "the television",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el ordenador",
+      "translation": "the computer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el teléfono",
+      "translation": "the telephone",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el libro",
+      "translation": "the book",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el papel",
+      "translation": "the paper",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el bolígrafo",
+      "translation": "the pen",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la bolsa",
+      "translation": "the bag",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la caja",
+      "translation": "the box",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el dinero",
+      "translation": "the money",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la ropa",
+      "translation": "the clothes",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el jabón",
+      "translation": "the soap",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la toalla",
+      "translation": "the towel",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cepillo",
+      "translation": "the brush",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la escalera",
+      "translation": "the stairs/ladder",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el ascensor",
+      "translation": "the lift/elevator",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el garaje",
+      "translation": "the garage",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el balcón",
+      "translation": "the balcony",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cortina",
+      "translation": "the curtain",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la almohada",
+      "translation": "the pillow",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la manta",
+      "translation": "the blanket",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la basura",
+      "translation": "the rubbish/trash",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la herramienta",
+      "translation": "the tool",
+      "partOfSpeech": "noun",
+      "tags": [
+        "home"
+      ],
+      "gender": "f"
+    }
+  ]
+}

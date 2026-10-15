@@ -1,0 +1,27 @@
+{
+  "id": "/learn",
+  "name": "Langi · Learn French. Actually remember it.",
+  "short_name": "Langi",
+  "description": "Learn French, Spanish and more with a 5-box Leitner spaced-repetition system, an AI tutor, pronunciation practice, graded stories and curated videos.",
+  "start_url": "/learn",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "lang": "en",
+  "dir": "ltr",
+  "background_color": "#fff7ea",
+  "theme_color": "#6b3cf6",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+    { "src": "/icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Review flashcards", "short_name": "Review", "url": "/learn/review/all", "description": "Start a spaced-repetition review session — works offline." },
+    { "name": "Stories", "short_name": "Stories", "url": "/learn/stories" },
+    { "name": "Progress", "short_name": "Progress", "url": "/progress" }
+  ]
+}

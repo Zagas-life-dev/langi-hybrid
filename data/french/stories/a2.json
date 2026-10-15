@@ -1,0 +1,60 @@
+[
+  {
+    "slug": "fr-a2-une-journee-a-paris",
+    "level": "A2",
+    "topic": "travel & city",
+    "title": "Une journée à Paris",
+    "titleTranslation": "A day in Paris",
+    "sentences": [
+      { "text": "Hier, Sophie est allée à Paris avec son frère.", "translation": "Yesterday, Sophie went to Paris with her brother." },
+      { "text": "Ils ont pris le train le matin.", "translation": "They took the train in the morning." },
+      { "text": "D'abord, ils ont visité la tour Eiffel.", "translation": "First, they visited the Eiffel Tower." },
+      { "text": "Sophie a pris beaucoup de photos.", "translation": "Sophie took a lot of photos." },
+      { "text": "À midi, ils ont mangé un sandwich dans un parc.", "translation": "At noon, they ate a sandwich in a park." },
+      { "text": "L'après-midi, il a commencé à pleuvoir.", "translation": "In the afternoon, it started to rain." },
+      { "text": "Alors, ils sont entrés dans un musée.", "translation": "So they went into a museum." },
+      { "text": "Le soir, ils étaient fatigués mais très contents.", "translation": "In the evening, they were tired but very happy." }
+    ],
+    "glossary": [
+      { "term": "prendre le train", "translation": "to take the train" },
+      { "term": "visiter", "translation": "to visit" },
+      { "term": "pleuvoir", "translation": "to rain" },
+      { "term": "le musée", "translation": "the museum" },
+      { "term": "fatigué", "translation": "tired" }
+    ],
+    "questions": [
+      { "question": "How did they travel to Paris?", "options": ["By car", "By train", "By plane", "By bus"], "answer": 1 },
+      { "question": "What did they do when it started to rain?", "options": ["Went home", "Went into a museum", "Bought umbrellas", "Took the train"], "answer": 1 },
+      { "question": "How did they feel in the evening?", "options": ["Bored", "Angry", "Tired but happy", "Hungry"], "answer": 2 }
+    ]
+  },
+  {
+    "slug": "fr-a2-le-nouveau-voisin",
+    "level": "A2",
+    "topic": "neighbours & everyday life",
+    "title": "Le nouveau voisin",
+    "titleTranslation": "The new neighbour",
+    "sentences": [
+      { "text": "Un nouveau voisin est arrivé la semaine dernière.", "translation": "A new neighbour arrived last week." },
+      { "text": "Il s'appelle Marc et il vient de Lyon.", "translation": "His name is Marc and he comes from Lyon." },
+      { "text": "Marc a beaucoup de cartons à monter.", "translation": "Marc has a lot of boxes to carry up." },
+      { "text": "Mon père a proposé de l'aider.", "translation": "My father offered to help him." },
+      { "text": "Ensemble, ils ont porté les meubles pendant deux heures.", "translation": "Together, they carried the furniture for two hours." },
+      { "text": "Pour dire merci, Marc nous a invités à dîner.", "translation": "To say thank you, Marc invited us to dinner." },
+      { "text": "Il a préparé un plat de son enfance.", "translation": "He prepared a dish from his childhood." },
+      { "text": "Maintenant, Marc est un bon ami de la famille.", "translation": "Now, Marc is a good friend of the family." }
+    ],
+    "glossary": [
+      { "term": "le voisin", "translation": "the neighbour" },
+      { "term": "le carton", "translation": "the (cardboard) box" },
+      { "term": "aider", "translation": "to help" },
+      { "term": "les meubles", "translation": "the furniture" },
+      { "term": "inviter", "translation": "to invite" }
+    ],
+    "questions": [
+      { "question": "Where does Marc come from?", "options": ["Paris", "Lyon", "Marseille", "Nice"], "answer": 1 },
+      { "question": "Who offered to help Marc?", "options": ["The narrator", "The narrator's father", "The narrator's mother", "Nobody"], "answer": 1 },
+      { "question": "How did Marc thank the family?", "options": ["He gave money", "He invited them to dinner", "He bought a gift", "He wrote a letter"], "answer": 1 }
+    ]
+  }
+]

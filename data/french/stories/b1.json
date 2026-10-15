@@ -1,0 +1,61 @@
+[
+  {
+    "slug": "fr-b1-le-train-de-nuit",
+    "level": "B1",
+    "topic": "travel & suspense",
+    "title": "Le train de nuit",
+    "titleTranslation": "The night train",
+    "sentences": [
+      { "text": "Quand Camille est montée dans le train de nuit, le compartiment était presque vide.", "translation": "When Camille got on the night train, the compartment was almost empty." },
+      { "text": "Elle s'est installée près de la fenêtre et a sorti son livre.", "translation": "She settled in near the window and took out her book." },
+      { "text": "Peu après, un homme âgé est entré et s'est assis en face d'elle.", "translation": "Shortly after, an elderly man came in and sat down across from her." },
+      { "text": "Il portait un vieux manteau et tenait une valise qu'il ne lâchait pas.", "translation": "He wore an old coat and held a suitcase that he wouldn't let go of." },
+      { "text": "Pendant des heures, il a regardé par la fenêtre sans dire un mot.", "translation": "For hours, he looked out the window without saying a word." },
+      { "text": "Avant l'arrivée, il a posé une petite enveloppe sur le siège.", "translation": "Before they arrived, he placed a small envelope on the seat." },
+      { "text": "« C'est pour vous », a-t-il murmuré, puis il est descendu.", "translation": "\"It's for you,\" he murmured, then he got off." },
+      { "text": "À l'intérieur, Camille a trouvé un vieux billet et une note : « Merci d'avoir écouté. »", "translation": "Inside, Camille found an old ticket and a note: \"Thank you for listening.\"" },
+      { "text": "Elle n'a jamais compris ce qu'il avait voulu dire, mais elle a gardé l'enveloppe.", "translation": "She never understood what he had meant, but she kept the envelope." }
+    ],
+    "glossary": [
+      { "term": "le compartiment", "translation": "the (train) compartment" },
+      { "term": "lâcher", "translation": "to let go of" },
+      { "term": "murmurer", "translation": "to murmur/whisper" },
+      { "term": "l'enveloppe (f)", "translation": "the envelope" },
+      { "term": "garder", "translation": "to keep" }
+    ],
+    "questions": [
+      { "question": "What did the old man hold tightly?", "options": ["A book", "A suitcase", "An umbrella", "A coat"], "answer": 1 },
+      { "question": "What did he leave on the seat?", "options": ["His coat", "A small envelope", "His suitcase", "A book"], "answer": 1 },
+      { "question": "What was written on the note?", "options": ["\"Goodbye\"", "\"Thank you for listening\"", "\"See you soon\"", "\"Help me\""], "answer": 1 }
+    ]
+  },
+  {
+    "slug": "fr-b1-une-lettre-oubliee",
+    "level": "B1",
+    "topic": "family & memory",
+    "title": "Une lettre oubliée",
+    "titleTranslation": "A forgotten letter",
+    "sentences": [
+      { "text": "En rangeant le grenier, Thomas a trouvé une boîte qu'il ne connaissait pas.", "translation": "While tidying the attic, Thomas found a box he didn't recognise." },
+      { "text": "À l'intérieur, il y avait des photos jaunies et une lettre fermée.", "translation": "Inside, there were yellowed photos and a sealed letter." },
+      { "text": "La lettre était adressée à sa grand-mère, mais elle n'avait jamais été ouverte.", "translation": "The letter was addressed to his grandmother, but it had never been opened." },
+      { "text": "Thomas a hésité, puis il l'a apportée à sa grand-mère.", "translation": "Thomas hesitated, then he brought it to his grandmother." },
+      { "text": "Quand elle a reconnu l'écriture, ses yeux se sont remplis de larmes.", "translation": "When she recognised the handwriting, her eyes filled with tears." },
+      { "text": "C'était une lettre de son frère, parti à la guerre il y a longtemps.", "translation": "It was a letter from her brother, who had gone to war long ago." },
+      { "text": "Elle l'a lue lentement, à voix haute, pour toute la famille.", "translation": "She read it slowly, aloud, for the whole family." },
+      { "text": "Ce jour-là, Thomas a compris que les vieux objets gardent parfois des secrets précieux.", "translation": "That day, Thomas understood that old objects sometimes hold precious secrets." }
+    ],
+    "glossary": [
+      { "term": "le grenier", "translation": "the attic" },
+      { "term": "jauni", "translation": "yellowed" },
+      { "term": "l'écriture (f)", "translation": "the handwriting" },
+      { "term": "les larmes (f)", "translation": "the tears" },
+      { "term": "à voix haute", "translation": "aloud" }
+    ],
+    "questions": [
+      { "question": "Where did Thomas find the box?", "options": ["In the cellar", "In the attic", "In the garden", "In a cupboard"], "answer": 1 },
+      { "question": "Who had written the letter?", "options": ["His grandmother", "His father", "His grandmother's brother", "A stranger"], "answer": 2 },
+      { "question": "What is the lesson Thomas learns?", "options": ["Always tidy the attic", "Old objects can hold precious secrets", "Never read others' letters", "War is far away"], "answer": 1 }
+    ]
+  }
+]

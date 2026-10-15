@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "es-a1-el-gato-de-lucia",
+    "level": "A1",
+    "topic": "animals & daily life",
+    "title": "El gato de Lucía",
+    "titleTranslation": "Lucía's cat",
+    "sentences": [
+      { "text": "Lucía tiene un gato pequeño.", "translation": "Lucía has a small cat." },
+      { "text": "El gato se llama Michi.", "translation": "The cat is called Michi." },
+      { "text": "Michi es blanco y negro.", "translation": "Michi is white and black." },
+      { "text": "Por la mañana, Lucía le da leche al gato.", "translation": "In the morning, Lucía gives the cat some milk." },
+      { "text": "A Michi le gusta dormir en la cama.", "translation": "Michi likes to sleep on the bed." },
+      { "text": "Por la tarde, Lucía juega con su gato.", "translation": "In the afternoon, Lucía plays with her cat." },
+      { "text": "Lucía quiere mucho a Michi.", "translation": "Lucía loves Michi very much." }
+    ],
+    "glossary": [
+      { "term": "el gato", "translation": "the cat" },
+      { "term": "la leche", "translation": "the milk" },
+      { "term": "dormir", "translation": "to sleep" },
+      { "term": "la cama", "translation": "the bed" },
+      { "term": "jugar", "translation": "to play" }
+    ],
+    "questions": [
+      { "question": "What colour is the cat?", "options": ["All black", "White and black", "Grey", "Brown"], "answer": 1 },
+      { "question": "What does Lucía give the cat in the morning?", "options": ["Water", "Bread", "Milk", "Meat"], "answer": 2 },
+      { "question": "Where does Michi like to sleep?", "options": ["On the bed", "On the floor", "In the garden", "On a chair"], "answer": 0 }
+    ]
+  },
+  {
+    "slug": "es-a1-mi-familia",
+    "level": "A1",
+    "topic": "family",
+    "title": "Mi familia",
+    "titleTranslation": "My family",
+    "sentences": [
+      { "text": "Me llamo Diego y tengo diez años.", "translation": "My name is Diego and I am ten years old." },
+      { "text": "Vivo con mi madre, mi padre y mi hermana.", "translation": "I live with my mother, my father and my sister." },
+      { "text": "Mi hermana se llama Sara.", "translation": "My sister is called Sara." },
+      { "text": "Mi padre trabaja en una oficina.", "translation": "My father works in an office." },
+      { "text": "Mi madre es profesora.", "translation": "My mother is a teacher." },
+      { "text": "Tenemos un perro muy grande.", "translation": "We have a very big dog." },
+      { "text": "Me gusta mucho mi familia.", "translation": "I like my family very much." }
+    ],
+    "glossary": [
+      { "term": "la madre", "translation": "the mother" },
+      { "term": "el padre", "translation": "the father" },
+      { "term": "la hermana", "translation": "the sister" },
+      { "term": "la oficina", "translation": "the office" },
+      { "term": "el perro", "translation": "the dog" }
+    ],
+    "questions": [
+      { "question": "How old is Diego?", "options": ["Eight", "Ten", "Twelve", "Fifteen"], "answer": 1 },
+      { "question": "What is his mother's job?", "options": ["Doctor", "Teacher", "Cook", "Lawyer"], "answer": 1 },
+      { "question": "What pet does the family have?", "options": ["A cat", "A bird", "A dog", "A fish"], "answer": 2 }
+    ]
+  }
+]

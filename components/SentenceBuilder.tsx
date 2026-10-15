@@ -1,0 +1,129 @@
+'use client'
+import { useCallback, useEffect, useState } from 'react'
+import { Volume2, Mic, ArrowRight, RefreshCw } from 'lucide-react'
+import { useTTS, useSTT } from '@/lib/speech'
+import { useLang } from '@/components/LangProvider'
+import PronunciationCheck from '@/components/PronunciationCheck'
+
+interface Grade { score: number; feedback: string; correction: string }
+
+export default function SentenceBuilder() {
+  const [prompt, setPrompt] = useState<string | null>(null)
+  const [sentence, setSentence] = useState('')
+  const [grade, setGrade] = useState<Grade | null>(null)
+  const [phase, setPhase] = useState<'loading' | 'writing' | 'grading' | 'graded'>('loading')
+  const [error, setError] = useState<string | null>(null)
+
+  const { speechTag, meta, ttsVoice } = useLang()
+  const tts = useTTS(speechTag, ttsVoice)
+  const stt = useSTT(speechTag, (t) => setSentence((prev) => (prev ? prev + ' ' + t : t)))
+
+  const loadPrompt = useCallback(async () => {
+    setPhase('loading'); setError(null); setGrade(null); setSentence('')
+    try {
+      const res = await fetch('/api/sentences/prompt')
+      const data = await res.json()
+      if (!res.ok) { setError(data.error || 'Could not load a prompt'); setPhase('writing'); return }
+      setPrompt(data.prompt)
+      setPhase('writing')
+    } catch { setError('Could not load a prompt'); setPhase('writing') }
+  }, [])
+
+  // Fetch a prompt on mount (setState resolves after the fetch).
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { loadPrompt() }, [loadPrompt])
+
+  async function submit() {
+    if (!prompt || !sentence.trim()) return
+    setPhase('grading'); setError(null)
+    try {
+      const res = await fetch('/api/sentences/grade', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt, sentence: sentence.trim() }),
+      })
+      const data = await res.json()
+      if (!res.ok) { setError(data.error || 'AI unavailable'); setPhase('writing'); return }
+      setGrade(data)
+      setPhase('graded')
+      if (data.correction && tts.supported) tts.speak(data.correction)
+    } catch { setError('AI unavailable'); setPhase('writing') }
+  }
+
+  const scoreColor = (s: number) => (s >= 80 ? 'text-ok' : s >= 50 ? 'text-warn' : 'text-accent2')
+
+  return (
+    <div className="max-w-2xl mx-auto px-6 py-10">
+      <p className="meta text-muted mb-2">Sentence practice</p>
+      <h1 className="display font-display text-5xl mb-8">Build a sentence</h1>
+
+      {phase === 'loading' ? (
+        <p className="text-muted text-center py-16">Thinking of a sentence…</p>
+      ) : (
+        <>
+          <div className="border-[2.5px] border-line rounded-[32px] bg-paper-raised p-6 mb-5 shadow-(--shadow-lg)">
+            <p className="meta text-muted mb-2">Translate into {meta.name}</p>
+            <p className="text-2xl leading-relaxed">{prompt}</p>
+          </div>
+
+          <div className="flex items-center gap-2 mb-4">
+            <input value={sentence} onChange={(e) => setSentence(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter' && phase === 'writing') submit() }}
+              placeholder={`Write your ${meta.name} translation…`} className="field-brut flex-1"
+              autoComplete="off" disabled={phase === 'grading'} />
+            {stt.supported && (
+              <button type="button" onClick={() => (stt.listening ? stt.stop() : stt.start())}
+                className={`circle-arrow w-11 h-11 shrink-0 ${stt.listening ? 'bg-accent text-on-accent border-accent' : 'hover:bg-paper-dark'}`} aria-label="Speak">
+                <Mic className="w-4 h-4" strokeWidth={2.2} />
+              </button>
+            )}
+          </div>
+
+          {phase !== 'graded' && (
+            <button onClick={submit} disabled={phase === 'grading' || !sentence.trim()} className="btn-ink w-full">
+              {phase === 'grading' ? 'Checking…' : 'Check my sentence'}
+            </button>
+          )}
+          {!stt.supported && <p className="meta text-muted mt-3 text-center">Voice input needs Chrome or Edge. You can still type.</p>}
+          {error && <p className="meta text-accent2 mt-3">{error}</p>}
+
+          {phase === 'graded' && grade && (
+            <div className="mt-6">
+              <div className="border-[2.5px] border-line rounded-[24px] p-5 mb-4">
+                <div className="flex items-baseline justify-between mb-3">
+                  <span className="meta text-muted">Score</span>
+                  <span className={`display font-display text-4xl ${scoreColor(grade.score)}`}>{grade.score}<span className="text-lg text-muted">/100</span></span>
+                </div>
+                {grade.feedback && <p className="text-sm leading-relaxed mb-3">{grade.feedback}</p>}
+                {grade.correction && (
+                  <div className="pt-3 border-t border-line/10">
+                    <p className="meta text-muted mb-1">Model answer</p>
+                    <p className="flex items-center gap-2">
+                      <span className="font-medium">{grade.correction}</span>
+                      {tts.supported && (
+                        <button onClick={() => tts.speak(grade.correction)} className="text-muted hover:text-accent" aria-label="Hear">
+                          <Volume2 className="w-4 h-4" strokeWidth={2.2} />
+                        </button>
+                      )}
+                    </p>
+                  </div>
+                )}
+              </div>
+              {grade.correction && (
+                <div className="mb-4">
+                  <PronunciationCheck target={grade.correction} label="Practise saying it" />
+                </div>
+              )}
+              <button onClick={loadPrompt} className="btn-ink w-full">Next sentence <ArrowRight className="w-4 h-4" /></button>
+            </div>
+          )}
+
+          {phase === 'writing' && (
+            <button onClick={loadPrompt} className="meta text-muted hover:text-accent flex items-center gap-1.5 mt-5 mx-auto">
+              <RefreshCw className="w-4 h-4" /> Different sentence
+            </button>
+          )}
+        </>
+      )}
+    </div>
+  )
+}

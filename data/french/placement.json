@@ -1,0 +1,28 @@
+{
+  "questions": [
+    { "level": "A1", "kind": "vocab", "prompt": "What does « bonjour » mean?", "options": ["goodbye", "hello", "thank you", "please"], "answerIndex": 1 },
+    { "level": "A1", "kind": "grammar", "prompt": "Je ___ français. (I speak French)", "options": ["parle", "parles", "parlez", "parlent"], "answerIndex": 0 },
+    { "level": "A1", "kind": "vocab", "prompt": "« un chien » is a…", "options": ["cat", "dog", "house", "book"], "answerIndex": 1 },
+    { "level": "A1", "kind": "grammar", "prompt": "Choose the correct article: ___ pomme (apple, feminine)", "options": ["le", "la", "les", "un"], "answerIndex": 1 },
+    { "level": "A2", "kind": "grammar", "prompt": "Hier, j'___ mangé une pomme. (Yesterday I ate an apple)", "options": ["ai", "as", "a", "ont"], "answerIndex": 0 },
+    { "level": "A2", "kind": "vocab", "prompt": "« la semaine prochaine » means…", "options": ["last week", "this morning", "next week", "every day"], "answerIndex": 2 },
+    { "level": "A2", "kind": "vocab", "prompt": "« Il fait froid » means…", "options": ["it is hot", "it is cold", "it is raining", "it is late"], "answerIndex": 1 },
+    { "level": "A2", "kind": "grammar", "prompt": "Nous ___ au cinéma demain. (We are going to the cinema tomorrow)", "options": ["allons", "allez", "vont", "vas"], "answerIndex": 0 },
+    { "level": "B1", "kind": "grammar", "prompt": "Si j'avais le temps, je ___ avec toi. (conditional)", "options": ["viens", "viendrai", "viendrais", "venir"], "answerIndex": 2 },
+    { "level": "B1", "kind": "vocab", "prompt": "« autrement dit » means…", "options": ["on the contrary", "in other words", "by the way", "as usual"], "answerIndex": 1 },
+    { "level": "B1", "kind": "grammar", "prompt": "Il pleut, ___ je reste à la maison. (best connector)", "options": ["donc", "ni", "que", "soit"], "answerIndex": 0 },
+    { "level": "B1", "kind": "vocab", "prompt": "« avoir raison » means…", "options": ["to be wrong", "to be hungry", "to be right", "to be afraid"], "answerIndex": 2 },
+    { "level": "B2", "kind": "grammar", "prompt": "Il faut que tu ___ à l'heure. (subjunctive of être)", "options": ["es", "sois", "seras", "être"], "answerIndex": 1 },
+    { "level": "B2", "kind": "vocab", "prompt": "« malgré » means…", "options": ["thanks to", "despite", "because of", "during"], "answerIndex": 1 },
+    { "level": "B2", "kind": "grammar", "prompt": "Le projet ___ par l'équipe a réussi. (past participle of mener)", "options": ["mène", "menant", "mené", "mener"], "answerIndex": 2 },
+    { "level": "B2", "kind": "vocab", "prompt": "« mettre en œuvre » means…", "options": ["to give up", "to implement", "to postpone", "to summarize"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« le cas échéant » means…", "options": ["right away", "if applicable / should the case arise", "without fail", "in vain"], "answerIndex": 1 },
+    { "level": "C1", "kind": "grammar", "prompt": "Quoi qu'il ___, nous continuerons. (fixed subjunctive expression)", "options": ["en est", "en soit", "sera", "était"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« un dénouement » refers to…", "options": ["a beginning", "an outcome / resolution", "a mistake", "a delay"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« peu s'en faut » means…", "options": ["far from it", "very nearly / almost", "on purpose", "little by little"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« à brûle-pourpoint » means…", "options": ["point-blank / out of the blue", "little by little", "behind closed doors", "at first sight"], "answerIndex": 0 },
+    { "level": "C2", "kind": "vocab", "prompt": "« une velléité » is…", "options": ["a firm decision", "a vague, half-hearted intention", "a violent argument", "a clever trick"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« nonobstant » is a synonym of…", "options": ["therefore", "notwithstanding / despite", "henceforth", "moreover"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« un imbroglio » describes…", "options": ["a confusing, tangled situation", "a formal celebration", "a long journey", "a quiet agreement"], "answerIndex": 0 }
+  ]
+}

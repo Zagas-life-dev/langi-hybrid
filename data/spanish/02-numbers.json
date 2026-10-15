@@ -1,0 +1,438 @@
+{
+  "slug": "es-a1-numbers",
+  "title": "Numbers & Counting",
+  "description": "Count, give your age and handle prices — the numbers you use daily.",
+  "level": "A1",
+  "topic": "numbers",
+  "order": 2,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "cero",
+      "translation": "zero",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "uno",
+      "translation": "one",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "dos",
+      "translation": "two",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "tres",
+      "translation": "three",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cuatro",
+      "translation": "four",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cinco",
+      "translation": "five",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "seis",
+      "translation": "six",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "siete",
+      "translation": "seven",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "ocho",
+      "translation": "eight",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "nueve",
+      "translation": "nine",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "diez",
+      "translation": "ten",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "once",
+      "translation": "eleven",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "doce",
+      "translation": "twelve",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "trece",
+      "translation": "thirteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "catorce",
+      "translation": "fourteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "quince",
+      "translation": "fifteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "dieciséis",
+      "translation": "sixteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "diecisiete",
+      "translation": "seventeen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "dieciocho",
+      "translation": "eighteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "diecinueve",
+      "translation": "nineteen",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "veinte",
+      "translation": "twenty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "veintiuno",
+      "translation": "twenty-one",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "treinta",
+      "translation": "thirty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cuarenta",
+      "translation": "forty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cincuenta",
+      "translation": "fifty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "sesenta",
+      "translation": "sixty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "setenta",
+      "translation": "seventy",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "ochenta",
+      "translation": "eighty",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "noventa",
+      "translation": "ninety",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cien",
+      "translation": "one hundred",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "ciento uno",
+      "translation": "one hundred one",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "doscientos",
+      "translation": "two hundred",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "quinientos",
+      "translation": "five hundred",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "mil",
+      "translation": "one thousand",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "dos mil",
+      "translation": "two thousand",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "un millón",
+      "translation": "one million",
+      "partOfSpeech": "number",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "primero",
+      "translation": "first",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "segundo",
+      "translation": "second",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "tercero",
+      "translation": "third",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "cuarto",
+      "translation": "fourth",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "quinto",
+      "translation": "fifth",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "último",
+      "translation": "last",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "la mitad",
+      "translation": "half",
+      "partOfSpeech": "noun",
+      "tags": [
+        "numbers"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el número",
+      "translation": "the number",
+      "partOfSpeech": "noun",
+      "tags": [
+        "numbers"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "par",
+      "translation": "even",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "impar",
+      "translation": "odd",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "la docena",
+      "translation": "dozen",
+      "partOfSpeech": "noun",
+      "tags": [
+        "numbers"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "¿cuántos?",
+      "translation": "how many?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "mucho",
+      "translation": "a lot/many",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "poco",
+      "translation": "little/few",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "contar",
+      "translation": "to count",
+      "partOfSpeech": "verb",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "más",
+      "translation": "more/plus",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "numbers"
+      ]
+    },
+    {
+      "term": "menos",
+      "translation": "less/minus",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "numbers"
+      ]
+    }
+  ]
+}

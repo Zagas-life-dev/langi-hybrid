@@ -1,0 +1,61 @@
+[
+  {
+    "slug": "fr-b2-le-marche-aux-puces",
+    "level": "B2",
+    "topic": "city life & chance",
+    "title": "Le marché aux puces",
+    "titleTranslation": "The flea market",
+    "sentences": [
+      { "text": "Chaque dimanche, Élodie flânait au marché aux puces sans jamais rien acheter.", "translation": "Every Sunday, Élodie strolled through the flea market without ever buying anything." },
+      { "text": "Elle aimait surtout observer les objets et imaginer leur histoire.", "translation": "She especially liked to observe the objects and imagine their history." },
+      { "text": "Un matin, un vieux miroir au cadre doré a attiré son attention.", "translation": "One morning, an old mirror with a gilded frame caught her attention." },
+      { "text": "Le vendeur, un homme bavard, prétendait qu'il venait d'un château.", "translation": "The seller, a talkative man, claimed it came from a castle." },
+      { "text": "Bien qu'elle doutât de cette histoire, Élodie l'a acheté pour une bouchée de pain.", "translation": "Although she doubted this story, Élodie bought it for next to nothing." },
+      { "text": "Une fois chez elle, elle a découvert une inscription gravée au dos du cadre.", "translation": "Once home, she discovered an inscription engraved on the back of the frame." },
+      { "text": "C'était un nom et une date : « À Marguerite, 1923 ».", "translation": "It was a name and a date: \"To Marguerite, 1923.\"" },
+      { "text": "Intriguée, elle s'est mise à chercher qui avait pu être cette Marguerite.", "translation": "Intrigued, she set out to find who this Marguerite might have been." },
+      { "text": "Le miroir ne valait peut-être rien, mais il lui avait offert une véritable enquête.", "translation": "The mirror was perhaps worth nothing, but it had given her a real investigation." }
+    ],
+    "glossary": [
+      { "term": "flâner", "translation": "to stroll/wander" },
+      { "term": "le cadre", "translation": "the frame" },
+      { "term": "prétendre", "translation": "to claim" },
+      { "term": "pour une bouchée de pain", "translation": "for next to nothing (idiom)" },
+      { "term": "graver", "translation": "to engrave" }
+    ],
+    "questions": [
+      { "question": "What did Élodie usually do at the flea market?", "options": ["Buy antiques", "Sell objects", "Stroll and imagine the objects' history", "Meet friends"], "answer": 2 },
+      { "question": "What did she find on the back of the frame?", "options": ["A price tag", "An engraved name and date", "A photo", "Nothing"], "answer": 1 },
+      { "question": "Why was the mirror valuable to her in the end?", "options": ["It was from a real castle", "It was expensive", "It gave her a mystery to investigate", "She could resell it"], "answer": 2 }
+    ]
+  },
+  {
+    "slug": "fr-b2-la-panne-d-electricite",
+    "level": "B2",
+    "topic": "community & the everyday",
+    "title": "La panne d'électricité",
+    "titleTranslation": "The power cut",
+    "sentences": [
+      { "text": "Un soir d'hiver, tout l'immeuble s'est retrouvé plongé dans le noir.", "translation": "One winter evening, the whole building was plunged into darkness." },
+      { "text": "Au début, chacun a pesté dans son appartement, agacé par cette panne.", "translation": "At first, everyone grumbled in their own flat, annoyed by the outage." },
+      { "text": "Puis les voisins ont commencé à sortir sur le palier, une bougie à la main.", "translation": "Then the neighbours began to come out onto the landing, a candle in hand." },
+      { "text": "Quelqu'un a proposé de partager un repas improvisé dans le couloir.", "translation": "Someone suggested sharing an improvised meal in the hallway." },
+      { "text": "Des gens qui ne s'étaient jamais parlé se sont mis à rire ensemble.", "translation": "People who had never spoken to each other started laughing together." },
+      { "text": "Le vieux monsieur du troisième a raconté des histoires de sa jeunesse.", "translation": "The old gentleman from the third floor told stories of his youth." },
+      { "text": "Quand la lumière est enfin revenue, personne n'avait vraiment envie de rentrer.", "translation": "When the light finally came back, nobody really wanted to go back inside." },
+      { "text": "Cette panne, qui semblait un désastre, avait rapproché tout l'immeuble.", "translation": "That outage, which had seemed a disaster, had brought the whole building closer." }
+    ],
+    "glossary": [
+      { "term": "la panne", "translation": "the breakdown/outage" },
+      { "term": "pester", "translation": "to grumble/rant" },
+      { "term": "le palier", "translation": "the landing (of stairs)" },
+      { "term": "la bougie", "translation": "the candle" },
+      { "term": "rapprocher", "translation": "to bring closer" }
+    ],
+    "questions": [
+      { "question": "How did the neighbours react at first?", "options": ["They celebrated", "They grumbled, annoyed", "They went to sleep", "They called the police"], "answer": 1 },
+      { "question": "What did they end up doing together?", "options": ["Sharing an improvised meal", "Watching television", "Repairing the wiring", "Leaving the building"], "answer": 0 },
+      { "question": "What is the story's main idea?", "options": ["Power cuts are dangerous", "A misfortune brought people together", "Old buildings are unreliable", "Candles are useful"], "answer": 1 }
+    ]
+  }
+]

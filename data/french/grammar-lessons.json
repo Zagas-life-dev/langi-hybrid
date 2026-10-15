@@ -1,0 +1,851 @@
+{
+  "_note": "Hand-written French grammar lessons for topics that are not conjugation tables (those are built from LEFFF in scripts/seed-grammar.ts). Slugs match FR_CATALOG in lib/grammar.ts. Drill cues give the meaning or base form, never the answer. Seeded by `npm run seed-grammar`. Authored for Langi.",
+  "lessons": [
+    {
+      "slug": "fr-a1-articles",
+      "summary": "le/la/les point to specific or general things; un/une/des introduce one or some.",
+      "explanation": "Every French noun is masculine or feminine, and the article shows which. The definite articles (“the”) are le (masculine), la (feminine) and les (plural). Before a vowel or a silent h, le and la both become l': le livre, la table, l'ami, l'école, les livres.\n\nThe indefinite articles are un (masculine), une (feminine) and des (plural, “some”): un livre, une table, des livres. English often drops “some”, but French cannot drop des: J'ai des amis à Lyon (I have friends in Lyon).\n\nUse le/la/les for a specific thing, and also for things in general — especially after verbs of taste like aimer, adorer, préférer and détester: J'aime le chocolat (I like chocolate). Je déteste les araignées (I hate spiders).\n\nà and de merge with le and les: à + le = au, à + les = aux, de + le = du, de + les = des. Je vais au cinéma. Le livre du professeur. The forms à la, à l', de la and de l' never change.\n\nAfter a negative, un, une and des become de (d' before a vowel): J'ai un chat → Je n'ai pas de chat. The definite articles stay: Je n'aime pas le café.",
+      "examples": [
+        { "fr": "J'ai un chien et une chatte.", "en": "I have a dog and a (female) cat." },
+        { "fr": "J'adore les croissants.", "en": "I love croissants." },
+        { "fr": "Nous allons au marché.", "en": "We're going to the market." },
+        { "fr": "C'est la voiture du voisin.", "en": "It's the neighbour's car." },
+        { "fr": "Il n'a pas de voiture.", "en": "He doesn't have a car." }
+      ],
+      "drills": [
+        { "prompt": "___ soleil brille. (the — soleil is masculine)", "answer": "Le" },
+        { "prompt": "J'ai acheté ___ robe. (a — robe is feminine)", "answer": "une" },
+        { "prompt": "___ enfants jouent dans le parc. (the, plural)", "answer": "Les" },
+        { "prompt": "Elle aime ___ musique classique. (a general taste — musique is feminine)", "answer": "la", "hint": "aimer + definite article" },
+        { "prompt": "Je vais ___ cinéma ce soir. (to the — cinéma is masculine)", "answer": "au", "hint": "à + le" },
+        { "prompt": "C'est la voiture ___ voisin. (of the — voisin is masculine)", "answer": "du", "hint": "de + le" },
+        { "prompt": "Il n'a pas ___ frère. (a brother, negative)", "answer": "de", "hint": "un → de after pas" }
+      ]
+    },
+    {
+      "slug": "fr-a1-gender-plural",
+      "summary": "Learn each noun with its article; most plurals add a silent -s, with a few regular exceptions.",
+      "explanation": "Every noun is masculine or feminine, and the gender is grammatical, not logical: la table, le bureau. Always learn a noun together with its article (un livre, une table) so the gender sticks.\n\nEndings give strong hints. Usually masculine: -age (le fromage), -ment (le moment), -eau (le bateau), -isme (le tourisme). Usually feminine: -tion/-sion (la nation), -té (la liberté), -ette (la baguette), -ure (la voiture), -ence/-ance (la patience). Watch the exceptions: la plage, l'image (f), l'eau (f).\n\nFor people, many feminines just add -e: un ami → une amie, un étudiant → une étudiante. Other patterns: -eur → -euse (un vendeur → une vendeuse), -teur → -trice (un acteur → une actrice), -ien → -ienne (un musicien → une musicienne).\n\nTo make a plural, add a silent -s: un livre → des livres. Nouns already ending in -s, -x or -z do not change: un bus → des bus, une voix → des voix, un nez → des nez.\n\nSpecial plurals: -eau and -eu add -x (un bateau → des bateaux, un jeu → des jeux), and -al becomes -aux (un journal → des journaux, un cheval → des chevaux). One very common irregular: un œil → des yeux.",
+      "examples": [
+        { "fr": "La liberté est importante.", "en": "Freedom is important." },
+        { "fr": "J'ai deux chevaux et trois oiseaux.", "en": "I have two horses and three birds." },
+        { "fr": "Mon amie est actrice.", "en": "My (female) friend is an actress." },
+        { "fr": "Les journaux sont sur la table.", "en": "The newspapers are on the table." },
+        { "fr": "Elle a les yeux bleus.", "en": "She has blue eyes." }
+      ],
+      "drills": [
+        { "prompt": "J'ai acheté trois ___. (plural of le gâteau)", "answer": "gâteaux", "hint": "-eau → -eaux" },
+        { "prompt": "Il y a deux ___ dans le jardin. (plural of l'animal)", "answer": "animaux", "hint": "-al → -aux" },
+        { "prompt": "Les ___ vidéo sont amusants. (plural of le jeu)", "answer": "jeux" },
+        { "prompt": "J'ai mal aux ___. (plural of l'œil)", "answer": "yeux", "hint": "irregular" },
+        { "prompt": "Elle est ___ de cinéma. (feminine of acteur)", "answer": "actrice", "hint": "-teur → -trice" },
+        { "prompt": "Ma cousine est ___. (feminine of musicien)", "answer": "musicienne" },
+        { "prompt": "Le ___ et la vendeuse travaillent ici. (masculine of vendeuse)", "answer": "vendeur" },
+        { "prompt": "___ plage est magnifique. (the — an -age noun that is an exception)", "answer": "La" }
+      ]
+    },
+    {
+      "slug": "fr-a1-adjectives",
+      "summary": "Adjectives agree with their noun, and most come after it — except a small BAGS group.",
+      "explanation": "Adjectives agree with the noun in gender and number. Add -e for feminine and -s for plural: un ami content · une amie contente · des amis contents · des amies contentes.\n\nIf the adjective already ends in -e, the feminine does not change: un livre rouge, une voiture rouge. Some endings change more: -eux → -euse (heureux, heureuse), -if → -ive (sportif, sportive), -el → -elle (naturel, naturelle), -en → -enne (italien, italienne), -er → -ère (cher, chère). A few are irregular: blanc → blanche, long → longue, gentil → gentille.\n\nMost adjectives come AFTER the noun: une voiture rouge, un film intéressant. A small group of short, common adjectives come BEFORE it — remember BAGS: Beauty (beau, joli), Age (jeune, vieux, nouveau), Goodness (bon, mauvais), Size (grand, petit, gros). Un petit chien, une jolie maison, un bon repas.\n\nbeau, nouveau and vieux have a special form before a masculine noun starting with a vowel or silent h: un bel homme, un nouvel ami, un vieil arbre. Their feminines are belle, nouvelle, vieille.",
+      "examples": [
+        { "fr": "Elle a une petite voiture rouge.", "en": "She has a small red car." },
+        { "fr": "Mes amies sont très contentes.", "en": "My (female) friends are very happy." },
+        { "fr": "C'est un bel hôtel.", "en": "It's a beautiful hotel." },
+        { "fr": "Nous avons un nouveau professeur.", "en": "We have a new teacher." },
+        { "fr": "Ce sont des chaussures chères.", "en": "These are expensive shoes." }
+      ],
+      "drills": [
+        { "prompt": "C'est une fille très ___. (sportif)", "answer": "sportive", "hint": "-if → -ive" },
+        { "prompt": "Mes sœurs sont ___. (heureux)", "answer": "heureuses", "hint": "feminine plural" },
+        { "prompt": "C'est une ___ maison. (beau)", "answer": "belle" },
+        { "prompt": "Il a un ___ ami. (nouveau)", "answer": "nouvel", "hint": "before a vowel" },
+        { "prompt": "Ce sont des films ___. (intéressant)", "answer": "intéressants" },
+        { "prompt": "Elle porte une robe ___. (blanc)", "answer": "blanche", "hint": "irregular feminine" },
+        { "prompt": "C'est une ___ femme. (vieux)", "answer": "vieille" },
+        { "prompt": "Les tartes sont ___. (bon)", "answer": "bonnes" }
+      ]
+    },
+    {
+      "slug": "fr-a1-cest-il-est",
+      "summary": "c'est goes before a determiner, a name or a pronoun; il/elle est goes before an adjective or a bare profession.",
+      "explanation": "Both c'est and il/elle est can mean “it is / he is / she is”. The choice depends on what comes next.\n\nUse c'est (plural ce sont) before a determiner + noun, a name, or a stressed pronoun: C'est un médecin. C'est mon frère. C'est Paul. C'est moi. Ce sont mes amis.\n\nUse il est / elle est (plural ils/elles sont) before an adjective alone, or before a profession, nationality or religion used without an article: Il est grand. Elle est française. Il est médecin.\n\nCompare: Il est médecin (he is a doctor) but C'est un médecin (he's a doctor). As soon as you add un, une, le, mon… you need c'est.\n\nTo comment on a whole situation or idea, use c'est + masculine adjective: Paris ? C'est beau ! Le français, c'est difficile.",
+      "examples": [
+        { "fr": "C'est mon frère. Il est très grand.", "en": "That's my brother. He is very tall." },
+        { "fr": "Elle est professeure.", "en": "She is a teacher." },
+        { "fr": "C'est une bonne idée.", "en": "It's a good idea." },
+        { "fr": "Ce sont mes amis.", "en": "They are my friends." },
+        { "fr": "Les vacances, c'est génial !", "en": "Holidays are great!" }
+      ],
+      "drills": [
+        { "prompt": "___ mon frère. (c'est / il est)", "answer": "c'est", "hint": "determiner + noun" },
+        { "prompt": "Regarde Marie : ___ très gentille. (c'est / elle est)", "answer": "elle est", "hint": "adjective alone" },
+        { "prompt": "Mon père ? ___ médecin. (c'est / il est)", "answer": "il est", "hint": "profession, no article" },
+        { "prompt": "___ un bon médecin. (c'est / il est)", "answer": "c'est", "hint": "un + noun" },
+        { "prompt": "___ mes parents. (ce sont / ils sont)", "answer": "ce sont" },
+        { "prompt": "Paul et Luc ? ___ canadiens. (ce sont / ils sont)", "answer": "ils sont", "hint": "nationality, no article" },
+        { "prompt": "Le chocolat, ___ délicieux ! (c'est / il est)", "answer": "c'est", "hint": "general comment" }
+      ]
+    },
+    {
+      "slug": "fr-a1-demonstratives",
+      "summary": "ce, cet, cette and ces mean this/that/these/those and agree with the noun.",
+      "explanation": "Demonstrative adjectives mean “this / that / these / those” and agree with the noun.\n\nce + masculine singular: ce livre, ce garçon. cet + masculine singular starting with a vowel or silent h: cet ami, cet hôtel (it sounds exactly like cette). cette + feminine singular: cette maison, cette idée. ces + any plural: ces livres, ces maisons.\n\nFrench does not separate “this” from “that” here. To insist on the difference, add -ci (this, here) or -là (that, there) to the noun: ce livre-ci (this book), ce livre-là (that book).\n\nDon't confuse ces (these) with ses (his/her): ces enfants = these children, ses enfants = his/her children.",
+      "examples": [
+        { "fr": "Ce café est délicieux.", "en": "This coffee is delicious." },
+        { "fr": "Cet hôtel est cher.", "en": "This hotel is expensive." },
+        { "fr": "J'adore cette chanson.", "en": "I love this song." },
+        { "fr": "Ces chaussures sont neuves.", "en": "These shoes are new." },
+        { "fr": "Tu préfères ce pull-ci ou ce pull-là ?", "en": "Do you prefer this jumper or that one?" }
+      ],
+      "drills": [
+        { "prompt": "___ livre est intéressant. (this)", "answer": "ce" },
+        { "prompt": "___ homme est mon oncle. (this)", "answer": "cet", "hint": "silent h" },
+        { "prompt": "___ idée est géniale. (this)", "answer": "cette" },
+        { "prompt": "___ enfants jouent dans le parc. (these)", "answer": "ces" },
+        { "prompt": "J'aime beaucoup ___ hôtel. (this)", "answer": "cet" },
+        { "prompt": "Regarde ___ voiture ! (that)", "answer": "cette" },
+        { "prompt": "Tu connais ___ filles ? (those)", "answer": "ces" }
+      ]
+    },
+    {
+      "slug": "fr-a1-negation",
+      "summary": "Wrap ne … pas around the conjugated verb; un/une/des become de after it.",
+      "explanation": "To make a sentence negative, put ne before the conjugated verb and pas after it: Je parle → Je ne parle pas. Ne becomes n' before a vowel or a silent h: Il n'aime pas le thé. Elle n'habite pas ici.\n\nIn compound tenses, ne … pas goes around the auxiliary: Je n'ai pas mangé. Elle n'est pas venue. With a verb + infinitive, it goes around the conjugated verb: Je ne veux pas partir.\n\nObject and reflexive pronouns stay right before the verb, inside the negation: Je ne le vois pas. Il ne se lève pas tôt. To make an infinitive negative, put ne pas together before it: Je préfère ne pas sortir.\n\nAfter a negative, un, une, des and du, de la become de (d'): J'ai un vélo → Je n'ai pas de vélo. Il boit du café → Il ne boit pas de café. With être the article stays: Ce n'est pas un problème.\n\nTo answer “yes” to a negative question, use si, not oui: Tu ne viens pas ? — Si, je viens ! In casual speech French people often drop ne (Je sais pas), but always write it.",
+      "examples": [
+        { "fr": "Je ne parle pas allemand.", "en": "I don't speak German." },
+        { "fr": "Elle n'habite pas à Paris.", "en": "She doesn't live in Paris." },
+        { "fr": "Nous n'avons pas de voiture.", "en": "We don't have a car." },
+        { "fr": "Je ne veux pas partir.", "en": "I don't want to leave." },
+        { "fr": "Ce n'est pas un problème.", "en": "It's not a problem." }
+      ],
+      "drills": [
+        { "prompt": "Je ___ parle pas espagnol. (negative)", "answer": "ne" },
+        { "prompt": "Elle n'a ___ fini ses devoirs. (negative)", "answer": "pas", "hint": "around the auxiliary" },
+        { "prompt": "Nous ne mangeons pas ___ viande. (any meat)", "answer": "de", "hint": "de la → de after pas" },
+        { "prompt": "Il ne ___ pas venir ce soir. (vouloir)", "answer": "veut" },
+        { "prompt": "Tu ne ___ lèves pas tôt. (se lever)", "answer": "te", "hint": "the pronoun stays inside" },
+        { "prompt": "Je préfère ___ sortir ce soir. (not to go out)", "answer": "ne pas", "hint": "negative infinitive" },
+        { "prompt": "Ce n'est pas ___ problème. (a — problème is masculine, after être)", "answer": "un" },
+        { "prompt": "Tu ne viens pas ? — ___, je viens ! (yes, contradicting)", "answer": "Si" }
+      ]
+    },
+    {
+      "slug": "fr-a1-questions",
+      "summary": "Ask yes/no questions with rising intonation, est-ce que, or inversion — and add a question word for open questions.",
+      "explanation": "The simplest way to ask a yes/no question is rising intonation on a normal sentence. It is informal and very common in speech: Tu parles français ?\n\nEst-ce que + a normal sentence works in every situation: Est-ce que tu parles français ? Before a vowel it becomes est-ce qu': Est-ce qu'il vient ?\n\nInversion is the formal, written option: put the verb before the subject pronoun and join them with a hyphen: Parles-tu français ? Avez-vous faim ? If the verb ends in a vowel and the pronoun is il, elle or on, add -t- between them: Parle-t-il anglais ? A-t-elle un chien ? With a noun subject, keep the noun and add a pronoun: Marie parle-t-elle français ?\n\nFor open questions, add a question word: où (where), quand (when), comment (how), pourquoi (why), combien (how much/many), qui (who). All three structures work: Où tu habites ? · Où est-ce que tu habites ? · Où habites-tu ?\n\nAnswer with oui or non — or si to contradict a negative question: Tu n'as pas faim ? — Si !",
+      "examples": [
+        { "fr": "Est-ce que vous avez des enfants ?", "en": "Do you have children?" },
+        { "fr": "Où habites-tu ?", "en": "Where do you live?" },
+        { "fr": "Parle-t-il anglais ?", "en": "Does he speak English?" },
+        { "fr": "Pourquoi est-ce que tu pleures ?", "en": "Why are you crying?" },
+        { "fr": "Combien coûte ce livre ?", "en": "How much does this book cost?" }
+      ],
+      "drills": [
+        { "prompt": "___ tu aimes le sport ? (neutral yes/no question opener)", "answer": "Est-ce que" },
+        { "prompt": "___ il arrive demain ? (neutral question opener, before a vowel)", "answer": "Est-ce qu'" },
+        { "prompt": "Parle-___-il français ? (linking letter)", "answer": "t", "hint": "verb ends in a vowel + il/elle/on" },
+        { "prompt": "___ faim ? (avoir, vous, inverted question)", "answer": "Avez-vous" },
+        { "prompt": "___ habites-tu ? (where)", "answer": "Où" },
+        { "prompt": "___ coûte ce pull ? (how much)", "answer": "Combien" },
+        { "prompt": "___ est-ce que tu apprends le français ? (why)", "answer": "Pourquoi" },
+        { "prompt": "___ arrives-tu ? (when)", "answer": "Quand" }
+      ]
+    },
+    {
+      "slug": "fr-a1-possessives",
+      "summary": "Possessive adjectives agree with the thing owned, not with the owner.",
+      "explanation": "French possessive adjectives agree with the noun that follows — the thing owned — not with the owner. My: mon (masculine), ma (feminine), mes (plural). Your (tu): ton, ta, tes. His/her/its: son, sa, ses. Mon père, ma mère, mes parents.\n\nBecause the noun decides, son/sa/ses can mean either “his” or “her”: son frère = his brother or her brother; sa voiture = his car or her car. Paul aime sa mère (Paul loves his mother) — sa because mère is feminine.\n\nBefore a feminine noun starting with a vowel or a silent h, use mon, ton, son instead of ma, ta, sa, so the words flow: mon amie, ton école, son histoire.\n\nFor plural owners: notre/nos (our), votre/vos (your, vous), leur/leurs (their). These do not change for gender, only for number: notre maison, notre jardin, nos enfants; leur fils, leurs parents.",
+      "examples": [
+        { "fr": "Ma sœur et mon frère habitent à Lyon.", "en": "My sister and my brother live in Lyon." },
+        { "fr": "Il aime beaucoup sa mère.", "en": "He loves his mother very much." },
+        { "fr": "C'est mon amie Claire.", "en": "This is my friend Claire." },
+        { "fr": "Nos voisins sont sympathiques.", "en": "Our neighbours are nice." },
+        { "fr": "Ils vendent leur maison.", "en": "They're selling their house." }
+      ],
+      "drills": [
+        { "prompt": "___ père est médecin. (my)", "answer": "Mon" },
+        { "prompt": "Paul cherche ___ clés. (his)", "answer": "ses" },
+        { "prompt": "Marie adore ___ frère. (her)", "answer": "son", "hint": "frère is masculine" },
+        { "prompt": "C'est ___ école. (my — école is feminine)", "answer": "mon", "hint": "before a vowel" },
+        { "prompt": "Vous avez ___ billets ? (your, vous)", "answer": "vos" },
+        { "prompt": "Les enfants jouent avec ___ chien. (their — one dog)", "answer": "leur" },
+        { "prompt": "___ maison est grande. (our)", "answer": "Notre" },
+        { "prompt": "Tu as ___ adresse ? (your, tu — adresse is feminine)", "answer": "ton" }
+      ]
+    },
+    {
+      "slug": "fr-a1-stressed-pronouns",
+      "summary": "moi, toi, lui, elle, nous, vous, eux, elles are used after prepositions, alone, and for emphasis.",
+      "explanation": "The stressed (disjunctive) pronouns are: moi, toi, lui, elle, nous, vous, eux, elles. eux is masculine or mixed plural; elles is feminine plural.\n\nUse them after a preposition: avec moi, pour toi, chez lui, sans elles. Chez moi = at my place.\n\nUse them alone or in short answers: Qui veut du café ? — Moi ! Moi aussi. Pas moi. Et toi ?\n\nUse them for emphasis, next to the subject pronoun: Moi, je préfère le thé. Lui, il ne sait pas.\n\nUse them after c'est and in comparisons: C'est moi. Il est plus grand que toi.",
+      "examples": [
+        { "fr": "Tu viens avec moi ?", "en": "Are you coming with me?" },
+        { "fr": "Moi, j'adore le cinéma.", "en": "Me, I love the cinema." },
+        { "fr": "Ce cadeau est pour elle.", "en": "This present is for her." },
+        { "fr": "Nous dînons chez eux ce soir.", "en": "We're having dinner at their place tonight." },
+        { "fr": "Il est plus âgé que toi.", "en": "He is older than you." }
+      ],
+      "drills": [
+        { "prompt": "Tu viens avec ___ ? (me)", "answer": "moi" },
+        { "prompt": "Ce cadeau est pour ___. (her)", "answer": "elle" },
+        { "prompt": "Nous allons chez ___. (them, masculine)", "answer": "eux" },
+        { "prompt": "___, je préfère le thé. (me — emphasis)", "answer": "moi" },
+        { "prompt": "On a faim. — ___ aussi ! (us)", "answer": "nous" },
+        { "prompt": "Il est plus grand que ___. (you, tu)", "answer": "toi" },
+        { "prompt": "C'est ___ qui a appelé. (him)", "answer": "lui" }
+      ]
+    },
+    {
+      "slug": "fr-a1-prepositions-places",
+      "summary": "à for cities, en/au/aux for countries, à la/au for places, chez for people.",
+      "explanation": "To say “in” or “to” a place, French chooses the preposition from the kind of place.\n\nCities: à. J'habite à Paris. Je vais à Londres.\n\nCountries: feminine countries (most ending in -e: la France, l'Italie, la Chine) take en. Masculine countries take au (le Canada → au Canada, le Japon → au Japon). Plural countries take aux (les États-Unis → aux États-Unis). A country starting with a vowel always takes en: en Iran, en Israël.\n\nOther places: à + le/la/l'/les → au, à la, à l', aux: au cinéma, à la plage, à l'école. Fixed phrase: à la maison (at home).\n\nPeople and their homes or businesses: chez. Je vais chez Marie, chez le médecin, chez moi.\n\nTo say where you come FROM, use de: de Paris, de France, du Canada, des États-Unis.",
+      "examples": [
+        { "fr": "Elle habite à Rome, en Italie.", "en": "She lives in Rome, in Italy." },
+        { "fr": "Nous partons au Japon.", "en": "We're leaving for Japan." },
+        { "fr": "Ils vont aux États-Unis.", "en": "They're going to the United States." },
+        { "fr": "Je suis chez le dentiste.", "en": "I'm at the dentist's." },
+        { "fr": "Tu vas à la plage ?", "en": "Are you going to the beach?" }
+      ],
+      "drills": [
+        { "prompt": "J'habite ___ Lyon.", "answer": "à", "hint": "city" },
+        { "prompt": "Elle travaille ___ Espagne.", "answer": "en", "hint": "l'Espagne is feminine" },
+        { "prompt": "Nous allons ___ Portugal.", "answer": "au", "hint": "le Portugal" },
+        { "prompt": "Ils voyagent ___ Pays-Bas.", "answer": "aux", "hint": "les Pays-Bas" },
+        { "prompt": "Je vais ___ boulangerie.", "answer": "à la" },
+        { "prompt": "Tu viens ___ moi ce soir ?", "answer": "chez", "hint": "someone's home" },
+        { "prompt": "Il reste ___ maison aujourd'hui.", "answer": "à la", "hint": "at home" },
+        { "prompt": "Elle vient ___ Canada.", "answer": "du", "hint": "from + le Canada" }
+      ]
+    },
+    {
+      "slug": "fr-a2-comparatives",
+      "summary": "plus/moins/aussi … que compare; le plus / le moins pick out the extreme; bon → meilleur, bien → mieux.",
+      "explanation": "To compare adjectives use plus (more), moins (less) or aussi (as) + adjective + que. The adjective still agrees: Marie est plus grande que Paul. Ce film est moins intéressant que le livre. Il est aussi grand que son père.\n\nAdverbs work the same way, with no agreement: Elle court plus vite que moi. With nouns use plus de / moins de / autant de + noun: J'ai plus de livres que toi. With verbs use plus que / moins que / autant que: Il travaille autant que moi.\n\nTwo key irregulars: bon (good, adjective) → meilleur (better); bien (well, adverb) → mieux (better). Ce gâteau est meilleur. Elle chante mieux que moi. Never say “plus bon”.\n\nThe superlative is le/la/les + plus/moins + adjective, with de for “in”: C'est la plus belle ville du monde. If the adjective normally follows the noun, the article is repeated: C'est le film le plus intéressant. The irregulars become le meilleur and le mieux.\n\nAfter que, use stressed pronouns: plus grand que moi, aussi fort que lui, moins riche qu'eux.",
+      "examples": [
+        { "fr": "Le TGV est plus rapide que le bus.", "en": "The TGV is faster than the bus." },
+        { "fr": "Mon frère est aussi grand que moi.", "en": "My brother is as tall as me." },
+        { "fr": "Ce restaurant est meilleur que l'autre.", "en": "This restaurant is better than the other one." },
+        { "fr": "Elle parle anglais mieux que moi.", "en": "She speaks English better than me." },
+        { "fr": "C'est le plus beau jour de ma vie.", "en": "It's the most beautiful day of my life." }
+      ],
+      "drills": [
+        { "prompt": "Ma sœur est ___ que moi. (taller — grand; sœur is feminine)", "answer": "plus grande", "hint": "the adjective agrees" },
+        { "prompt": "Ce gâteau est ___ que l'autre. (better — bon)", "answer": "meilleur" },
+        { "prompt": "Il parle français ___ que moi. (better — bien)", "answer": "mieux" },
+        { "prompt": "J'ai ___ livres que toi. (more)", "answer": "plus de", "hint": "+ noun" },
+        { "prompt": "La voiture est ___ rapide que le vélo. (more)", "answer": "plus" },
+        { "prompt": "Elle est ___ intelligente que son frère. (as)", "answer": "aussi" },
+        { "prompt": "Il travaille ___ que moi. (as much)", "answer": "autant", "hint": "with a verb" },
+        { "prompt": "C'est le restaurant le ___ cher de la ville. (least)", "answer": "moins" }
+      ]
+    },
+    {
+      "slug": "fr-a2-pc-vs-imparfait",
+      "summary": "Passé composé tells the events of a story; the imparfait paints the background.",
+      "explanation": "Both tenses talk about the past, but they do different jobs in a story.\n\nPassé composé = an event: something that happened once, or started or finished at a specific moment. Hier, j'ai vu un film. Soudain, le téléphone a sonné.\n\nImparfait = the background: descriptions (weather, feelings, age, time), habits and repeated actions, and actions in progress. Il faisait beau. J'étais fatigué. Quand j'étais petit, je jouais au foot tous les samedis.\n\nThey often work together: the imparfait sets the scene and the passé composé interrupts it. Je regardais la télé quand mon frère est arrivé (I was watching TV when my brother arrived).\n\nClue words: hier, soudain, tout à coup, une fois point to the passé composé. Tous les jours, souvent, d'habitude, pendant que point to the imparfait.",
+      "examples": [
+        { "fr": "Hier, j'ai mangé au restaurant.", "en": "Yesterday, I ate at a restaurant." },
+        { "fr": "Il pleuvait quand nous sommes sortis.", "en": "It was raining when we went out." },
+        { "fr": "Quand j'avais dix ans, j'habitais à Lyon.", "en": "When I was ten, I lived in Lyon." },
+        { "fr": "Tout à coup, elle a crié.", "en": "Suddenly, she screamed." },
+        { "fr": "D'habitude, nous dînions à huit heures.", "en": "Usually, we had dinner at eight." }
+      ],
+      "drills": [
+        { "prompt": "Hier, nous ___ un film. (regarder)", "answer": "avons regardé", "hint": "one event" },
+        { "prompt": "Quand j'étais petit, je ___ au foot le samedi. (jouer)", "answer": "jouais", "hint": "habit" },
+        { "prompt": "Il ___ beau ce jour-là. (faire)", "answer": "faisait", "hint": "weather = background" },
+        { "prompt": "Soudain, le téléphone ___. (sonner)", "answer": "a sonné" },
+        { "prompt": "Je dormais quand tu ___. (appeler)", "answer": "as appelé", "hint": "the interruption" },
+        { "prompt": "Elle ___ fatiguée, alors elle est rentrée. (être)", "answer": "était", "hint": "a state" },
+        { "prompt": "D'habitude, ils ___ à huit heures. (dîner)", "answer": "dînaient" },
+        { "prompt": "Pendant que je lisais, mon frère ___ la radio. (écouter)", "answer": "écoutait", "hint": "two actions in progress" }
+      ]
+    },
+    {
+      "slug": "fr-a2-partitive",
+      "summary": "du, de la, de l', des mean “some” for an unspecified amount; they become de after a negative or a quantity.",
+      "explanation": "Partitive articles express an unspecified amount — “some” of something: du (masculine), de la (feminine), de l' (before a vowel), des (plural). Je mange du pain. Elle boit de la limonade. Tu veux de l'eau ? Il achète des pommes.\n\nEnglish often leaves out “some”, but French always needs the article: Je bois du café = I drink coffee. They are common with food and drink and in set expressions: faire du sport, faire de la musique, avoir de la chance.\n\nCompare the three articles: J'aime le café (coffee in general, after a verb of taste) · Je bois du café (some coffee) · Je commande un café (one cup). Likewise un gâteau is a whole cake, du gâteau is some cake.\n\nAfter a negative, du, de la, de l' and des all become de (d'): Je ne bois pas de café. Il n'y a plus d'eau. The exception is être: Ce n'est pas du vin, c'est du jus.\n\nAfter expressions of quantity, use de alone too: beaucoup de sucre, un peu de lait, un kilo de pommes, une bouteille d'eau, assez de temps.",
+      "examples": [
+        { "fr": "Je prends du pain et de la confiture.", "en": "I'm having bread and jam." },
+        { "fr": "Tu veux de l'eau ?", "en": "Do you want some water?" },
+        { "fr": "Il fait du sport tous les jours.", "en": "He does sport every day." },
+        { "fr": "Nous n'avons plus de lait.", "en": "We have no more milk." },
+        { "fr": "J'achète un kilo de tomates.", "en": "I'm buying a kilo of tomatoes." }
+      ],
+      "drills": [
+        { "prompt": "Je mange ___ fromage. (some — fromage is masculine)", "answer": "du" },
+        { "prompt": "Il ___ salade. (manger + some — salade is feminine)", "answer": "mange de la" },
+        { "prompt": "Tu veux ___ eau ? (some — eau starts with a vowel)", "answer": "de l'" },
+        { "prompt": "J'achète ___ pommes. (some, plural)", "answer": "des" },
+        { "prompt": "Elle ne boit pas ___ café. (any, negative)", "answer": "de" },
+        { "prompt": "Il y a beaucoup ___ monde ici. (after a quantity)", "answer": "de" },
+        { "prompt": "Elle ___ musique. (faire + some — musique is feminine)", "answer": "fait de la" },
+        { "prompt": "Tu ___ patience. (avoir + some — patience is feminine)", "answer": "as de la" }
+      ]
+    },
+    {
+      "slug": "fr-a2-negation-plus",
+      "summary": "ne… jamais, rien, plus, personne and que wrap around the verb like ne… pas.",
+      "explanation": "Besides ne… pas, French has other two-part negations. ne goes before the verb and the second word after it: ne… jamais (never): Je ne fume jamais. ne… rien (nothing): Il ne mange rien. ne… plus (no longer): Elle n'habite plus ici. ne… personne (nobody): Je ne connais personne. ne… que (only — not really negative): Je n'ai que dix euros.\n\nIn compound tenses, jamais, rien and plus go between the auxiliary and the participle, but personne goes AFTER the participle: Je n'ai jamais vu ça. Il n'a rien dit. But: Je n'ai vu personne.\n\nrien and personne can also be the subject, with ne before the verb: Rien ne marche. Personne n'est venu.\n\nAfter a negation, un/une/du/de la/des become de: Je n'ai plus de pain.\n\nIn speech the ne is often dropped (J'sais pas), but keep it in writing.",
+      "examples": [
+        { "fr": "Je ne bois jamais de café.", "en": "I never drink coffee." },
+        { "fr": "Il n'a rien compris.", "en": "He didn't understand anything." },
+        { "fr": "Nous n'habitons plus à Paris.", "en": "We no longer live in Paris." },
+        { "fr": "Je n'ai vu personne.", "en": "I didn't see anybody." },
+        { "fr": "Personne n'est venu.", "en": "Nobody came." }
+      ],
+      "drills": [
+        { "prompt": "Je ne vais ___ au cinéma. (never)", "answer": "jamais" },
+        { "prompt": "Il n'a ___ mangé. (nothing)", "answer": "rien" },
+        { "prompt": "Elle n'habite ___ ici. (no longer)", "answer": "plus" },
+        { "prompt": "Je ne connais ___ dans cette ville. (nobody)", "answer": "personne" },
+        { "prompt": "Nous n'avons ___ deux heures. (only)", "answer": "que" },
+        { "prompt": "___ n'est venu à la fête. (nobody)", "answer": "personne", "hint": "as the subject" },
+        { "prompt": "Je n'ai ___ vu ce film. (never)", "answer": "jamais" }
+      ]
+    },
+    {
+      "slug": "fr-a2-time-expressions",
+      "summary": "depuis (since/for, still going), il y a (ago), pendant (for, finished), dans (in, from now).",
+      "explanation": "depuis + present tense = an action that started in the past and is still going on. English uses “have been … for/since”: J'habite ici depuis trois ans (I have been living here for three years). Depuis quand… ? Depuis combien de temps… ?\n\nil y a + time = “ago”, with a past tense: Je suis arrivé il y a deux jours (I arrived two days ago).\n\npendant + duration = “for” a closed period: J'ai dormi pendant huit heures. Pendant les vacances, je lis.\n\ndans + time = “in” (from now), with a future: Le train part dans dix minutes.\n\nen + time = how long something takes to do: J'ai fini en une heure.",
+      "examples": [
+        { "fr": "J'apprends le français depuis six mois.", "en": "I have been learning French for six months." },
+        { "fr": "Elle est partie il y a une heure.", "en": "She left an hour ago." },
+        { "fr": "Nous avons marché pendant deux heures.", "en": "We walked for two hours." },
+        { "fr": "Le film commence dans dix minutes.", "en": "The film starts in ten minutes." }
+      ],
+      "drills": [
+        { "prompt": "J'habite à Paris ___ 2019. (since)", "answer": "depuis" },
+        { "prompt": "Il est parti ___ une heure. (ago)", "answer": "il y a" },
+        { "prompt": "Nous avons dansé ___ toute la nuit. (for — finished)", "answer": "pendant" },
+        { "prompt": "Le train arrive ___ cinq minutes. (in — from now)", "answer": "dans" },
+        { "prompt": "Tu attends ___ longtemps ? (still waiting)", "answer": "depuis" },
+        { "prompt": "J'ai lu ce livre ___ deux jours. (it took me)", "answer": "en" },
+        { "prompt": "Je l'ai vu ___ trois semaines. (ago)", "answer": "il y a" }
+      ]
+    },
+    {
+      "slug": "fr-a2-interrogatives",
+      "summary": "quel agrees with its noun; qui is who, que/qu'est-ce que is what, quoi follows prepositions.",
+      "explanation": "quel (which / what) is an adjective, so it agrees with the noun: quel livre, quelle heure, quels films, quelles chaussures. It can also come before être: Quel est ton nom ? Quelle est ta couleur préférée ?\n\nqui = who (for people): Qui est-ce ? Qui parle ? Avec qui tu sors ?\n\nque = what, as the object at the start of a question. It needs inversion or est-ce que: Que fais-tu ? Qu'est-ce que tu fais ? It becomes qu' before a vowel.\n\nquoi = what, after a preposition or at the end of a casual question: De quoi tu parles ? Tu fais quoi ?\n\nThe long forms show subject or object: qui est-ce qui (who — subject), qui est-ce que (whom — object), qu'est-ce qui (what — subject), qu'est-ce que (what — object). Qu'est-ce qui se passe ? = What's happening?",
+      "examples": [
+        { "fr": "Quelle heure est-il ?", "en": "What time is it?" },
+        { "fr": "Qui est ce garçon ?", "en": "Who is that boy?" },
+        { "fr": "Qu'est-ce que tu veux ?", "en": "What do you want?" },
+        { "fr": "De quoi parlez-vous ?", "en": "What are you talking about?" },
+        { "fr": "Qu'est-ce qui se passe ?", "en": "What's happening?" }
+      ],
+      "drills": [
+        { "prompt": "___ heure est-il ? (which/what)", "answer": "quelle", "hint": "heure is feminine" },
+        { "prompt": "___ sont tes films préférés ? (which/what)", "answer": "quels" },
+        { "prompt": "___ est ce garçon ? (who)", "answer": "qui" },
+        { "prompt": "___ fais-tu ce soir ? (what)", "answer": "que" },
+        { "prompt": "De ___ parles-tu ? (what)", "answer": "quoi", "hint": "after a preposition" },
+        { "prompt": "Qu'est-ce ___ se passe ? (subject)", "answer": "qui" },
+        { "prompt": "___ chaussures tu préfères ? (which)", "answer": "quelles" }
+      ]
+    },
+    {
+      "slug": "fr-a2-adverbs",
+      "summary": "Most adverbs add -ment to the feminine adjective; short ones sit between auxiliary and participle.",
+      "explanation": "Most adverbs in -ment are built on the FEMININE form of the adjective + -ment: lent → lente → lentement, heureux → heureuse → heureusement, doux → douce → doucement.\n\nIf the masculine adjective ends in a vowel, use the masculine: vrai → vraiment, poli → poliment, absolu → absolument.\n\nAdjectives in -ant → -amment and in -ent → -emment (both pronounced “-amment”): constant → constamment, récent → récemment, évident → évidemment.\n\nSome common adverbs are irregular: bon → bien, mauvais → mal, gentil → gentiment, and vite has no -ment form.\n\nPlacement: the adverb usually comes right after the conjugated verb: Il parle lentement. In compound tenses, short common adverbs (bien, mal, déjà, souvent, toujours, vite, beaucoup) go between the auxiliary and the participle: J'ai bien dormi. Longer -ment adverbs usually go after the participle: Il a parlé lentement.",
+      "examples": [
+        { "fr": "Elle parle doucement.", "en": "She speaks softly." },
+        { "fr": "J'ai bien dormi.", "en": "I slept well." },
+        { "fr": "Il conduit prudemment.", "en": "He drives carefully." },
+        { "fr": "Nous sommes déjà partis.", "en": "We have already left." },
+        { "fr": "Heureusement, il ne pleut pas.", "en": "Luckily, it isn't raining." }
+      ],
+      "drills": [
+        { "prompt": "Il marche ___. (lent)", "answer": "lentement" },
+        { "prompt": "___, il fait beau. (heureux)", "answer": "heureusement" },
+        { "prompt": "Elle parle ___. (doux)", "answer": "doucement" },
+        { "prompt": "Tu es ___ gentil. (vrai)", "answer": "vraiment", "hint": "masculine ends in a vowel" },
+        { "prompt": "Il a ___ déménagé. (récent)", "answer": "récemment" },
+        { "prompt": "Ils travaillent ___. (constant)", "answer": "constamment" },
+        { "prompt": "J'ai ___ dormi. (bon)", "answer": "bien", "hint": "irregular" },
+        { "prompt": "Tu chantes ___. (mauvais)", "answer": "mal", "hint": "irregular" }
+      ]
+    },
+    {
+      "slug": "fr-b1-relative-pronouns",
+      "summary": "qui = subject, que = object, où = place/time, dont = replaces de + noun.",
+      "explanation": "Relative pronouns join two clauses. Use qui when it is the subject of the next verb — for people or things: L'homme qui parle est mon père. Le train qui arrive vient de Lyon. qui is never shortened to qu'.\n\nUse que when it is the direct object; it is followed by its own subject + verb: Le livre que je lis est passionnant. La femme que tu connais. Before a vowel it becomes qu': le film qu'il regarde. With avoir in the passé composé, the participle agrees with the noun que replaces: Les photos que j'ai prises.\n\nUse où for a place or a moment in time: La ville où j'habite. Le jour où je t'ai rencontré.\n\nUse dont to replace de + noun: after verbs and expressions with de (parler de, avoir besoin de, se souvenir de, avoir peur de) and for possession (“whose”): Le film dont je parle. L'outil dont j'ai besoin. Un ami dont le frère est acteur.\n\nWith no noun in front, add ce: ce qui (subject), ce que (object), ce dont: Ce qui m'intéresse, c'est l'histoire. Je ne sais pas ce que tu veux.",
+      "examples": [
+        { "fr": "C'est le professeur qui m'a aidé.", "en": "That's the teacher who helped me." },
+        { "fr": "La maison que nous avons achetée est vieille.", "en": "The house we bought is old." },
+        { "fr": "Paris est la ville où je suis né.", "en": "Paris is the city where I was born." },
+        { "fr": "Voici le livre dont je t'ai parlé.", "en": "Here's the book I told you about." },
+        { "fr": "Dis-moi ce que tu penses.", "en": "Tell me what you think." }
+      ],
+      "drills": [
+        { "prompt": "La fille ___ chante est ma cousine. (subject)", "answer": "qui" },
+        { "prompt": "Le gâteau ___ tu as fait est délicieux. (direct object)", "answer": "que" },
+        { "prompt": "C'est le restaurant ___ nous avons dîné. (place)", "answer": "où" },
+        { "prompt": "Voici l'ami ___ je t'ai parlé. (parler de)", "answer": "dont" },
+        { "prompt": "Je me souviens du jour ___ il est parti. (time)", "answer": "où" },
+        { "prompt": "C'est l'outil ___ j'ai besoin. (avoir besoin de)", "answer": "dont" },
+        { "prompt": "Le film ___ il regarde est drôle. (direct object, before a vowel)", "answer": "qu'" },
+        { "prompt": "Je ne comprends pas ___ tu dis. (what — object, no noun before)", "answer": "ce que" }
+      ]
+    },
+    {
+      "slug": "fr-b1-object-pronouns",
+      "summary": "le/la/les replace direct objects, lui/leur replace à + person; all go before the conjugated verb.",
+      "explanation": "Direct object pronouns replace a noun that follows the verb with no preposition: le (him/it, masculine), la (her/it, feminine), les (them), l' before a vowel, plus me, te, nous, vous. Je vois Paul → Je le vois. Tu connais Marie ? Oui, je la connais.\n\nIndirect object pronouns replace à + a person: lui (to him / to her), leur (to them), plus me, te, nous, vous. Je parle à Paul → Je lui parle. Je téléphone à mes parents → Je leur téléphone. Typical à-verbs: parler à, téléphoner à, donner à, écrire à, répondre à, demander à.\n\nThe pronoun goes right before the conjugated verb: Je la regarde. Je ne la regarde pas. In compound tenses it goes before the auxiliary: Je l'ai vue. With a verb + infinitive it goes before the infinitive it belongs to: Je vais lui écrire. Je veux les voir.\n\nWith avoir, the past participle agrees with a direct object pronoun placed before it: Ta lettre ? Je l'ai lue. Les photos ? Je les ai prises. There is no agreement with lui/leur: Je leur ai parlé.\n\nIn affirmative commands the pronoun follows the verb with a hyphen, and me/te become moi/toi: Regarde-la ! Appelle-moi ! In negative commands the normal order returns: Ne la regarde pas.",
+      "examples": [
+        { "fr": "Tu connais Sophie ? — Oui, je la connais bien.", "en": "Do you know Sophie? — Yes, I know her well." },
+        { "fr": "J'ai écrit à mes grands-parents : je leur ai écrit hier.", "en": "I wrote to my grandparents: I wrote to them yesterday." },
+        { "fr": "Le livre ? Je vais le lire ce week-end.", "en": "The book? I'm going to read it this weekend." },
+        { "fr": "Ces lettres, je les ai envoyées lundi.", "en": "Those letters, I sent them on Monday." },
+        { "fr": "Appelle-moi demain !", "en": "Call me tomorrow!" }
+      ],
+      "drills": [
+        { "prompt": "Tu vois ton frère ce soir ? — Oui, je ___ vois. (him)", "answer": "le" },
+        { "prompt": "Tu parles à ta mère ? — Oui, je ___ parle tous les jours. (to her)", "answer": "lui" },
+        { "prompt": "Tu as invité tes amis ? — Oui, je ___ ai invités. (them)", "answer": "les" },
+        { "prompt": "Tu téléphones à tes parents ? — Oui, je ___ téléphone. (to them)", "answer": "leur" },
+        { "prompt": "La tarte ? Je vais ___ manger ce soir. (it — feminine)", "answer": "la", "hint": "before the infinitive" },
+        { "prompt": "Ta lettre ? Je l'ai ___ hier. (lire — agree with the pronoun)", "answer": "lue" },
+        { "prompt": "Tu m'aides ? — Oui, je ___ aide. (you, tu — before a vowel)", "answer": "t'" },
+        { "prompt": "Appelle-___ demain ! (me)", "answer": "moi" }
+      ]
+    },
+    {
+      "slug": "fr-b1-y-en",
+      "summary": "y replaces à + thing or a place; en replaces de + noun, including quantities.",
+      "explanation": "y replaces à + a thing or an idea, and any place introduced by à, en, dans, chez, sur…: Tu vas à Paris ? Oui, j'y vais. Il pense à son examen → Il y pense. Elle est chez Marc → Elle y est.\n\nen replaces de + noun: partitive and indefinite amounts (du, de la, des) and verbs built with de: Tu veux du café ? Oui, j'en veux. Il parle de son voyage → Il en parle. Je reviens de Lyon → J'en reviens.\n\nWith a number or a quantity word, en replaces the noun but the quantity stays at the end: Tu as des frères ? J'en ai deux. Il y a beaucoup de pommes → Il y en a beaucoup.\n\nFor people, use other pronouns: à + person → lui/leur, or à + stressed pronoun after penser: Je pense à ma mère → Je pense à elle. de + person → de + stressed pronoun: Je parle de Paul → Je parle de lui.\n\ny and en sit where other object pronouns go: Je n'y vais pas. J'en ai acheté. Je vais y aller. In affirmative commands they follow the verb, and -er verbs get their -s back: Vas-y ! Manges-en !",
+      "examples": [
+        { "fr": "Tu vas au marché ? — Oui, j'y vais demain.", "en": "Are you going to the market? — Yes, I'm going there tomorrow." },
+        { "fr": "Du pain ? J'en ai acheté ce matin.", "en": "Bread? I bought some this morning." },
+        { "fr": "Combien d'enfants a-t-elle ? — Elle en a trois.", "en": "How many children does she have? — She has three." },
+        { "fr": "Il pense souvent à ses vacances. Il y pense souvent.", "en": "He often thinks about his holidays. He often thinks about them." },
+        { "fr": "Vas-y, tu vas réussir !", "en": "Go on, you're going to succeed!" }
+      ],
+      "drills": [
+        { "prompt": "Tu vas à la plage ? — Oui, nous ___ allons ce soir. (there)", "answer": "y" },
+        { "prompt": "Tu veux de la soupe ? — Oui, j'___ veux bien. (some)", "answer": "en" },
+        { "prompt": "Combien de sœurs as-tu ? — J'___ ai deux. (of them)", "answer": "en", "hint": "the number stays" },
+        { "prompt": "Elle pense à son travail ? — Oui, elle ___ pense tout le temps. (about it)", "answer": "y" },
+        { "prompt": "Il parle de son voyage ? — Oui, il ___ parle beaucoup. (about it)", "answer": "en" },
+        { "prompt": "Tu as répondu à la lettre ? — Oui, j'___ ai répondu. (to it)", "answer": "y" },
+        { "prompt": "Il reste du lait ? — Non, il n'y ___ a plus. (any)", "answer": "en" },
+        { "prompt": "Allez, ___-y ! (aller, tu, imperative)", "answer": "vas", "hint": "the -s comes back before y" }
+      ]
+    },
+    {
+      "slug": "fr-b1-double-pronouns",
+      "summary": "Two object pronouns follow a fixed order before the verb, and a different one in commands.",
+      "explanation": "When a sentence has two object pronouns, they come before the verb in a fixed order:\n\nme / te / se / nous / vous → le / la / les → lui / leur → y → en\n\nIl me le donne (he gives it to me). Je la lui prête (I lend it to him/her). Elle les leur envoie. Il y en a (there are some). me/te/nous/vous never combine with lui/leur.\n\nIn compound tenses, both pronouns go before the auxiliary: Je le lui ai donné. With avoir, the participle agrees with a preceding direct object: Je la lui ai donnée.\n\nAffirmative commands are different: pronouns go AFTER the verb, joined with hyphens, direct object first, and me/te become moi/toi: Donne-le-moi ! Envoyez-la-leur ! In negative commands the normal order returns: Ne me le donne pas.",
+      "examples": [
+        { "fr": "Elle me le donne.", "en": "She gives it to me." },
+        { "fr": "Je la lui ai prêtée.", "en": "I lent it to him." },
+        { "fr": "Tu nous les envoies ?", "en": "Are you sending them to us?" },
+        { "fr": "Donne-le-moi !", "en": "Give it to me!" },
+        { "fr": "Il y en a trois.", "en": "There are three (of them)." }
+      ],
+      "drills": [
+        { "prompt": "Il me donne le livre. → Il ___ donne.", "answer": "me le" },
+        { "prompt": "Je prête ma voiture à Paul. → Je ___ prête.", "answer": "la lui" },
+        { "prompt": "Elle envoie les photos à ses parents. → Elle ___ envoie.", "answer": "les leur" },
+        { "prompt": "Tu nous montres tes photos ? → Tu ___ montres ?", "answer": "nous les" },
+        { "prompt": "Il a donné la clé à Marie. → Il ___ a donnée.", "answer": "la lui" },
+        { "prompt": "Donne-moi le stylo ! → Donne-___ !", "answer": "le-moi", "hint": "command order" },
+        { "prompt": "Il y a des pommes. → Il ___ a.", "answer": "y en" }
+      ]
+    },
+    {
+      "slug": "fr-b1-possessive-pronouns",
+      "summary": "le mien, la tienne, les leurs… replace possessive + noun and agree with the thing owned.",
+      "explanation": "Possessive pronouns replace “possessive + noun”: mon livre → le mien (mine). They agree with the thing owned, not with the owner.\n\nmine: le mien, la mienne, les miens, les miennes · yours (tu): le tien, la tienne, les tiens, les tiennes · his/hers: le sien, la sienne, les siens, les siennes · ours: le nôtre, la nôtre, les nôtres · yours (vous): le vôtre, la vôtre, les vôtres · theirs: le leur, la leur, les leurs.\n\nSo “his car” and “her car” are both la sienne, because voiture is feminine.\n\nThe article contracts with à and de: Je pense au mien. Il parle des siens.\n\nAfter être, à moi / à toi / à lui is a common alternative: Ce livre est à moi = Ce livre est le mien. Note the circumflex: notre/votre (adjectives) become le nôtre/le vôtre (pronouns).",
+      "examples": [
+        { "fr": "Ce sac est le mien.", "en": "This bag is mine." },
+        { "fr": "Ta voiture est rouge, la sienne est bleue.", "en": "Your car is red, his/hers is blue." },
+        { "fr": "Nos enfants jouent avec les vôtres.", "en": "Our children play with yours." },
+        { "fr": "Ce n'est pas mon problème, c'est le leur.", "en": "It's not my problem, it's theirs." }
+      ],
+      "drills": [
+        { "prompt": "Ce téléphone est ___. (mine)", "answer": "le mien" },
+        { "prompt": "Ma maison est petite, ___ est grande. (yours, tu)", "answer": "la tienne" },
+        { "prompt": "Ce sont mes clés ? Non, ce sont ___. (his)", "answer": "les siennes", "hint": "clés is feminine plural" },
+        { "prompt": "Votre jardin est plus beau que ___. (ours)", "answer": "le nôtre" },
+        { "prompt": "J'ai oublié mon stylo, tu peux me prêter ___ ? (yours, tu)", "answer": "le tien" },
+        { "prompt": "Nos enfants jouent avec ___. (theirs)", "answer": "les leurs" },
+        { "prompt": "Cette valise est ___ ? (yours, vous)", "answer": "la vôtre" }
+      ]
+    },
+    {
+      "slug": "fr-b1-verb-prepositions",
+      "summary": "Some verbs take à before an infinitive, some take de, and some take nothing.",
+      "explanation": "When one verb is followed by an infinitive, the first verb decides what goes between them.\n\nNo preposition — verbs of liking, wanting, ability and movement: aimer, adorer, préférer, vouloir, pouvoir, devoir, savoir, aller, venir, espérer. J'aime lire. Je vais partir.\n\nà — commencer à, continuer à, apprendre à, aider (quelqu'un) à, réussir à, hésiter à, s'habituer à: Il commence à pleuvoir. Elle m'aide à porter le sac.\n\nde — essayer de, décider de, finir de, oublier de, arrêter de, refuser de, accepter de, choisir de, avoir besoin de, avoir peur de: J'essaie de comprendre. N'oublie pas de fermer la porte.\n\nThere is no reliable rule: learn each verb with its preposition, as you learn a noun with its gender. de becomes d' before a vowel: J'ai décidé d'apprendre.",
+      "examples": [
+        { "fr": "J'aime lire le soir.", "en": "I like reading in the evening." },
+        { "fr": "Il commence à pleuvoir.", "en": "It's starting to rain." },
+        { "fr": "J'essaie de comprendre.", "en": "I'm trying to understand." },
+        { "fr": "N'oublie pas de fermer la porte.", "en": "Don't forget to close the door." },
+        { "fr": "Elle apprend à conduire.", "en": "She is learning to drive." }
+      ],
+      "drills": [
+        { "prompt": "Il commence ___ pleuvoir.", "answer": "à" },
+        { "prompt": "J'essaie ___ comprendre.", "answer": "de" },
+        { "prompt": "N'oublie pas ___ fermer la porte.", "answer": "de" },
+        { "prompt": "Elle apprend ___ conduire.", "answer": "à" },
+        { "prompt": "Nous avons décidé ___ partir.", "answer": "de" },
+        { "prompt": "Tu peux m'aider ___ porter ce sac ?", "answer": "à" },
+        { "prompt": "Il a arrêté ___ fumer.", "answer": "de" },
+        { "prompt": "J'ai réussi ___ finir à temps.", "answer": "à" }
+      ]
+    },
+    {
+      "slug": "fr-b2-subjonctif-usage",
+      "summary": "The subjunctive follows will, emotion, doubt and certain conjunctions; certainty and espérer take the indicative.",
+      "explanation": "The subjunctive appears in a que-clause when the main clause presents the action as wanted, needed, felt or doubted rather than as a fact. Will and necessity: vouloir que, souhaiter que, exiger que, il faut que, il est important que. Je veux que tu viennes.\n\nEmotion: être content/triste/surpris que, avoir peur que, regretter que. Je suis contente que tu sois là. Il regrette que nous partions.\n\nDoubt and denial: douter que, ne pas penser que, ne pas croire que, il est possible que, il semble que. Je doute qu'il sache. Certainty takes the indicative: Je pense qu'il sait. Il est probable qu'il viendra. Espérer que also takes the indicative: J'espère que tu vas bien.\n\nSome conjunctions always take the subjunctive: bien que / quoique (although), pour que / afin que (so that), avant que (before), à moins que (unless), jusqu'à ce que (until), sans que (without). After après que, use the indicative.\n\nWhen both clauses have the same subject, use an infinitive instead: Je veux partir (not je veux que je parte). Je suis content d'être là. Je travaille pour réussir. Avant de partir.",
+      "examples": [
+        { "fr": "Il faut que nous partions tôt.", "en": "We have to leave early." },
+        { "fr": "Je suis ravi que vous puissiez venir.", "en": "I'm delighted you can come." },
+        { "fr": "Bien qu'il pleuve, on va se promener.", "en": "Although it's raining, we're going for a walk." },
+        { "fr": "Je ne crois pas qu'elle ait raison.", "en": "I don't think she's right." },
+        { "fr": "Parle plus fort pour que tout le monde entende.", "en": "Speak louder so that everyone hears." }
+      ],
+      "drills": [
+        { "prompt": "Je veux que tu ___ la vérité. (dire)", "answer": "dises" },
+        { "prompt": "Elle est triste que tu ___. (partir)", "answer": "partes", "hint": "emotion" },
+        { "prompt": "Bien qu'il ___ malade, il travaille. (être)", "answer": "soit" },
+        { "prompt": "Je doute qu'ils ___ la réponse. (savoir)", "answer": "sachent", "hint": "doubt" },
+        { "prompt": "Je pense qu'elle ___ raison. (avoir — certainty)", "answer": "a", "hint": "indicative" },
+        { "prompt": "J'explique encore pour que vous ___. (comprendre)", "answer": "compreniez" },
+        { "prompt": "Attends ici jusqu'à ce que je ___. (revenir)", "answer": "revienne" },
+        { "prompt": "J'espère que tu ___ bien. (aller)", "answer": "vas", "hint": "espérer + indicative" }
+      ]
+    },
+    {
+      "slug": "fr-b2-passive",
+      "summary": "être (in any tense) + past participle, with par for the agent; French often prefers on or a pronominal verb.",
+      "explanation": "The passive makes the object the subject: être + past participle, with the agent introduced by par. Le chat mange la souris → La souris est mangée par le chat.\n\nThe tense is carried entirely by être: est construit (present), a été construit (passé composé), était construit (imparfait), sera construit (futur), avait été construit (plus-que-parfait).\n\nThe past participle always agrees with the subject: La lettre a été écrite. Les maisons ont été vendues.\n\npar introduces the agent of an action. With verbs of feeling or state, de is used instead: aimé de tous, respecté de ses collègues, couvert de neige, entouré d'arbres.\n\nOnly verbs with a direct object can become passive, and French uses the passive less than English. It often prefers on or a pronominal verb: On parle français ici. Ce plat se mange froid. For verbs with à, on is the only option: On m'a dit que… (never “j'ai été dit”).",
+      "examples": [
+        { "fr": "Ce pont a été construit en 1890.", "en": "This bridge was built in 1890." },
+        { "fr": "La réunion sera annulée.", "en": "The meeting will be cancelled." },
+        { "fr": "Le président est respecté de tous.", "en": "The president is respected by everyone." },
+        { "fr": "Les voleurs ont été arrêtés par la police.", "en": "The thieves were arrested by the police." },
+        { "fr": "Ici, on parle anglais.", "en": "English is spoken here." }
+      ],
+      "drills": [
+        { "prompt": "Ce roman ___ écrit par Victor Hugo. (être, passé composé)", "answer": "a été" },
+        { "prompt": "La décision sera ___ demain. (prendre)", "answer": "prise", "hint": "agree with the subject" },
+        { "prompt": "Les lettres ont été ___ hier. (envoyer)", "answer": "envoyées" },
+        { "prompt": "Le voleur a été arrêté ___ la police. (agent of an action)", "answer": "par" },
+        { "prompt": "La montagne est couverte ___ neige. (state)", "answer": "de" },
+        { "prompt": "Le dîner ___ servi à 20 heures. (être, futur)", "answer": "sera" },
+        { "prompt": "Quand je suis arrivé, la porte ___ déjà fermée. (être, imparfait)", "answer": "était" },
+        { "prompt": "Ici, ___ parle français. (impersonal subject instead of a passive)", "answer": "on" }
+      ]
+    },
+    {
+      "slug": "fr-b2-conditionnel-passe",
+      "summary": "aurais/serais + participle for what would have happened; si + plus-que-parfait → conditionnel passé.",
+      "explanation": "The conditionnel passé is avoir or être in the conditionnel présent + past participle: j'aurais fini, tu serais venu(e), nous nous serions levés. Être verbs agree with the subject as usual.\n\nIt expresses what would have happened but didn't, and regret or reproach — especially with devoir and pouvoir: J'aurais dû t'appeler (I should have called you). Tu aurais pu me prévenir ! (You could have warned me!)\n\nThere are three si-clause patterns. Real possibility: si + présent → présent, futur or impératif: Si tu veux, on ira au cinéma. Imagined present/future: si + imparfait → conditionnel présent: Si j'avais de l'argent, j'achèterais une maison. Unreal past: si + plus-que-parfait → conditionnel passé: Si j'avais su, je serais venu.\n\nNever put the future or the conditional right after si meaning “if”: “si j'aurais” is wrong — say si j'avais. Patterns can mix when the times differ: Si tu avais pris le train (past), tu serais là maintenant (present).\n\nIn the news, the conditionnel passé also marks unconfirmed information: L'accident aurait fait trois blessés (reportedly injured three people).",
+      "examples": [
+        { "fr": "Si j'avais su, je serais venu plus tôt.", "en": "If I'd known, I would have come earlier." },
+        { "fr": "Tu aurais dû me le dire.", "en": "You should have told me." },
+        { "fr": "Si tu viens, je te montrerai la ville.", "en": "If you come, I'll show you the city." },
+        { "fr": "Si nous avions plus de temps, nous voyagerions.", "en": "If we had more time, we would travel." },
+        { "fr": "Sans toi, je ne l'aurais jamais fait.", "en": "Without you, I would never have done it." }
+      ],
+      "drills": [
+        { "prompt": "Si j'avais eu le temps, je t'___ aidé. (avoir, conditionnel)", "answer": "aurais" },
+        { "prompt": "Si elle avait pris le train, elle ___ arrivée à l'heure. (être, conditionnel)", "answer": "serait" },
+        { "prompt": "Si tu ___ plus tôt, tu aurais vu le film. (venir, plus-que-parfait)", "answer": "étais venu" },
+        { "prompt": "Si tu veux, nous ___ au parc. (aller, futur)", "answer": "irons", "hint": "si + présent" },
+        { "prompt": "Si j'étais riche, j'___ un bateau. (acheter, conditionnel présent)", "answer": "achèterais" },
+        { "prompt": "Tu ___ me prévenir ! (pouvoir, conditionnel passé)", "answer": "aurais pu", "hint": "reproach" },
+        { "prompt": "Si nous ___ le temps, nous viendrions. (avoir, imparfait)", "answer": "avions" },
+        { "prompt": "Ils se ___ levés plus tôt s'ils avaient su. (être, conditionnel)", "answer": "seraient" }
+      ]
+    },
+    {
+      "slug": "fr-b2-discours-indirect",
+      "summary": "Report with dire que, demander si…; after a past reporting verb, tenses shift one step back.",
+      "explanation": "Reported speech uses verbs like dire que, expliquer que, répondre que. Pronouns and possessives change to fit the new speaker: « Je suis fatigué », dit Paul → Paul dit qu'il est fatigué.\n\nIf the reporting verb is in the present or future, the tenses do not change: Elle dit qu'elle viendra.\n\nIf the reporting verb is in the past, the tenses shift back: présent → imparfait, passé composé → plus-que-parfait, futur → conditionnel présent, aller (futur proche) → allait. The imparfait, plus-que-parfait and conditionnel stay as they are. « J'ai faim » → Il a dit qu'il avait faim. « J'ai fini » → Il a dit qu'il avait fini. « Je viendrai » → Il a dit qu'il viendrait.\n\nYes/no questions become si (s' before il/ils): Il m'a demandé si j'étais prêt. Question words stay: où, quand, pourquoi… qu'est-ce que becomes ce que, qu'est-ce qui becomes ce qui. No inversion and no est-ce que: Elle m'a demandé où j'habitais. Commands become de + infinitive: « Ferme la porte ! » → Il m'a dit de fermer la porte.\n\nTime and place words shift too: aujourd'hui → ce jour-là, demain → le lendemain, hier → la veille, maintenant → à ce moment-là, ici → là.",
+      "examples": [
+        { "fr": "Il a dit qu'il était malade.", "en": "He said he was ill." },
+        { "fr": "Elle m'a demandé si j'avais faim.", "en": "She asked me if I was hungry." },
+        { "fr": "Ils ont annoncé qu'ils se marieraient en juin.", "en": "They announced they would get married in June." },
+        { "fr": "Le professeur nous a dit de faire attention.", "en": "The teacher told us to be careful." },
+        { "fr": "Je lui ai demandé ce qu'il voulait.", "en": "I asked him what he wanted." }
+      ],
+      "drills": [
+        { "prompt": "« Je suis prête. » → Elle a dit qu'elle ___ prête. (être)", "answer": "était", "hint": "présent → imparfait" },
+        { "prompt": "« J'ai perdu mes clés. » → Il a dit qu'il ___ ses clés. (perdre)", "answer": "avait perdu", "hint": "passé composé → plus-que-parfait" },
+        { "prompt": "« Nous partirons demain. » → Ils ont dit qu'ils ___ le lendemain. (partir)", "answer": "partiraient", "hint": "futur → conditionnel" },
+        { "prompt": "« Tu viens ? » → Elle m'a demandé ___ je venais. (yes/no question)", "answer": "si" },
+        { "prompt": "« Où habites-tu ? » → Elle m'a demandé où j'___. (habiter)", "answer": "habitais", "hint": "no inversion, tense shifts back" },
+        { "prompt": "« Ferme la fenêtre ! » → Elle m'a dit ___ fermer la fenêtre. (command)", "answer": "de" },
+        { "prompt": "« Je vais appeler. » → Il a dit qu'il ___ appeler. (aller)", "answer": "allait" },
+        { "prompt": "« Je pars aujourd'hui. » → Il a dit qu'il partait ___. (that day)", "answer": "ce jour-là" }
+      ]
+    },
+    {
+      "slug": "fr-b2-faire-causatif",
+      "summary": "faire + infinitive means having something done or making something happen.",
+      "explanation": "faire + infinitive means having someone else do something, or making something happen: Je fais réparer ma voiture (I'm having my car repaired). Il fait rire les enfants (he makes the children laugh).\n\nOnly faire is conjugated; the infinitive stays fixed right after it: Nous avons fait construire une maison.\n\nObject pronouns go before faire, not before the infinitive: Je la fais réparer. Je l'ai fait réparer. In this construction the participle fait never agrees.\n\nTo say who does the action, use par or à: Je fais réparer ma voiture par un garagiste. Elle fait lire le texte aux élèves.\n\nse faire + infinitive = to get something done to or for yourself, often something you suffer: Je me suis fait couper les cheveux (I had my hair cut). Il s'est fait voler son portefeuille (he had his wallet stolen).",
+      "examples": [
+        { "fr": "Je fais réparer mon vélo.", "en": "I'm having my bike repaired." },
+        { "fr": "Ce film me fait rire.", "en": "This film makes me laugh." },
+        { "fr": "Nous faisons construire une maison.", "en": "We're having a house built." },
+        { "fr": "Je l'ai fait vérifier.", "en": "I had it checked." },
+        { "fr": "Elle s'est fait couper les cheveux.", "en": "She had her hair cut." }
+      ],
+      "drills": [
+        { "prompt": "Je ___ réparer ma voiture. (faire)", "answer": "fais" },
+        { "prompt": "Nous ___ construire une maison. (faire)", "answer": "faisons" },
+        { "prompt": "Ce film ___ rire les enfants. (faire)", "answer": "fait" },
+        { "prompt": "Ma robe ? Je l'ai ___ nettoyer. (faire)", "answer": "fait", "hint": "no agreement here" },
+        { "prompt": "Ma voiture ? Je ___ fais réparer demain. (it)", "answer": "la", "hint": "pronoun before faire" },
+        { "prompt": "Elle s'est fait ___ les cheveux. (to cut)", "answer": "couper" },
+        { "prompt": "Ils ___ sont fait voler leur sac. (themselves)", "answer": "se" }
+      ]
+    },
+    {
+      "slug": "fr-b2-indefinites",
+      "summary": "tout agrees with its noun; chaque/chacun, quelques/quelqu'un, aucun and n'importe each have their own pattern.",
+      "explanation": "tout (all, every, whole) agrees with the noun: tout le gâteau, toute la journée, tous les jours, toutes les semaines. As a pronoun, tout = everything (Tout va bien) and tous = everyone (the s is pronounced: Ils sont tous là).\n\nchaque (each, every) is an adjective, always singular, before a noun: chaque jour, chaque personne. chacun / chacune is the pronoun: Chacun a son livre. Chacune de mes sœurs…\n\nquelques (a few, some) + plural noun: quelques amis. quelqu'un = someone, quelque chose = something.\n\naucun / aucune (not any, none) works with ne and agrees with the noun: Je n'ai aucune idée. Aucun élève n'est venu.\n\nn'importe + qui / quoi / où / quand / comment = any…, no matter…: Il mange n'importe quoi (he eats anything). Assieds-toi n'importe où.",
+      "examples": [
+        { "fr": "Je travaille tous les jours.", "en": "I work every day." },
+        { "fr": "Chaque élève a un livre.", "en": "Each student has a book." },
+        { "fr": "Chacun fait ce qu'il veut.", "en": "Everyone does what they want." },
+        { "fr": "Je n'ai aucune idée.", "en": "I have no idea." },
+        { "fr": "J'ai invité quelques amis.", "en": "I invited a few friends." }
+      ],
+      "drills": [
+        { "prompt": "Je travaille ___ les jours. (every)", "answer": "tous" },
+        { "prompt": "Elle a mangé ___ la tarte. (the whole)", "answer": "toute" },
+        { "prompt": "___ élève a un livre. (each)", "answer": "chaque" },
+        { "prompt": "___ a son livre. (each one)", "answer": "chacun" },
+        { "prompt": "Je n'ai ___ idée. (no)", "answer": "aucune" },
+        { "prompt": "J'ai invité ___ amis. (a few)", "answer": "quelques" },
+        { "prompt": "Il mange ___. (anything)", "answer": "n'importe quoi" },
+        { "prompt": "___ les filles sont là. (all)", "answer": "toutes" }
+      ]
+    },
+    {
+      "slug": "fr-c1-subjonctif-passe",
+      "summary": "aie/sois (subjunctive) + participle for an action completed before the main verb.",
+      "explanation": "The subjonctif passé is avoir or être in the present subjunctive + past participle: que j'aie fini, que tu aies vu, qu'il ait pris; que je sois parti(e), qu'elles soient arrivées. The choice of auxiliary and the agreement rules are the same as in the passé composé.\n\nUse it after any subjunctive trigger when the action in the que-clause is completed before the moment of the main verb: Je suis content que tu sois venu (you have come — it's done). Compare Je suis content que tu viennes (you are coming, now or later).\n\nIt also marks an action completed before a future point: Il faut que tu aies fini avant midi. Je partirai avant qu'il soit rentré.\n\nIn modern French the tense of the main verb does not change this: Je regrettais qu'il ne soit pas venu. Watch for less obvious triggers: bien que, the superlative and le seul / le premier … que: C'est le plus beau pays que j'aie visité.",
+      "examples": [
+        { "fr": "Je suis désolé que vous ayez attendu.", "en": "I'm sorry you had to wait." },
+        { "fr": "Bien qu'elle soit partie tôt, elle est arrivée en retard.", "en": "Although she left early, she arrived late." },
+        { "fr": "C'est le plus beau pays que j'aie visité.", "en": "It's the most beautiful country I've visited." },
+        { "fr": "Il faut que vous ayez rendu le dossier avant lundi.", "en": "You must have handed in the file before Monday." },
+        { "fr": "Je doute qu'ils aient compris.", "en": "I doubt they understood." }
+      ],
+      "drills": [
+        { "prompt": "Je suis heureux que tu ___ réussi. (avoir)", "answer": "aies" },
+        { "prompt": "Bien qu'elle ___ partie tôt, elle est arrivée en retard. (être)", "answer": "soit" },
+        { "prompt": "Je doute qu'ils ___ compris. (avoir)", "answer": "aient" },
+        { "prompt": "C'est le meilleur livre que j'___ lu. (avoir)", "answer": "aie", "hint": "superlative + subjunctive" },
+        { "prompt": "Je regrette que vous ne ___ pas venus. (être)", "answer": "soyez" },
+        { "prompt": "Il faut que nous ___ terminé avant midi. (avoir)", "answer": "ayons" },
+        { "prompt": "Elle est déçue qu'il ne l'___ pas appelée. (avoir)", "answer": "ait" },
+        { "prompt": "Je ne crois pas qu'elles soient ___. (arriver — agree)", "answer": "arrivées" }
+      ]
+    },
+    {
+      "slug": "fr-c1-concordance",
+      "summary": "After a past main verb: imparfait for the same time, plus-que-parfait for before, conditionnel for after.",
+      "explanation": "The concordance des temps is about choosing the subordinate verb's tense relative to the main verb: is the action at the same time, earlier, or later? With a main verb in the present or future, use the tense you would naturally use: Je sais qu'il travaille / qu'il a travaillé / qu'il travaillera. Il dira qu'il est d'accord.\n\nWith a main verb in the past, the indicative shifts: same time → imparfait (Je savais qu'il travaillait); earlier → plus-que-parfait (Je savais qu'il avait travaillé); later → conditionnel présent (Je savais qu'il travaillerait); completed before a later point → conditionnel passé (Il a promis qu'il aurait fini avant midi).\n\nThe subjunctive in everyday French has only two tenses, whatever the tense of the main verb: the present subjunctive for a simultaneous or later action, the past subjunctive for an earlier one. Je voulais qu'il vienne. Je regrettais qu'il soit parti.\n\nIn formal literary writing, a past main verb can take the imparfait or plus-que-parfait du subjonctif (qu'il vînt, qu'il fût parti) — see the C2 lesson on the literary subjunctive. You will read these forms but should not use them in speech.",
+      "examples": [
+        { "fr": "Elle savait que son frère mentait.", "en": "She knew her brother was lying." },
+        { "fr": "Il m'a assuré qu'il aurait terminé avant midi.", "en": "He assured me he would have finished before noon." },
+        { "fr": "Je croyais que tu étais déjà parti.", "en": "I thought you had already left." },
+        { "fr": "Nous voulions qu'il vienne avec nous.", "en": "We wanted him to come with us." },
+        { "fr": "On m'a dit que le train partirait en retard.", "en": "I was told the train would leave late." }
+      ],
+      "drills": [
+        { "prompt": "Je savais qu'il ___ la vérité. (dire — at the same time)", "answer": "disait" },
+        { "prompt": "Elle croyait que nous ___ déjà. (partir — earlier; nous = men)", "answer": "étions partis" },
+        { "prompt": "Il a promis qu'il ___ le lendemain. (venir — later)", "answer": "viendrait" },
+        { "prompt": "On pensait qu'ils ___ avant la nuit. (arriver — completed before a later point)", "answer": "seraient arrivés" },
+        { "prompt": "Je voulais qu'elle ___ avec nous. (venir)", "answer": "vienne", "hint": "subjunctive: same tense in modern French" },
+        { "prompt": "Il regrettait que tu ___ si tôt. (partir — earlier; tu = a man)", "answer": "sois parti" },
+        { "prompt": "Je sais qu'il ___ hier. (téléphoner)", "answer": "a téléphoné" },
+        { "prompt": "Il dit qu'il ___ demain. (rentrer)", "answer": "rentrera" }
+      ]
+    },
+    {
+      "slug": "fr-c1-participe-gerondif",
+      "summary": "-ant forms: invariable participle, en + -ant gérondif, and the agreeing verbal adjective.",
+      "explanation": "The participe présent is formed from the nous-form stem + -ant: nous parlons → parlant, nous finissons → finissant. Three are irregular: étant, ayant, sachant. It is invariable and mainly written: it replaces a qui-clause or gives a cause. Les étudiants ayant fini peuvent partir. Étant malade, il est resté chez lui.\n\nThe gérondif is en + participe présent. Its subject must be the subject of the main verb. It expresses simultaneity, manner or condition: Il chante en travaillant. C'est en forgeant qu'on devient forgeron. En partant maintenant, tu arriveras à l'heure. Tout en + gérondif adds contrast: Tout en étant riche, il vit simplement.\n\nThe adjectif verbal describes a lasting quality and agrees like any adjective: une histoire touchante, des enfants obéissants. Several are spelled differently from the participle: fatiguant / fatigant, convainquant / convaincant, précédant / précédent, différant / différent, négligeant / négligent.\n\nTo decide: if it has an object or an adverb after it, or describes an action, it is the invariable participle — des enfants obéissant à leurs parents. If you can put très in front and it describes a quality, it is the adjective — des enfants très obéissants.",
+      "examples": [
+        { "fr": "Elle écoute de la musique en travaillant.", "en": "She listens to music while working." },
+        { "fr": "Ayant perdu ses clés, il a dû attendre dehors.", "en": "Having lost his keys, he had to wait outside." },
+        { "fr": "C'est une journée fatigante.", "en": "It's a tiring day." },
+        { "fr": "Les voyageurs se rendant à Lyon doivent changer de train.", "en": "Passengers travelling to Lyon must change trains." },
+        { "fr": "Tout en sachant la vérité, il n'a rien dit.", "en": "Even though he knew the truth, he said nothing." }
+      ],
+      "drills": [
+        { "prompt": "Il s'est blessé ___. (courir, gérondif)", "answer": "en courant" },
+        { "prompt": "___ malade, elle n'est pas venue. (être, participe présent)", "answer": "Étant" },
+        { "prompt": "C'est une histoire très ___. (émouvoir, verbal adjective)", "answer": "émouvante" },
+        { "prompt": "Ce travail est vraiment ___. (fatiguer, verbal adjective)", "answer": "fatigant", "hint": "no -u- in the adjective" },
+        { "prompt": "Les personnes ___ un billet peuvent entrer. (avoir, participe présent)", "answer": "ayant" },
+        { "prompt": "___ la réponse, il a levé la main. (savoir, participe présent)", "answer": "Sachant" },
+        { "prompt": "Ses arguments sont très ___. (convaincre, verbal adjective)", "answer": "convaincants" },
+        { "prompt": "On apprend ___ des erreurs. (faire, gérondif)", "answer": "en faisant" }
+      ]
+    },
+    {
+      "slug": "fr-c1-relatifs-composes",
+      "summary": "After a preposition: lequel/laquelle… for things, qui for people; à and de contract (auquel, duquel).",
+      "explanation": "After a preposition, use lequel, laquelle, lesquels or lesquelles for things, agreeing with the noun they replace: La table sur laquelle j'ai posé le livre. Le stylo avec lequel j'écris.\n\nFor people, qui is the usual choice after a preposition: La personne avec qui je travaille (avec laquelle is possible but more formal). After parmi and entre, use lesquels/lesquelles even for people.\n\nà contracts with lequel: auquel, auxquels, auxquelles (à laquelle does not change): Le projet auquel je pense. Les questions auxquelles il a répondu.\n\nde contracts too: duquel, desquels, desquelles (de laquelle does not change). Use them after compound prepositions ending in de — près de, à côté de, au milieu de, à cause de: Le parc près duquel j'habite. With a simple de linked to the verb, use dont instead: Le livre dont je parle.\n\nWhen the antecedent is vague (ce, rien, quelque chose) or a whole idea, use quoi after the preposition: C'est ce à quoi je pensais. Il n'y a rien sur quoi on puisse compter.",
+      "examples": [
+        { "fr": "Voici l'entreprise pour laquelle je travaille.", "en": "Here's the company I work for." },
+        { "fr": "Ce sont des questions auxquelles personne ne peut répondre.", "en": "These are questions nobody can answer." },
+        { "fr": "Le parc près duquel nous habitons est magnifique.", "en": "The park near which we live is magnificent." },
+        { "fr": "L'ami à qui j'ai prêté mon vélo ne l'a pas rendu.", "en": "The friend I lent my bike to hasn't returned it." },
+        { "fr": "C'est exactement ce à quoi je m'attendais.", "en": "That's exactly what I was expecting." }
+      ],
+      "drills": [
+        { "prompt": "Le stylo avec ___ j'écris est cassé. (thing, masculine singular)", "answer": "lequel" },
+        { "prompt": "La raison pour ___ il est parti reste un mystère. (thing, feminine singular)", "answer": "laquelle" },
+        { "prompt": "Les examens ___ je pense me stressent. (penser à)", "answer": "auxquels" },
+        { "prompt": "Le musée près ___ nous habitons est fermé. (près de)", "answer": "duquel" },
+        { "prompt": "Les collègues avec ___ je déjeune sont sympas. (people)", "answer": "qui" },
+        { "prompt": "C'est un problème ___ je n'avais pas pensé. (penser à)", "answer": "auquel" },
+        { "prompt": "Les rivières au bord ___ ils campent sont propres. (au bord de)", "answer": "desquelles" },
+        { "prompt": "C'est ce ___ je rêve depuis longtemps. (rêver à — vague antecedent)", "answer": "à quoi" }
+      ]
+    },
+    {
+      "slug": "fr-c1-mise-en-relief",
+      "summary": "c'est … qui/que spotlights one element; ce qui/ce que … c'est and dislocation add emphasis.",
+      "explanation": "C'est … qui highlights the subject: Marie a cassé le vase → C'est Marie qui a cassé le vase. The verb agrees with the highlighted subject, not with c'est: C'est moi qui ai raison. C'est nous qui sommes en retard.\n\nC'est … que highlights anything else — an object, a time, a place, a manner: C'est ce livre que je veux. C'est demain qu'il part. C'est à Paris que je l'ai rencontré. With a plural noun, formal French uses ce sont … qui/que; speech often keeps c'est.\n\nThe pseudo-cleft puts the focus at the end: ce qui / ce que / ce dont … , c'est … Ce qui m'énerve, c'est le bruit. Ce que j'aime, c'est voyager. Ce dont j'ai besoin, c'est de repos (de is repeated).\n\nDislocation, typical of speech, moves a noun to the front or the end and repeats it with a pronoun: Le chocolat, j'adore ça. Mon frère, il est médecin. Elle est belle, ta robe. A stressed pronoun can also be fronted: Moi, je pense que…",
+      "examples": [
+        { "fr": "C'est toi qui as raison.", "en": "You're the one who's right." },
+        { "fr": "C'est en 2010 que nous nous sommes rencontrés.", "en": "It was in 2010 that we met." },
+        { "fr": "Ce qui compte, c'est la santé.", "en": "What matters is health." },
+        { "fr": "Ce dont j'ai besoin, c'est de vacances.", "en": "What I need is a holiday." },
+        { "fr": "Ton idée, je la trouve géniale.", "en": "Your idea — I think it's brilliant." }
+      ],
+      "drills": [
+        { "prompt": "C'est Paul ___ a gagné. (highlight the subject)", "answer": "qui" },
+        { "prompt": "C'est demain ___ nous partons. (highlight the time)", "answer": "que" },
+        { "prompt": "C'est moi qui ___ raison. (avoir)", "answer": "ai", "hint": "agree with moi" },
+        { "prompt": "C'est nous qui ___ en retard. (être)", "answer": "sommes" },
+        { "prompt": "___ m'intéresse, c'est l'histoire. (what — subject)", "answer": "Ce qui" },
+        { "prompt": "___ je préfère, c'est le printemps. (what — object)", "answer": "Ce que" },
+        { "prompt": "___ j'ai besoin, c'est de calme. (avoir besoin de)", "answer": "Ce dont" },
+        { "prompt": "Ton frère, je ___ trouve sympa. (repeat the fronted noun)", "answer": "le" }
+      ]
+    },
+    {
+      "slug": "fr-c1-connecteurs",
+      "summary": "Connectors of contrast, cause, consequence and condition that make an argument precise.",
+      "explanation": "Contrast and concession: en revanche (on the other hand; par contre is the spoken equivalent), néanmoins, toutefois, pourtant, cependant (however / nevertheless), certes … mais (admittedly … but). malgré + noun; bien que + subjunctive; même si + indicative.\n\nCause: puisque (since — the reason is already known), étant donné que and vu que (given that), dans la mesure où (insofar as). With a noun: grâce à (a positive cause) vs à cause de (a negative one), en raison de (formal).\n\nConsequence: donc, par conséquent, c'est pourquoi, si bien que and de sorte que (+ indicative for a result), d'où + noun (hence).\n\nPurpose, condition and limits: afin que + subjunctive, à condition que + subjunctive, pourvu que (provided that) + subjunctive, quitte à + infinitive (even if it means), faute de + noun or infinitive (for lack of).\n\nAdding and structuring: de plus, en outre (moreover), d'ailleurs (besides), non seulement … mais aussi, d'une part … d'autre part, en somme, bref (in short).",
+      "examples": [
+        { "fr": "Le loyer est élevé ; en revanche, le quartier est très calme.", "en": "The rent is high; on the other hand, the area is very quiet." },
+        { "fr": "Il a beaucoup travaillé, si bien qu'il a réussi.", "en": "He worked hard, so that he succeeded." },
+        { "fr": "Je partirai tôt, quitte à attendre à la gare.", "en": "I'll leave early, even if it means waiting at the station." },
+        { "fr": "Faute de temps, nous avons annulé la réunion.", "en": "For lack of time, we cancelled the meeting." },
+        { "fr": "Dans la mesure où tout le monde est d'accord, on peut commencer.", "en": "Since everyone agrees, we can begin." }
+      ],
+      "drills": [
+        { "prompt": "Ce restaurant est cher ; ___, la nourriture est excellente. (on the other hand — formal)", "answer": "en revanche" },
+        { "prompt": "Il a plu toute la journée, ___ le match a été annulé. (so that — a result)", "answer": "si bien que" },
+        { "prompt": "Je prendrai un taxi, ___ payer plus cher. (even if it means)", "answer": "quitte à" },
+        { "prompt": "___ de moyens, le projet a été abandonné. (for lack of)", "answer": "Faute" },
+        { "prompt": "___ la pluie, nous sommes sortis. (despite — one word + noun)", "answer": "Malgré" },
+        { "prompt": "Tu peux venir ___ tu sois à l'heure. (on condition that)", "answer": "à condition que" },
+        { "prompt": "___ tu es là, aide-moi. (since — the reason is obvious; one word)", "answer": "Puisque" },
+        { "prompt": "___, il est jeune, mais il est très compétent. (admittedly)", "answer": "Certes" }
+      ]
+    },
+    {
+      "slug": "fr-c2-passe-simple",
+      "summary": "The written narrative past: recognise every form, produce the common ones, and use the passé antérieur after dès que, quand…",
+      "explanation": "The passé simple is the narrative past tense of written French — novels, history books, tales. In speech the passé composé replaces it. At C2 you should recognise every form and be able to write the common ones.\n\n-er verbs take -ai, -as, -a, -âmes, -âtes, -èrent: il parla, ils parlèrent. Regular -ir and -re verbs take -is, -is, -it, -îmes, -îtes, -irent: il finit, ils vendirent. Many irregular verbs have a -u- stem: il fut (être), il eut (avoir), il put, il voulut, il dut, il sut, il lut, il connut.\n\nOther frequent irregulars: il fit (faire), il dit, il prit, il mit, il vit (voir); venir and tenir: il vint, ils vinrent, il tint; naître: il naquit; mourir: il mourut.\n\nIn a story the passé simple carries the events and the imparfait the background, just like passé composé vs imparfait: Il faisait nuit. Soudain, quelqu'un frappa à la porte.\n\nThe passé antérieur is the auxiliary in the passé simple + participle (il eut fini, elle fut partie). It appears after quand, lorsque, dès que, après que or à peine … que, for an action completed just before another one in the passé simple: Dès qu'il eut fini, il sortit.",
+      "examples": [
+        { "fr": "Il était une fois un roi qui eut trois filles.", "en": "Once upon a time there was a king who had three daughters." },
+        { "fr": "Elle ouvrit la porte et poussa un cri.", "en": "She opened the door and let out a cry." },
+        { "fr": "Victor Hugo naquit en 1802.", "en": "Victor Hugo was born in 1802." },
+        { "fr": "Ils vinrent nous voir le lendemain.", "en": "They came to see us the next day." },
+        { "fr": "Dès qu'il eut terminé sa lettre, il la relut.", "en": "As soon as he had finished his letter, he read it over." }
+      ],
+      "drills": [
+        { "prompt": "Soudain, le téléphone ___. (sonner, passé simple)", "answer": "sonna" },
+        { "prompt": "Ils ___ dans la forêt. (entrer, passé simple)", "answer": "entrèrent" },
+        { "prompt": "Elle ___ la lettre en silence. (lire, passé simple)", "answer": "lut" },
+        { "prompt": "Le roi ___ très en colère. (être, passé simple)", "answer": "fut" },
+        { "prompt": "Il ___ ses gants et sortit. (prendre, passé simple)", "answer": "prit" },
+        { "prompt": "Napoléon ___ en Corse en 1769. (naître, passé simple)", "answer": "naquit" },
+        { "prompt": "Nous ___ la ville à l'aube. (quitter, passé simple)", "answer": "quittâmes" },
+        { "prompt": "Dès qu'il ___ fini, il partit. (avoir, passé simple)", "answer": "eut", "hint": "passé antérieur" }
+      ]
+    },
+    {
+      "slug": "fr-c2-subjonctif-litteraire",
+      "summary": "Imparfait and plus-que-parfait du subjonctif: formal concordance, the 2nd-form past conditional, and fixed phrases.",
+      "explanation": "The imparfait du subjonctif is built on the passé simple: take the il-form, drop its ending and add -sse, -sses, a circumflex + -t (-ât, -ît, -ût), -ssions, -ssiez, -ssent. parler (il parla) → que je parlasse, qu'il parlât; finir → qu'il finît; être → qu'il fût; avoir → qu'il eût; venir → qu'il vînt; faire → qu'il fît. In practice the third person singular is the form you will meet most.\n\nThe plus-que-parfait du subjonctif is avoir or être in the imparfait du subjonctif + past participle: qu'il eût fini, qu'elle fût partie.\n\nIn formal literary concordance, a past main verb takes the imparfait du subjonctif for a simultaneous or later action and the plus-que-parfait for an earlier one: Il fallait qu'il partît. Je doutais qu'elle eût compris. Modern French replaces both with the present and past subjunctive.\n\nThe plus-que-parfait du subjonctif also serves as a literary past conditional (conditionnel passé 2e forme): J'eusse préféré = j'aurais préféré; On eût dit… = one would have said. It appears in inverted concessive clauses — Fût-il roi, il devrait obéir (even if he were king) — and in fixed phrases such as ne fût-ce que (if only) and qu'à cela ne tienne.",
+      "examples": [
+        { "fr": "Il fallait qu'elle partît sur-le-champ.", "en": "She had to leave at once." },
+        { "fr": "Je craignais qu'il ne fût trop tard.", "en": "I feared it was too late." },
+        { "fr": "On eût dit qu'il dormait.", "en": "One would have thought he was asleep." },
+        { "fr": "Fût-il le plus riche du monde, il ne serait pas heureux.", "en": "Even were he the richest man in the world, he wouldn't be happy." },
+        { "fr": "Bien qu'il eût tout perdu, il gardait espoir.", "en": "Although he had lost everything, he kept hoping." }
+      ],
+      "drills": [
+        { "prompt": "Il fallait qu'il ___ sa promesse. (tenir, imparfait du subjonctif)", "answer": "tînt" },
+        { "prompt": "Je souhaitais qu'elle ___ plus souvent. (chanter, imparfait du subjonctif)", "answer": "chantât" },
+        { "prompt": "Je doutais qu'il ___ la vérité. (dire, imparfait du subjonctif)", "answer": "dît" },
+        { "prompt": "On craignait qu'ils ne ___ trop tard. (venir, imparfait du subjonctif)", "answer": "vinssent" },
+        { "prompt": "Elle exigea qu'il ___ ses excuses. (faire, imparfait du subjonctif)", "answer": "fît" },
+        { "prompt": "Bien qu'il ___ tout perdu, il gardait espoir. (avoir, plus-que-parfait du subjonctif)", "answer": "eût" },
+        { "prompt": "J'___ préféré rester. (avoir — conditionnel passé 2e forme)", "answer": "eusse" },
+        { "prompt": "___-il roi, il devrait obéir aux lois. (être — concessive inversion)", "answer": "Fût" }
+      ]
+    },
+    {
+      "slug": "fr-c2-inversion-stylistique",
+      "summary": "Formal inversion after peut-être, à peine, aussi…, in dialogue tags, and for balance in relative clauses.",
+      "explanation": "After certain adverbs at the start of a clause, formal French inverts the subject pronoun and the verb: peut-être, sans doute, à peine, aussi (= therefore), ainsi, encore (= even so), du moins, rarement. Peut-être viendra-t-il. À peine était-elle arrivée que le téléphone sonna.\n\nWith a noun subject, keep the noun before the verb and add a pronoun after it (complex inversion): Sans doute Marie a-t-elle raison. Aussi le projet fut-il abandonné. At the start of a clause aussi means “therefore” and requires inversion. To avoid inversion with peut-être, use peut-être que: Peut-être qu'il viendra.\n\nIn relative clauses and comparisons, a noun subject is often placed after a verb that has no object, for balance: La maison où habitait mon grand-père. Le livre que m'a prêté Julie. Il est plus grand que ne l'était son père.\n\nDialogue tags are always inverted: « Je viens », dit-elle. « Non », répondit Paul. Inversion also marks a hypothesis or concession: Serait-il malade, il viendrait quand même.\n\nAfter a fronted place or time expression, an intransitive verb can come before its subject: Dans la salle entrèrent trois hommes. Sur la colline se dresse un château.",
+      "examples": [
+        { "fr": "Peut-être a-t-il oublié notre rendez-vous.", "en": "Perhaps he has forgotten our appointment." },
+        { "fr": "À peine étions-nous sortis qu'il se mit à pleuvoir.", "en": "We had barely gone out when it started to rain." },
+        { "fr": "« C'est impossible », répondit-elle.", "en": "“It's impossible,” she replied." },
+        { "fr": "C'est la ville où sont nés mes parents.", "en": "It's the town where my parents were born." },
+        { "fr": "Le train était en retard ; aussi avons-nous manqué la correspondance.", "en": "The train was late; we therefore missed the connection." }
+      ],
+      "drills": [
+        { "prompt": "Peut-être ___ raison. (avoir, il — inverted)", "answer": "a-t-il" },
+        { "prompt": "À peine ___ arrivée que le téléphone sonna. (être, elle, imparfait — inverted)", "answer": "était-elle" },
+        { "prompt": "« Je suis prêt », ___ Paul. (dire, passé simple — dialogue tag)", "answer": "dit" },
+        { "prompt": "Sans doute Marie ___ raison. (avoir — complex inversion)", "answer": "a-t-elle" },
+        { "prompt": "Il pleuvait ; ___ sommes-nous restés à la maison. (therefore)", "answer": "aussi" },
+        { "prompt": "C'est la maison où ___ mon grand-père. (habiter, imparfait — verb before subject)", "answer": "habitait" },
+        { "prompt": "___ qu'il viendra. (maybe — no inversion)", "answer": "Peut-être" },
+        { "prompt": "« Non », ___-elle. (répondre, passé simple)", "answer": "répondit" }
+      ]
+    },
+    {
+      "slug": "fr-c2-nominalisation",
+      "summary": "Turn verbs, adjectives and clauses into noun phrases for a dense, formal register.",
+      "explanation": "Nominalisation turns a verb, an adjective or a whole clause into a noun phrase. It makes writing denser and more formal, and it is everywhere in headlines, reports and academic French: Le train est arrivé en retard → l'arrivée tardive du train.\n\nVerb → noun: -tion/-sion (augmenter → augmentation, décider → décision), -ment (lancer → lancement, développer → développement), -age (nettoyer → nettoyage), -ure (ouvrir → ouverture, fermer → fermeture), -ée (arriver → arrivée), or no suffix at all (refuser → refus, choisir → choix, vendre → vente, perdre → perte, partir → départ).\n\nAdjective → noun: -té (beau → beauté), -ité (rapide → rapidité), -eur (lent → lenteur), -esse (riche → richesse), -ise (franc → franchise), -ance/-ence (patient → patience).\n\nWhen you transform a sentence, the subject becomes a de-complement and an adverb becomes an adjective: Les prix augmentent rapidement → l'augmentation rapide des prix. Clauses become prepositional phrases: avant qu'il parte → avant son départ; parce qu'il pleuvait → en raison de la pluie; bien qu'il soit jeune → malgré son jeune âge.\n\nDon't overdo it: long chains of nouns become heavy and vague. Keep verbs when you need to make clear who did what.",
+      "examples": [
+        { "fr": "La fermeture de l'usine a provoqué la colère des habitants.", "en": "The closure of the factory angered the residents." },
+        { "fr": "Après son départ, la maison était silencieuse.", "en": "After he left, the house was silent." },
+        { "fr": "L'augmentation des prix inquiète les consommateurs.", "en": "Rising prices worry consumers." },
+        { "fr": "En raison de la grève, le train a été supprimé.", "en": "Because of the strike, the train was cancelled." },
+        { "fr": "Le gouvernement a annoncé le lancement d'un nouveau programme.", "en": "The government announced the launch of a new programme." }
+      ],
+      "drills": [
+        { "prompt": "L'___ des prix inquiète les ménages. (augmenter)", "answer": "augmentation" },
+        { "prompt": "Après son ___, tout a changé. (partir)", "answer": "départ" },
+        { "prompt": "Le ___ du produit aura lieu lundi. (lancer)", "answer": "lancement" },
+        { "prompt": "Son ___ nous a surpris. (refuser)", "answer": "refus" },
+        { "prompt": "La ___ du magasin est à 20 heures. (fermer)", "answer": "fermeture" },
+        { "prompt": "La ___ de ce train impressionne. (rapide)", "answer": "rapidité" },
+        { "prompt": "J'apprécie sa ___. (franc)", "answer": "franchise" },
+        { "prompt": "En ___ de la grève, le vol est annulé. (because of — formal)", "answer": "raison" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "slug": "es-a2-un-dia-en-el-mercado",
+    "level": "A2",
+    "topic": "food & shopping",
+    "title": "Un día en el mercado",
+    "titleTranslation": "A day at the market",
+    "sentences": [
+      { "text": "El sábado por la mañana, Ana va al mercado.", "translation": "On Saturday morning, Ana goes to the market." },
+      { "text": "Quiere comprar fruta y verdura.", "translation": "She wants to buy fruit and vegetables." },
+      { "text": "Primero compra manzanas y plátanos.", "translation": "First she buys apples and bananas." },
+      { "text": "Después busca tomates y cebollas.", "translation": "Then she looks for tomatoes and onions." },
+      { "text": "El vendedor es muy simpático.", "translation": "The seller is very friendly." },
+      { "text": "Ana pregunta cuánto cuesta el pescado.", "translation": "Ana asks how much the fish costs." },
+      { "text": "Paga con una tarjeta y guarda todo en una bolsa.", "translation": "She pays with a card and puts everything in a bag." },
+      { "text": "Por la tarde, cocina una cena deliciosa.", "translation": "In the afternoon, she cooks a delicious dinner." }
+    ],
+    "glossary": [
+      { "term": "el mercado", "translation": "the market" },
+      { "term": "la verdura", "translation": "the vegetable" },
+      { "term": "el vendedor", "translation": "the seller" },
+      { "term": "cuánto cuesta", "translation": "how much it costs" },
+      { "term": "la bolsa", "translation": "the bag" }
+    ],
+    "questions": [
+      { "question": "When does Ana go to the market?", "options": ["Friday night", "Saturday morning", "Sunday afternoon", "Monday"], "answer": 1 },
+      { "question": "What does she ask the price of?", "options": ["The fish", "The bread", "The cheese", "The wine"], "answer": 0 },
+      { "question": "What does she do in the afternoon?", "options": ["She sleeps", "She cooks dinner", "She goes to work", "She studies"], "answer": 1 }
+    ]
+  },
+  {
+    "slug": "es-a2-el-fin-de-semana-de-pablo",
+    "level": "A2",
+    "topic": "daily life & leisure",
+    "title": "El fin de semana de Pablo",
+    "titleTranslation": "Pablo's weekend",
+    "sentences": [
+      { "text": "El fin de semana pasado, Pablo no trabajó.", "translation": "Last weekend, Pablo did not work." },
+      { "text": "El sábado se levantó tarde y desayunó café con tostadas.", "translation": "On Saturday he got up late and had coffee with toast for breakfast." },
+      { "text": "Por la mañana fue al parque con sus amigos.", "translation": "In the morning he went to the park with his friends." },
+      { "text": "Jugaron al fútbol durante dos horas.", "translation": "They played football for two hours." },
+      { "text": "Después comieron en un restaurante pequeño.", "translation": "Afterwards they ate at a small restaurant." },
+      { "text": "El domingo Pablo descansó en casa.", "translation": "On Sunday Pablo rested at home." },
+      { "text": "Leyó un libro y vio una película.", "translation": "He read a book and watched a film." },
+      { "text": "Fue un fin de semana muy tranquilo.", "translation": "It was a very relaxing weekend." }
+    ],
+    "glossary": [
+      { "term": "levantarse", "translation": "to get up" },
+      { "term": "desayunar", "translation": "to have breakfast" },
+      { "term": "el parque", "translation": "the park" },
+      { "term": "descansar", "translation": "to rest" },
+      { "term": "la película", "translation": "the film" }
+    ],
+    "questions": [
+      { "question": "What did Pablo do on Saturday morning?", "options": ["He worked", "He went to the park", "He stayed in bed all day", "He cooked"], "answer": 1 },
+      { "question": "How long did they play football?", "options": ["One hour", "Two hours", "All afternoon", "Ten minutes"], "answer": 1 },
+      { "question": "What did Pablo do on Sunday?", "options": ["He rested at home", "He went to work", "He travelled", "He played football again"], "answer": 0 }
+    ]
+  }
+]

@@ -1,0 +1,465 @@
+{
+  "slug": "es-a2-nature",
+  "title": "Nature & Weather",
+  "description": "Describe the weather, the landscape and the natural world.",
+  "level": "A2",
+  "topic": "nature",
+  "order": 12,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la naturaleza",
+      "translation": "nature",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el clima",
+      "translation": "the climate/weather",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el sol",
+      "translation": "the sun",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la luna",
+      "translation": "the moon",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la estrella",
+      "translation": "the star",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cielo",
+      "translation": "the sky",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la nube",
+      "translation": "the cloud",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la lluvia",
+      "translation": "the rain",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la nieve",
+      "translation": "the snow",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el viento",
+      "translation": "the wind",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la tormenta",
+      "translation": "the storm",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el trueno",
+      "translation": "the thunder",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el relámpago",
+      "translation": "the lightning",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la niebla",
+      "translation": "the fog",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el hielo",
+      "translation": "the ice",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el calor",
+      "translation": "the heat",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el frío",
+      "translation": "the cold",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el árbol",
+      "translation": "the tree",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la flor",
+      "translation": "the flower",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la planta",
+      "translation": "the plant",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la hierba",
+      "translation": "the grass",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la hoja",
+      "translation": "the leaf",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el bosque",
+      "translation": "the forest",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el río",
+      "translation": "the river",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el lago",
+      "translation": "the lake",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el mar",
+      "translation": "the sea",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el océano",
+      "translation": "the ocean",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la colina",
+      "translation": "the hill",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el valle",
+      "translation": "the valley",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la isla",
+      "translation": "the island",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el desierto",
+      "translation": "the desert",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la tierra",
+      "translation": "the earth/land",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el fuego",
+      "translation": "the fire",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el aire",
+      "translation": "the air",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la piedra",
+      "translation": "the stone",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la arena",
+      "translation": "the sand",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el animal",
+      "translation": "the animal",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el perro",
+      "translation": "the dog",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el gato",
+      "translation": "the cat",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el pájaro",
+      "translation": "the bird",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el pez",
+      "translation": "the fish",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el caballo",
+      "translation": "the horse",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la vaca",
+      "translation": "the cow",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el insecto",
+      "translation": "the insect",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mariposa",
+      "translation": "the butterfly",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "hace sol",
+      "translation": "it is sunny",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "term": "hace frío",
+      "translation": "it is cold",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "term": "hace calor",
+      "translation": "it is hot",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "term": "llover",
+      "translation": "to rain",
+      "partOfSpeech": "verb",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "term": "nevar",
+      "translation": "to snow",
+      "partOfSpeech": "verb",
+      "tags": [
+        "nature"
+      ]
+    },
+    {
+      "term": "el medio ambiente",
+      "translation": "the environment",
+      "partOfSpeech": "noun",
+      "tags": [
+        "nature"
+      ],
+      "gender": "m"
+    }
+  ]
+}

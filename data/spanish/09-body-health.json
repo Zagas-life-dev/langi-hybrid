@@ -1,0 +1,455 @@
+{
+  "slug": "es-a2-body",
+  "title": "Body & Health",
+  "description": "Name the parts of the body and cope with the doctor and pharmacy.",
+  "level": "A2",
+  "topic": "body",
+  "order": 9,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el cuerpo",
+      "translation": "the body",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cabeza",
+      "translation": "the head",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pelo",
+      "translation": "the hair",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cara",
+      "translation": "the face",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el ojo",
+      "translation": "the eye",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la oreja",
+      "translation": "the ear",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la nariz",
+      "translation": "the nose",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la boca",
+      "translation": "the mouth",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el diente",
+      "translation": "the tooth",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la lengua",
+      "translation": "the tongue",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cuello",
+      "translation": "the neck",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hombro",
+      "translation": "the shoulder",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el brazo",
+      "translation": "the arm",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mano",
+      "translation": "the hand",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el dedo",
+      "translation": "the finger",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el pecho",
+      "translation": "the chest",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la espalda",
+      "translation": "the back",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el estómago",
+      "translation": "the stomach",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pierna",
+      "translation": "the leg",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la rodilla",
+      "translation": "the knee",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pie",
+      "translation": "the foot",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el corazón",
+      "translation": "the heart",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hueso",
+      "translation": "the bone",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la piel",
+      "translation": "the skin",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la sangre",
+      "translation": "the blood",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la salud",
+      "translation": "the health",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la enfermedad",
+      "translation": "the illness",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el dolor",
+      "translation": "the pain",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la fiebre",
+      "translation": "the fever",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la tos",
+      "translation": "the cough",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el resfriado",
+      "translation": "the cold",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la gripe",
+      "translation": "the flu",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el médico",
+      "translation": "the doctor",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el dentista",
+      "translation": "the dentist",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el hospital",
+      "translation": "the hospital",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la farmacia",
+      "translation": "the pharmacy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la medicina",
+      "translation": "the medicine",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la pastilla",
+      "translation": "the pill",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la receta",
+      "translation": "the prescription",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la cita",
+      "translation": "the appointment",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "sano",
+      "translation": "healthy",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "term": "enfermo",
+      "translation": "ill/sick",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "term": "cansado",
+      "translation": "tired",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "term": "doler",
+      "translation": "to hurt",
+      "partOfSpeech": "verb",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "term": "estar enfermo",
+      "translation": "to be ill",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "term": "la herida",
+      "translation": "the wound",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el accidente",
+      "translation": "the accident",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la dieta",
+      "translation": "the diet",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el ejercicio",
+      "translation": "the exercise",
+      "partOfSpeech": "noun",
+      "tags": [
+        "body"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "descansar",
+      "translation": "to rest",
+      "partOfSpeech": "verb",
+      "tags": [
+        "body"
+      ]
+    }
+  ]
+}

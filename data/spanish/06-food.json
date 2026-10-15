@@ -1,0 +1,465 @@
+{
+  "slug": "es-a1-food",
+  "title": "Food & Drink",
+  "description": "Order a meal, do the shopping and talk about what you like to eat.",
+  "level": "A1",
+  "topic": "food",
+  "order": 6,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la comida",
+      "translation": "the food/meal",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pan",
+      "translation": "the bread",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el queso",
+      "translation": "the cheese",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mantequilla",
+      "translation": "the butter",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el huevo",
+      "translation": "the egg",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la leche",
+      "translation": "the milk",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la carne",
+      "translation": "the meat",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pollo",
+      "translation": "the chicken",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el pescado",
+      "translation": "the fish (food)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el arroz",
+      "translation": "the rice",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pasta",
+      "translation": "the pasta",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la fruta",
+      "translation": "the fruit",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la manzana",
+      "translation": "the apple",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la naranja",
+      "translation": "the orange",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el plátano",
+      "translation": "the banana",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la verdura",
+      "translation": "the vegetable",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la patata",
+      "translation": "the potato",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el tomate",
+      "translation": "the tomato",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cebolla",
+      "translation": "the onion",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la lechuga",
+      "translation": "the lettuce",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la zanahoria",
+      "translation": "the carrot",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el azúcar",
+      "translation": "the sugar",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la sal",
+      "translation": "the salt",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la pimienta",
+      "translation": "the pepper",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el aceite",
+      "translation": "the oil",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el agua",
+      "translation": "the water",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el café",
+      "translation": "the coffee",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el té",
+      "translation": "the tea",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el zumo",
+      "translation": "the juice",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el vino",
+      "translation": "the wine",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cerveza",
+      "translation": "the beer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "drink"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el desayuno",
+      "translation": "the breakfast",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el almuerzo",
+      "translation": "the lunch",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cena",
+      "translation": "the dinner",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el plato",
+      "translation": "the plate/dish",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el vaso",
+      "translation": "the glass",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la taza",
+      "translation": "the cup",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el tenedor",
+      "translation": "the fork",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el cuchillo",
+      "translation": "the knife",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cuchara",
+      "translation": "the spoon",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el restaurante",
+      "translation": "the restaurant",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cuenta",
+      "translation": "the bill",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el menú",
+      "translation": "the menu",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "delicioso",
+      "translation": "delicious",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "term": "tener hambre",
+      "translation": "to be hungry",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "term": "tener sed",
+      "translation": "to be thirsty",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "term": "comer",
+      "translation": "to eat",
+      "partOfSpeech": "verb",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "term": "beber",
+      "translation": "to drink",
+      "partOfSpeech": "verb",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "term": "el postre",
+      "translation": "the dessert",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el helado",
+      "translation": "the ice cream",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el chocolate",
+      "translation": "the chocolate",
+      "partOfSpeech": "noun",
+      "tags": [
+        "food"
+      ],
+      "gender": "m"
+    }
+  ]
+}

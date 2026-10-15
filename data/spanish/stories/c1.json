@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "es-c1-la-carta-olvidada",
+    "level": "C1",
+    "topic": "literary narrative",
+    "title": "La carta olvidada",
+    "titleTranslation": "The forgotten letter",
+    "sentences": [
+      { "text": "Al vaciar el viejo escritorio de su abuela, Clara encontró un sobre amarillento.", "translation": "While emptying her grandmother's old desk, Clara found a yellowed envelope." },
+      { "text": "La tinta se había desvanecido, pero aún podía leerse un nombre desconocido.", "translation": "The ink had faded, but an unknown name could still be read." },
+      { "text": "Intrigada, desdobló con cuidado el papel quebradizo.", "translation": "Intrigued, she carefully unfolded the brittle paper." },
+      { "text": "La carta hablaba de un amor que nunca llegó a confesarse.", "translation": "The letter spoke of a love that was never confessed." },
+      { "text": "Clara comprendió que su abuela había guardado aquel secreto durante décadas.", "translation": "Clara realized that her grandmother had kept that secret for decades." },
+      { "text": "Por un momento, dudó entre destruirla o conservarla.", "translation": "For a moment, she hesitated between destroying it or keeping it." },
+      { "text": "Sin embargo, sintió que tenía el deber de honrar aquella memoria.", "translation": "Nevertheless, she felt she had a duty to honour that memory." },
+      { "text": "Decidió guardar la carta en un lugar seguro, como un pequeño tesoro.", "translation": "She decided to keep the letter in a safe place, like a small treasure." },
+      { "text": "Desde entonces, miró el retrato de su abuela con otros ojos.", "translation": "From then on, she looked at her grandmother's portrait with different eyes." },
+      { "text": "Algunas historias, pensó, sobreviven al silencio.", "translation": "Some stories, she thought, outlive silence." }
+    ],
+    "glossary": [
+      { "term": "el sobre", "translation": "the envelope" },
+      { "term": "desvanecerse", "translation": "to fade away" },
+      { "term": "quebradizo", "translation": "brittle" },
+      { "term": "el deber", "translation": "the duty" },
+      { "term": "el retrato", "translation": "the portrait" }
+    ],
+    "questions": [
+      { "question": "Where did Clara find the letter?", "options": ["In a library", "In her grandmother's old desk", "In the attic", "In a museum"], "answer": 1 },
+      { "question": "What was the letter about?", "options": ["A business deal", "A love never confessed", "A family argument", "A journey"], "answer": 1 },
+      { "question": "What did Clara finally decide to do?", "options": ["Destroy the letter", "Keep it in a safe place", "Send it", "Forget about it"], "answer": 1 }
+    ]
+  },
+  {
+    "slug": "es-c1-el-emprendedor",
+    "level": "C1",
+    "topic": "ambition & society",
+    "title": "El emprendedor",
+    "titleTranslation": "The entrepreneur",
+    "sentences": [
+      { "text": "Desde joven, Tomás había soñado con crear su propia empresa.", "translation": "From a young age, Tomás had dreamed of creating his own company." },
+      { "text": "Muchos le advirtieron de que el riesgo era considerable.", "translation": "Many warned him that the risk was considerable." },
+      { "text": "Aun así, decidió invertir todos sus ahorros en el proyecto.", "translation": "Even so, he decided to invest all his savings in the project." },
+      { "text": "Los primeros meses fueron agotadores y llenos de incertidumbre.", "translation": "The first months were exhausting and full of uncertainty." },
+      { "text": "En más de una ocasión estuvo a punto de rendirse.", "translation": "On more than one occasion he was about to give up." },
+      { "text": "No obstante, su perseverancia acabó dando frutos.", "translation": "Nevertheless, his perseverance eventually paid off." },
+      { "text": "Poco a poco, el negocio empezó a ganar clientes y reconocimiento.", "translation": "Little by little, the business began to gain clients and recognition." },
+      { "text": "Tomás aprendió que el éxito rara vez llega sin sacrificio.", "translation": "Tomás learned that success rarely comes without sacrifice." },
+      { "text": "Hoy dirige un equipo que comparte su misma visión.", "translation": "Today he leads a team that shares his same vision." }
+    ],
+    "glossary": [
+      { "term": "el riesgo", "translation": "the risk" },
+      { "term": "los ahorros", "translation": "the savings" },
+      { "term": "la incertidumbre", "translation": "the uncertainty" },
+      { "term": "rendirse", "translation": "to give up" },
+      { "term": "dar frutos", "translation": "to pay off / bear fruit" }
+    ],
+    "questions": [
+      { "question": "What had Tomás dreamed of since he was young?", "options": ["Travelling the world", "Creating his own company", "Becoming a teacher", "Writing a book"], "answer": 1 },
+      { "question": "What did he invest in the project?", "options": ["A small loan", "All his savings", "Nothing", "His house"], "answer": 1 },
+      { "question": "What lesson did he learn?", "options": ["Success comes easily", "Success rarely comes without sacrifice", "Risk should be avoided", "Teamwork is unnecessary"], "answer": 1 }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "_note": "Spanish placement bank (vocab + a few grammar items). seed.ts upserts these as PlacementQuestion (kind vocab/grammar). Grammar concepts are also covered by grammar-questions.json placement:true items. Authored for Langi.",
+  "questions": [
+    { "level": "A1", "kind": "vocab", "prompt": "What does « hola » mean?", "options": ["goodbye", "hello", "thank you", "please"], "answerIndex": 1 },
+    { "level": "A1", "kind": "grammar", "prompt": "Yo ___ español. (I speak Spanish)", "options": ["hablo", "hablas", "habla", "hablan"], "answerIndex": 0 },
+    { "level": "A1", "kind": "vocab", "prompt": "« un perro » is a…", "options": ["cat", "dog", "house", "book"], "answerIndex": 1 },
+    { "level": "A1", "kind": "grammar", "prompt": "Choose the correct article: ___ manzana (apple, feminine)", "options": ["el", "la", "los", "un"], "answerIndex": 1 },
+    { "level": "A2", "kind": "grammar", "prompt": "Ayer ___ una manzana. (Yesterday I ate an apple)", "options": ["como", "comí", "comía", "comeré"], "answerIndex": 1 },
+    { "level": "A2", "kind": "vocab", "prompt": "« la semana que viene » means…", "options": ["last week", "this morning", "next week", "every day"], "answerIndex": 2 },
+    { "level": "A2", "kind": "vocab", "prompt": "« Hace frío » means…", "options": ["it is hot", "it is cold", "it is raining", "it is late"], "answerIndex": 1 },
+    { "level": "A2", "kind": "grammar", "prompt": "Mañana ___ a ir al cine. (We are going to go to the cinema)", "options": ["vamos", "vais", "van", "vas"], "answerIndex": 0 },
+    { "level": "B1", "kind": "grammar", "prompt": "Si tuviera tiempo, ___ contigo. (I would go — conditional)", "options": ["voy", "iré", "iría", "iba"], "answerIndex": 2 },
+    { "level": "B1", "kind": "vocab", "prompt": "« es decir » means…", "options": ["on the contrary", "that is to say", "by the way", "as usual"], "answerIndex": 1 },
+    { "level": "B1", "kind": "grammar", "prompt": "Este regalo es ___ ti. (best preposition)", "options": ["por", "para", "de", "en"], "answerIndex": 1 },
+    { "level": "B1", "kind": "vocab", "prompt": "« tener razón » means…", "options": ["to be wrong", "to be hungry", "to be right", "to be afraid"], "answerIndex": 2 },
+    { "level": "B2", "kind": "grammar", "prompt": "Es necesario que ___ a la hora. (subjunctive of llegar, tú)", "options": ["llegas", "llegues", "llegarás", "llegar"], "answerIndex": 1 },
+    { "level": "B2", "kind": "vocab", "prompt": "« a pesar de » means…", "options": ["thanks to", "despite", "because of", "during"], "answerIndex": 1 },
+    { "level": "B2", "kind": "grammar", "prompt": "El proyecto ___ por el equipo tuvo éxito. (past participle of dirigir)", "options": ["dirige", "dirigiendo", "dirigido", "dirigir"], "answerIndex": 2 },
+    { "level": "B2", "kind": "vocab", "prompt": "« llevar a cabo » means…", "options": ["to give up", "to carry out", "to postpone", "to summarize"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« en su caso » / « si procede » means…", "options": ["right away", "if applicable / should the case arise", "without fail", "in vain"], "answerIndex": 1 },
+    { "level": "C1", "kind": "grammar", "prompt": "Sea como ___, seguiremos adelante. (fixed subjunctive expression)", "options": ["es", "sea", "será", "era"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« un desenlace » refers to…", "options": ["a beginning", "an outcome / resolution", "a mistake", "a delay"], "answerIndex": 1 },
+    { "level": "C1", "kind": "vocab", "prompt": "« hacer hincapié » means…", "options": ["to give up", "to emphasize", "to hesitate", "to postpone"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« a quemarropa » means…", "options": ["point-blank / out of the blue", "little by little", "behind closed doors", "at first sight"], "answerIndex": 0 },
+    { "level": "C2", "kind": "vocab", "prompt": "« una quimera » is…", "options": ["a firm decision", "an unrealistic dream / illusion", "a violent argument", "a clever trick"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« no obstante » is a synonym of…", "options": ["therefore", "nevertheless / however", "henceforth", "moreover"], "answerIndex": 1 },
+    { "level": "C2", "kind": "vocab", "prompt": "« sin ambages » means…", "options": ["without beating about the bush", "little by little", "by chance", "in vain"], "answerIndex": 0 }
+  ]
+}

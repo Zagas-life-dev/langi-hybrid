@@ -1,0 +1,438 @@
+{
+  "slug": "es-c1-advanced-vocab",
+  "title": "Advanced Vocabulary (C1)",
+  "description": "Nuanced verbs, abstract nouns and set phrases for fluent, precise Spanish.",
+  "level": "C1",
+  "topic": "abstract",
+  "order": 16,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el ámbito",
+      "translation": "the field/sphere",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el enfoque",
+      "translation": "the approach/focus",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el desafío",
+      "translation": "the challenge",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la índole",
+      "translation": "the nature/kind",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el matiz",
+      "translation": "the nuance",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pauta",
+      "translation": "the guideline/pattern",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sesgo",
+      "translation": "the bias",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el auge",
+      "translation": "the boom/peak",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el declive",
+      "translation": "the decline",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la brecha",
+      "translation": "the gap",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el hito",
+      "translation": "the milestone",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el legado",
+      "translation": "the legacy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el afán",
+      "translation": "the eagerness/drive",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el recelo",
+      "translation": "the suspicion/wariness",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la cautela",
+      "translation": "the caution",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la coyuntura",
+      "translation": "the situation/juncture",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el umbral",
+      "translation": "the threshold",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la vertiente",
+      "translation": "the aspect/side",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "abarcar",
+      "translation": "to encompass",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "fomentar",
+      "translation": "to foster/promote",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "plantear",
+      "translation": "to raise/pose",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "conllevar",
+      "translation": "to entail",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "acarrear",
+      "translation": "to bring about",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "esgrimir",
+      "translation": "to wield/put forward",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "vislumbrar",
+      "translation": "to glimpse",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "soslayar",
+      "translation": "to sidestep/avoid",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "ponderar",
+      "translation": "to weigh up",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "recalcar",
+      "translation": "to stress/emphasize",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "subsanar",
+      "translation": "to rectify",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "paliar",
+      "translation": "to alleviate",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "mermar",
+      "translation": "to diminish",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "ahondar",
+      "translation": "to delve deeper",
+      "partOfSpeech": "verb",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "imprescindible",
+      "translation": "indispensable",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "polémico",
+      "translation": "controversial",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "contundente",
+      "translation": "forceful/conclusive",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "paulatino",
+      "translation": "gradual",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "sutil",
+      "translation": "subtle",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "arraigado",
+      "translation": "deep-rooted",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "somero",
+      "translation": "superficial/brief",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "escueto",
+      "translation": "concise",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a grandes rasgos",
+      "translation": "broadly speaking",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "en aras de",
+      "translation": "for the sake of",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a raíz de",
+      "translation": "as a result of",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "hacer hincapié",
+      "translation": "to emphasize",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "llevar a cabo",
+      "translation": "to carry out",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "poner de manifiesto",
+      "translation": "to make clear",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "dar por sentado",
+      "translation": "to take for granted",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "tener en cuenta",
+      "translation": "to bear in mind",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "a su vez",
+      "translation": "in turn",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "de ahí que",
+      "translation": "hence",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "term": "el quehacer",
+      "translation": "the task/work",
+      "partOfSpeech": "noun",
+      "tags": [
+        "abstract"
+      ],
+      "gender": "m"
+    }
+  ]
+}

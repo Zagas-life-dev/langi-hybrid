@@ -1,0 +1,461 @@
+{
+  "slug": "es-b2-society",
+  "title": "Society & Current Affairs",
+  "description": "Discuss politics, the economy and the issues in the news.",
+  "level": "B2",
+  "topic": "society",
+  "order": 15,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la sociedad",
+      "translation": "the society",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el gobierno",
+      "translation": "the government",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el país",
+      "translation": "the country",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el estado",
+      "translation": "the state",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la ley",
+      "translation": "the law",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la política",
+      "translation": "the politics/policy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el político",
+      "translation": "the politician",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "las elecciones",
+      "translation": "the elections",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el voto",
+      "translation": "the vote",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el derecho",
+      "translation": "the right/law",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la libertad",
+      "translation": "the freedom",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la igualdad",
+      "translation": "the equality",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la justicia",
+      "translation": "the justice",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la economía",
+      "translation": "the economy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el impuesto",
+      "translation": "the tax",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el desempleo",
+      "translation": "the unemployment",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la pobreza",
+      "translation": "the poverty",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la riqueza",
+      "translation": "the wealth",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el mercado",
+      "translation": "the market",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la crisis",
+      "translation": "the crisis",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el desarrollo",
+      "translation": "the development",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la educación",
+      "translation": "the education",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la cultura",
+      "translation": "the culture",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la religión",
+      "translation": "the religion",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la guerra",
+      "translation": "the war",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la paz",
+      "translation": "the peace",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la violencia",
+      "translation": "the violence",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el crimen",
+      "translation": "the crime",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la seguridad",
+      "translation": "the security/safety",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la población",
+      "translation": "the population",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la inmigración",
+      "translation": "the immigration",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el ciudadano",
+      "translation": "the citizen",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la comunidad",
+      "translation": "the community",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cambio climático",
+      "translation": "climate change",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la tecnología",
+      "translation": "the technology",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la noticia",
+      "translation": "the news item",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "los medios",
+      "translation": "the media",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la prensa",
+      "translation": "the press",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la manifestación",
+      "translation": "the demonstration",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la huelga",
+      "translation": "the strike",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la democracia",
+      "translation": "the democracy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la dictadura",
+      "translation": "the dictatorship",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el acuerdo",
+      "translation": "the agreement",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el conflicto",
+      "translation": "the conflict",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el poder",
+      "translation": "the power",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el avance",
+      "translation": "the advance/progress",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la causa",
+      "translation": "the cause",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la consecuencia",
+      "translation": "the consequence",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el reto",
+      "translation": "the challenge",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la medida",
+      "translation": "the measure",
+      "partOfSpeech": "noun",
+      "tags": [
+        "society"
+      ],
+      "gender": "f"
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{
+  "slug": "es-a1-colors",
+  "title": "Colours & Descriptions",
+  "description": "Name colours and the everyday adjectives that describe people and things.",
+  "level": "A1",
+  "topic": "colors",
+  "order": 4,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el color",
+      "translation": "the colour",
+      "partOfSpeech": "noun",
+      "tags": [
+        "colors"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "rojo",
+      "translation": "red",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "azul",
+      "translation": "blue",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "verde",
+      "translation": "green",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "amarillo",
+      "translation": "yellow",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "naranja",
+      "translation": "orange",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "morado",
+      "translation": "purple",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "rosa",
+      "translation": "pink",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "negro",
+      "translation": "black",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "blanco",
+      "translation": "white",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "gris",
+      "translation": "grey",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "marrón",
+      "translation": "brown",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "claro",
+      "translation": "light/pale",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "oscuro",
+      "translation": "dark",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "grande",
+      "translation": "big",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "pequeño",
+      "translation": "small",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "alto",
+      "translation": "tall/high",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "bajo",
+      "translation": "short/low",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "largo",
+      "translation": "long",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "corto",
+      "translation": "short",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "ancho",
+      "translation": "wide",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "estrecho",
+      "translation": "narrow",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "gordo",
+      "translation": "fat",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "delgado",
+      "translation": "thin/slim",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "nuevo",
+      "translation": "new",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "viejo",
+      "translation": "old",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "joven",
+      "translation": "young",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "bonito",
+      "translation": "pretty/nice",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "feo",
+      "translation": "ugly",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "bueno",
+      "translation": "good",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "malo",
+      "translation": "bad",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "fácil",
+      "translation": "easy",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "difícil",
+      "translation": "difficult",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "rápido",
+      "translation": "fast",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "lento",
+      "translation": "slow",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "caliente",
+      "translation": "hot",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "frío",
+      "translation": "cold",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "limpio",
+      "translation": "clean",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "sucio",
+      "translation": "dirty",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "lleno",
+      "translation": "full",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "vacío",
+      "translation": "empty",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "fuerte",
+      "translation": "strong",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "débil",
+      "translation": "weak",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "mismo",
+      "translation": "same",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "diferente",
+      "translation": "different",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "importante",
+      "translation": "important",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "caro",
+      "translation": "expensive",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "barato",
+      "translation": "cheap",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "redondo",
+      "translation": "round",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "cuadrado",
+      "translation": "square",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    },
+    {
+      "term": "guapo",
+      "translation": "good-looking",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "colors"
+      ]
+    }
+  ]
+}

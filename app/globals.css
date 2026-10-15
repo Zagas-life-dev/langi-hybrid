@@ -1,0 +1,953 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   LANGI DESIGN LANGUAGE: "Playful" (Option B)
+   Cream paper, bold ink outlines, pill shapes, hard press shadows, and five
+   candy fills that always mean the same Leitner box (pink 1 → sky 5).
+
+   Light is the default. Dark is applied two ways:
+     1. :root[data-theme="dark"]  — explicit user choice (ThemeProvider)
+     2. @media (prefers-color-scheme: dark) — but ONLY when the user hasn't
+        explicitly chosen light, hence the :root:not([data-theme="light"]) guard.
+   The legacy token names (paper, ink, accent, line…) are kept so every screen
+   picks up the new palette; the brand fills below never change per theme.
+--------------------------------------------------------------------------- */
+
+:root {
+  /* Brand fills: identical in both themes. Text on them is always --on-bright. */
+  --purple: #6b3cf6;
+  --purple-soft: #ede6ff;
+  --lime: #cbf35b;
+  --pink: #ffa6cf;
+  --orange: #ff8a3d;
+  --yellow: #ffd84a;
+  --sky: #9ed8ff;
+  --on-bright: #1b1530;
+  --on-purple: #ffffff;
+  /* Leitner boxes */
+  --box-1: var(--pink);
+  --box-2: var(--orange);
+  --box-3: var(--yellow);
+  --box-4: var(--lime);
+  --box-5: var(--sky);
+
+  /* Surfaces */
+  --paper: #fff7ea;
+  --paper-dark: #f6ebd6;
+  --paper-raised: #ffffff;
+  /* Foreground */
+  --ink: #1b1530;
+  --ink-soft: #3d3654;
+  --muted: #5e5775;
+  /* Outlines and hard shadows */
+  --line: #1b1530;
+  --line-soft: rgba(27, 21, 48, 0.15);
+  --shadow-ink: #1b1530;
+  --stroke: 2.5px;
+  /* Brand roles */
+  --accent: #6b3cf6;
+  --accent-hover: #5528e0;
+  --accent-soft: #ede6ff;
+  --on-accent: #ffffff;
+  --accent2: #c42e6e;
+  /* Status (text-safe on cream; the bright fills carry the big moments) */
+  --ok: #2d7a16;
+  --ok-soft: rgba(203, 243, 91, 0.45);
+  --warn: #8f6200;
+  --warn-soft: rgba(255, 216, 74, 0.4);
+  --danger: #c42e6e;
+  --danger-soft: rgba(255, 166, 207, 0.4);
+  --info: #2a6fb0;
+  /* Elevation: hard ink shadows straight down, never blurred */
+  --shadow-sm: 0 3px 0 var(--shadow-ink);
+  --shadow-md: 0 5px 0 var(--shadow-ink);
+  --shadow-lg: 0 8px 0 var(--shadow-ink);
+  /* Radii */
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  /* Motion — zeroed out under prefers-reduced-motion below */
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 320ms;
+  --ease: cubic-bezier(0.2, 0, 0.13, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Layout */
+  --nav-h: 4rem;
+  --bottom-nav-h: 4.5rem;
+  --sidebar-w: 260px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+  color-scheme: light;
+}
+
+/* Dark: a deep plum night. Surfaces lift lighter, outlines go soft lilac so
+   shapes still read, and the press shadow drops to near-black. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #16112a;
+    --paper-dark: #211a3a;
+    --paper-raised: #251e40;
+    --ink: #fff7ea;
+    --ink-soft: #ddd6ec;
+    --muted: #aaa2c4;
+    --line: #5a4f80;
+    --line-soft: rgba(255, 247, 234, 0.14);
+    --shadow-ink: #07040f;
+    --accent: #a78bff;
+    --accent-hover: #c0aeff;
+    --accent-soft: rgba(167, 139, 255, 0.18);
+    --on-accent: #16112a;
+    --accent2: #ff8fc0;
+    --ok: #cbf35b;
+    --ok-soft: rgba(203, 243, 91, 0.16);
+    --warn: #ffd84a;
+    --warn-soft: rgba(255, 216, 74, 0.16);
+    --danger: #ff8fc0;
+    --danger-soft: rgba(255, 166, 207, 0.16);
+    --info: #9ed8ff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #16112a;
+  --paper-dark: #211a3a;
+  --paper-raised: #251e40;
+  --ink: #fff7ea;
+  --ink-soft: #ddd6ec;
+  --muted: #aaa2c4;
+  --line: #5a4f80;
+  --line-soft: rgba(255, 247, 234, 0.14);
+  --shadow-ink: #07040f;
+  --accent: #a78bff;
+  --accent-hover: #c0aeff;
+  --accent-soft: rgba(167, 139, 255, 0.18);
+  --on-accent: #16112a;
+  --accent2: #ff8fc0;
+  --ok: #cbf35b;
+  --ok-soft: rgba(203, 243, 91, 0.16);
+  --warn: #ffd84a;
+  --warn-soft: rgba(255, 216, 74, 0.16);
+  --danger: #ff8fc0;
+  --danger-soft: rgba(255, 166, 207, 0.16);
+  --info: #9ed8ff;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-dark: var(--paper-dark);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-accent2: var(--accent2);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  /* Brand fills as utilities: bg-lime text-on-bright, bg-purple text-on-purple… */
+  --color-purple: var(--purple);
+  --color-purple-soft: var(--purple-soft);
+  --color-lime: var(--lime);
+  --color-pink: var(--pink);
+  --color-orange: var(--orange);
+  --color-yellow: var(--yellow);
+  --color-sky: var(--sky);
+  --color-on-bright: var(--on-bright);
+  --color-on-purple: var(--on-purple);
+  --font-display: var(--font-bricolage), "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-sans: var(--font-figtree), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-figtree), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 500;
+  min-height: 100vh;
+  overflow-x: clip;
+  /* Stop iOS from auto-inflating text in the standalone PWA */
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--on-bright);
+}
+
+/* ---------------------------------------------------------------------------
+   ACCESSIBILITY BASELINE
+--------------------------------------------------------------------------- */
+
+/* Visible focus for keyboard users only — never a mouse-click ring. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* Elements that paint their own focus treatment opt out. */
+.focus-none:focus-visible {
+  outline: none;
+}
+
+/* Respect the OS "reduce motion" setting: collapse durations to ~0 rather
+   than disabling transitions outright, so state still lands correctly. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0.01ms;
+    --dur: 0.01ms;
+    --dur-slow: 0.01ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen-reader-only text that becomes visible when focused (skip links). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.focusable-sr:focus {
+  position: fixed;
+  top: calc(var(--safe-t) + 0.5rem);
+  left: 0.5rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  overflow: visible;
+  clip: auto;
+  background: var(--purple);
+  color: var(--on-purple);
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+@layer components {
+
+/* ---- Type --------------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-bricolage), "Arial Rounded MT Bold", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.display-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+
+/* Small label: badges, meta lines, section eyebrows. */
+.meta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* One highlighted word in a headline: a tilted purple pill. */
+.hl {
+  display: inline-block;
+  padding: 0 0.22em 0.06em;
+  background: var(--purple);
+  color: var(--on-purple);
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: 0.3em;
+  box-shadow: 0 6px 0 var(--shadow-ink);
+  transform: rotate(-2deg);
+}
+
+/* ---- Chips and stickers -------------------------------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 2px solid var(--line);
+  border-radius: 9999px;
+  background: var(--paper-raised);
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.sticker {
+  display: inline-block;
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: 9999px;
+  padding: 0.45rem 1rem;
+  background: #ffffff;
+  color: var(--on-bright);
+  font-weight: 800;
+  font-size: 0.92rem;
+  line-height: 1.1;
+  transform: rotate(-3deg);
+  white-space: nowrap;
+}
+.sticker-lime { background: var(--lime); }
+.sticker-pink { background: var(--pink); }
+.sticker-yellow { background: var(--yellow); }
+.sticker-ink { background: #1b1530; color: #ffffff; }
+.sticker-big {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-size: 1.35rem;
+  padding: 0.6rem 1.3rem;
+  box-shadow: 0 4px 0 var(--shadow-ink);
+  transform: rotate(8deg);
+}
+.sticker-pop {
+  animation: sticker-pop 0.42s var(--ease-bounce);
+}
+@keyframes sticker-pop {
+  from { opacity: 0; transform: rotate(-10deg) scale(0.4); }
+}
+
+/* ---- Cards ---------------------------------------------------------------- */
+
+.brut-card {
+  background: var(--paper-raised);
+  border: var(--stroke) solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+a.brut-card:hover,
+button.brut-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+a.brut-card:active,
+button.brut-card:active {
+  box-shadow: 0 1px 0 var(--shadow-ink);
+  transform: translateY(2px);
+}
+/* Pointer-driven lift is noise on touch — keep the tap feedback instead. */
+@media (hover: none) {
+  a.brut-card:hover,
+  button.brut-card:hover {
+    box-shadow: var(--shadow-sm);
+    transform: none;
+  }
+}
+
+/* A bright, outlined block (box tiles, feature tiles, greeting card). The fill
+   comes from a bg-* utility; text is forced dark so it stays readable in both
+   themes. */
+.fill-card {
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  color: var(--on-bright);
+}
+.fill-card-purple {
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: var(--purple);
+  color: var(--on-purple);
+}
+
+/* ---- Buttons ------------------------------------------------------------- */
+
+.btn-ink,
+.btn-ghost,
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.6rem;
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease),
+    background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+/* Primary: Langi purple with a press shadow. */
+.btn-ink {
+  background: var(--purple);
+  color: var(--on-purple);
+  box-shadow: 0 5px 0 var(--shadow-ink);
+}
+.btn-ink:hover:not(:disabled) {
+  background: #5a2ee8;
+}
+
+/* The main action when it sits on purple or ink. */
+.btn-lime {
+  background: var(--lime);
+  color: var(--on-bright);
+  box-shadow: 0 5px 0 var(--shadow-ink);
+}
+
+.btn-ink:active:not(:disabled),
+.btn-lime:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--shadow-ink);
+}
+
+/* Secondary: white pill, no shadow. */
+.btn-ghost {
+  background: var(--paper-raised);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--paper-dark);
+}
+.btn-ghost:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.btn-ink:disabled,
+.btn-ghost:disabled,
+.btn-lime:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Round icon button (play, mic, close, settings). */
+.circle-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--paper-raised);
+  color: var(--ink);
+  border: var(--stroke) solid var(--line);
+  border-radius: 9999px;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.circle-arrow:active {
+  transform: scale(0.92);
+}
+
+/* ---- Inputs -------------------------------------------------------------- */
+
+.input-brut {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: var(--stroke) solid var(--line);
+  border-radius: 0;
+  padding: 0.6rem 0;
+  /* 16px minimum stops iOS Safari zooming the viewport on focus */
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--dur) var(--ease);
+}
+.input-brut::placeholder {
+  color: var(--muted);
+}
+.input-brut:focus {
+  border-bottom-color: var(--accent);
+}
+
+.field-brut {
+  width: 100%;
+  background: var(--paper-raised);
+  border: var(--stroke) solid var(--line);
+  border-radius: 18px;
+  padding: 0.7rem 1rem;
+  min-height: 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.field-brut::placeholder {
+  color: var(--muted);
+}
+.field-brut:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* The answer pill: a white rounded field holding an input and its button. */
+.answer-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: 9999px;
+  padding: 0.35rem;
+  color: var(--on-bright);
+}
+.answer-pill:focus-within {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+}
+.answer-pill > input {
+  /* width 0 + grow: the input's intrinsic ~20ch width must not set the pill's
+     minimum, or a narrow screen gets pushed wider than the viewport. */
+  flex: 1 1 0%;
+  width: 0;
+  min-width: 0;
+  height: 3.1rem;
+  padding: 0 1.1rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--on-bright);
+  outline: none;
+}
+.answer-pill > input::placeholder {
+  color: #5e5775;
+}
+.answer-pill .btn-ink,
+.answer-pill .btn-lime {
+  box-shadow: none;
+  min-height: 3.1rem;
+}
+
+/* Segmented control — the direction switch, filter toggles. */
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--paper-raised);
+  border: var(--stroke) solid var(--line);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.segmented > button {
+  padding: 0.4rem 0.95rem;
+  min-height: 2.25rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+/* Selected state keys off either attribute: a group of toggle buttons uses
+   aria-pressed, a radiogroup uses aria-checked. Both style identically. */
+.segmented > button:hover:not([aria-pressed="true"], [aria-checked="true"]) {
+  color: var(--ink);
+  background: var(--paper-dark);
+}
+.segmented > button[aria-pressed="true"],
+.segmented > button[aria-checked="true"] {
+  background: var(--purple);
+  color: var(--on-purple);
+}
+
+/* Loading placeholder. Uses a travelling sheen rather than an opacity pulse so
+   it still reads as "busy" at a glance; reduced-motion kills the animation. */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-dark);
+  border-radius: 18px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--paper-raised) 70%, transparent),
+    transparent
+  );
+  animation: skeleton-sweep 1.4s var(--ease) infinite;
+}
+@keyframes skeleton-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
+
+/* ---- Navigation ----------------------------------------------------------- */
+
+/* Desktop sidebar: pill links with a coloured dot. */
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.9rem;
+  padding: 0 0.9rem;
+  border: var(--stroke) solid transparent;
+  border-radius: 9999px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+  transition: background var(--dur) var(--ease);
+}
+.nav-pill:hover {
+  background: var(--paper-dark);
+}
+.nav-pill[aria-current="page"] {
+  background: var(--purple);
+  color: var(--on-purple);
+  border-color: var(--shadow-ink);
+}
+.nav-pill[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.nav-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  border: 2px solid var(--shadow-ink);
+  flex-shrink: 0;
+}
+
+/* Bottom tab bar (mobile) */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  background: var(--paper-raised);
+  border-top: var(--stroke) solid var(--line);
+  padding: 0.4rem 0.5rem calc(0.4rem + var(--safe-b));
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: calc(var(--bottom-nav-h) - 0.8rem);
+  padding: 0.35rem 0.25rem;
+  border-radius: 18px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--muted);
+  position: relative;
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.tab-item[data-active="true"] {
+  color: var(--on-purple);
+  background: var(--purple);
+}
+.tab-item:active {
+  transform: scale(0.96);
+}
+.tab-item[aria-disabled="true"] {
+  opacity: 0.35;
+}
+
+/* Toasts */
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #1b1530;
+  color: #ffffff;
+  border: var(--stroke) solid #1b1530;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 var(--purple);
+  padding: 0.75rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: auto;
+  animation: toast-in var(--dur-slow) var(--ease-bounce);
+}
+.toast[data-tone="ok"] {
+  box-shadow: 0 5px 0 var(--lime);
+}
+.toast[data-tone="error"] {
+  box-shadow: 0 5px 0 var(--pink);
+}
+.toast[data-leaving="true"] {
+  animation: toast-out var(--dur) var(--ease) forwards;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.92);
+  }
+}
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
+/* ---- Learning ------------------------------------------------------------- */
+
+/* The review flashcard. Fill comes from data-box so it always matches the
+   word's Leitner box. Text is forced dark: these fills are bright in both themes. */
+.flashcard {
+  position: relative;
+  border: var(--stroke) solid var(--shadow-ink);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background: var(--box-1);
+  color: var(--on-bright);
+  transition: background var(--dur-slow) var(--ease);
+}
+.flashcard[data-box="2"] { background: var(--box-2); }
+.flashcard[data-box="3"] { background: var(--box-3); }
+.flashcard[data-box="4"] { background: var(--box-4); }
+.flashcard[data-box="5"] { background: var(--box-5); }
+.flashcard[data-box="0"] { background: #ffffff; }
+/* The next card peeking out from behind. */
+.flashcard-stack {
+  position: absolute;
+  inset: 14px -10px -10px 14px;
+  background: var(--paper-raised);
+  border: var(--stroke) solid var(--line);
+  border-radius: var(--radius-xl);
+  transform: rotate(2.5deg);
+}
+.flashcard .circle-arrow,
+.flashcard .chip {
+  background: #ffffff;
+  color: var(--on-bright);
+  border-color: var(--shadow-ink);
+}
+
+/* Flashcard entrance — a small lift as each new card mounts. */
+.card-enter {
+  animation: card-in var(--dur-slow) var(--ease-bounce);
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) rotate(-1.5deg);
+  }
+}
+
+/* Answer feedback nudges */
+.shake {
+  animation: shake 0.34s var(--ease);
+}
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-5px); }
+  40%, 60% { transform: translateX(5px); }
+}
+
+.pop {
+  animation: pop 0.3s var(--ease-bounce);
+}
+@keyframes pop {
+  50% { transform: scale(1.06); }
+}
+
+/* Chunky progress pill that fills with lime. */
+.progress-pill {
+  height: 1.25rem;
+  border: var(--stroke) solid var(--line);
+  border-radius: 9999px;
+  background: var(--paper-raised);
+  overflow: hidden;
+}
+.progress-pill > span {
+  display: block;
+  height: 100%;
+  background: var(--lime);
+  border-right: var(--stroke) solid var(--shadow-ink);
+  border-radius: 9999px;
+  transition: width var(--dur-slow) var(--ease);
+}
+
+/* Tutor chat bubbles */
+.bubble {
+  max-width: 85%;
+  border: var(--stroke) solid var(--line);
+  padding: 0.8rem 1.15rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.bubble-langi {
+  align-self: flex-start;
+  background: var(--purple-soft);
+  color: var(--on-bright);
+  border-color: var(--shadow-ink);
+  border-radius: 24px 24px 24px 8px;
+}
+.bubble-me {
+  align-self: flex-end;
+  background: var(--purple);
+  color: var(--on-purple);
+  border-color: var(--shadow-ink);
+  border-radius: 24px 24px 8px 24px;
+}
+.fix-box {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--on-bright);
+  border: var(--stroke) dashed var(--shadow-ink);
+  border-radius: 14px;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Read-along: one spoken segment of a passage. Defined once so the highlight
+   is identical wherever follow-along reading appears (stories, lessons). */
+.read-seg {
+  border-radius: 6px;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.read-seg[data-clickable="true"] {
+  cursor: pointer;
+}
+.read-seg[data-clickable="true"]:hover {
+  background: color-mix(in srgb, var(--yellow) 45%, transparent);
+}
+.read-seg[data-active="true"] {
+  background: var(--yellow);
+  color: var(--on-bright);
+  box-shadow: 0 2px 0 var(--shadow-ink);
+}
+
+/* Keyboard-shortcut hint pill */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  padding: 0.1rem 0.35rem;
+  border: 2px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 7px;
+  background: var(--paper-raised);
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+} /* end @layer components */
+
+/* ---------------------------------------------------------------------------
+   UTILITIES
+--------------------------------------------------------------------------- */
+
+/* Keep fixed/sticky chrome clear of notches and home indicators. */
+.pb-safe {
+  padding-bottom: var(--safe-b);
+}
+.pt-safe {
+  padding-top: var(--safe-t);
+}
+/* Content padding so the bottom tab bar never covers the last element. */
+.pb-nav {
+  padding-bottom: calc(var(--bottom-nav-h) + var(--safe-b) + 1rem);
+}
+@media (min-width: 768px) {
+  .pb-nav {
+    padding-bottom: 0;
+  }
+}
+
+/* Full-bleed feeds (Shorts) that must fit the viewport exactly rather than
+   scroll. Cancels the .pb-nav that <main> applies, then sizes to what's left
+   between the sticky header and the tab bar. */
+.cancel-nav-pad {
+  margin-bottom: calc(-1 * (var(--bottom-nav-h) + var(--safe-b) + 1rem));
+}
+.h-feed {
+  height: calc(100dvh - var(--nav-h) - var(--safe-t) - var(--bottom-nav-h) - var(--safe-b));
+}
+@media (min-width: 768px) {
+  .cancel-nav-pad {
+    margin-bottom: 0;
+  }
+  /* No tab bar or top bar from md up (the sidebar takes over). */
+  .h-feed {
+    height: calc(100dvh - 2rem);
+  }
+}
+
+/* Full-height app screens (the tutor chat): fill what's left between the
+   mobile top bar and tab bar, or the desktop window minus main's padding. */
+.h-screen-app {
+  height: calc(100dvh - var(--nav-h) - var(--safe-t) - var(--bottom-nav-h) - var(--safe-b) - 1rem);
+}
+@media (min-width: 768px) {
+  .h-screen-app {
+    height: calc(100dvh - 2rem);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border: 3px solid var(--paper);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Hide the scrollbar (used by the Shorts feed) while keeping scroll behavior. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

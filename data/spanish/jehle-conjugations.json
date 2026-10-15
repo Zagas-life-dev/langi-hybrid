@@ -1,0 +1,3977 @@
+{
+  "abrir": {
+    "english": "to open",
+    "ger": "abriendo",
+    "part": "abierto",
+    "pres": [
+      "abro",
+      "abres",
+      "abre",
+      "abrimos",
+      "abrís",
+      "abren"
+    ],
+    "fut": [
+      "abriré",
+      "abrirás",
+      "abrirá",
+      "abriremos",
+      "abriréis",
+      "abrirán"
+    ],
+    "imp": [
+      "abría",
+      "abrías",
+      "abría",
+      "abríamos",
+      "abríais",
+      "abrían"
+    ],
+    "pret": [
+      "abrí",
+      "abriste",
+      "abrió",
+      "abrimos",
+      "abristeis",
+      "abrieron"
+    ],
+    "cond": [
+      "abriría",
+      "abrirías",
+      "abriría",
+      "abriríamos",
+      "abriríais",
+      "abrirían"
+    ],
+    "sub": [
+      "abra",
+      "abras",
+      "abra",
+      "abramos",
+      "abráis",
+      "abran"
+    ]
+  },
+  "acostar": {
+    "english": "to put to bed",
+    "ger": "acostando",
+    "part": "acostado",
+    "pres": [
+      "acuesto",
+      "acuestas",
+      "acuesta",
+      "acostamos",
+      "acostáis",
+      "acuestan"
+    ],
+    "fut": [
+      "acostaré",
+      "acostarás",
+      "acostará",
+      "acostaremos",
+      "acostaréis",
+      "acostarán"
+    ],
+    "imp": [
+      "acostaba",
+      "acostabas",
+      "acostaba",
+      "acostábamos",
+      "acostabais",
+      "acostaban"
+    ],
+    "pret": [
+      "acosté",
+      "acostaste",
+      "acostó",
+      "acostamos",
+      "acostasteis",
+      "acostaron"
+    ],
+    "cond": [
+      "acostaría",
+      "acostarías",
+      "acostaría",
+      "acostaríamos",
+      "acostaríais",
+      "acostarían"
+    ],
+    "sub": [
+      "acueste",
+      "acuestes",
+      "acueste",
+      "acostemos",
+      "acostéis",
+      "acuesten"
+    ]
+  },
+  "aprender": {
+    "english": "to learn",
+    "ger": "aprendiendo",
+    "part": "aprendido",
+    "pres": [
+      "aprendo",
+      "aprendes",
+      "aprende",
+      "aprendemos",
+      "aprendéis",
+      "aprenden"
+    ],
+    "fut": [
+      "aprenderé",
+      "aprenderás",
+      "aprenderá",
+      "aprenderemos",
+      "aprenderéis",
+      "aprenderán"
+    ],
+    "imp": [
+      "aprendía",
+      "aprendías",
+      "aprendía",
+      "aprendíamos",
+      "aprendíais",
+      "aprendían"
+    ],
+    "pret": [
+      "aprendí",
+      "aprendiste",
+      "aprendió",
+      "aprendimos",
+      "aprendisteis",
+      "aprendieron"
+    ],
+    "cond": [
+      "aprendería",
+      "aprenderías",
+      "aprendería",
+      "aprenderíamos",
+      "aprenderíais",
+      "aprenderían"
+    ],
+    "sub": [
+      "aprenda",
+      "aprendas",
+      "aprenda",
+      "aprendamos",
+      "aprendáis",
+      "aprendan"
+    ]
+  },
+  "bailar": {
+    "english": "to dance",
+    "ger": "bailando",
+    "part": "bailado",
+    "pres": [
+      "bailo",
+      "bailas",
+      "baila",
+      "bailamos",
+      "bailáis",
+      "bailan"
+    ],
+    "fut": [
+      "bailaré",
+      "bailarás",
+      "bailará",
+      "bailaremos",
+      "bailaréis",
+      "bailarán"
+    ],
+    "imp": [
+      "bailaba",
+      "bailabas",
+      "bailaba",
+      "bailábamos",
+      "bailabais",
+      "bailaban"
+    ],
+    "pret": [
+      "bailé",
+      "bailaste",
+      "bailó",
+      "bailamos",
+      "bailasteis",
+      "bailaron"
+    ],
+    "cond": [
+      "bailaría",
+      "bailarías",
+      "bailaría",
+      "bailaríamos",
+      "bailaríais",
+      "bailarían"
+    ],
+    "sub": [
+      "baile",
+      "bailes",
+      "baile",
+      "bailemos",
+      "bailéis",
+      "bailen"
+    ]
+  },
+  "beber": {
+    "english": "to drink",
+    "ger": "bebiendo",
+    "part": "bebido",
+    "pres": [
+      "bebo",
+      "bebes",
+      "bebe",
+      "bebemos",
+      "bebéis",
+      "beben"
+    ],
+    "fut": [
+      "beberé",
+      "beberás",
+      "beberá",
+      "beberemos",
+      "beberéis",
+      "beberán"
+    ],
+    "imp": [
+      "bebía",
+      "bebías",
+      "bebía",
+      "bebíamos",
+      "bebíais",
+      "bebían"
+    ],
+    "pret": [
+      "bebí",
+      "bebiste",
+      "bebió",
+      "bebimos",
+      "bebisteis",
+      "bebieron"
+    ],
+    "cond": [
+      "bebería",
+      "beberías",
+      "bebería",
+      "beberíamos",
+      "beberíais",
+      "beberían"
+    ],
+    "sub": [
+      "beba",
+      "bebas",
+      "beba",
+      "bebamos",
+      "bebáis",
+      "beban"
+    ]
+  },
+  "caer": {
+    "english": "to fall",
+    "ger": "cayendo",
+    "part": "caído",
+    "pres": [
+      "caigo",
+      "caes",
+      "cae",
+      "caemos",
+      "caéis",
+      "caen"
+    ],
+    "fut": [
+      "caeré",
+      "caerás",
+      "caerá",
+      "caeremos",
+      "caeréis",
+      "caerán"
+    ],
+    "imp": [
+      "caía",
+      "caías",
+      "caía",
+      "caíamos",
+      "caíais",
+      "caían"
+    ],
+    "pret": [
+      "caí",
+      "caíste",
+      "cayó",
+      "caímos",
+      "caísteis",
+      "cayeron"
+    ],
+    "cond": [
+      "caería",
+      "caerías",
+      "caería",
+      "caeríamos",
+      "caeríais",
+      "caerían"
+    ],
+    "sub": [
+      "caiga",
+      "caigas",
+      "caiga",
+      "caigamos",
+      "caigáis",
+      "caigan"
+    ]
+  },
+  "caminar": {
+    "english": "to walk, go",
+    "ger": "caminando",
+    "part": "caminado",
+    "pres": [
+      "camino",
+      "caminas",
+      "camina",
+      "caminamos",
+      "camináis",
+      "caminan"
+    ],
+    "fut": [
+      "caminaré",
+      "caminarás",
+      "caminará",
+      "caminaremos",
+      "caminaréis",
+      "caminarán"
+    ],
+    "imp": [
+      "caminaba",
+      "caminabas",
+      "caminaba",
+      "caminábamos",
+      "caminabais",
+      "caminaban"
+    ],
+    "pret": [
+      "caminé",
+      "caminaste",
+      "caminó",
+      "caminamos",
+      "caminasteis",
+      "caminaron"
+    ],
+    "cond": [
+      "caminaría",
+      "caminarías",
+      "caminaría",
+      "caminaríamos",
+      "caminaríais",
+      "caminarían"
+    ],
+    "sub": [
+      "camine",
+      "camines",
+      "camine",
+      "caminemos",
+      "caminéis",
+      "caminen"
+    ]
+  },
+  "cantar": {
+    "english": "to sing",
+    "ger": "cantando",
+    "part": "cantado",
+    "pres": [
+      "canto",
+      "cantas",
+      "canta",
+      "cantamos",
+      "cantáis",
+      "cantan"
+    ],
+    "pret": [
+      "canté",
+      "cantaste",
+      "cantó",
+      "cantamos",
+      "cantasteis",
+      "cantaron"
+    ],
+    "imp": [
+      "cantaba",
+      "cantabas",
+      "cantaba",
+      "cantábamos",
+      "cantabais",
+      "cantaban"
+    ],
+    "fut": [
+      "cantaré",
+      "cantarás",
+      "cantará",
+      "cantaremos",
+      "cantaréis",
+      "cantarán"
+    ],
+    "cond": [
+      "cantaría",
+      "cantarías",
+      "cantaría",
+      "cantaríamos",
+      "cantaríais",
+      "cantarían"
+    ],
+    "sub": [
+      "cante",
+      "cantes",
+      "cante",
+      "cantemos",
+      "cantéis",
+      "canten"
+    ]
+  },
+  "casar": {
+    "english": "to marry, join in marriage, join in wedlock",
+    "ger": "casando",
+    "part": "casado",
+    "pres": [
+      "caso",
+      "casas",
+      "casa",
+      "casamos",
+      "casáis",
+      "casan"
+    ],
+    "fut": [
+      "casaré",
+      "casarás",
+      "casará",
+      "casaremos",
+      "casaréis",
+      "casarán"
+    ],
+    "imp": [
+      "casaba",
+      "casabas",
+      "casaba",
+      "casábamos",
+      "casabais",
+      "casaban"
+    ],
+    "pret": [
+      "casé",
+      "casaste",
+      "casó",
+      "casamos",
+      "casasteis",
+      "casaron"
+    ],
+    "cond": [
+      "casaría",
+      "casarías",
+      "casaría",
+      "casaríamos",
+      "casaríais",
+      "casarían"
+    ],
+    "sub": [
+      "case",
+      "cases",
+      "case",
+      "casemos",
+      "caséis",
+      "casen"
+    ]
+  },
+  "cerrar": {
+    "english": "to close, shut",
+    "ger": "cerrando",
+    "part": "cerrado",
+    "pres": [
+      "cierro",
+      "cierras",
+      "cierra",
+      "cerramos",
+      "cerráis",
+      "cierran"
+    ],
+    "fut": [
+      "cerraré",
+      "cerrarás",
+      "cerrará",
+      "cerraremos",
+      "cerraréis",
+      "cerrarán"
+    ],
+    "imp": [
+      "cerraba",
+      "cerrabas",
+      "cerraba",
+      "cerrábamos",
+      "cerrabais",
+      "cerraban"
+    ],
+    "pret": [
+      "cerré",
+      "cerraste",
+      "cerró",
+      "cerramos",
+      "cerrasteis",
+      "cerraron"
+    ],
+    "cond": [
+      "cerraría",
+      "cerrarías",
+      "cerraría",
+      "cerraríamos",
+      "cerraríais",
+      "cerrarían"
+    ],
+    "sub": [
+      "cierre",
+      "cierres",
+      "cierre",
+      "cerremos",
+      "cerréis",
+      "cierren"
+    ]
+  },
+  "cocinar": {
+    "english": "to cook; to do the cooking",
+    "ger": "cocinando",
+    "part": "cocinado",
+    "pres": [
+      "cocino",
+      "cocinas",
+      "cocina",
+      "cocinamos",
+      "cocináis",
+      "cocinan"
+    ],
+    "fut": [
+      "cocinaré",
+      "cocinarás",
+      "cocinará",
+      "cocinaremos",
+      "cocinaréis",
+      "cocinarán"
+    ],
+    "imp": [
+      "cocinaba",
+      "cocinabas",
+      "cocinaba",
+      "cocinábamos",
+      "cocinabais",
+      "cocinaban"
+    ],
+    "pret": [
+      "cociné",
+      "cocinaste",
+      "cocinó",
+      "cocinamos",
+      "cocinasteis",
+      "cocinaron"
+    ],
+    "cond": [
+      "cocinaría",
+      "cocinarías",
+      "cocinaría",
+      "cocinaríamos",
+      "cocinaríais",
+      "cocinarían"
+    ],
+    "sub": [
+      "cocine",
+      "cocines",
+      "cocine",
+      "cocinemos",
+      "cocinéis",
+      "cocinen"
+    ]
+  },
+  "comer": {
+    "english": "to eat",
+    "ger": "comiendo",
+    "part": "comido",
+    "pres": [
+      "como",
+      "comes",
+      "come",
+      "comemos",
+      "coméis",
+      "comen"
+    ],
+    "fut": [
+      "comeré",
+      "comerás",
+      "comerá",
+      "comeremos",
+      "comeréis",
+      "comerán"
+    ],
+    "imp": [
+      "comía",
+      "comías",
+      "comía",
+      "comíamos",
+      "comíais",
+      "comían"
+    ],
+    "pret": [
+      "comí",
+      "comiste",
+      "comió",
+      "comimos",
+      "comisteis",
+      "comieron"
+    ],
+    "cond": [
+      "comería",
+      "comerías",
+      "comería",
+      "comeríamos",
+      "comeríais",
+      "comerían"
+    ],
+    "sub": [
+      "coma",
+      "comas",
+      "coma",
+      "comamos",
+      "comáis",
+      "coman"
+    ]
+  },
+  "comprar": {
+    "english": "to buy, purchase",
+    "ger": "comprando",
+    "part": "comprado",
+    "pres": [
+      "compro",
+      "compras",
+      "compra",
+      "compramos",
+      "compráis",
+      "compran"
+    ],
+    "fut": [
+      "compraré",
+      "comprarás",
+      "comprará",
+      "compraremos",
+      "compraréis",
+      "comprarán"
+    ],
+    "imp": [
+      "compraba",
+      "comprabas",
+      "compraba",
+      "comprábamos",
+      "comprabais",
+      "compraban"
+    ],
+    "pret": [
+      "compré",
+      "compraste",
+      "compró",
+      "compramos",
+      "comprasteis",
+      "compraron"
+    ],
+    "cond": [
+      "compraría",
+      "comprarías",
+      "compraría",
+      "compraríamos",
+      "compraríais",
+      "comprarían"
+    ],
+    "sub": [
+      "compre",
+      "compres",
+      "compre",
+      "compremos",
+      "compréis",
+      "compren"
+    ]
+  },
+  "comprender": {
+    "english": "to understand, comprehend",
+    "ger": "comprendiendo",
+    "part": "comprendido",
+    "pres": [
+      "comprendo",
+      "comprendes",
+      "comprende",
+      "comprendemos",
+      "comprendéis",
+      "comprenden"
+    ],
+    "fut": [
+      "comprenderé",
+      "comprenderás",
+      "comprenderá",
+      "comprenderemos",
+      "comprenderéis",
+      "comprenderán"
+    ],
+    "imp": [
+      "comprendía",
+      "comprendías",
+      "comprendía",
+      "comprendíamos",
+      "comprendíais",
+      "comprendían"
+    ],
+    "pret": [
+      "comprendí",
+      "comprendiste",
+      "comprendió",
+      "comprendimos",
+      "comprendisteis",
+      "comprendieron"
+    ],
+    "cond": [
+      "comprendería",
+      "comprenderías",
+      "comprendería",
+      "comprenderíamos",
+      "comprenderíais",
+      "comprenderían"
+    ],
+    "sub": [
+      "comprenda",
+      "comprendas",
+      "comprenda",
+      "comprendamos",
+      "comprendáis",
+      "comprendan"
+    ]
+  },
+  "conducir": {
+    "english": "to drive, conduct",
+    "ger": "conduciendo",
+    "part": "conducido",
+    "pres": [
+      "conduzco",
+      "conduces",
+      "conduce",
+      "conducimos",
+      "conducís",
+      "conducen"
+    ],
+    "fut": [
+      "conduciré",
+      "conducirás",
+      "conducirá",
+      "conduciremos",
+      "conduciréis",
+      "conducirán"
+    ],
+    "imp": [
+      "conducía",
+      "conducías",
+      "conducía",
+      "conducíamos",
+      "conducíais",
+      "conducían"
+    ],
+    "pret": [
+      "conduje",
+      "condujiste",
+      "condujo",
+      "condujimos",
+      "condujisteis",
+      "condujeron"
+    ],
+    "cond": [
+      "conduciría",
+      "conducirías",
+      "conduciría",
+      "conduciríamos",
+      "conduciríais",
+      "conducirían"
+    ],
+    "sub": [
+      "conduzca",
+      "conduzcas",
+      "conduzca",
+      "conduzcamos",
+      "conduzcáis",
+      "conduzcan"
+    ]
+  },
+  "conocer": {
+    "english": "to know",
+    "ger": "conociendo",
+    "part": "conocido",
+    "pres": [
+      "conozco",
+      "conoces",
+      "conoce",
+      "conocemos",
+      "conocéis",
+      "conocen"
+    ],
+    "fut": [
+      "conoceré",
+      "conocerás",
+      "conocerá",
+      "conoceremos",
+      "conoceréis",
+      "conocerán"
+    ],
+    "imp": [
+      "conocía",
+      "conocías",
+      "conocía",
+      "conocíamos",
+      "conocíais",
+      "conocían"
+    ],
+    "pret": [
+      "conocí",
+      "conociste",
+      "conoció",
+      "conocimos",
+      "conocisteis",
+      "conocieron"
+    ],
+    "cond": [
+      "conocería",
+      "conocerías",
+      "conocería",
+      "conoceríamos",
+      "conoceríais",
+      "conocerían"
+    ],
+    "sub": [
+      "conozca",
+      "conozcas",
+      "conozca",
+      "conozcamos",
+      "conozcáis",
+      "conozcan"
+    ]
+  },
+  "contar": {
+    "english": "to count, relate, tell",
+    "ger": "contando",
+    "part": "contado",
+    "pres": [
+      "cuento",
+      "cuentas",
+      "cuenta",
+      "contamos",
+      "contáis",
+      "cuentan"
+    ],
+    "fut": [
+      "contaré",
+      "contarás",
+      "contará",
+      "contaremos",
+      "contaréis",
+      "contarán"
+    ],
+    "imp": [
+      "contaba",
+      "contabas",
+      "contaba",
+      "contábamos",
+      "contabais",
+      "contaban"
+    ],
+    "pret": [
+      "conté",
+      "contaste",
+      "contó",
+      "contamos",
+      "contasteis",
+      "contaron"
+    ],
+    "cond": [
+      "contaría",
+      "contarías",
+      "contaría",
+      "contaríamos",
+      "contaríais",
+      "contarían"
+    ],
+    "sub": [
+      "cuente",
+      "cuentes",
+      "cuente",
+      "contemos",
+      "contéis",
+      "cuenten"
+    ]
+  },
+  "correr": {
+    "english": "to run",
+    "ger": "corriendo",
+    "part": "corrido",
+    "pres": [
+      "corro",
+      "corres",
+      "corre",
+      "corremos",
+      "corréis",
+      "corren"
+    ],
+    "fut": [
+      "correré",
+      "correrás",
+      "correrá",
+      "correremos",
+      "correréis",
+      "correrán"
+    ],
+    "imp": [
+      "corría",
+      "corrías",
+      "corría",
+      "corríamos",
+      "corríais",
+      "corrían"
+    ],
+    "pret": [
+      "corrí",
+      "corriste",
+      "corrió",
+      "corrimos",
+      "corristeis",
+      "corrieron"
+    ],
+    "cond": [
+      "correría",
+      "correrías",
+      "correría",
+      "correríamos",
+      "correríais",
+      "correrían"
+    ],
+    "sub": [
+      "corra",
+      "corras",
+      "corra",
+      "corramos",
+      "corráis",
+      "corran"
+    ]
+  },
+  "creer": {
+    "english": "to believe",
+    "ger": "creyendo",
+    "part": "creído",
+    "pres": [
+      "creo",
+      "crees",
+      "cree",
+      "creemos",
+      "creéis",
+      "creen"
+    ],
+    "fut": [
+      "creeré",
+      "creerás",
+      "creerá",
+      "creeremos",
+      "creeréis",
+      "creerán"
+    ],
+    "imp": [
+      "creía",
+      "creías",
+      "creía",
+      "creíamos",
+      "creíais",
+      "creían"
+    ],
+    "pret": [
+      "creí",
+      "creíste",
+      "creyó",
+      "creímos",
+      "creísteis",
+      "creyeron"
+    ],
+    "cond": [
+      "creería",
+      "creerías",
+      "creería",
+      "creeríamos",
+      "creeríais",
+      "creerían"
+    ],
+    "sub": [
+      "crea",
+      "creas",
+      "crea",
+      "creamos",
+      "creáis",
+      "crean"
+    ]
+  },
+  "dar": {
+    "english": "to give",
+    "ger": "dando",
+    "part": "dado",
+    "pres": [
+      "doy",
+      "das",
+      "da",
+      "damos",
+      "dais",
+      "dan"
+    ],
+    "fut": [
+      "daré",
+      "darás",
+      "dará",
+      "daremos",
+      "daréis",
+      "darán"
+    ],
+    "imp": [
+      "daba",
+      "dabas",
+      "daba",
+      "dábamos",
+      "dabais",
+      "daban"
+    ],
+    "pret": [
+      "di",
+      "diste",
+      "dio",
+      "dimos",
+      "disteis",
+      "dieron"
+    ],
+    "cond": [
+      "daría",
+      "darías",
+      "daría",
+      "daríamos",
+      "daríais",
+      "darían"
+    ],
+    "sub": [
+      "dé",
+      "des",
+      "dé",
+      "demos",
+      "deis",
+      "den"
+    ]
+  },
+  "decidir": {
+    "english": "to decide, settle, resolve",
+    "ger": "decidiendo",
+    "part": "decidido",
+    "pres": [
+      "decido",
+      "decides",
+      "decide",
+      "decidimos",
+      "decidís",
+      "deciden"
+    ],
+    "fut": [
+      "decidiré",
+      "decidirás",
+      "decidirá",
+      "decidiremos",
+      "decidiréis",
+      "decidirán"
+    ],
+    "imp": [
+      "decidía",
+      "decidías",
+      "decidía",
+      "decidíamos",
+      "decidíais",
+      "decidían"
+    ],
+    "pret": [
+      "decidí",
+      "decidiste",
+      "decidió",
+      "decidimos",
+      "decidisteis",
+      "decidieron"
+    ],
+    "cond": [
+      "decidiría",
+      "decidirías",
+      "decidiría",
+      "decidiríamos",
+      "decidiríais",
+      "decidirían"
+    ],
+    "sub": [
+      "decida",
+      "decidas",
+      "decida",
+      "decidamos",
+      "decidáis",
+      "decidan"
+    ]
+  },
+  "decir": {
+    "english": "to say, tell",
+    "ger": "diciendo",
+    "part": "dicho",
+    "pres": [
+      "digo",
+      "dices",
+      "dice",
+      "decimos",
+      "decís",
+      "dicen"
+    ],
+    "fut": [
+      "diré",
+      "dirás",
+      "dirá",
+      "diremos",
+      "diréis",
+      "dirán"
+    ],
+    "imp": [
+      "decía",
+      "decías",
+      "decía",
+      "decíamos",
+      "decíais",
+      "decían"
+    ],
+    "pret": [
+      "dije",
+      "dijiste",
+      "dijo",
+      "dijimos",
+      "dijisteis",
+      "dijeron"
+    ],
+    "cond": [
+      "diría",
+      "dirías",
+      "diría",
+      "diríamos",
+      "diríais",
+      "dirían"
+    ],
+    "sub": [
+      "diga",
+      "digas",
+      "diga",
+      "digamos",
+      "digáis",
+      "digan"
+    ]
+  },
+  "despertar": {
+    "english": "to awaken",
+    "ger": "despertando",
+    "part": "despertado",
+    "pres": [
+      "despierto",
+      "despiertas",
+      "despierta",
+      "despertamos",
+      "despertáis",
+      "despiertan"
+    ],
+    "fut": [
+      "despertaré",
+      "despertarás",
+      "despertará",
+      "despertaremos",
+      "despertaréis",
+      "despertarán"
+    ],
+    "imp": [
+      "despertaba",
+      "despertabas",
+      "despertaba",
+      "despertábamos",
+      "despertabais",
+      "despertaban"
+    ],
+    "pret": [
+      "desperté",
+      "despertaste",
+      "despertó",
+      "despertamos",
+      "despertasteis",
+      "despertaron"
+    ],
+    "cond": [
+      "despertaría",
+      "despertarías",
+      "despertaría",
+      "despertaríamos",
+      "despertaríais",
+      "despertarían"
+    ],
+    "sub": [
+      "despierte",
+      "despiertes",
+      "despierte",
+      "despertemos",
+      "despertéis",
+      "despierten"
+    ]
+  },
+  "dormir": {
+    "english": "to sleep",
+    "ger": "durmiendo",
+    "part": "dormido",
+    "pres": [
+      "duermo",
+      "duermes",
+      "duerme",
+      "dormimos",
+      "dormís",
+      "duermen"
+    ],
+    "fut": [
+      "dormiré",
+      "dormirás",
+      "dormirá",
+      "dormiremos",
+      "dormiréis",
+      "dormirán"
+    ],
+    "imp": [
+      "dormía",
+      "dormías",
+      "dormía",
+      "dormíamos",
+      "dormíais",
+      "dormían"
+    ],
+    "pret": [
+      "dormí",
+      "dormiste",
+      "durmió",
+      "dormimos",
+      "dormisteis",
+      "durmieron"
+    ],
+    "cond": [
+      "dormiría",
+      "dormirías",
+      "dormiría",
+      "dormiríamos",
+      "dormiríais",
+      "dormirían"
+    ],
+    "sub": [
+      "duerma",
+      "duermas",
+      "duerma",
+      "durmamos",
+      "durmáis",
+      "duerman"
+    ]
+  },
+  "duchar": {
+    "english": "to douche",
+    "ger": "duchando",
+    "part": "duchado",
+    "pres": [
+      "ducho",
+      "duchas",
+      "ducha",
+      "duchamos",
+      "ducháis",
+      "duchan"
+    ],
+    "fut": [
+      "ducharé",
+      "ducharás",
+      "duchará",
+      "ducharemos",
+      "ducharéis",
+      "ducharán"
+    ],
+    "imp": [
+      "duchaba",
+      "duchabas",
+      "duchaba",
+      "duchábamos",
+      "duchabais",
+      "duchaban"
+    ],
+    "pret": [
+      "duché",
+      "duchaste",
+      "duchó",
+      "duchamos",
+      "duchasteis",
+      "ducharon"
+    ],
+    "cond": [
+      "ducharía",
+      "ducharías",
+      "ducharía",
+      "ducharíamos",
+      "ducharíais",
+      "ducharían"
+    ],
+    "sub": [
+      "duche",
+      "duches",
+      "duche",
+      "duchemos",
+      "duchéis",
+      "duchen"
+    ]
+  },
+  "empezar": {
+    "english": "to begin, start",
+    "ger": "empezando",
+    "part": "empezado",
+    "pres": [
+      "empiezo",
+      "empiezas",
+      "empieza",
+      "empezamos",
+      "empezáis",
+      "empiezan"
+    ],
+    "fut": [
+      "empezaré",
+      "empezarás",
+      "empezará",
+      "empezaremos",
+      "empezaréis",
+      "empezarán"
+    ],
+    "imp": [
+      "empezaba",
+      "empezabas",
+      "empezaba",
+      "empezábamos",
+      "empezabais",
+      "empezaban"
+    ],
+    "pret": [
+      "empecé",
+      "empezaste",
+      "empezó",
+      "empezamos",
+      "empezasteis",
+      "empezaron"
+    ],
+    "cond": [
+      "empezaría",
+      "empezarías",
+      "empezaría",
+      "empezaríamos",
+      "empezaríais",
+      "empezarían"
+    ],
+    "sub": [
+      "empiece",
+      "empieces",
+      "empiece",
+      "empecemos",
+      "empecéis",
+      "empiecen"
+    ]
+  },
+  "encantar": {
+    "english": "to delight, be delighting, charm, enchant",
+    "ger": "encantando",
+    "part": "encantado",
+    "pres": [
+      "encanto",
+      "encantas",
+      "encanta",
+      "encantamos",
+      "encantáis",
+      "encantan"
+    ],
+    "fut": [
+      "encantaré",
+      "encantarás",
+      "encantará",
+      "encantaremos",
+      "encantaréis",
+      "encantarán"
+    ],
+    "imp": [
+      "encantaba",
+      "encantabas",
+      "encantaba",
+      "encantábamos",
+      "encantabais",
+      "encantaban"
+    ],
+    "pret": [
+      "encanté",
+      "encantaste",
+      "encantó",
+      "encantamos",
+      "encantasteis",
+      "encantaron"
+    ],
+    "cond": [
+      "encantaría",
+      "encantarías",
+      "encantaría",
+      "encantaríamos",
+      "encantaríais",
+      "encantarían"
+    ],
+    "sub": [
+      "encante",
+      "encantes",
+      "encante",
+      "encantemos",
+      "encantéis",
+      "encanten"
+    ]
+  },
+  "encontrar": {
+    "english": "to find, encounter",
+    "ger": "encontrando",
+    "part": "encontrado",
+    "pres": [
+      "encuentro",
+      "encuentras",
+      "encuentra",
+      "encontramos",
+      "encontráis",
+      "encuentran"
+    ],
+    "fut": [
+      "encontraré",
+      "encontrarás",
+      "encontrará",
+      "encontraremos",
+      "encontraréis",
+      "encontrarán"
+    ],
+    "imp": [
+      "encontraba",
+      "encontrabas",
+      "encontraba",
+      "encontrábamos",
+      "encontrabais",
+      "encontraban"
+    ],
+    "pret": [
+      "encontré",
+      "encontraste",
+      "encontró",
+      "encontramos",
+      "encontrasteis",
+      "encontraron"
+    ],
+    "cond": [
+      "encontraría",
+      "encontrarías",
+      "encontraría",
+      "encontraríamos",
+      "encontraríais",
+      "encontrarían"
+    ],
+    "sub": [
+      "encuentre",
+      "encuentres",
+      "encuentre",
+      "encontremos",
+      "encontréis",
+      "encuentren"
+    ]
+  },
+  "entender": {
+    "english": "to understand",
+    "ger": "entendiendo",
+    "part": "entendido",
+    "pres": [
+      "entiendo",
+      "entiendes",
+      "entiende",
+      "entendemos",
+      "entendéis",
+      "entienden"
+    ],
+    "fut": [
+      "entenderé",
+      "entenderás",
+      "entenderá",
+      "entenderemos",
+      "entenderéis",
+      "entenderán"
+    ],
+    "imp": [
+      "entendía",
+      "entendías",
+      "entendía",
+      "entendíamos",
+      "entendíais",
+      "entendían"
+    ],
+    "pret": [
+      "entendí",
+      "entendiste",
+      "entendió",
+      "entendimos",
+      "entendisteis",
+      "entendieron"
+    ],
+    "cond": [
+      "entendería",
+      "entenderías",
+      "entendería",
+      "entenderíamos",
+      "entenderíais",
+      "entenderían"
+    ],
+    "sub": [
+      "entienda",
+      "entiendas",
+      "entienda",
+      "entendamos",
+      "entendáis",
+      "entiendan"
+    ]
+  },
+  "escribir": {
+    "english": "to write",
+    "ger": "escribiendo",
+    "part": "escrito",
+    "pres": [
+      "escribo",
+      "escribes",
+      "escribe",
+      "escribimos",
+      "escribís",
+      "escriben"
+    ],
+    "fut": [
+      "escribiré",
+      "escribirás",
+      "escribirá",
+      "escribiremos",
+      "escribiréis",
+      "escribirán"
+    ],
+    "imp": [
+      "escribía",
+      "escribías",
+      "escribía",
+      "escribíamos",
+      "escribíais",
+      "escribían"
+    ],
+    "pret": [
+      "escribí",
+      "escribiste",
+      "escribió",
+      "escribimos",
+      "escribisteis",
+      "escribieron"
+    ],
+    "cond": [
+      "escribiría",
+      "escribirías",
+      "escribiría",
+      "escribiríamos",
+      "escribiríais",
+      "escribirían"
+    ],
+    "sub": [
+      "escriba",
+      "escribas",
+      "escriba",
+      "escribamos",
+      "escribáis",
+      "escriban"
+    ]
+  },
+  "escuchar": {
+    "english": "to listen to, hear",
+    "ger": "escuchando",
+    "part": "escuchado",
+    "pres": [
+      "escucho",
+      "escuchas",
+      "escucha",
+      "escuchamos",
+      "escucháis",
+      "escuchan"
+    ],
+    "fut": [
+      "escucharé",
+      "escucharás",
+      "escuchará",
+      "escucharemos",
+      "escucharéis",
+      "escucharán"
+    ],
+    "imp": [
+      "escuchaba",
+      "escuchabas",
+      "escuchaba",
+      "escuchábamos",
+      "escuchabais",
+      "escuchaban"
+    ],
+    "pret": [
+      "escuché",
+      "escuchaste",
+      "escuchó",
+      "escuchamos",
+      "escuchasteis",
+      "escucharon"
+    ],
+    "cond": [
+      "escucharía",
+      "escucharías",
+      "escucharía",
+      "escucharíamos",
+      "escucharíais",
+      "escucharían"
+    ],
+    "sub": [
+      "escuche",
+      "escuches",
+      "escuche",
+      "escuchemos",
+      "escuchéis",
+      "escuchen"
+    ]
+  },
+  "estar": {
+    "english": "to be",
+    "ger": "estando",
+    "part": "estado",
+    "pres": [
+      "estoy",
+      "estás",
+      "está",
+      "estamos",
+      "estáis",
+      "están"
+    ],
+    "fut": [
+      "estaré",
+      "estarás",
+      "estará",
+      "estaremos",
+      "estaréis",
+      "estarán"
+    ],
+    "imp": [
+      "estaba",
+      "estabas",
+      "estaba",
+      "estábamos",
+      "estabais",
+      "estaban"
+    ],
+    "pret": [
+      "estuve",
+      "estuviste",
+      "estuvo",
+      "estuvimos",
+      "estuvisteis",
+      "estuvieron"
+    ],
+    "cond": [
+      "estaría",
+      "estarías",
+      "estaría",
+      "estaríamos",
+      "estaríais",
+      "estarían"
+    ],
+    "sub": [
+      "esté",
+      "estés",
+      "esté",
+      "estemos",
+      "estéis",
+      "estén"
+    ]
+  },
+  "estudiar": {
+    "english": "to study",
+    "ger": "estudiando",
+    "part": "estudiado",
+    "pres": [
+      "estudio",
+      "estudias",
+      "estudia",
+      "estudiamos",
+      "estudiáis",
+      "estudian"
+    ],
+    "fut": [
+      "estudiaré",
+      "estudiarás",
+      "estudiará",
+      "estudiaremos",
+      "estudiaréis",
+      "estudiarán"
+    ],
+    "imp": [
+      "estudiaba",
+      "estudiabas",
+      "estudiaba",
+      "estudiábamos",
+      "estudiabais",
+      "estudiaban"
+    ],
+    "pret": [
+      "estudié",
+      "estudiaste",
+      "estudió",
+      "estudiamos",
+      "estudiasteis",
+      "estudiaron"
+    ],
+    "cond": [
+      "estudiaría",
+      "estudiarías",
+      "estudiaría",
+      "estudiaríamos",
+      "estudiaríais",
+      "estudiarían"
+    ],
+    "sub": [
+      "estudie",
+      "estudies",
+      "estudie",
+      "estudiemos",
+      "estudiéis",
+      "estudien"
+    ]
+  },
+  "gustar": {
+    "english": "to please, be pleasing",
+    "ger": "gustando",
+    "part": "gustado",
+    "pres": [
+      "gusto",
+      "gustas",
+      "gusta",
+      "gustamos",
+      "gustáis",
+      "gustan"
+    ],
+    "fut": [
+      "gustaré",
+      "gustarás",
+      "gustará",
+      "gustaremos",
+      "gustaréis",
+      "gustarán"
+    ],
+    "imp": [
+      "gustaba",
+      "gustabas",
+      "gustaba",
+      "gustábamos",
+      "gustabais",
+      "gustaban"
+    ],
+    "pret": [
+      "gusté",
+      "gustaste",
+      "gustó",
+      "gustamos",
+      "gustasteis",
+      "gustaron"
+    ],
+    "cond": [
+      "gustaría",
+      "gustarías",
+      "gustaría",
+      "gustaríamos",
+      "gustaríais",
+      "gustarían"
+    ],
+    "sub": [
+      "guste",
+      "gustes",
+      "guste",
+      "gustemos",
+      "gustéis",
+      "gusten"
+    ]
+  },
+  "haber": {
+    "english": "to have (auxiliary)",
+    "ger": "habiendo",
+    "part": "habido",
+    "pres": [
+      "he",
+      "has",
+      "ha",
+      "hemos",
+      "habéis",
+      "han"
+    ],
+    "pret": [
+      "hube",
+      "hubiste",
+      "hubo",
+      "hubimos",
+      "hubisteis",
+      "hubieron"
+    ],
+    "imp": [
+      "había",
+      "habías",
+      "había",
+      "habíamos",
+      "habíais",
+      "habían"
+    ],
+    "fut": [
+      "habré",
+      "habrás",
+      "habrá",
+      "habremos",
+      "habréis",
+      "habrán"
+    ],
+    "cond": [
+      "habría",
+      "habrías",
+      "habría",
+      "habríamos",
+      "habríais",
+      "habrían"
+    ],
+    "sub": [
+      "haya",
+      "hayas",
+      "haya",
+      "hayamos",
+      "hayáis",
+      "hayan"
+    ]
+  },
+  "hablar": {
+    "english": "to speak",
+    "ger": "hablando",
+    "part": "hablado",
+    "pres": [
+      "hablo",
+      "hablas",
+      "habla",
+      "hablamos",
+      "habláis",
+      "hablan"
+    ],
+    "fut": [
+      "hablaré",
+      "hablarás",
+      "hablará",
+      "hablaremos",
+      "hablaréis",
+      "hablarán"
+    ],
+    "imp": [
+      "hablaba",
+      "hablabas",
+      "hablaba",
+      "hablábamos",
+      "hablabais",
+      "hablaban"
+    ],
+    "pret": [
+      "hablé",
+      "hablaste",
+      "habló",
+      "hablamos",
+      "hablasteis",
+      "hablaron"
+    ],
+    "cond": [
+      "hablaría",
+      "hablarías",
+      "hablaría",
+      "hablaríamos",
+      "hablaríais",
+      "hablarían"
+    ],
+    "sub": [
+      "hable",
+      "hables",
+      "hable",
+      "hablemos",
+      "habléis",
+      "hablen"
+    ]
+  },
+  "hacer": {
+    "english": "to do, make",
+    "ger": "haciendo",
+    "part": "hecho",
+    "pres": [
+      "hago",
+      "haces",
+      "hace",
+      "hacemos",
+      "hacéis",
+      "hacen"
+    ],
+    "fut": [
+      "haré",
+      "harás",
+      "hará",
+      "haremos",
+      "haréis",
+      "harán"
+    ],
+    "imp": [
+      "hacía",
+      "hacías",
+      "hacía",
+      "hacíamos",
+      "hacíais",
+      "hacían"
+    ],
+    "pret": [
+      "hice",
+      "hiciste",
+      "hizo",
+      "hicimos",
+      "hicisteis",
+      "hicieron"
+    ],
+    "cond": [
+      "haría",
+      "harías",
+      "haría",
+      "haríamos",
+      "haríais",
+      "harían"
+    ],
+    "sub": [
+      "haga",
+      "hagas",
+      "haga",
+      "hagamos",
+      "hagáis",
+      "hagan"
+    ]
+  },
+  "ir": {
+    "english": "to go",
+    "ger": "yendo",
+    "part": "ido",
+    "pres": [
+      "voy",
+      "vas",
+      "va",
+      "vamos",
+      "vais",
+      "van"
+    ],
+    "fut": [
+      "iré",
+      "irás",
+      "irá",
+      "iremos",
+      "iréis",
+      "irán"
+    ],
+    "imp": [
+      "iba",
+      "ibas",
+      "iba",
+      "íbamos",
+      "ibais",
+      "iban"
+    ],
+    "pret": [
+      "fui",
+      "fuiste",
+      "fue",
+      "fuimos",
+      "fuisteis",
+      "fueron"
+    ],
+    "cond": [
+      "iría",
+      "irías",
+      "iría",
+      "iríamos",
+      "iríais",
+      "irían"
+    ],
+    "sub": [
+      "vaya",
+      "vayas",
+      "vaya",
+      "vayamos",
+      "vayáis",
+      "vayan"
+    ]
+  },
+  "jugar": {
+    "english": "to play",
+    "ger": "jugando",
+    "part": "jugado",
+    "pres": [
+      "juego",
+      "juegas",
+      "juega",
+      "jugamos",
+      "jugáis",
+      "juegan"
+    ],
+    "fut": [
+      "jugaré",
+      "jugarás",
+      "jugará",
+      "jugaremos",
+      "jugaréis",
+      "jugarán"
+    ],
+    "imp": [
+      "jugaba",
+      "jugabas",
+      "jugaba",
+      "jugábamos",
+      "jugabais",
+      "jugaban"
+    ],
+    "pret": [
+      "jugué",
+      "jugaste",
+      "jugó",
+      "jugamos",
+      "jugasteis",
+      "jugaron"
+    ],
+    "cond": [
+      "jugaría",
+      "jugarías",
+      "jugaría",
+      "jugaríamos",
+      "jugaríais",
+      "jugarían"
+    ],
+    "sub": [
+      "juegue",
+      "juegues",
+      "juegue",
+      "juguemos",
+      "juguéis",
+      "jueguen"
+    ]
+  },
+  "lavar": {
+    "english": "to wash",
+    "ger": "lavando",
+    "part": "lavado",
+    "pres": [
+      "lavo",
+      "lavas",
+      "lava",
+      "lavamos",
+      "laváis",
+      "lavan"
+    ],
+    "fut": [
+      "lavaré",
+      "lavarás",
+      "lavará",
+      "lavaremos",
+      "lavaréis",
+      "lavarán"
+    ],
+    "imp": [
+      "lavaba",
+      "lavabas",
+      "lavaba",
+      "lavábamos",
+      "lavabais",
+      "lavaban"
+    ],
+    "pret": [
+      "lavé",
+      "lavaste",
+      "lavó",
+      "lavamos",
+      "lavasteis",
+      "lavaron"
+    ],
+    "cond": [
+      "lavaría",
+      "lavarías",
+      "lavaría",
+      "lavaríamos",
+      "lavaríais",
+      "lavarían"
+    ],
+    "sub": [
+      "lave",
+      "laves",
+      "lave",
+      "lavemos",
+      "lavéis",
+      "laven"
+    ]
+  },
+  "leer": {
+    "english": "to read",
+    "ger": "leyendo",
+    "part": "leído",
+    "pres": [
+      "leo",
+      "lees",
+      "lee",
+      "leemos",
+      "leéis",
+      "leen"
+    ],
+    "fut": [
+      "leeré",
+      "leerás",
+      "leerá",
+      "leeremos",
+      "leeréis",
+      "leerán"
+    ],
+    "imp": [
+      "leía",
+      "leías",
+      "leía",
+      "leíamos",
+      "leíais",
+      "leían"
+    ],
+    "pret": [
+      "leí",
+      "leíste",
+      "leyó",
+      "leímos",
+      "leísteis",
+      "leyeron"
+    ],
+    "cond": [
+      "leería",
+      "leerías",
+      "leería",
+      "leeríamos",
+      "leeríais",
+      "leerían"
+    ],
+    "sub": [
+      "lea",
+      "leas",
+      "lea",
+      "leamos",
+      "leáis",
+      "lean"
+    ]
+  },
+  "levantar": {
+    "english": "to raise, to lift",
+    "ger": "levantando",
+    "part": "levantado",
+    "pres": [
+      "levanto",
+      "levantas",
+      "levanta",
+      "levantamos",
+      "levantáis",
+      "levantan"
+    ],
+    "fut": [
+      "levantaré",
+      "levantarás",
+      "levantará",
+      "levantaremos",
+      "levantaréis",
+      "levantarán"
+    ],
+    "imp": [
+      "levantaba",
+      "levantabas",
+      "levantaba",
+      "levantábamos",
+      "levantabais",
+      "levantaban"
+    ],
+    "pret": [
+      "levanté",
+      "levantaste",
+      "levantó",
+      "levantamos",
+      "levantasteis",
+      "levantaron"
+    ],
+    "cond": [
+      "levantaría",
+      "levantarías",
+      "levantaría",
+      "levantaríamos",
+      "levantaríais",
+      "levantarían"
+    ],
+    "sub": [
+      "levante",
+      "levantes",
+      "levante",
+      "levantemos",
+      "levantéis",
+      "levanten"
+    ]
+  },
+  "llamar": {
+    "english": "to call, to name",
+    "ger": "llamando",
+    "part": "llamado",
+    "pres": [
+      "llamo",
+      "llamas",
+      "llama",
+      "llamamos",
+      "llamáis",
+      "llaman"
+    ],
+    "fut": [
+      "llamaré",
+      "llamarás",
+      "llamará",
+      "llamaremos",
+      "llamaréis",
+      "llamarán"
+    ],
+    "imp": [
+      "llamaba",
+      "llamabas",
+      "llamaba",
+      "llamábamos",
+      "llamabais",
+      "llamaban"
+    ],
+    "pret": [
+      "llamé",
+      "llamaste",
+      "llamó",
+      "llamamos",
+      "llamasteis",
+      "llamaron"
+    ],
+    "cond": [
+      "llamaría",
+      "llamarías",
+      "llamaría",
+      "llamaríamos",
+      "llamaríais",
+      "llamarían"
+    ],
+    "sub": [
+      "llame",
+      "llames",
+      "llame",
+      "llamemos",
+      "llaméis",
+      "llamen"
+    ]
+  },
+  "llegar": {
+    "english": "to arrive, come, reach; to bring up, bring over; to gather together",
+    "ger": "llegando",
+    "part": "llegado",
+    "pres": [
+      "llego",
+      "llegas",
+      "llega",
+      "llegamos",
+      "llegáis",
+      "llegan"
+    ],
+    "fut": [
+      "llegaré",
+      "llegarás",
+      "llegará",
+      "llegaremos",
+      "llegaréis",
+      "llegarán"
+    ],
+    "imp": [
+      "llegaba",
+      "llegabas",
+      "llegaba",
+      "llegábamos",
+      "llegabais",
+      "llegaban"
+    ],
+    "pret": [
+      "llegué",
+      "llegaste",
+      "llegó",
+      "llegamos",
+      "llegasteis",
+      "llegaron"
+    ],
+    "cond": [
+      "llegaría",
+      "llegarías",
+      "llegaría",
+      "llegaríamos",
+      "llegaríais",
+      "llegarían"
+    ],
+    "sub": [
+      "llegue",
+      "llegues",
+      "llegue",
+      "lleguemos",
+      "lleguéis",
+      "lleguen"
+    ]
+  },
+  "mirar": {
+    "english": "to watch, look at",
+    "ger": "mirando",
+    "part": "mirado",
+    "pres": [
+      "miro",
+      "miras",
+      "mira",
+      "miramos",
+      "miráis",
+      "miran"
+    ],
+    "fut": [
+      "miraré",
+      "mirarás",
+      "mirará",
+      "miraremos",
+      "miraréis",
+      "mirarán"
+    ],
+    "imp": [
+      "miraba",
+      "mirabas",
+      "miraba",
+      "mirábamos",
+      "mirabais",
+      "miraban"
+    ],
+    "pret": [
+      "miré",
+      "miraste",
+      "miró",
+      "miramos",
+      "mirasteis",
+      "miraron"
+    ],
+    "cond": [
+      "miraría",
+      "mirarías",
+      "miraría",
+      "miraríamos",
+      "miraríais",
+      "mirarían"
+    ],
+    "sub": [
+      "mire",
+      "mires",
+      "mire",
+      "miremos",
+      "miréis",
+      "miren"
+    ]
+  },
+  "mover": {
+    "english": "to move",
+    "ger": "moviendo",
+    "part": "movido",
+    "pres": [
+      "muevo",
+      "mueves",
+      "mueve",
+      "movemos",
+      "movéis",
+      "mueven"
+    ],
+    "fut": [
+      "moveré",
+      "moverás",
+      "moverá",
+      "moveremos",
+      "moveréis",
+      "moverán"
+    ],
+    "imp": [
+      "movía",
+      "movías",
+      "movía",
+      "movíamos",
+      "movíais",
+      "movían"
+    ],
+    "pret": [
+      "moví",
+      "moviste",
+      "movió",
+      "movimos",
+      "movisteis",
+      "movieron"
+    ],
+    "cond": [
+      "movería",
+      "moverías",
+      "movería",
+      "moveríamos",
+      "moveríais",
+      "moverían"
+    ],
+    "sub": [
+      "mueva",
+      "muevas",
+      "mueva",
+      "movamos",
+      "mováis",
+      "muevan"
+    ]
+  },
+  "oír": {
+    "english": "to hear",
+    "ger": "oyendo",
+    "part": "oído",
+    "pres": [
+      "oigo",
+      "oyes",
+      "oye",
+      "oímos",
+      "oís",
+      "oyen"
+    ],
+    "fut": [
+      "oiré",
+      "oirás",
+      "oirá",
+      "oiremos",
+      "oiréis",
+      "oirán"
+    ],
+    "imp": [
+      "oía",
+      "oías",
+      "oía",
+      "oíamos",
+      "oíais",
+      "oían"
+    ],
+    "pret": [
+      "oí",
+      "oíste",
+      "oyó",
+      "oímos",
+      "oísteis",
+      "oyeron"
+    ],
+    "cond": [
+      "oiría",
+      "oirías",
+      "oiría",
+      "oiríamos",
+      "oiríais",
+      "oirían"
+    ],
+    "sub": [
+      "oiga",
+      "oigas",
+      "oiga",
+      "oigamos",
+      "oigáis",
+      "oigan"
+    ]
+  },
+  "pasar": {
+    "english": "to pass, pass by, go; to pass on, hand; to spend [time]; to happen",
+    "ger": "pasando",
+    "part": "pasado",
+    "pres": [
+      "paso",
+      "pasas",
+      "pasa",
+      "pasamos",
+      "pasáis",
+      "pasan"
+    ],
+    "fut": [
+      "pasaré",
+      "pasarás",
+      "pasará",
+      "pasaremos",
+      "pasaréis",
+      "pasarán"
+    ],
+    "imp": [
+      "pasaba",
+      "pasabas",
+      "pasaba",
+      "pasábamos",
+      "pasabais",
+      "pasaban"
+    ],
+    "pret": [
+      "pasé",
+      "pasaste",
+      "pasó",
+      "pasamos",
+      "pasasteis",
+      "pasaron"
+    ],
+    "cond": [
+      "pasaría",
+      "pasarías",
+      "pasaría",
+      "pasaríamos",
+      "pasaríais",
+      "pasarían"
+    ],
+    "sub": [
+      "pase",
+      "pases",
+      "pase",
+      "pasemos",
+      "paséis",
+      "pasen"
+    ]
+  },
+  "pedir": {
+    "english": "to request, ask for",
+    "ger": "pidiendo",
+    "part": "pedido",
+    "pres": [
+      "pido",
+      "pides",
+      "pide",
+      "pedimos",
+      "pedís",
+      "piden"
+    ],
+    "fut": [
+      "pediré",
+      "pedirás",
+      "pedirá",
+      "pediremos",
+      "pediréis",
+      "pedirán"
+    ],
+    "imp": [
+      "pedía",
+      "pedías",
+      "pedía",
+      "pedíamos",
+      "pedíais",
+      "pedían"
+    ],
+    "pret": [
+      "pedí",
+      "pediste",
+      "pidió",
+      "pedimos",
+      "pedisteis",
+      "pidieron"
+    ],
+    "cond": [
+      "pediría",
+      "pedirías",
+      "pediría",
+      "pediríamos",
+      "pediríais",
+      "pedirían"
+    ],
+    "sub": [
+      "pida",
+      "pidas",
+      "pida",
+      "pidamos",
+      "pidáis",
+      "pidan"
+    ]
+  },
+  "peinar": {
+    "english": "to comb",
+    "ger": "peinando",
+    "part": "peinado",
+    "pres": [
+      "peino",
+      "peinas",
+      "peina",
+      "peinamos",
+      "peináis",
+      "peinan"
+    ],
+    "fut": [
+      "peinaré",
+      "peinarás",
+      "peinará",
+      "peinaremos",
+      "peinaréis",
+      "peinarán"
+    ],
+    "imp": [
+      "peinaba",
+      "peinabas",
+      "peinaba",
+      "peinábamos",
+      "peinabais",
+      "peinaban"
+    ],
+    "pret": [
+      "peiné",
+      "peinaste",
+      "peinó",
+      "peinamos",
+      "peinasteis",
+      "peinaron"
+    ],
+    "cond": [
+      "peinaría",
+      "peinarías",
+      "peinaría",
+      "peinaríamos",
+      "peinaríais",
+      "peinarían"
+    ],
+    "sub": [
+      "peine",
+      "peines",
+      "peine",
+      "peinemos",
+      "peinéis",
+      "peinen"
+    ]
+  },
+  "pensar": {
+    "english": "to think",
+    "ger": "pensando",
+    "part": "pensado",
+    "pres": [
+      "pienso",
+      "piensas",
+      "piensa",
+      "pensamos",
+      "pensáis",
+      "piensan"
+    ],
+    "fut": [
+      "pensaré",
+      "pensarás",
+      "pensará",
+      "pensaremos",
+      "pensaréis",
+      "pensarán"
+    ],
+    "imp": [
+      "pensaba",
+      "pensabas",
+      "pensaba",
+      "pensábamos",
+      "pensabais",
+      "pensaban"
+    ],
+    "pret": [
+      "pensé",
+      "pensaste",
+      "pensó",
+      "pensamos",
+      "pensasteis",
+      "pensaron"
+    ],
+    "cond": [
+      "pensaría",
+      "pensarías",
+      "pensaría",
+      "pensaríamos",
+      "pensaríais",
+      "pensarían"
+    ],
+    "sub": [
+      "piense",
+      "pienses",
+      "piense",
+      "pensemos",
+      "penséis",
+      "piensen"
+    ]
+  },
+  "poder": {
+    "english": "to be able, can",
+    "ger": "pudiendo",
+    "part": "podido",
+    "pres": [
+      "puedo",
+      "puedes",
+      "puede",
+      "podemos",
+      "podéis",
+      "pueden"
+    ],
+    "fut": [
+      "podré",
+      "podrás",
+      "podrá",
+      "podremos",
+      "podréis",
+      "podrán"
+    ],
+    "imp": [
+      "podía",
+      "podías",
+      "podía",
+      "podíamos",
+      "podíais",
+      "podían"
+    ],
+    "pret": [
+      "pude",
+      "pudiste",
+      "pudo",
+      "pudimos",
+      "pudisteis",
+      "pudieron"
+    ],
+    "cond": [
+      "podría",
+      "podrías",
+      "podría",
+      "podríamos",
+      "podríais",
+      "podrían"
+    ],
+    "sub": [
+      "pueda",
+      "puedas",
+      "pueda",
+      "podamos",
+      "podáis",
+      "puedan"
+    ]
+  },
+  "poner": {
+    "english": "to put, place, set",
+    "ger": "poniendo",
+    "part": "puesto",
+    "pres": [
+      "pongo",
+      "pones",
+      "pone",
+      "ponemos",
+      "ponéis",
+      "ponen"
+    ],
+    "fut": [
+      "pondré",
+      "pondrás",
+      "pondrá",
+      "pondremos",
+      "pondréis",
+      "pondrán"
+    ],
+    "imp": [
+      "ponía",
+      "ponías",
+      "ponía",
+      "poníamos",
+      "poníais",
+      "ponían"
+    ],
+    "pret": [
+      "puse",
+      "pusiste",
+      "puso",
+      "pusimos",
+      "pusisteis",
+      "pusieron"
+    ],
+    "cond": [
+      "pondría",
+      "pondrías",
+      "pondría",
+      "pondríamos",
+      "pondríais",
+      "pondrían"
+    ],
+    "sub": [
+      "ponga",
+      "pongas",
+      "ponga",
+      "pongamos",
+      "pongáis",
+      "pongan"
+    ]
+  },
+  "producir": {
+    "english": "to produce",
+    "ger": "produciendo",
+    "part": "producido",
+    "pres": [
+      "produzco",
+      "produces",
+      "produce",
+      "producimos",
+      "producís",
+      "producen"
+    ],
+    "fut": [
+      "produciré",
+      "producirás",
+      "producirá",
+      "produciremos",
+      "produciréis",
+      "producirán"
+    ],
+    "imp": [
+      "producía",
+      "producías",
+      "producía",
+      "producíamos",
+      "producíais",
+      "producían"
+    ],
+    "pret": [
+      "produje",
+      "produjiste",
+      "produjo",
+      "produjimos",
+      "produjisteis",
+      "produjeron"
+    ],
+    "cond": [
+      "produciría",
+      "producirías",
+      "produciría",
+      "produciríamos",
+      "produciríais",
+      "producirían"
+    ],
+    "sub": [
+      "produzca",
+      "produzcas",
+      "produzca",
+      "produzcamos",
+      "produzcáis",
+      "produzcan"
+    ]
+  },
+  "quedar": {
+    "english": "to stay, remain, be left; to be [indicating location]",
+    "ger": "quedando",
+    "part": "quedado",
+    "pres": [
+      "quedo",
+      "quedas",
+      "queda",
+      "quedamos",
+      "quedáis",
+      "quedan"
+    ],
+    "fut": [
+      "quedaré",
+      "quedarás",
+      "quedará",
+      "quedaremos",
+      "quedaréis",
+      "quedarán"
+    ],
+    "imp": [
+      "quedaba",
+      "quedabas",
+      "quedaba",
+      "quedábamos",
+      "quedabais",
+      "quedaban"
+    ],
+    "pret": [
+      "quedé",
+      "quedaste",
+      "quedó",
+      "quedamos",
+      "quedasteis",
+      "quedaron"
+    ],
+    "cond": [
+      "quedaría",
+      "quedarías",
+      "quedaría",
+      "quedaríamos",
+      "quedaríais",
+      "quedarían"
+    ],
+    "sub": [
+      "quede",
+      "quedes",
+      "quede",
+      "quedemos",
+      "quedéis",
+      "queden"
+    ]
+  },
+  "querer": {
+    "english": "to want, love",
+    "ger": "queriendo",
+    "part": "querido",
+    "pres": [
+      "quiero",
+      "quieres",
+      "quiere",
+      "queremos",
+      "queréis",
+      "quieren"
+    ],
+    "fut": [
+      "querré",
+      "querrás",
+      "querrá",
+      "querremos",
+      "querréis",
+      "querrán"
+    ],
+    "imp": [
+      "quería",
+      "querías",
+      "quería",
+      "queríamos",
+      "queríais",
+      "querían"
+    ],
+    "pret": [
+      "quise",
+      "quisiste",
+      "quiso",
+      "quisimos",
+      "quisisteis",
+      "quisieron"
+    ],
+    "cond": [
+      "querría",
+      "querrías",
+      "querría",
+      "querríamos",
+      "querríais",
+      "querrían"
+    ],
+    "sub": [
+      "quiera",
+      "quieras",
+      "quiera",
+      "queramos",
+      "queráis",
+      "quieran"
+    ]
+  },
+  "recibir": {
+    "english": "to receive; to welcome, greet",
+    "ger": "recibiendo",
+    "part": "recibido",
+    "pres": [
+      "recibo",
+      "recibes",
+      "recibe",
+      "recibimos",
+      "recibís",
+      "reciben"
+    ],
+    "fut": [
+      "recibiré",
+      "recibirás",
+      "recibirá",
+      "recibiremos",
+      "recibiréis",
+      "recibirán"
+    ],
+    "imp": [
+      "recibía",
+      "recibías",
+      "recibía",
+      "recibíamos",
+      "recibíais",
+      "recibían"
+    ],
+    "pret": [
+      "recibí",
+      "recibiste",
+      "recibió",
+      "recibimos",
+      "recibisteis",
+      "recibieron"
+    ],
+    "cond": [
+      "recibiría",
+      "recibirías",
+      "recibiría",
+      "recibiríamos",
+      "recibiríais",
+      "recibirían"
+    ],
+    "sub": [
+      "reciba",
+      "recibas",
+      "reciba",
+      "recibamos",
+      "recibáis",
+      "reciban"
+    ]
+  },
+  "saber": {
+    "english": "to know",
+    "ger": "sabiendo",
+    "part": "sabido",
+    "pres": [
+      "sé",
+      "sabes",
+      "sabe",
+      "sabemos",
+      "sabéis",
+      "saben"
+    ],
+    "fut": [
+      "sabré",
+      "sabrás",
+      "sabrá",
+      "sabremos",
+      "sabréis",
+      "sabrán"
+    ],
+    "imp": [
+      "sabía",
+      "sabías",
+      "sabía",
+      "sabíamos",
+      "sabíais",
+      "sabían"
+    ],
+    "pret": [
+      "supe",
+      "supiste",
+      "supo",
+      "supimos",
+      "supisteis",
+      "supieron"
+    ],
+    "cond": [
+      "sabría",
+      "sabrías",
+      "sabría",
+      "sabríamos",
+      "sabríais",
+      "sabrían"
+    ],
+    "sub": [
+      "sepa",
+      "sepas",
+      "sepa",
+      "sepamos",
+      "sepáis",
+      "sepan"
+    ]
+  },
+  "salir": {
+    "english": "to leave, go out",
+    "ger": "saliendo",
+    "part": "salido",
+    "pres": [
+      "salgo",
+      "sales",
+      "sale",
+      "salimos",
+      "salís",
+      "salen"
+    ],
+    "fut": [
+      "saldré",
+      "saldrás",
+      "saldrá",
+      "saldremos",
+      "saldréis",
+      "saldrán"
+    ],
+    "imp": [
+      "salía",
+      "salías",
+      "salía",
+      "salíamos",
+      "salíais",
+      "salían"
+    ],
+    "pret": [
+      "salí",
+      "saliste",
+      "salió",
+      "salimos",
+      "salisteis",
+      "salieron"
+    ],
+    "cond": [
+      "saldría",
+      "saldrías",
+      "saldría",
+      "saldríamos",
+      "saldríais",
+      "saldrían"
+    ],
+    "sub": [
+      "salga",
+      "salgas",
+      "salga",
+      "salgamos",
+      "salgáis",
+      "salgan"
+    ]
+  },
+  "seguir": {
+    "english": "to follow, continue",
+    "ger": "siguiendo",
+    "part": "seguido",
+    "pres": [
+      "sigo",
+      "sigues",
+      "sigue",
+      "seguimos",
+      "seguís",
+      "siguen"
+    ],
+    "fut": [
+      "seguiré",
+      "seguirás",
+      "seguirá",
+      "seguiremos",
+      "seguiréis",
+      "seguirán"
+    ],
+    "imp": [
+      "seguía",
+      "seguías",
+      "seguía",
+      "seguíamos",
+      "seguíais",
+      "seguían"
+    ],
+    "pret": [
+      "seguí",
+      "seguiste",
+      "siguió",
+      "seguimos",
+      "seguisteis",
+      "siguieron"
+    ],
+    "cond": [
+      "seguiría",
+      "seguirías",
+      "seguiría",
+      "seguiríamos",
+      "seguiríais",
+      "seguirían"
+    ],
+    "sub": [
+      "siga",
+      "sigas",
+      "siga",
+      "sigamos",
+      "sigáis",
+      "sigan"
+    ]
+  },
+  "sentar": {
+    "english": "to seat, sit",
+    "ger": "sentando",
+    "part": "sentado",
+    "pres": [
+      "siento",
+      "sientas",
+      "sienta",
+      "sentamos",
+      "sentáis",
+      "sientan"
+    ],
+    "fut": [
+      "sentaré",
+      "sentarás",
+      "sentará",
+      "sentaremos",
+      "sentaréis",
+      "sentarán"
+    ],
+    "imp": [
+      "sentaba",
+      "sentabas",
+      "sentaba",
+      "sentábamos",
+      "sentabais",
+      "sentaban"
+    ],
+    "pret": [
+      "senté",
+      "sentaste",
+      "sentó",
+      "sentamos",
+      "sentasteis",
+      "sentaron"
+    ],
+    "cond": [
+      "sentaría",
+      "sentarías",
+      "sentaría",
+      "sentaríamos",
+      "sentaríais",
+      "sentarían"
+    ],
+    "sub": [
+      "siente",
+      "sientes",
+      "siente",
+      "sentemos",
+      "sentéis",
+      "sienten"
+    ]
+  },
+  "sentir": {
+    "english": "to feel, regret",
+    "ger": "sintiendo",
+    "part": "sentido",
+    "pres": [
+      "siento",
+      "sientes",
+      "siente",
+      "sentimos",
+      "sentís",
+      "sienten"
+    ],
+    "fut": [
+      "sentiré",
+      "sentirás",
+      "sentirá",
+      "sentiremos",
+      "sentiréis",
+      "sentirán"
+    ],
+    "imp": [
+      "sentía",
+      "sentías",
+      "sentía",
+      "sentíamos",
+      "sentíais",
+      "sentían"
+    ],
+    "pret": [
+      "sentí",
+      "sentiste",
+      "sintió",
+      "sentimos",
+      "sentisteis",
+      "sintieron"
+    ],
+    "cond": [
+      "sentiría",
+      "sentirías",
+      "sentiría",
+      "sentiríamos",
+      "sentiríais",
+      "sentirían"
+    ],
+    "sub": [
+      "sienta",
+      "sientas",
+      "sienta",
+      "sintamos",
+      "sintáis",
+      "sientan"
+    ]
+  },
+  "ser": {
+    "english": "to be",
+    "ger": "siendo",
+    "part": "sido",
+    "pres": [
+      "soy",
+      "eres",
+      "es",
+      "somos",
+      "sois",
+      "son"
+    ],
+    "fut": [
+      "seré",
+      "serás",
+      "será",
+      "seremos",
+      "seréis",
+      "serán"
+    ],
+    "imp": [
+      "era",
+      "eras",
+      "era",
+      "éramos",
+      "erais",
+      "eran"
+    ],
+    "pret": [
+      "fui",
+      "fuiste",
+      "fue",
+      "fuimos",
+      "fuisteis",
+      "fueron"
+    ],
+    "cond": [
+      "sería",
+      "serías",
+      "sería",
+      "seríamos",
+      "seríais",
+      "serían"
+    ],
+    "sub": [
+      "sea",
+      "seas",
+      "sea",
+      "seamos",
+      "seáis",
+      "sean"
+    ]
+  },
+  "subir": {
+    "english": "to go up, rise, move up, climb; to lift up, raise up",
+    "ger": "subiendo",
+    "part": "subido",
+    "pres": [
+      "subo",
+      "subes",
+      "sube",
+      "subimos",
+      "subís",
+      "suben"
+    ],
+    "fut": [
+      "subiré",
+      "subirás",
+      "subirá",
+      "subiremos",
+      "subiréis",
+      "subirán"
+    ],
+    "imp": [
+      "subía",
+      "subías",
+      "subía",
+      "subíamos",
+      "subíais",
+      "subían"
+    ],
+    "pret": [
+      "subí",
+      "subiste",
+      "subió",
+      "subimos",
+      "subisteis",
+      "subieron"
+    ],
+    "cond": [
+      "subiría",
+      "subirías",
+      "subiría",
+      "subiríamos",
+      "subiríais",
+      "subirían"
+    ],
+    "sub": [
+      "suba",
+      "subas",
+      "suba",
+      "subamos",
+      "subáis",
+      "suban"
+    ]
+  },
+  "tener": {
+    "english": "to have",
+    "ger": "teniendo",
+    "part": "tenido",
+    "pres": [
+      "tengo",
+      "tienes",
+      "tiene",
+      "tenemos",
+      "tenéis",
+      "tienen"
+    ],
+    "fut": [
+      "tendré",
+      "tendrás",
+      "tendrá",
+      "tendremos",
+      "tendréis",
+      "tendrán"
+    ],
+    "imp": [
+      "tenía",
+      "tenías",
+      "tenía",
+      "teníamos",
+      "teníais",
+      "tenían"
+    ],
+    "pret": [
+      "tuve",
+      "tuviste",
+      "tuvo",
+      "tuvimos",
+      "tuvisteis",
+      "tuvieron"
+    ],
+    "cond": [
+      "tendría",
+      "tendrías",
+      "tendría",
+      "tendríamos",
+      "tendríais",
+      "tendrían"
+    ],
+    "sub": [
+      "tenga",
+      "tengas",
+      "tenga",
+      "tengamos",
+      "tengáis",
+      "tengan"
+    ]
+  },
+  "tomar": {
+    "english": "to take, drink",
+    "ger": "tomando",
+    "part": "tomado",
+    "pres": [
+      "tomo",
+      "tomas",
+      "toma",
+      "tomamos",
+      "tomáis",
+      "toman"
+    ],
+    "fut": [
+      "tomaré",
+      "tomarás",
+      "tomará",
+      "tomaremos",
+      "tomaréis",
+      "tomarán"
+    ],
+    "imp": [
+      "tomaba",
+      "tomabas",
+      "tomaba",
+      "tomábamos",
+      "tomabais",
+      "tomaban"
+    ],
+    "pret": [
+      "tomé",
+      "tomaste",
+      "tomó",
+      "tomamos",
+      "tomasteis",
+      "tomaron"
+    ],
+    "cond": [
+      "tomaría",
+      "tomarías",
+      "tomaría",
+      "tomaríamos",
+      "tomaríais",
+      "tomarían"
+    ],
+    "sub": [
+      "tome",
+      "tomes",
+      "tome",
+      "tomemos",
+      "toméis",
+      "tomen"
+    ]
+  },
+  "trabajar": {
+    "english": "to work",
+    "ger": "trabajando",
+    "part": "trabajado",
+    "pres": [
+      "trabajo",
+      "trabajas",
+      "trabaja",
+      "trabajamos",
+      "trabajáis",
+      "trabajan"
+    ],
+    "fut": [
+      "trabajaré",
+      "trabajarás",
+      "trabajará",
+      "trabajaremos",
+      "trabajaréis",
+      "trabajarán"
+    ],
+    "imp": [
+      "trabajaba",
+      "trabajabas",
+      "trabajaba",
+      "trabajábamos",
+      "trabajabais",
+      "trabajaban"
+    ],
+    "pret": [
+      "trabajé",
+      "trabajaste",
+      "trabajó",
+      "trabajamos",
+      "trabajasteis",
+      "trabajaron"
+    ],
+    "cond": [
+      "trabajaría",
+      "trabajarías",
+      "trabajaría",
+      "trabajaríamos",
+      "trabajaríais",
+      "trabajarían"
+    ],
+    "sub": [
+      "trabaje",
+      "trabajes",
+      "trabaje",
+      "trabajemos",
+      "trabajéis",
+      "trabajen"
+    ]
+  },
+  "traer": {
+    "english": "to bring; to get, fetch; to carry",
+    "ger": "trayendo",
+    "part": "traído",
+    "pres": [
+      "traigo",
+      "traes",
+      "trae",
+      "traemos",
+      "traéis",
+      "traen"
+    ],
+    "fut": [
+      "traeré",
+      "traerás",
+      "traerá",
+      "traeremos",
+      "traeréis",
+      "traerán"
+    ],
+    "imp": [
+      "traía",
+      "traías",
+      "traía",
+      "traíamos",
+      "traíais",
+      "traían"
+    ],
+    "pret": [
+      "traje",
+      "trajiste",
+      "trajo",
+      "trajimos",
+      "trajisteis",
+      "trajeron"
+    ],
+    "cond": [
+      "traería",
+      "traerías",
+      "traería",
+      "traeríamos",
+      "traeríais",
+      "traerían"
+    ],
+    "sub": [
+      "traiga",
+      "traigas",
+      "traiga",
+      "traigamos",
+      "traigáis",
+      "traigan"
+    ]
+  },
+  "vender": {
+    "english": "to sell",
+    "ger": "vendiendo",
+    "part": "vendido",
+    "pres": [
+      "vendo",
+      "vendes",
+      "vende",
+      "vendemos",
+      "vendéis",
+      "venden"
+    ],
+    "fut": [
+      "venderé",
+      "venderás",
+      "venderá",
+      "venderemos",
+      "venderéis",
+      "venderán"
+    ],
+    "imp": [
+      "vendía",
+      "vendías",
+      "vendía",
+      "vendíamos",
+      "vendíais",
+      "vendían"
+    ],
+    "pret": [
+      "vendí",
+      "vendiste",
+      "vendió",
+      "vendimos",
+      "vendisteis",
+      "vendieron"
+    ],
+    "cond": [
+      "vendería",
+      "venderías",
+      "vendería",
+      "venderíamos",
+      "venderíais",
+      "venderían"
+    ],
+    "sub": [
+      "venda",
+      "vendas",
+      "venda",
+      "vendamos",
+      "vendáis",
+      "vendan"
+    ]
+  },
+  "venir": {
+    "english": "to come",
+    "ger": "viniendo",
+    "part": "venido",
+    "pres": [
+      "vengo",
+      "vienes",
+      "viene",
+      "venimos",
+      "venís",
+      "vienen"
+    ],
+    "fut": [
+      "vendré",
+      "vendrás",
+      "vendrá",
+      "vendremos",
+      "vendréis",
+      "vendrán"
+    ],
+    "imp": [
+      "venía",
+      "venías",
+      "venía",
+      "veníamos",
+      "veníais",
+      "venían"
+    ],
+    "pret": [
+      "vine",
+      "viniste",
+      "vino",
+      "vinimos",
+      "vinisteis",
+      "vinieron"
+    ],
+    "cond": [
+      "vendría",
+      "vendrías",
+      "vendría",
+      "vendríamos",
+      "vendríais",
+      "vendrían"
+    ],
+    "sub": [
+      "venga",
+      "vengas",
+      "venga",
+      "vengamos",
+      "vengáis",
+      "vengan"
+    ]
+  },
+  "ver": {
+    "english": "to see",
+    "ger": "viendo",
+    "part": "visto",
+    "pres": [
+      "veo",
+      "ves",
+      "ve",
+      "vemos",
+      "veis",
+      "ven"
+    ],
+    "fut": [
+      "veré",
+      "verás",
+      "verá",
+      "veremos",
+      "veréis",
+      "verán"
+    ],
+    "imp": [
+      "veía",
+      "veías",
+      "veía",
+      "veíamos",
+      "veíais",
+      "veían"
+    ],
+    "pret": [
+      "vi",
+      "viste",
+      "vio",
+      "vimos",
+      "visteis",
+      "vieron"
+    ],
+    "cond": [
+      "vería",
+      "verías",
+      "vería",
+      "veríamos",
+      "veríais",
+      "verían"
+    ],
+    "sub": [
+      "vea",
+      "veas",
+      "vea",
+      "veamos",
+      "veáis",
+      "vean"
+    ]
+  },
+  "vestir": {
+    "english": "to dress",
+    "ger": "vistiendo",
+    "part": "vestido",
+    "pres": [
+      "visto",
+      "vistes",
+      "viste",
+      "vestimos",
+      "vestís",
+      "visten"
+    ],
+    "fut": [
+      "vestiré",
+      "vestirás",
+      "vestirá",
+      "vestiremos",
+      "vestiréis",
+      "vestirán"
+    ],
+    "imp": [
+      "vestía",
+      "vestías",
+      "vestía",
+      "vestíamos",
+      "vestíais",
+      "vestían"
+    ],
+    "pret": [
+      "vestí",
+      "vestiste",
+      "vistió",
+      "vestimos",
+      "vestisteis",
+      "vistieron"
+    ],
+    "cond": [
+      "vestiría",
+      "vestirías",
+      "vestiría",
+      "vestiríamos",
+      "vestiríais",
+      "vestirían"
+    ],
+    "sub": [
+      "vista",
+      "vistas",
+      "vista",
+      "vistamos",
+      "vistáis",
+      "vistan"
+    ]
+  },
+  "viajar": {
+    "english": "to travel, journey",
+    "ger": "viajando",
+    "part": "viajado",
+    "pres": [
+      "viajo",
+      "viajas",
+      "viaja",
+      "viajamos",
+      "viajáis",
+      "viajan"
+    ],
+    "fut": [
+      "viajaré",
+      "viajarás",
+      "viajará",
+      "viajaremos",
+      "viajaréis",
+      "viajarán"
+    ],
+    "imp": [
+      "viajaba",
+      "viajabas",
+      "viajaba",
+      "viajábamos",
+      "viajabais",
+      "viajaban"
+    ],
+    "pret": [
+      "viajé",
+      "viajaste",
+      "viajó",
+      "viajamos",
+      "viajasteis",
+      "viajaron"
+    ],
+    "cond": [
+      "viajaría",
+      "viajarías",
+      "viajaría",
+      "viajaríamos",
+      "viajaríais",
+      "viajarían"
+    ],
+    "sub": [
+      "viaje",
+      "viajes",
+      "viaje",
+      "viajemos",
+      "viajéis",
+      "viajen"
+    ]
+  },
+  "vivir": {
+    "english": "to live",
+    "ger": "viviendo",
+    "part": "vivido",
+    "pres": [
+      "vivo",
+      "vives",
+      "vive",
+      "vivimos",
+      "vivís",
+      "viven"
+    ],
+    "fut": [
+      "viviré",
+      "vivirás",
+      "vivirá",
+      "viviremos",
+      "viviréis",
+      "vivirán"
+    ],
+    "imp": [
+      "vivía",
+      "vivías",
+      "vivía",
+      "vivíamos",
+      "vivíais",
+      "vivían"
+    ],
+    "pret": [
+      "viví",
+      "viviste",
+      "vivió",
+      "vivimos",
+      "vivisteis",
+      "vivieron"
+    ],
+    "cond": [
+      "viviría",
+      "vivirías",
+      "viviría",
+      "viviríamos",
+      "viviríais",
+      "vivirían"
+    ],
+    "sub": [
+      "viva",
+      "vivas",
+      "viva",
+      "vivamos",
+      "viváis",
+      "vivan"
+    ]
+  },
+  "volver": {
+    "english": "to return, go back",
+    "ger": "volviendo",
+    "part": "vuelto",
+    "pres": [
+      "vuelvo",
+      "vuelves",
+      "vuelve",
+      "volvemos",
+      "volvéis",
+      "vuelven"
+    ],
+    "fut": [
+      "volveré",
+      "volverás",
+      "volverá",
+      "volveremos",
+      "volveréis",
+      "volverán"
+    ],
+    "imp": [
+      "volvía",
+      "volvías",
+      "volvía",
+      "volvíamos",
+      "volvíais",
+      "volvían"
+    ],
+    "pret": [
+      "volví",
+      "volviste",
+      "volvió",
+      "volvimos",
+      "volvisteis",
+      "volvieron"
+    ],
+    "cond": [
+      "volvería",
+      "volverías",
+      "volvería",
+      "volveríamos",
+      "volveríais",
+      "volverían"
+    ],
+    "sub": [
+      "vuelva",
+      "vuelvas",
+      "vuelva",
+      "volvamos",
+      "volváis",
+      "vuelvan"
+    ]
+  }
+}

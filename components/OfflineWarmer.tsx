@@ -1,0 +1,63 @@
+'use client'
+import { useEffect } from 'react'
+import { refreshPack } from '@/lib/offlineCards'
+import { refreshBundle } from '@/lib/offlineData'
+
+// Keeps the whole learning experience ready offline while the learner is online.
+// It (1) waits until the service worker actually CONTROLS this page (so warmed
+// fetches are cached, not raced past an inactive SW), (2) warms full-document
+// copies of every learning page so they boot with no network, and (3) downloads
+// the offline data bundle — flashcard pack + mistakes deck + grammar questions —
+// into IndexedDB so "what I'm learning" is available offline. Re-runs on reconnect.
+const LEARN_PAGES = [
+  '/learn',
+  '/learn/review/all',
+  '/learn/mistakes',
+  '/learn/grammar',
+  '/learn/grammar/practice',
+  '/learn/stories',
+  '/learn/dictation',
+]
+
+async function untilControlled(): Promise<void> {
+  if (!('serviceWorker' in navigator)) return
+  try {
+    await navigator.serviceWorker.ready
+    if (navigator.serviceWorker.controller) return
+    // Registered but not yet controlling this load — wait for it to take over so
+    // our warm-up fetches pass through the SW and get cached.
+    await new Promise<void>((resolve) => {
+      const done = () => resolve()
+      navigator.serviceWorker.addEventListener('controllerchange', done, { once: true })
+      setTimeout(done, 4000) // fallback so we never hang
+    })
+  } catch {
+    /* no SW — nothing to wait for */
+  }
+}
+
+export default function OfflineWarmer() {
+  useEffect(() => {
+    let cancelled = false
+    const warm = async () => {
+      if (typeof navigator !== 'undefined' && !navigator.onLine) return
+      await untilControlled()
+      if (cancelled) return
+      // Warm each learning page's HTML so an offline navigation can be served
+      // (SHELL_FALLBACKS in public/sw.js). Sequential-ish, best-effort.
+      for (const p of LEARN_PAGES) {
+        fetch(p, { credentials: 'same-origin' }).catch(() => {})
+      }
+      // Download the on-device datasets.
+      refreshPack('all').catch(() => {})
+      refreshBundle().catch(() => {})
+    }
+    warm()
+    window.addEventListener('online', warm)
+    return () => {
+      cancelled = true
+      window.removeEventListener('online', warm)
+    }
+  }, [])
+  return null
+}

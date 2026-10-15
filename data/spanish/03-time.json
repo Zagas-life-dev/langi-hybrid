@@ -1,0 +1,466 @@
+{
+  "slug": "es-a1-time",
+  "title": "Time & Calendar",
+  "description": "Tell the time, name the days and months, and talk about your week.",
+  "level": "A1",
+  "topic": "time",
+  "order": 3,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "el tiempo",
+      "translation": "time",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la hora",
+      "translation": "the hour/time",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "¿qué hora es?",
+      "translation": "what time is it?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "el minuto",
+      "translation": "the minute",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el segundo",
+      "translation": "the second",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el día",
+      "translation": "the day",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la semana",
+      "translation": "the week",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el mes",
+      "translation": "the month",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el año",
+      "translation": "the year",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "hoy",
+      "translation": "today",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "ayer",
+      "translation": "yesterday",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "mañana",
+      "translation": "tomorrow",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "anteayer",
+      "translation": "the day before yesterday",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "pasado mañana",
+      "translation": "the day after tomorrow",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "ahora",
+      "translation": "now",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "luego",
+      "translation": "later",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "temprano",
+      "translation": "early",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "tarde",
+      "translation": "late",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "el lunes",
+      "translation": "Monday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el martes",
+      "translation": "Tuesday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el miércoles",
+      "translation": "Wednesday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el jueves",
+      "translation": "Thursday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el viernes",
+      "translation": "Friday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el sábado",
+      "translation": "Saturday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el domingo",
+      "translation": "Sunday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "enero",
+      "translation": "January",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "febrero",
+      "translation": "February",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "marzo",
+      "translation": "March",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "abril",
+      "translation": "April",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "mayo",
+      "translation": "May",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "junio",
+      "translation": "June",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "julio",
+      "translation": "July",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "agosto",
+      "translation": "August",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "septiembre",
+      "translation": "September",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "octubre",
+      "translation": "October",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "noviembre",
+      "translation": "November",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "diciembre",
+      "translation": "December",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mañana",
+      "translation": "the morning",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la tarde",
+      "translation": "the afternoon",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la noche",
+      "translation": "the night",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el mediodía",
+      "translation": "noon",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la medianoche",
+      "translation": "midnight",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el fin de semana",
+      "translation": "the weekend",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la primavera",
+      "translation": "spring",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el verano",
+      "translation": "summer",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el otoño",
+      "translation": "autumn",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el invierno",
+      "translation": "winter",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la fecha",
+      "translation": "the date",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el cumpleaños",
+      "translation": "birthday",
+      "partOfSpeech": "noun",
+      "tags": [
+        "time"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "siempre",
+      "translation": "always",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "nunca",
+      "translation": "never",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    },
+    {
+      "term": "a veces",
+      "translation": "sometimes",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "time"
+      ]
+    }
+  ]
+}

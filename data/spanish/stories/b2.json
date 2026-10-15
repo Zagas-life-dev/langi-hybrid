@@ -1,0 +1,61 @@
+[
+  {
+    "slug": "es-b2-la-decision-de-marta",
+    "level": "B2",
+    "topic": "work & life choices",
+    "title": "La decisión de Marta",
+    "titleTranslation": "Marta's decision",
+    "sentences": [
+      { "text": "Marta llevaba cinco años trabajando en la misma empresa.", "translation": "Marta had been working at the same company for five years." },
+      { "text": "Aunque el sueldo era bueno, ya no se sentía motivada.", "translation": "Although the salary was good, she no longer felt motivated." },
+      { "text": "Un día recibió una oferta de trabajo en otra ciudad.", "translation": "One day she received a job offer in another city." },
+      { "text": "El puesto era más interesante, pero implicaba mudarse lejos de su familia.", "translation": "The position was more interesting, but it meant moving far from her family." },
+      { "text": "Pasó varias noches sin dormir, pensando en lo que debía hacer.", "translation": "She spent several sleepless nights thinking about what she should do." },
+      { "text": "Habló con sus padres, quienes le dijeron que la apoyarían pasara lo que pasara.", "translation": "She talked with her parents, who told her they would support her no matter what." },
+      { "text": "Finalmente, decidió aceptar el reto y empezar una nueva etapa.", "translation": "Finally, she decided to accept the challenge and begin a new chapter." },
+      { "text": "Aunque tenía miedo, sabía que era la decisión correcta.", "translation": "Although she was afraid, she knew it was the right decision." },
+      { "text": "Meses después, se alegró de haber sido valiente.", "translation": "Months later, she was glad she had been brave." }
+    ],
+    "glossary": [
+      { "term": "el sueldo", "translation": "the salary" },
+      { "term": "la oferta", "translation": "the offer" },
+      { "term": "mudarse", "translation": "to move (house)" },
+      { "term": "el reto", "translation": "the challenge" },
+      { "term": "la etapa", "translation": "the stage/chapter" }
+    ],
+    "questions": [
+      { "question": "Why was Marta unhappy at her job?", "options": ["The salary was low", "She no longer felt motivated", "Her boss was unfair", "The office was far"], "answer": 1 },
+      { "question": "What did the new job require?", "options": ["Working weekends", "Moving to another city", "Learning English", "A pay cut"], "answer": 1 },
+      { "question": "What did she finally decide?", "options": ["To stay", "To retire", "To accept the challenge", "To start her own company"], "answer": 2 }
+    ]
+  },
+  {
+    "slug": "es-b2-el-debate-en-clase",
+    "level": "B2",
+    "topic": "education & society",
+    "title": "El debate en clase",
+    "titleTranslation": "The debate in class",
+    "sentences": [
+      { "text": "El profesor propuso un debate sobre el uso de la tecnología en las escuelas.", "translation": "The teacher proposed a debate on the use of technology in schools." },
+      { "text": "La clase se dividió en dos grupos con opiniones opuestas.", "translation": "The class split into two groups with opposing opinions." },
+      { "text": "El primer grupo defendía que las pantallas mejoran el aprendizaje.", "translation": "The first group argued that screens improve learning." },
+      { "text": "El segundo grupo sostenía que distraen a los estudiantes.", "translation": "The second group maintained that they distract students." },
+      { "text": "Cada equipo presentó argumentos con ejemplos concretos.", "translation": "Each team presented arguments with concrete examples." },
+      { "text": "A pesar de las diferencias, todos se escucharon con respeto.", "translation": "Despite the differences, everyone listened to each other with respect." },
+      { "text": "Al final, el profesor destacó que no había una única respuesta correcta.", "translation": "In the end, the teacher emphasized that there was no single correct answer." },
+      { "text": "Los alumnos comprendieron que el equilibrio era lo más importante.", "translation": "The students understood that balance was the most important thing." }
+    ],
+    "glossary": [
+      { "term": "el debate", "translation": "the debate" },
+      { "term": "la pantalla", "translation": "the screen" },
+      { "term": "el aprendizaje", "translation": "the learning" },
+      { "term": "el argumento", "translation": "the argument" },
+      { "term": "el equilibrio", "translation": "the balance" }
+    ],
+    "questions": [
+      { "question": "What was the debate about?", "options": ["School uniforms", "Technology in schools", "Homework", "Exams"], "answer": 1 },
+      { "question": "What did the second group claim?", "options": ["Screens improve learning", "Screens distract students", "Screens are too expensive", "Screens are necessary"], "answer": 1 },
+      { "question": "What did the teacher conclude?", "options": ["The first group won", "There was no single correct answer", "Technology should be banned", "The debate was pointless"], "answer": 1 }
+    ]
+  }
+]

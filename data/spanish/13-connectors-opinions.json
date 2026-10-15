@@ -1,0 +1,411 @@
+{
+  "slug": "es-b1-connectors",
+  "title": "Connectors & Opinions",
+  "description": "Link your ideas and express opinions to speak in full paragraphs.",
+  "level": "B1",
+  "topic": "connectors",
+  "order": 13,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "y",
+      "translation": "and",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "o",
+      "translation": "or",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "pero",
+      "translation": "but",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "porque",
+      "translation": "because",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por eso",
+      "translation": "that’s why",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "así que",
+      "translation": "so/therefore",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "aunque",
+      "translation": "although",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "sin embargo",
+      "translation": "however",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "además",
+      "translation": "besides/moreover",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "también",
+      "translation": "also",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "tampoco",
+      "translation": "neither",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "entonces",
+      "translation": "then/so",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por ejemplo",
+      "translation": "for example",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "es decir",
+      "translation": "that is to say",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "en cambio",
+      "translation": "on the other hand",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por lo tanto",
+      "translation": "therefore",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "mientras",
+      "translation": "while",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "cuando",
+      "translation": "when",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "si",
+      "translation": "if",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "como",
+      "translation": "as/since",
+      "partOfSpeech": "conjunction",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "según",
+      "translation": "according to",
+      "partOfSpeech": "preposition",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "en mi opinión",
+      "translation": "in my opinion",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "creo que",
+      "translation": "I think that",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "me parece que",
+      "translation": "it seems to me that",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "estoy de acuerdo",
+      "translation": "I agree",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "no estoy de acuerdo",
+      "translation": "I disagree",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "depende",
+      "translation": "it depends",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "seguramente",
+      "translation": "surely",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por un lado",
+      "translation": "on one hand",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por otro lado",
+      "translation": "on the other hand",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "en primer lugar",
+      "translation": "in the first place",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "finalmente",
+      "translation": "finally",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "en resumen",
+      "translation": "in summary",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "de hecho",
+      "translation": "in fact",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "en realidad",
+      "translation": "actually",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "sobre todo",
+      "translation": "above all",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "a pesar de",
+      "translation": "despite",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "gracias a",
+      "translation": "thanks to",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "a causa de",
+      "translation": "because of",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "tener razón",
+      "translation": "to be right",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "estar equivocado",
+      "translation": "to be wrong",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "vale la pena",
+      "translation": "to be worth it",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "dar igual",
+      "translation": "to not matter",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "sin duda",
+      "translation": "without a doubt",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "a lo mejor",
+      "translation": "maybe",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "de todos modos",
+      "translation": "anyway",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "por supuesto",
+      "translation": "of course",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "es posible que",
+      "translation": "it is possible that",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "mientras tanto",
+      "translation": "meanwhile",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    },
+    {
+      "term": "aun así",
+      "translation": "even so",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "connectors"
+      ]
+    }
+  ]
+}

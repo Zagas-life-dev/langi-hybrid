@@ -1,0 +1,428 @@
+{
+  "slug": "es-a1-greetings",
+  "title": "Greetings & Politeness",
+  "description": "Say hello, goodbye, please and thank you — the first words you need.",
+  "level": "A1",
+  "topic": "greetings",
+  "order": 1,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "hola",
+      "translation": "hello/hi",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "buenos días",
+      "translation": "good morning",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "buenas tardes",
+      "translation": "good afternoon",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "buenas noches",
+      "translation": "good evening/good night",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "adiós",
+      "translation": "goodbye",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "hasta luego",
+      "translation": "see you later",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "hasta pronto",
+      "translation": "see you soon",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "hasta mañana",
+      "translation": "see you tomorrow",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "nos vemos",
+      "translation": "see you",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "chao",
+      "translation": "bye",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "bienvenido",
+      "translation": "welcome",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "por favor",
+      "translation": "please",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "gracias",
+      "translation": "thank you",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "muchas gracias",
+      "translation": "thank you very much",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "de nada",
+      "translation": "you’re welcome",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "perdón",
+      "translation": "sorry/excuse me",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "disculpe",
+      "translation": "excuse me",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness",
+        "formal"
+      ]
+    },
+    {
+      "term": "con permiso",
+      "translation": "excuse me (passing by)",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "lo siento",
+      "translation": "I’m sorry",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "politeness"
+      ]
+    },
+    {
+      "term": "sí",
+      "translation": "yes",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "term": "no",
+      "translation": "no",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "term": "tal vez",
+      "translation": "maybe",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "term": "quizás",
+      "translation": "perhaps",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "term": "de acuerdo",
+      "translation": "okay/agreed",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "term": "vale",
+      "translation": "okay (Spain)",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "claro",
+      "translation": "of course/sure",
+      "partOfSpeech": "adverb",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿cómo estás?",
+      "translation": "how are you?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "¿cómo está usted?",
+      "translation": "how are you?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "formal"
+      ]
+    },
+    {
+      "term": "¿qué tal?",
+      "translation": "how’s it going?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "estoy bien",
+      "translation": "I’m fine",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "muy bien",
+      "translation": "very well",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿y tú?",
+      "translation": "and you?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "¿y usted?",
+      "translation": "and you?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "formal"
+      ]
+    },
+    {
+      "term": "mucho gusto",
+      "translation": "nice to meet you",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "encantado",
+      "translation": "pleased to meet you",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿cómo te llamas?",
+      "translation": "what’s your name?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "informal"
+      ]
+    },
+    {
+      "term": "¿cómo se llama usted?",
+      "translation": "what is your name?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "formal"
+      ]
+    },
+    {
+      "term": "me llamo",
+      "translation": "my name is",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "mi nombre es",
+      "translation": "my name is",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿de dónde eres?",
+      "translation": "where are you from?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "soy de",
+      "translation": "I’m from",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿hablas inglés?",
+      "translation": "do you speak English?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "no entiendo",
+      "translation": "I don’t understand",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿puedes repetir?",
+      "translation": "can you repeat?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "más despacio, por favor",
+      "translation": "slower, please",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "por supuesto",
+      "translation": "of course",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "buen provecho",
+      "translation": "enjoy your meal",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "salud",
+      "translation": "cheers/bless you",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "felicidades",
+      "translation": "congratulations",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "buena suerte",
+      "translation": "good luck",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "cuídate",
+      "translation": "take care",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    },
+    {
+      "term": "¿cómo se dice...?",
+      "translation": "how do you say...?",
+      "partOfSpeech": "phrase",
+      "tags": [
+        "greeting"
+      ]
+    }
+  ]
+}

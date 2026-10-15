@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offline · Langi</title>
+    <style>
+      :root { --paper:#f4f1ea; --ink:#1a1a1a; --accent:#c0563c; --muted:#6b675f; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        background: var(--paper); color: var(--ink); font-family: Georgia, 'Times New Roman', serif;
+        text-align: center; padding: 2rem;
+      }
+      .card { max-width: 28rem; border: 1px solid var(--ink); padding: 2.5rem 2rem; box-shadow: 6px 6px 0 var(--ink); background: var(--paper); }
+      .mark { font-size: 3rem; color: var(--accent); line-height: 1; }
+      h1 { font-size: 1.8rem; margin: 1rem 0 0.5rem; }
+      p { color: var(--muted); line-height: 1.6; margin: 0.5rem 0; font-size: 0.95rem; }
+      button {
+        margin-top: 1.5rem; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+        padding: 0.7rem 1.4rem; font-family: inherit; font-size: 0.95rem; cursor: pointer;
+      }
+      .meta { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="mark">◆</div>
+      <h1>You're offline</h1>
+      <p>Langi can't reach the network right now. Any reviews you finished are saved and will sync automatically once you're back online.</p>
+      <p class="meta">Reconnect to keep learning</p>
+      <button onclick="location.reload()">Try again</button>
+    </div>
+  </body>
+</html>

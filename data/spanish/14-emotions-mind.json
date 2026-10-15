@@ -1,0 +1,441 @@
+{
+  "slug": "es-b1-emotions",
+  "title": "Emotions & the Mind",
+  "description": "Name feelings and talk about thoughts, memory and the inner life.",
+  "level": "B1",
+  "topic": "emotions",
+  "order": 14,
+  "answerTolerance": "lenient",
+  "cards": [
+    {
+      "term": "la emoción",
+      "translation": "the emotion",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el sentimiento",
+      "translation": "the feeling",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "feliz",
+      "translation": "happy",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "contento",
+      "translation": "content/glad",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "triste",
+      "translation": "sad",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "enfadado",
+      "translation": "angry (Spain)",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "enojado",
+      "translation": "angry (LatAm)",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "asustado",
+      "translation": "scared",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "nervioso",
+      "translation": "nervous",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "tranquilo",
+      "translation": "calm",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "preocupado",
+      "translation": "worried",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "sorprendido",
+      "translation": "surprised",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "aburrido",
+      "translation": "bored",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "emocionado",
+      "translation": "excited",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "orgulloso",
+      "translation": "proud",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "avergonzado",
+      "translation": "embarrassed",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "celoso",
+      "translation": "jealous",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "decepcionado",
+      "translation": "disappointed",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "confundido",
+      "translation": "confused",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "agradecido",
+      "translation": "grateful",
+      "partOfSpeech": "adjective",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "la alegría",
+      "translation": "the joy",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la tristeza",
+      "translation": "the sadness",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el miedo",
+      "translation": "the fear",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la ira",
+      "translation": "the anger",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el amor",
+      "translation": "the love",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el odio",
+      "translation": "the hatred",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la esperanza",
+      "translation": "the hope",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la sorpresa",
+      "translation": "the surprise",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la vergüenza",
+      "translation": "the shame",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el orgullo",
+      "translation": "the pride",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el estrés",
+      "translation": "the stress",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el ánimo",
+      "translation": "the mood/spirits",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la mente",
+      "translation": "the mind",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el pensamiento",
+      "translation": "the thought",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la idea",
+      "translation": "the idea",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "la memoria",
+      "translation": "the memory (faculty)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "el recuerdo",
+      "translation": "the memory (recollection)",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "el sueño",
+      "translation": "the dream/sleep",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    },
+    {
+      "term": "la duda",
+      "translation": "the doubt",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "f"
+    },
+    {
+      "term": "reír",
+      "translation": "to laugh",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "llorar",
+      "translation": "to cry",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "sonreír",
+      "translation": "to smile",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "sentir",
+      "translation": "to feel",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "extrañar",
+      "translation": "to miss",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "disfrutar",
+      "translation": "to enjoy",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "odiar",
+      "translation": "to hate",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "amar",
+      "translation": "to love",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "soñar",
+      "translation": "to dream",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "preocuparse",
+      "translation": "to worry",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "sentirse",
+      "translation": "to feel (oneself)",
+      "partOfSpeech": "verb",
+      "tags": [
+        "emotions"
+      ]
+    },
+    {
+      "term": "el carácter",
+      "translation": "the character",
+      "partOfSpeech": "noun",
+      "tags": [
+        "emotions"
+      ],
+      "gender": "m"
+    }
+  ]
+}

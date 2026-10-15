@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "es-c2-el-ocaso-del-pueblo",
+    "level": "C2",
+    "topic": "literary reflection",
+    "title": "El ocaso del pueblo",
+    "titleTranslation": "The twilight of the village",
+    "sentences": [
+      { "text": "El pueblo, antaño bullicioso, languidecía ahora bajo un silencio casi sepulcral.", "translation": "The village, once bustling, now languished under an almost sepulchral silence." },
+      { "text": "Las casas, con las contraventanas cerradas, parecían párpados rendidos al sueño.", "translation": "The houses, with their shutters closed, seemed like eyelids surrendered to sleep." },
+      { "text": "Quienes se quedaron lo hicieron menos por esperanza que por arraigo.", "translation": "Those who stayed did so less out of hope than out of attachment." },
+      { "text": "Don Aurelio, el último maestro, recorría las calles desiertas con paso cansino.", "translation": "Don Aurelio, the last schoolmaster, wandered the deserted streets with a weary gait." },
+      { "text": "Recordaba, no sin cierta congoja, las aulas rebosantes de niños.", "translation": "He remembered, not without a certain anguish, the classrooms brimming with children." },
+      { "text": "El progreso, esa palabra tantas veces invocada, había pasado de largo.", "translation": "Progress, that word so often invoked, had passed it by." },
+      { "text": "Y sin embargo, en cada amanecer persistía un tenue rescoldo de dignidad.", "translation": "And yet, in every dawn a faint ember of dignity persisted." },
+      { "text": "Acaso, pensaba el maestro, la memoria fuera la última forma de resistencia.", "translation": "Perhaps, the schoolmaster thought, memory was the last form of resistance." },
+      { "text": "Mientras hubiera quien recordara, el pueblo no estaría del todo muerto.", "translation": "As long as there was someone to remember, the village would not be entirely dead." }
+    ],
+    "glossary": [
+      { "term": "el ocaso", "translation": "the twilight / decline" },
+      { "term": "languidecer", "translation": "to languish" },
+      { "term": "el arraigo", "translation": "the (deep) attachment / roots" },
+      { "term": "la congoja", "translation": "the anguish" },
+      { "term": "el rescoldo", "translation": "the ember" }
+    ],
+    "questions": [
+      { "question": "How is the village described at the start?", "options": ["Bustling and lively", "Languishing in near silence", "Newly built", "Crowded with tourists"], "answer": 1 },
+      { "question": "Who is Don Aurelio?", "options": ["The mayor", "The last schoolmaster", "A young farmer", "A visitor"], "answer": 1 },
+      { "question": "What does the schoolmaster see as the last form of resistance?", "options": ["Money", "Progress", "Memory", "Silence"], "answer": 2 }
+    ]
+  },
+  {
+    "slug": "es-c2-memorias-de-un-viajero",
+    "level": "C2",
+    "topic": "literary memoir",
+    "title": "Memorias de un viajero",
+    "titleTranslation": "Memoirs of a traveller",
+    "sentences": [
+      { "text": "A lo largo de los años, había recorrido tierras cuyos nombres apenas recuerdo.", "translation": "Over the years, I had travelled lands whose names I scarcely remember." },
+      { "text": "Cada viaje me despojaba de alguna certeza y me regalaba una pregunta nueva.", "translation": "Each journey stripped me of some certainty and gave me a new question." },
+      { "text": "Aprendí que el extranjero no es un lugar, sino una mirada.", "translation": "I learned that the foreign is not a place, but a way of looking." },
+      { "text": "En los mercados de Oriente, el bullicio se entreveraba con aromas indescriptibles.", "translation": "In the markets of the East, the hubbub intermingled with indescribable aromas." },
+      { "text": "Hubo noches en que la soledad pesaba más que cualquier equipaje.", "translation": "There were nights when loneliness weighed more than any luggage." },
+      { "text": "No obstante, jamás me arrepentí de haber partido.", "translation": "Nevertheless, I never regretted having left." },
+      { "text": "Quien no se atreve a perderse difícilmente llega a encontrarse.", "translation": "Whoever does not dare to get lost can hardly come to find themselves." },
+      { "text": "Hoy, ya anciano, comprendo que el verdadero destino era el propio camino.", "translation": "Today, now an old man, I understand that the true destination was the journey itself." },
+      { "text": "Y si pudiera, lo recorrería de nuevo sin cambiar una sola encrucijada.", "translation": "And if I could, I would travel it again without changing a single crossroads." }
+    ],
+    "glossary": [
+      { "term": "despojar", "translation": "to strip / divest" },
+      { "term": "el bullicio", "translation": "the hubbub / bustle" },
+      { "term": "entreverarse", "translation": "to intermingle" },
+      { "term": "arrepentirse", "translation": "to regret" },
+      { "term": "la encrucijada", "translation": "the crossroads" }
+    ],
+    "questions": [
+      { "question": "What did each journey give the narrator?", "options": ["More certainty", "A new question", "Wealth", "Fame"], "answer": 1 },
+      { "question": "How does the narrator define 'the foreign'?", "options": ["A distant country", "A way of looking", "A language", "A danger"], "answer": 1 },
+      { "question": "What does he conclude the true destination was?", "options": ["His homeland", "The journey itself", "A specific city", "Wealth"], "answer": 1 }
+    ]
+  }
+]

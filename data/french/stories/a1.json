@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "fr-a1-le-chat-de-lea",
+    "level": "A1",
+    "topic": "animals & daily life",
+    "title": "Le chat de Léa",
+    "titleTranslation": "Léa's cat",
+    "sentences": [
+      { "text": "Léa a un petit chat.", "translation": "Léa has a little cat." },
+      { "text": "Le chat s'appelle Minou.", "translation": "The cat is called Minou." },
+      { "text": "Minou est noir et blanc.", "translation": "Minou is black and white." },
+      { "text": "Le matin, Léa donne du lait au chat.", "translation": "In the morning, Léa gives the cat some milk." },
+      { "text": "Minou aime dormir sur le lit.", "translation": "Minou likes to sleep on the bed." },
+      { "text": "Le soir, Léa joue avec son chat.", "translation": "In the evening, Léa plays with her cat." },
+      { "text": "Léa aime beaucoup Minou.", "translation": "Léa loves Minou very much." }
+    ],
+    "glossary": [
+      { "term": "le chat", "translation": "the cat" },
+      { "term": "le lait", "translation": "the milk" },
+      { "term": "dormir", "translation": "to sleep" },
+      { "term": "le lit", "translation": "the bed" },
+      { "term": "jouer", "translation": "to play" }
+    ],
+    "questions": [
+      { "question": "What colour is the cat?", "options": ["All black", "Black and white", "White", "Grey"], "answer": 1 },
+      { "question": "What does Léa give the cat in the morning?", "options": ["Water", "Bread", "Milk", "Meat"], "answer": 2 },
+      { "question": "Where does Minou like to sleep?", "options": ["On the bed", "On the floor", "In the garden", "On a chair"], "answer": 0 }
+    ]
+  },
+  {
+    "slug": "fr-a1-au-marche",
+    "level": "A1",
+    "topic": "shopping & food",
+    "title": "Au marché",
+    "titleTranslation": "At the market",
+    "sentences": [
+      { "text": "C'est samedi.", "translation": "It's Saturday." },
+      { "text": "Paul va au marché avec sa mère.", "translation": "Paul goes to the market with his mother." },
+      { "text": "Il achète des pommes et du pain.", "translation": "He buys some apples and some bread." },
+      { "text": "Les pommes sont rouges et belles.", "translation": "The apples are red and beautiful." },
+      { "text": "« Bonjour, je voudrais six pommes », dit Paul.", "translation": "\"Hello, I would like six apples,\" says Paul." },
+      { "text": "Le marchand donne les pommes à Paul.", "translation": "The vendor gives the apples to Paul." },
+      { "text": "Paul paie et dit merci.", "translation": "Paul pays and says thank you." },
+      { "text": "À midi, la famille mange une bonne tarte aux pommes.", "translation": "At noon, the family eats a nice apple tart." }
+    ],
+    "glossary": [
+      { "term": "le marché", "translation": "the market" },
+      { "term": "acheter", "translation": "to buy" },
+      { "term": "la pomme", "translation": "the apple" },
+      { "term": "le marchand", "translation": "the vendor/seller" },
+      { "term": "payer", "translation": "to pay" }
+    ],
+    "questions": [
+      { "question": "Which day is it in the story?", "options": ["Sunday", "Monday", "Saturday", "Friday"], "answer": 2 },
+      { "question": "How many apples does Paul want?", "options": ["Three", "Six", "Ten", "Two"], "answer": 1 },
+      { "question": "What does the family eat at noon?", "options": ["Bread", "An apple tart", "Soup", "Cheese"], "answer": 1 }
+    ]
+  }
+]

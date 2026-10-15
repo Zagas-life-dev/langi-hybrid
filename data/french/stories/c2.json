@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "fr-c2-le-legs",
+    "level": "C2",
+    "topic": "inheritance & irony",
+    "title": "Le legs",
+    "titleTranslation": "The bequest",
+    "sentences": [
+      { "text": "Lorsque le notaire ouvrit le testament, l'assistance retint son souffle.", "translation": "When the notary opened the will, those present held their breath." },
+      { "text": "Le vieux Berthier, réputé avare jusqu'à la caricature, avait amassé une fortune considérable.", "translation": "Old Berthier, famed for a miserliness verging on caricature, had amassed a considerable fortune." },
+      { "text": "Chacun, parmi les héritiers, escomptait en secret la part du lion.", "translation": "Each of the heirs secretly reckoned on the lion's share." },
+      { "text": "Or le défunt, en guise d'ultime pied de nez, léguait l'intégralité de ses biens à son chat.", "translation": "But the deceased, by way of a final thumbing of the nose, bequeathed the entirety of his estate to his cat." },
+      { "text": "Un silence consterné succéda à la stupeur première.", "translation": "A dismayed silence followed the initial shock." },
+      { "text": "« Quoi qu'il en soit, précisa le notaire, la clause est parfaitement valable. »", "translation": "\"Be that as it may,\" the notary specified, \"the clause is perfectly valid.\"" },
+      { "text": "Les neveux, naguère si prévenants, quittèrent la pièce en maugréant.", "translation": "The nephews, once so attentive, left the room grumbling." },
+      { "text": "Seule la gouvernante, désignée pour veiller sur l'animal, esquissa un sourire.", "translation": "Only the housekeeper, appointed to look after the animal, allowed herself a faint smile." },
+      { "text": "Car elle, et elle seule, savait combien le vieil homme avait su, à sa manière, récompenser la fidélité.", "translation": "For she, and she alone, knew how well the old man had, in his own way, rewarded loyalty." }
+    ],
+    "glossary": [
+      { "term": "le legs", "translation": "the bequest/legacy" },
+      { "term": "avare", "translation": "miserly/stingy" },
+      { "term": "un pied de nez", "translation": "a thumbing of the nose (gesture of mockery)" },
+      { "term": "quoi qu'il en soit", "translation": "be that as it may (subjunctive set phrase)" },
+      { "term": "maugréer", "translation": "to grumble/mutter" }
+    ],
+    "questions": [
+      { "question": "To whom did Berthier leave his fortune?", "options": ["His nephews", "The housekeeper", "His cat", "A charity"], "answer": 2 },
+      { "question": "How did the nephews react?", "options": ["With joy", "They left grumbling", "They contested the will", "With indifference"], "answer": 1 },
+      { "question": "Why did the housekeeper smile?", "options": ["She inherited the house", "She understood the old man had rewarded loyalty through her", "She disliked the cat", "She found the situation absurd"], "answer": 1 }
+    ]
+  },
+  {
+    "slug": "fr-c2-la-derniere-representation",
+    "level": "C2",
+    "topic": "art & mortality",
+    "title": "La dernière représentation",
+    "titleTranslation": "The last performance",
+    "sentences": [
+      { "text": "Le théâtre, ce soir-là, affichait complet, comme aux plus belles heures de sa gloire.", "translation": "The theatre, that evening, was sold out, as in the finest hours of its glory." },
+      { "text": "Sur la scène, la vieille comédienne savait que ce serait là son ultime rôle.", "translation": "On the stage, the old actress knew this would be her final role." },
+      { "text": "Nul, dans la salle, ne se doutait que la maladie la rongeait depuis des mois.", "translation": "No one in the auditorium suspected that illness had been gnawing at her for months." },
+      { "text": "Elle déclama son texte avec une intensité que nul, jadis, ne lui avait connue.", "translation": "She declaimed her lines with an intensity no one had ever known in her before." },
+      { "text": "Chaque réplique semblait arrachée non au personnage, mais à elle-même.", "translation": "Each line seemed wrested not from the character, but from herself." },
+      { "text": "Quand le rideau tomba, un silence sacré précéda l'ovation.", "translation": "When the curtain fell, a sacred silence preceded the ovation." },
+      { "text": "On la rappela sept fois ; sept fois, elle s'inclina, le visage baigné de larmes.", "translation": "She was called back seven times; seven times she bowed, her face bathed in tears." },
+      { "text": "Personne ne comprit que ces applaudissements tenaient lieu, pour elle, d'adieu.", "translation": "No one understood that this applause served, for her, as a farewell." },
+      { "text": "Elle s'éteignit trois jours plus tard, emportant avec elle le secret de sa dernière flamme.", "translation": "She passed away three days later, taking with her the secret of her last flame." }
+    ],
+    "glossary": [
+      { "term": "afficher complet", "translation": "to be sold out" },
+      { "term": "ronger", "translation": "to gnaw at/eat away at" },
+      { "term": "déclamer", "translation": "to declaim/recite dramatically" },
+      { "term": "la réplique", "translation": "the line (of dialogue)" },
+      { "term": "s'éteindre", "translation": "to pass away (lit. to go out, of a flame)" }
+    ],
+    "questions": [
+      { "question": "What did the actress know about this performance?", "options": ["It would make her famous", "It would be her final role", "It was poorly attended", "It was a rehearsal"], "answer": 1 },
+      { "question": "What did the audience fail to understand?", "options": ["The plot of the play", "That the applause was her farewell", "Why she cried", "That she was old"], "answer": 1 },
+      { "question": "What does «elle s'éteignit» convey here?", "options": ["She fainted", "She retired", "She died", "She left the stage"], "answer": 2 }
+    ]
+  }
+]

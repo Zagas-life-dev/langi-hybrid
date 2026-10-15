@@ -1,0 +1,61 @@
+[
+  {
+    "slug": "es-b1-el-primer-dia-de-trabajo",
+    "level": "B1",
+    "topic": "work & feelings",
+    "title": "El primer día de trabajo",
+    "titleTranslation": "The first day at work",
+    "sentences": [
+      { "text": "Marcos estaba muy nervioso porque era su primer día de trabajo.", "translation": "Marcos was very nervous because it was his first day at work." },
+      { "text": "Llegó temprano a la oficina para causar una buena impresión.", "translation": "He arrived early at the office to make a good impression." },
+      { "text": "Su jefa le explicó las tareas que tendría que hacer.", "translation": "His boss explained the tasks he would have to do." },
+      { "text": "Al principio no entendía bien el programa del ordenador.", "translation": "At first he did not understand the computer program well." },
+      { "text": "Una compañera amable le ayudó con paciencia.", "translation": "A kind colleague helped him patiently." },
+      { "text": "Durante la comida, conoció al resto del equipo.", "translation": "During lunch, he met the rest of the team." },
+      { "text": "Por la tarde ya se sentía más tranquilo y seguro.", "translation": "By the afternoon he already felt calmer and more confident." },
+      { "text": "Cuando volvió a casa, pensó que todo había salido bien.", "translation": "When he got home, he thought that everything had gone well." },
+      { "text": "Estaba contento y con ganas de volver al día siguiente.", "translation": "He was happy and eager to return the next day." }
+    ],
+    "glossary": [
+      { "term": "nervioso", "translation": "nervous" },
+      { "term": "la jefa", "translation": "the boss (f.)" },
+      { "term": "la tarea", "translation": "the task" },
+      { "term": "el compañero", "translation": "the colleague" },
+      { "term": "el equipo", "translation": "the team" }
+    ],
+    "questions": [
+      { "question": "Why was Marcos nervous?", "options": ["He was late", "It was his first day at work", "He lost his keys", "He had an exam"], "answer": 1 },
+      { "question": "Who helped him with the program?", "options": ["His boss", "A kind colleague", "His brother", "Nobody"], "answer": 1 },
+      { "question": "How did he feel by the afternoon?", "options": ["More nervous", "Angry", "Calmer and more confident", "Bored"], "answer": 2 }
+    ]
+  },
+  {
+    "slug": "es-b1-un-viaje-a-la-montana",
+    "level": "B1",
+    "topic": "travel & nature",
+    "title": "Un viaje a la montaña",
+    "titleTranslation": "A trip to the mountains",
+    "sentences": [
+      { "text": "El verano pasado, Elena y sus amigos decidieron viajar a la montaña.", "translation": "Last summer, Elena and her friends decided to travel to the mountains." },
+      { "text": "Prepararon las mochilas con comida, agua y ropa de abrigo.", "translation": "They packed their backpacks with food, water and warm clothes." },
+      { "text": "El viaje en tren duró tres horas.", "translation": "The train journey lasted three hours." },
+      { "text": "Cuando llegaron, el paisaje era impresionante.", "translation": "When they arrived, the landscape was impressive." },
+      { "text": "Caminaron por un sendero hasta un lago azul.", "translation": "They walked along a path to a blue lake." },
+      { "text": "Aunque estaban cansados, se sentían felices.", "translation": "Although they were tired, they felt happy." },
+      { "text": "Por la noche, durmieron en una pequeña cabaña.", "translation": "At night, they slept in a small cabin." },
+      { "text": "Al día siguiente, prometieron que volverían pronto.", "translation": "The next day, they promised they would return soon." }
+    ],
+    "glossary": [
+      { "term": "la mochila", "translation": "the backpack" },
+      { "term": "el paisaje", "translation": "the landscape" },
+      { "term": "el sendero", "translation": "the path/trail" },
+      { "term": "el lago", "translation": "the lake" },
+      { "term": "la cabaña", "translation": "the cabin" }
+    ],
+    "questions": [
+      { "question": "How long was the train journey?", "options": ["One hour", "Three hours", "All day", "Thirty minutes"], "answer": 1 },
+      { "question": "Where did the path lead?", "options": ["To a city", "To a blue lake", "To the sea", "To a village"], "answer": 1 },
+      { "question": "Where did they sleep?", "options": ["In a hotel", "In a tent", "In a small cabin", "On the train"], "answer": 2 }
+    ]
+  }
+]
