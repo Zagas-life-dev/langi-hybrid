@@ -82,6 +82,50 @@ export async function translateWord(term: string, lang: string, nativeLang = 'en
   }
 }
 
+export interface ContextTranslation {
+  /** What the selected word/phrase means in THIS sentence (not the dictionary sense). */
+  meaning: string
+  /** Natural full-sentence translation. */
+  sentence: string
+  /** Word-for-word rendering, to show how the sentence is built. */
+  literal: string
+  /** Register, tone, idiom or connotation the dictionary misses. Empty if none. */
+  nuance: string
+  /** Grammar behind the form (tense, agreement, pronoun...). Empty if none. */
+  grammar: string
+  /** Other ways a native might say it, with a short note on when. */
+  alternatives: string[]
+}
+
+/** Nuanced, context-aware translation of a selection plus the full sentence it sits in. */
+export async function translateInContext(selection: string, sentence: string, lang: string, nativeLang = 'en', before = '', after = ''): Promise<ContextTranslation | null> {
+  const ln = langName(lang)
+  const nn = langName(nativeLang)
+  const around = [before && `Before: ${before}`, after && `After: ${after}`].filter(Boolean).join('\n')
+  const out = await ask<Partial<ContextTranslation>>('chat',
+    `You are an expert ${ln}-${nn} translator and teacher. The learner selected a ${ln} word or phrase inside a ` +
+    `sentence. Translate WITH CONTEXT, never in isolation. Answer in ${nn}.\n` +
+    `- meaning: what the selection means in this exact sentence (pick the right sense; say if it is an idiom or part of a fixed expression).\n` +
+    `- sentence: a natural, fluent ${nn} translation of the WHOLE sentence, as a native would say it, not word-for-word.\n` +
+    `- literal: a word-for-word ${nn} gloss, so the learner sees the structure.\n` +
+    `- nuance: register (formal/casual/slang), tone, implied meaning or cultural connotation. One or two sentences. Empty if nothing notable.\n` +
+    `- grammar: the grammar that shapes this form (tense/mood, agreement, pronoun, word order). One sentence. Empty if nothing notable.\n` +
+    `- alternatives: up to 2 other natural ${ln} ways to say the same thing, each followed by a short note on when it fits.`,
+    `Selection: "${selection}"\nSentence: "${sentence}"${around ? `\n${around}` : ''}`,
+    S.object({ properties: { meaning: str(), sentence: str(), literal: str(), nuance: str(), grammar: str(), alternatives: strList() } }))
+  const meaning = String(out?.meaning || '').trim()
+  const full = String(out?.sentence || '').trim()
+  if (!meaning && !full) return null
+  return {
+    meaning,
+    sentence: full,
+    literal: String(out?.literal || '').trim(),
+    nuance: String(out?.nuance || '').trim(),
+    grammar: String(out?.grammar || '').trim(),
+    alternatives: (Array.isArray(out?.alternatives) ? out!.alternatives : []).map((s) => String(s).trim()).filter(Boolean).slice(0, 2),
+  }
+}
+
 export async function generateDistractors(term: string, translation: string, lang: string): Promise<string[]> {
   const ln = langName(lang)
   const out = await ask<{ distractors?: string[] }>('classify',
@@ -96,13 +140,16 @@ export async function generateDistractors(term: string, translation: string, lan
 
 // --- Sentence practice ----------------------------------------------------------
 
-export async function generateSentencePrompt(level: string, lang: string, focus?: string[]): Promise<string> {
+export async function generateSentencePrompt(level: string, lang: string, focus?: string[], recent: string[] = []): Promise<string> {
   const ln = langName(lang)
+  // Nano answers the same way every time, so force variety: a random topic, plus the last few sentences to avoid.
+  const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
   const out = await ask<{ prompt?: string }>('explain',
     `You are a ${ln} writing coach. Produce ONE short, natural English sentence for a ${level} learner to ` +
     `translate into ${ln}. Match their level (simpler for A1/A2, richer for B1+). Vary the topic. ` +
-    focusClause(focus, 'About half the time, write a sentence whose translation needs one of those forms.'),
-    `Give me a level-${level} sentence to translate.`,
+    focusClause(focus, 'About half the time, write a sentence whose translation needs one of those forms.') +
+    (recent.length ? `Do NOT repeat or closely copy any of these earlier sentences: ${recent.map((r) => `"${r}"`).join(' ')}. ` : ''),
+    `Give me a new level-${level} sentence to translate. Topic idea: ${topic}. (variation ${Math.floor(Math.random() * 1000)})`,
     S.object({ properties: { prompt: str() } }))
   return String(out?.prompt || '').trim()
 }

@@ -8,6 +8,16 @@ import { generateSentencePrompt, gradeSentence } from '@/lib/hybrid/tutor'
 
 interface PracticeCtx { level: string; lang: string; focus: string[] }
 
+// Level and weak spots are cached so practice still works with no connection.
+const CTX_KEY = 'langi.sentenceCtx'
+const RECENT_KEY = 'langi.sentenceRecent'
+function readJson<T>(key: string, fallback: T): T {
+  try { return JSON.parse(localStorage.getItem(key) || '') as T } catch { return fallback }
+}
+function writeJson(key: string, value: unknown) {
+  try { localStorage.setItem(key, JSON.stringify(value)) } catch { /* private mode: fine */ }
+}
+
 interface Grade { score: number; feedback: string; correction: string }
 
 export default function SentenceBuilder() {
@@ -18,7 +28,7 @@ export default function SentenceBuilder() {
   const [error, setError] = useState<string | null>(null)
   const ctxRef = useRef<PracticeCtx | null>(null)
 
-  const { speechTag, meta, ttsVoice } = useLang()
+  const { speechTag, meta, ttsVoice, learningLang } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
   const stt = useSTT(speechTag, (t) => setSentence((prev) => (prev ? prev + ' ' + t : t)))
 
@@ -27,16 +37,26 @@ export default function SentenceBuilder() {
     try {
       // Level + weak spots come from the server; the sentence is written in the browser
       // through Firebase AI Logic (on-device when it can).
-      const res = await fetch('/api/sentences/prompt')
-      const ctx = await res.json()
-      if (!res.ok) { setError(ctx.error || 'Could not load a prompt'); setPhase('writing'); return }
+      let ctx: PracticeCtx | null = null
+      try {
+        const res = await fetch('/api/sentences/prompt')
+        const body = await res.json()
+        if (!res.ok) { setError(body.error || 'Could not load a prompt'); setPhase('writing'); return }
+        ctx = body as PracticeCtx
+        writeJson(CTX_KEY, ctx)
+      } catch {
+        // Offline: use the last known level and weak spots.
+        ctx = readJson<PracticeCtx | null>(CTX_KEY, null) ?? { level: 'A2', lang: learningLang, focus: [] }
+      }
       ctxRef.current = ctx
-      const p = await generateSentencePrompt(ctx.level, ctx.lang, ctx.focus)
+      const recent = readJson<string[]>(RECENT_KEY, [])
+      const p = await generateSentencePrompt(ctx.level, ctx.lang, ctx.focus, recent)
       if (!p) { setError('Could not generate a prompt.'); setPhase('writing'); return }
+      writeJson(RECENT_KEY, [p, ...recent].slice(0, 8))
       setPrompt(p)
       setPhase('writing')
     } catch (e) { setError((e as Error).message || 'Could not load a prompt'); setPhase('writing') }
-  }, [])
+  }, [learningLang])
 
   // Fetch a prompt on mount (setState resolves after the fetch).
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -50,12 +70,14 @@ export default function SentenceBuilder() {
       if (!ctx) { setError('Reload the prompt first'); setPhase('writing'); return }
       // Graded in the browser (Firebase AI Logic "grade" task: on-device first, works offline).
       const g = await gradeSentence(prompt, sentence.trim(), ctx.level, ctx.lang)
-      const res = await fetch('/api/sentences/grade', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, sentence: sentence.trim(), grade: g }),
-      })
-      const data = await res.json()
-      if (!res.ok) { setError(data.error || 'Could not save your attempt'); setPhase('writing'); return }
+      // The grade is already on screen-ready; saving the attempt is best-effort so it works offline.
+      try {
+        const res = await fetch('/api/sentences/grade', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt, sentence: sentence.trim(), grade: g }),
+        })
+        if (!res.ok) console.warn('[sentences] attempt not saved', res.status)
+      } catch { console.warn('[sentences] offline: attempt not saved') }
       setGrade(g)
       setPhase('graded')
       if (g.correction && tts.supported) tts.speak(g.correction)
