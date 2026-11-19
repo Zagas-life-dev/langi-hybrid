@@ -5,6 +5,7 @@ import { useTTS, useSTT } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import PronunciationCheck from '@/components/PronunciationCheck'
 import { generateSentencePrompt, gradeSentence } from '@/lib/hybrid/tutor'
+import { LiveCorrectPanel, useLiveCorrect } from '@/components/LiveCorrect'
 
 interface PracticeCtx { level: string; lang: string; focus: string[] }
 
@@ -27,10 +28,13 @@ export default function SentenceBuilder() {
   const [phase, setPhase] = useState<'loading' | 'writing' | 'grading' | 'graded'>('loading')
   const [error, setError] = useState<string | null>(null)
   const ctxRef = useRef<PracticeCtx | null>(null)
+  const [level, setLevel] = useState('A2')
 
   const { speechTag, meta, ttsVoice, learningLang } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
   const stt = useSTT(speechTag, (t) => setSentence((prev) => (prev ? prev + ' ' + t : t)))
+  // Live Correct: on-device feedback while writing the translation.
+  const live = useLiveCorrect(sentence, learningLang, phase === 'writing')
 
   const loadPrompt = useCallback(async () => {
     setPhase('loading'); setError(null); setGrade(null); setSentence('')
@@ -49,6 +53,7 @@ export default function SentenceBuilder() {
         ctx = readJson<PracticeCtx | null>(CTX_KEY, null) ?? { level: 'A2', lang: learningLang, focus: [] }
       }
       ctxRef.current = ctx
+      setLevel(ctx.level)
       const recent = readJson<string[]>(RECENT_KEY, [])
       const p = await generateSentencePrompt(ctx.level, ctx.lang, ctx.focus, recent)
       if (!p) { setError('Could not generate a prompt.'); setPhase('writing'); return }
@@ -112,6 +117,10 @@ export default function SentenceBuilder() {
               </button>
             )}
           </div>
+
+          {phase === 'writing' && (
+            <div className="mb-4"><LiveCorrectPanel text={sentence} state={live} lang={learningLang} level={level} onApply={setSentence} /></div>
+          )}
 
           {phase !== 'graded' && (
             <button onClick={submit} disabled={phase === 'grading' || !sentence.trim()} className="btn-ink w-full">

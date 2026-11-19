@@ -9,6 +9,7 @@ import { useWordLookup, TappableText, WordLookupCard } from '@/components/WordLo
 import { SCENARIOS, scenarioByKey } from '@/lib/scenarios'
 import { conversationStarter, randomTopic, scenarioDebrief, tutorReply } from '@/lib/hybrid/tutor'
 import { useHud } from '@/lib/hybrid/hud'
+import { LiveCorrectPanel, useLiveCorrect } from '@/components/LiveCorrect'
 
 interface ChatCtx { level: string; lang: string; focus: string[] }
 
@@ -51,16 +52,20 @@ export default function ChatWindow() {
   const lastEvent = hud.events.find((e) => e.task === 'chat' || e.task === 'deepDive')
   // Level, language and weak spots live on the server; AI runs here in the browser.
   const ctxRef = useRef<ChatCtx | null>(null)
+  const [level, setLevel] = useState('A2')
   async function getCtx(): Promise<ChatCtx> {
     if (ctxRef.current) return ctxRef.current
     const res = await fetch('/api/chat/context')
     if (!res.ok) throw new Error('Could not load your profile')
     ctxRef.current = await res.json()
+    setLevel(ctxRef.current!.level)
     return ctxRef.current!
   }
 
-  const { speechTag, ttsVoice, nativeLang } = useLang()
+  const { speechTag, ttsVoice, nativeLang, learningLang } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
+  // Live Correct: on-device feedback on what the learner is typing (conversation mode only).
+  const liveOn = true
   // Grammar-mode replies are explanations written in the learner's own
   // language, so reading them with the target-language voice mangles them.
   const nativeTts = useTTS(nativeLang === 'en' ? 'en-US' : nativeLang)
@@ -74,6 +79,7 @@ export default function ChatWindow() {
   const [handsFree, setHandsFree] = useState(false)
   const [voicePaused, setVoicePaused] = useState(false)
   const silentListens = useRef(0)
+  const live = useLiveCorrect(input, learningLang, mode === 'conversation' && liveOn && !handsFree && Boolean(sessionId))
   const stt = useSTT(sttLang, (t) => {
     if (handsFree) {
       silentListens.current = 0
@@ -487,7 +493,7 @@ export default function ChatWindow() {
       {error && <p className="meta text-accent2 mt-2" role="alert">{error}</p>}
 
       {/* Tapped-word translation result */}
-      <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} />
+      <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} onExplain={wordLookup.explain} />
 
       {/* Suggested replies */}
       {mode === 'conversation' && suggestions.length > 0 && !sending && (
@@ -499,6 +505,10 @@ export default function ChatWindow() {
             </button>
           ))}
         </div>
+      )}
+
+      {!handsFree && mode === 'conversation' && liveOn && (
+        <LiveCorrectPanel text={input} state={live} lang={learningLang} level={level} onApply={setInput} />
       )}
 
       {handsFree ? (
