@@ -10,6 +10,7 @@ import { getVideoVocab, subscribeVideoVocab, loadVideoVocab, tokenStatus, markLe
 import { langName } from '@/lib/langs'
 import { SWEET_SPOT } from '@/lib/wordsCore'
 import { useWordLookup, TappableText, WordLookupCard } from '@/components/WordLookup'
+import { postWithWordAi } from '@/lib/hybrid/words'
 
 // Multi-language subtitles for the watch page: the overlay renders every chosen
 // language at once over the video (target language on top, tappable for word
@@ -169,13 +170,10 @@ export function CaptionOverlay({ videoId, learning, native }: { videoId: string;
     // The learner's-language line at the same moment is the card's hint.
     const meaning = native !== learning ? cueAt(cuesFor(native), (tappedCue.start + tappedCue.end) / 2)?.text : undefined
     try {
-      const res = await fetch('/api/words/save-sentence', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sentence: tappedCue.text, word: term, meaning,
-          source: { kind: 'video', ref: videoId, t: Math.floor(tappedCue.start), context: tappedCue.text },
-        }),
-      })
+      const { res } = await postWithWordAi('/api/words/save-sentence', {
+        sentence: tappedCue.text, word: term, meaning,
+        source: { kind: 'video', ref: videoId, t: Math.floor(tappedCue.start), context: tappedCue.text },
+      }, { lang: learning, nativeLang: native })
       setLineSave(res.ok ? 'saved' : 'error')
       if (res.ok) {
         markLearning(videoId, term)

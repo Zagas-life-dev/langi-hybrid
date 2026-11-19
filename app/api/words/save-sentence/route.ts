@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const body = (await req.json().catch(() => ({}))) as { sentence?: string; word?: string; meaning?: string; source?: unknown }
+  const body = (await req.json().catch(() => ({}))) as { sentence?: string; word?: string; meaning?: string; source?: unknown; entry?: unknown }
   const sentence = String(body.sentence || '').trim()
   const word = String(body.word || '').trim()
   if (!sentence || !word) return NextResponse.json({ error: 'sentence and word required' }, { status: 400 })
@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
 
   let meaning = String(body.meaning || '').trim()
   if (!meaning) {
-    const out = await lookupWord(dbUser, lang, word)
-    if (!out.ok) return NextResponse.json({ error: out.error }, { status: out.status })
+    const out = await lookupWord(dbUser, lang, word, body.entry)
+    if (!out.ok) return NextResponse.json({ error: out.error, needsAi: out.needsAi }, { status: out.status })
     meaning = `${word} — ${out.entry.translation}`
   }
 

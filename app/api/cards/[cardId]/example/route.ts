@@ -2,8 +2,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { requireUser } from '@/lib/auth'
 import { connectDB } from '@/lib/db'
 import Card from '@/lib/models/Card'
-import { checkLimit } from '@/lib/ratelimit'
-import { generateExample } from '@/lib/ai'
 
 export async function POST(_req: NextRequest, { params }: { params: Promise<{ cardId: string }> }) {
   let dbUser
@@ -27,22 +25,31 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ ca
     })
   }
 
-  const limit = await checkLimit(String(dbUser._id))
-  if (!limit.ok) {
-    return NextResponse.json(
-      { error: 'Rate limit reached. Try again shortly.' },
-      { status: 429, headers: { 'Retry-After': String(limit.retryAfter ?? 60) } }
-    )
-  }
+  // Not cached: the browser writes one (Firebase AI Logic) and PUTs it back.
+  return NextResponse.json(
+    { error: 'needs-ai', card: { term: card.term, translation: card.translation, lang: card.languageCode } },
+    { status: 424 }
+  )
+}
 
+// PUT {exampleSentence, exampleTranslation} → store the browser-generated example on the card.
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ cardId: string }> }) {
   try {
-    const result = await generateExample(card.term, card.translation, card.languageCode)
-    if (!result) return NextResponse.json({ error: 'Could not generate an example.' }, { status: 502 })
-    card.exampleSentence = result.exampleSentence
-    card.exampleTranslation = result.exampleTranslation
-    await card.save()
-    return NextResponse.json({ ...result, cached: false })
-  } catch (e) {
-    return NextResponse.json({ error: (e as Error).message || 'AI unavailable' }, { status: 503 })
+    await requireUser()
+  } catch {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
+  const { cardId } = await params
+  const b = (await req.json().catch(() => ({}))) as { exampleSentence?: unknown; exampleTranslation?: unknown }
+  const sentence = typeof b.exampleSentence === 'string' ? b.exampleSentence.trim().slice(0, 300) : ''
+  if (!sentence) return NextResponse.json({ error: 'exampleSentence required' }, { status: 400 })
+  await connectDB()
+  const card = await Card.findById(cardId)
+  if (!card) return NextResponse.json({ error: 'Card not found' }, { status: 404 })
+  if (!card.exampleSentence) {
+    card.exampleSentence = sentence
+    card.exampleTranslation = typeof b.exampleTranslation === 'string' ? b.exampleTranslation.trim().slice(0, 300) : ''
+    await card.save()
+  }
+  return NextResponse.json({ ok: true })
 }

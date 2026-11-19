@@ -32,14 +32,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const body = (await req.json().catch(() => ({}))) as { term?: string; lang?: string; source?: unknown }
+  const body = (await req.json().catch(() => ({}))) as { term?: string; lang?: string; source?: unknown; entry?: unknown }
   const term = String(body.term || '').trim()
   const lang = String(body.lang || dbUser.learningLang || 'fr')
 
-  const out = await lookupWord(dbUser, lang, term)
+  const out = await lookupWord(dbUser, lang, term, body.entry)
   if (!out.ok) {
     return NextResponse.json(
-      { error: out.error },
+      { error: out.error, needsAi: out.needsAi },
       { status: out.status, headers: out.retryAfter ? { 'Retry-After': String(out.retryAfter) } : undefined }
     )
   }

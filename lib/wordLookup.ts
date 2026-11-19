@@ -1,6 +1,4 @@
 import { connectDB } from '@/lib/db'
-import { checkLimit } from '@/lib/ratelimit'
-import { translateWord } from '@/lib/ai'
 import { lexiconLookup, lexiconStore, type LexEntry } from '@/lib/lexicon'
 import { lemmatize } from '@/lib/lemma'
 import Card from '@/lib/models/Card'
@@ -12,13 +10,14 @@ import type { ILangiUser, CefrLevel } from '@/lib/models/LangiUser'
 //   1. Lexicon — the dictionary built up from earlier lookups
 //   2. Curated deck cards — ~1,500 hand-written entries per language
 //   3. Conjugation tables — "mangé" → manger, then retry 1–2 on the infinitive
-//   4. AI — only when all of the above miss (rate-limited)
+//   4. AI — only when all of the above miss. It runs in the BROWSER (Firebase AI Logic):
+//      the server answers `needsAi` and the client retries with `aiEntry`.
 // Any database hit is written back to the lexicon so the next lookup is one query,
 // and a lookup still works when the AI backends are down or rate-limited.
 
 export type LookupOutcome =
   | { ok: true; entry: LexEntry; cached: boolean }
-  | { ok: false; status: number; error: string; retryAfter?: number }
+  | { ok: false; status: number; error: string; retryAfter?: number; needsAi?: boolean }
 
 export const MAX_TERM_LENGTH = 80
 
@@ -70,7 +69,7 @@ async function databaseLookup(lang: string, term: string): Promise<LexEntry | nu
   return deck
 }
 
-export async function lookupWord(dbUser: ILangiUser, lang: string, rawTerm: string): Promise<LookupOutcome> {
+export async function lookupWord(dbUser: ILangiUser, lang: string, rawTerm: string, aiEntry?: unknown): Promise<LookupOutcome> {
   const term = rawTerm.trim()
   if (!term) return { ok: false, status: 400, error: 'No word provided' }
   if (term.length > MAX_TERM_LENGTH) return { ok: false, status: 400, error: 'That looks too long to save as a word' }
@@ -96,17 +95,31 @@ export async function lookupWord(dbUser: ILangiUser, lang: string, rawTerm: stri
     }
   }
 
-  // 4. Nothing in the database — ask the AI (rate-limited), then remember it.
-  const limit = await checkLimit(String(dbUser._id))
-  if (!limit.ok) return { ok: false, status: 429, error: 'Rate limit reached. Try again shortly.', retryAfter: limit.retryAfter }
-
-  try {
-    const ai = await translateWord(term, lang, dbUser.nativeLang || 'en')
-    if (!ai) return { ok: false, status: 502, error: 'Could not translate that word.' }
-    await lexiconStore(lang, term, ai, 'ai')
-    return { ok: true, entry: ai, cached: false }
-  } catch {
+  // 4. Nothing in the database. The browser translates it (Firebase AI Logic) and retries
+  //    with `aiEntry`; we validate it and remember it.
+  const ai = cleanAiEntry(aiEntry)
+  if (!ai) {
     const hint = lemma ? ` It looks like a form of “${lemma.infinitive}”.` : ''
-    return { ok: false, status: 503, error: `Translation is unavailable right now and this word isn't in the dictionary yet.${hint}` }
+    return { ok: false, status: 424, needsAi: true, error: `Not in the dictionary yet.${hint}` }
+  }
+  await lexiconStore(lang, term, ai, 'ai')
+  return { ok: true, entry: ai, cached: false }
+}
+
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+
+/** Sanitise a dictionary entry produced by the browser's on-device/cloud model. */
+export function cleanAiEntry(raw: unknown): LexEntry | null {
+  if (!raw || typeof raw !== 'object') return null
+  const r = raw as Record<string, unknown>
+  const translation = typeof r.translation === 'string' ? r.translation.trim().slice(0, 120) : ''
+  if (!translation) return null
+  const gender = typeof r.gender === 'string' ? r.gender.trim().toLowerCase() : ''
+  const level = typeof r.level === 'string' ? r.level.trim().toUpperCase() : ''
+  return {
+    translation,
+    partOfSpeech: typeof r.partOfSpeech === 'string' && r.partOfSpeech.trim() ? r.partOfSpeech.trim().slice(0, 40) : undefined,
+    gender: ['m', 'f', 'mf'].includes(gender) ? gender : undefined,
+    level: (LEVELS.includes(level) ? level : undefined) as CefrLevel | undefined,
   }
 }

@@ -1,9 +1,12 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Volume2, Mic, ArrowRight, RefreshCw } from 'lucide-react'
 import { useTTS, useSTT } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import PronunciationCheck from '@/components/PronunciationCheck'
+import { generateSentencePrompt, gradeSentence } from '@/lib/hybrid/tutor'
+
+interface PracticeCtx { level: string; lang: string; focus: string[] }
 
 interface Grade { score: number; feedback: string; correction: string }
 
@@ -13,6 +16,7 @@ export default function SentenceBuilder() {
   const [grade, setGrade] = useState<Grade | null>(null)
   const [phase, setPhase] = useState<'loading' | 'writing' | 'grading' | 'graded'>('loading')
   const [error, setError] = useState<string | null>(null)
+  const ctxRef = useRef<PracticeCtx | null>(null)
 
   const { speechTag, meta, ttsVoice } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
@@ -21,12 +25,17 @@ export default function SentenceBuilder() {
   const loadPrompt = useCallback(async () => {
     setPhase('loading'); setError(null); setGrade(null); setSentence('')
     try {
+      // Level + weak spots come from the server; the sentence is written in the browser
+      // through Firebase AI Logic (on-device when it can).
       const res = await fetch('/api/sentences/prompt')
-      const data = await res.json()
-      if (!res.ok) { setError(data.error || 'Could not load a prompt'); setPhase('writing'); return }
-      setPrompt(data.prompt)
+      const ctx = await res.json()
+      if (!res.ok) { setError(ctx.error || 'Could not load a prompt'); setPhase('writing'); return }
+      ctxRef.current = ctx
+      const p = await generateSentencePrompt(ctx.level, ctx.lang, ctx.focus)
+      if (!p) { setError('Could not generate a prompt.'); setPhase('writing'); return }
+      setPrompt(p)
       setPhase('writing')
-    } catch { setError('Could not load a prompt'); setPhase('writing') }
+    } catch (e) { setError((e as Error).message || 'Could not load a prompt'); setPhase('writing') }
   }, [])
 
   // Fetch a prompt on mount (setState resolves after the fetch).
@@ -37,16 +46,20 @@ export default function SentenceBuilder() {
     if (!prompt || !sentence.trim()) return
     setPhase('grading'); setError(null)
     try {
+      const ctx = ctxRef.current
+      if (!ctx) { setError('Reload the prompt first'); setPhase('writing'); return }
+      // Graded in the browser (Firebase AI Logic "grade" task: on-device first, works offline).
+      const g = await gradeSentence(prompt, sentence.trim(), ctx.level, ctx.lang)
       const res = await fetch('/api/sentences/grade', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, sentence: sentence.trim() }),
+        body: JSON.stringify({ prompt, sentence: sentence.trim(), grade: g }),
       })
       const data = await res.json()
-      if (!res.ok) { setError(data.error || 'AI unavailable'); setPhase('writing'); return }
-      setGrade(data)
+      if (!res.ok) { setError(data.error || 'Could not save your attempt'); setPhase('writing'); return }
+      setGrade(g)
       setPhase('graded')
-      if (data.correction && tts.supported) tts.speak(data.correction)
-    } catch { setError('AI unavailable'); setPhase('writing') }
+      if (g.correction && tts.supported) tts.speak(g.correction)
+    } catch (e) { setError((e as Error).message || 'AI unavailable'); setPhase('writing') }
   }
 
   const scoreColor = (s: number) => (s >= 80 ? 'text-ok' : s >= 50 ? 'text-warn' : 'text-accent2')

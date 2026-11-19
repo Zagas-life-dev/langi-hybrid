@@ -4,6 +4,7 @@ import { BookmarkPlus, Check, Volume2, X, Loader2 } from 'lucide-react'
 import { useTTS } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import type { CardSource } from '@/lib/models/Card'
+import { postWithWordAi } from '@/lib/hybrid/words'
 
 // Tap-a-word, shared by stories, chat, dictation and videos. Tapping looks the
 // word up (dictionary-first, so usually free); saving is an explicit second tap
@@ -26,6 +27,7 @@ export interface WordLookupState {
 }
 
 export function useWordLookup() {
+  const { learningLang, nativeLang } = useLang()
   const [lookup, setLookup] = useState<WordLookupState | null>(null)
   // Ignore responses for a word the learner has already tapped past.
   const seq = useRef(0)
@@ -36,37 +38,30 @@ export function useWordLookup() {
     const id = ++seq.current
     setLookup({ term, status: 'loading', saveState: 'idle', source })
     try {
-      const res = await fetch('/api/words/lookup', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ term }),
-      })
-      const data = await res.json()
+      // Dictionary first; on a miss the browser translates it (Firebase AI Logic) and retries.
+      const { res, data } = await postWithWordAi('/api/words/lookup', { term }, { lang: learningLang, nativeLang })
       if (id !== seq.current) return
       setLookup(res.ok
-        ? { term, status: 'done', translation: data.translation, partOfSpeech: data.partOfSpeech, gender: data.gender, saveState: 'idle', source }
-        : { term, status: 'error', note: data.error || 'Could not translate', saveState: 'idle', source })
+        ? { term, status: 'done', translation: data.translation as string, partOfSpeech: data.partOfSpeech as string | null, gender: data.gender as string | null, saveState: 'idle', source }
+        : { term, status: 'error', note: (data.error as string) || 'Could not translate', saveState: 'idle', source })
     } catch {
       if (id === seq.current) setLookup({ term, status: 'error', note: 'Network error', saveState: 'idle', source })
     }
-  }, [])
+  }, [learningLang, nativeLang])
 
   const save = useCallback(async () => {
     if (!lookup || lookup.saveState === 'saving' || lookup.saveState === 'saved') return
     const { term, source } = lookup
     setLookup((l) => (l ? { ...l, saveState: 'saving' } : l))
     try {
-      const res = await fetch('/api/words/save', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ term, source }),
-      })
-      const data = await res.json()
+      const { res, data } = await postWithWordAi('/api/words/save', { term, source }, { lang: learningLang, nativeLang })
       setLookup((l) => (l && l.term === term
-        ? { ...l, saveState: res.ok ? (data.alreadySaved ? 'already' : 'saved') : 'error', note: res.ok ? l.note : data.error }
+        ? { ...l, saveState: res.ok ? (data.alreadySaved ? 'already' : 'saved') : 'error', note: res.ok ? l.note : (data.error as string) }
         : l))
     } catch {
       setLookup((l) => (l && l.term === term ? { ...l, saveState: 'error', note: 'Network error' } : l))
     }
-  }, [lookup])
+  }, [lookup, learningLang, nativeLang])
 
   const close = useCallback(() => { seq.current++; setLookup(null) }, [])
 

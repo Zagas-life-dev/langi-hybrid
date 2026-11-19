@@ -4,6 +4,8 @@ import { Heart, Share2, BookmarkPlus, Check, MessageSquare } from 'lucide-react'
 import AddToPlaylist from './AddToPlaylist'
 import CommentsSheet from './CommentsSheet'
 import { activeTime, getActivePlayer, WORD_SAVED_EVENT } from '@/lib/ytPlayer'
+import { postWithWordAi } from '@/lib/hybrid/words'
+import { useLang } from '@/components/LangProvider'
 
 // Like + Share + Save-word controls for a video. Used on the watch page and on
 // each Shorts card. Likes/saves are Langi-native; Share spreads the in-app page.
@@ -25,6 +27,7 @@ export default function VideoActions({
   // On shorts, also surface "Comments" + "Add to playlist" (playlist opens upward).
   shorts?: boolean
 }) {
+  const { nativeLang } = useLang()
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialCount)
   const [busy, setBusy] = useState(false)
@@ -87,22 +90,22 @@ export default function VideoActions({
     setSaving(true)
     setSaveMsg(null)
     try {
-      const res = await fetch('/api/words/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ term, lang, source: { kind: 'video', ref: videoId, t: heardAt } }),
-      })
-      const data = await res.json()
+      const { res, data } = await postWithWordAi(
+        '/api/words/save',
+        { term, lang, source: { kind: 'video', ref: videoId, t: heardAt } },
+        { lang, nativeLang },
+      )
       if (res.ok) {
+        const card = data.card as { term: string; translation: string }
         setSaveMsg(
           data.alreadySaved
-            ? `Already saved: ${data.card.term} → ${data.card.translation}`
-            : `Saved: ${data.card.term} → ${data.card.translation}`
+            ? `Already saved: ${card.term} → ${card.translation}`
+            : `Saved: ${card.term} → ${card.translation}`
         )
         setWord('')
         window.dispatchEvent(new Event(WORD_SAVED_EVENT))
       } else {
-        setSaveMsg(data.error || 'Could not save that word.')
+        setSaveMsg((data.error as string) || 'Could not save that word.')
       }
     } catch {
       setSaveMsg('Network error. Try again.')

@@ -42,7 +42,8 @@ export const DEFAULT_RULES: Record<HybridTask, TaskRule> = {
     maxOnDeviceChars: 1500, why: 'Long structured answer: quality beats speed',
   },
   chat: {
-    mode: 'prefer_in_cloud', offlineMode: 'only_on_device', cloudModel: MODELS.best,
+    // Lite, not hydrogen: hydrogen took 6 s+ per turn on Nov 19, too slow for a live chat.
+    mode: 'prefer_in_cloud', offlineMode: 'only_on_device', cloudModel: MODELS.lite,
     maxOnDeviceChars: 6000, why: 'Multi-turn quality in the cloud, still works offline',
   },
   classify: {

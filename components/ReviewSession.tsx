@@ -10,6 +10,7 @@ import { queueReview, useOnline } from '@/lib/offlineQueue'
 import { loadOfflineQueue, refreshPack, gradeOffline, type OfflineCard } from '@/lib/offlineCards'
 import { useToast } from '@/components/Toast'
 import { haptic } from '@/lib/haptics'
+import { generateDistractors, generateExample } from '@/lib/hybrid/tutor'
 import { QuizSkeleton } from '@/components/Skeleton'
 import GrammarInterlude, { type InterludeQuestion } from '@/components/GrammarInterlude'
 
@@ -248,11 +249,20 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
     if (!current) return
     setAiBusy(true); setAiError(null)
     try {
+      // Cached on the server? Free. Otherwise the browser writes one (Firebase AI Logic) and the server stores it.
       const res = await fetch(`/api/cards/${current.cardId}/example`, { method: 'POST' })
       const data = await res.json()
       if (res.ok) setExampleHint(data.exampleSentence)
-      else setAiError(data.error || 'AI unavailable')
-    } catch { setAiError('AI unavailable') }
+      else if (res.status === 424 && data.card) {
+        const r = await generateExample(data.card.term, data.card.translation, data.card.lang)
+        if (!r) { setAiError('Could not generate an example.'); setAiBusy(false); return }
+        setExampleHint(r.exampleSentence)
+        fetch(`/api/cards/${current.cardId}/example`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(r),
+        }).catch(() => {})
+      } else setAiError(data.error || 'AI unavailable')
+    } catch (e) { setAiError((e as Error).message || 'AI unavailable') }
     setAiBusy(false)
   }
 
@@ -263,8 +273,18 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
       const res = await fetch(`/api/cards/${current.cardId}/distractors`, { method: 'POST' })
       const data = await res.json()
       if (res.ok) setMcq(data.options)
-      else setAiError(data.error || 'AI unavailable')
-    } catch { setAiError('AI unavailable') }
+      else if (res.status === 424 && data.card) {
+        const list = await generateDistractors(data.card.term, data.card.translation, data.card.lang)
+        if (list.length < 3) { setAiError('Could not generate options.'); setAiBusy(false); return }
+        const put = await fetch(`/api/cards/${current.cardId}/distractors`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ distractors: list }),
+        })
+        const out = await put.json()
+        if (put.ok) setMcq(out.options)
+        else setAiError(out.error || 'Could not save options')
+      } else setAiError(data.error || 'AI unavailable')
+    } catch (e) { setAiError((e as Error).message || 'AI unavailable') }
     setAiBusy(false)
   }
 

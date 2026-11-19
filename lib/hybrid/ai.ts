@@ -14,7 +14,8 @@ const MODE: Record<Mode, InferenceMode> = {
 }
 
 const LANGS = ['en', 'fr']
-const CLOUD_TIMEOUT_MS = 20_000
+// gemini-4-hydrogen thinks for ~6 s even on one word, so give it room; lite answers in ~1 s.
+const CLOUD_TIMEOUT_MS = 45_000
 
 // Remote Config can replace these later (step: "Remote Config routing").
 let rules: Record<HybridTask, TaskRule> = DEFAULT_RULES

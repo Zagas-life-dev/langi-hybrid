@@ -2,8 +2,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { requireUser } from '@/lib/auth'
 import { connectDB } from '@/lib/db'
 import Card from '@/lib/models/Card'
-import { checkLimit } from '@/lib/ratelimit'
-import { generateDistractors } from '@/lib/ai'
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -39,21 +37,31 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ ca
     return NextResponse.json({ options: shuffle([correct, ...card.distractors.slice(0, 3)]), cached: true })
   }
 
-  const limit = await checkLimit(String(dbUser._id))
-  if (!limit.ok) {
-    return NextResponse.json(
-      { error: 'Rate limit reached. Try again shortly.' },
-      { status: 429, headers: { 'Retry-After': String(limit.retryAfter ?? 60) } }
-    )
-  }
+  // Not cached: the browser writes them (Firebase AI Logic) and PUTs them back.
+  return NextResponse.json(
+    { error: 'needs-ai', card: { term: card.term, translation: card.translation, lang: card.languageCode } },
+    { status: 424 }
+  )
+}
 
+// PUT {distractors} → store the browser-generated wrong options and return the shuffled choices.
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ cardId: string }> }) {
   try {
-    const distractors = await generateDistractors(card.term, card.translation, card.languageCode)
-    if (distractors.length < 3) return NextResponse.json({ error: 'Could not generate options.' }, { status: 502 })
-    card.distractors = distractors
-    await card.save()
-    return NextResponse.json({ options: shuffle([correct, ...distractors]), cached: false })
-  } catch (e) {
-    return NextResponse.json({ error: (e as Error).message || 'AI unavailable' }, { status: 503 })
+    await requireUser()
+  } catch {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
+  const { cardId } = await params
+  const b = (await req.json().catch(() => ({}))) as { distractors?: unknown }
+  const list = (Array.isArray(b.distractors) ? b.distractors : [])
+    .map((s) => String(s).trim().slice(0, 120)).filter(Boolean).slice(0, 3)
+  if (list.length < 3) return NextResponse.json({ error: 'Need 3 distractors' }, { status: 400 })
+  await connectDB()
+  const card = await Card.findById(cardId)
+  if (!card) return NextResponse.json({ error: 'Card not found' }, { status: 404 })
+  if (!card.distractors || card.distractors.length < 3) {
+    card.distractors = list
+    await card.save()
+  }
+  return NextResponse.json({ options: shuffle([correctLabel(card.translation), ...list]) })
 }
