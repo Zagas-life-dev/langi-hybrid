@@ -7,6 +7,10 @@ import { useTTS, useSTT } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import { useWordLookup, TappableText, WordLookupCard } from '@/components/WordLookup'
 import { SCENARIOS, scenarioByKey } from '@/lib/scenarios'
+import { conversationStarter, randomTopic, scenarioDebrief, tutorReply } from '@/lib/hybrid/tutor'
+import { useHud } from '@/lib/hybrid/hud'
+
+interface ChatCtx { level: string; lang: string; focus: string[] }
 
 type Mode = 'conversation' | 'grammar'
 interface SavedWord { term: string; translation: string; alreadySaved: boolean }
@@ -43,6 +47,17 @@ export default function ChatWindow() {
   const [resumable, setResumable] = useState<Resumable | null>(null)
   const [recap, setRecap] = useState<Recap | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const hud = useHud()
+  const lastEvent = hud.events.find((e) => e.task === 'chat' || e.task === 'deepDive')
+  // Level, language and weak spots live on the server; AI runs here in the browser.
+  const ctxRef = useRef<ChatCtx | null>(null)
+  async function getCtx(): Promise<ChatCtx> {
+    if (ctxRef.current) return ctxRef.current
+    const res = await fetch('/api/chat/context')
+    if (!res.ok) throw new Error('Could not load your profile')
+    ctxRef.current = await res.json()
+    return ctxRef.current!
+  }
 
   const { speechTag, ttsVoice, nativeLang } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
@@ -125,9 +140,18 @@ export default function ChatWindow() {
   async function start() {
     setStarting(true); setError(null)
     try {
+      // Opener comes from Firebase AI Logic (on-device when it can); the server just saves it.
+      let starter: Awaited<ReturnType<typeof conversationStarter>> = null
+      const chosenTopic = mode === 'conversation' && !scenario ? (topic.trim() || randomTopic()) : undefined
+      if (mode === 'conversation') {
+        const ctx = await getCtx()
+        try {
+          starter = await conversationStarter({ topic: chosenTopic, scenario: scenario || undefined, ...ctx })
+        } catch { /* empty session if the opener fails */ }
+      }
       const res = await fetch('/api/chat/start', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode, topic: topic.trim() || undefined, scenario: scenario || undefined }),
+        body: JSON.stringify({ mode, topic: chosenTopic, scenario: scenario || undefined, starter }),
       })
       const data = await res.json()
       if (!res.ok) { setError(data.error || 'Could not start'); setStarting(false); return }
@@ -148,16 +172,22 @@ export default function ChatWindow() {
     setMessages((m) => [...m, { role: 'user', content }])
     setSending(true); setError(null)
     try {
+      const ctx = await getCtx()
+      const history = [...messages, { role: 'user' as const, content }].map((m) => ({ role: m.role, content: m.content }))
+      const out = await tutorReply({
+        history, mode, topic: topic || null, scenario, ...ctx,
+        focus: mode === 'conversation' ? ctx.focus : [],
+      })
       const res = await fetch('/api/chat/message', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId, content }),
+        body: JSON.stringify({ sessionId, content, ai: out }),
       })
       const data = await res.json()
-      if (!res.ok) { setError(data.error || 'AI unavailable'); setSending(false); return }
-      setMessages((m) => [...m, { role: 'assistant', content: data.reply, corrections: data.corrections, savedWords: data.savedWords }])
-      setSuggestions(data.suggestions || [])
-      if (mode === 'conversation' && tts.supported) tts.speak(data.reply)
-    } catch { setError('AI unavailable') }
+      if (!res.ok) { setError(data.error || 'Could not save this message'); setSending(false); return }
+      setMessages((m) => [...m, { role: 'assistant', content: out.reply, corrections: out.corrections, savedWords: data.savedWords }])
+      setSuggestions(out.suggestions)
+      if (mode === 'conversation' && tts.supported) tts.speak(out.reply)
+    } catch (e) { setError((e as Error).message || 'AI unavailable') }
     setSending(false)
   }
 
@@ -194,15 +224,21 @@ export default function ChatWindow() {
       if (sessionId) setResumable({ sessionId, mode, topic: topic || null, scenario, messages })
       setRecap({ words, corrections, debrief: scored ? { status: 'loading' } : undefined })
       if (scored) {
-        fetch('/api/chat/debrief', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId }),
-        })
-          .then(async (res) => {
-            const data = await res.json()
-            setRecap((r) => r && ({ ...r, debrief: res.ok ? { status: 'done', ...data } : { status: 'error', error: data.error || 'Could not score' } }))
+        // Scored in the browser (Firebase AI Logic); the server only awards the XP.
+        getCtx()
+          .then((ctx) => scenarioDebrief({
+            history: messages.map((m) => ({ role: m.role, content: m.content })),
+            scenario: scenario!, level: ctx.level, lang: ctx.lang,
+          }))
+          .then((d) => {
+            if (!d) throw new Error('Could not score this scene.')
+            setRecap((r) => r && ({ ...r, debrief: { status: 'done', ...d } }))
+            fetch('/api/chat/debrief', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ sessionId, score: d.score }),
+            }).catch(() => {})
           })
-          .catch(() => setRecap((r) => r && ({ ...r, debrief: { status: 'error', error: 'Network error' } })))
+          .catch((e: Error) => setRecap((r) => r && ({ ...r, debrief: { status: 'error', error: e.message || 'Could not score' } })))
       }
     } else {
       doReset()
@@ -369,6 +405,12 @@ export default function ChatWindow() {
         <span className="chip bg-yellow text-on-bright border-[var(--shadow-ink)] max-w-full truncate">
           {mode === 'grammar' ? 'Grammar help' : scenario ? scenarioLabel(scenario) : <>Topic: <strong className="font-extrabold">{topic}</strong></>}
         </span>
+        {lastEvent && (
+          <span className={`chip border-[var(--shadow-ink)] text-on-bright ${lastEvent.source === 'ON_DEVICE' ? 'bg-lime' : 'bg-sky'}`}
+            title={lastEvent.reason}>
+            {lastEvent.source === 'ON_DEVICE' ? 'On-device' : 'Cloud'} · {lastEvent.ms} ms
+          </span>
+        )}
         <div className="flex items-center gap-2">
           {mode === 'conversation' && stt.supported && tts.supported && !handsFree && (
             <button onClick={startVoice} className="btn-ghost min-h-11 px-4 text-sm" title="Talk with Langi hands-free">
