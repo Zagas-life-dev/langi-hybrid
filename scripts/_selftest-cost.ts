@@ -14,7 +14,7 @@ import { getBackend } from '../lib/db/backend'
 type Usage = { reads: number; writes: number }
 const usage = () => ((globalThis as unknown as { __langiFsUsage?: Usage }).__langiFsUsage ?? { reads: 0, writes: 0 })
 
-async function measure(label: string, fn: () => Promise<unknown>, budget?: { reads?: number; writes?: number }) {
+async function measure(label: string, fn: () => PromiseLike<unknown>, budget?: { reads?: number; writes?: number }) {
   const before = { ...usage() }
   await fn()
   const after = usage()
