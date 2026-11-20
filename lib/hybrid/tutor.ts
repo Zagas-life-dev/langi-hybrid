@@ -7,6 +7,7 @@ import { loadsJsonish } from '@/lib/jsonish'
 import { langName } from '@/lib/langs'
 import { scenarioByKey } from '@/lib/scenarios'
 import { runTask } from './ai'
+import { parseExample, parseLines } from './linesCore'
 import type { HybridTask } from './tasks'
 import { getHud, type HybridEvent } from './hud'
 
@@ -62,13 +63,15 @@ const clampScore = (v: unknown) => {
 
 export async function generateExample(term: string, translation: string, lang: string) {
   const ln = langName(lang)
-  const out = await ask<{ example?: string; translation?: string }>('explain',
-    `You are a ${ln} teacher. Given a ${ln} word or phrase, write ONE short, natural ${ln} example sentence ` +
-    `(A2 level, max 12 words) that uses it, plus a faithful English translation.`,
-    `Word: "${term}" (means: ${translation})`,
-    S.object({ properties: { example: str(), translation: str() } }))
-  if (!out?.example) return null
-  return { exampleSentence: String(out.example).trim(), exampleTranslation: String(out.translation || '').trim() }
+  // Plain two-line reply: Nano is much faster without constrained JSON.
+  const r = await runTask('explain', `Word: "${term}" (means: ${translation})`, {
+    instructions:
+      `You are a ${ln} teacher. Write ONE short, natural ${ln} example sentence (A2 level, max 12 words) that uses ` +
+      `the word. Reply on two lines only. Line 1: the ${ln} sentence. Line 2: its English translation.`,
+  })
+  const ex = parseExample(r.text)
+  if (!ex?.sentence) return null
+  return { exampleSentence: ex.sentence, exampleTranslation: ex.translation }
 }
 
 export async function translateWord(term: string, lang: string, nativeLang = 'en') {
@@ -147,14 +150,16 @@ export async function translateInContext(selection: string, sentence: string, la
 
 export async function generateDistractors(term: string, translation: string, lang: string): Promise<string[]> {
   const ln = langName(lang)
-  const out = await ask<{ distractors?: string[] }>('classify',
-    `You write multiple-choice distractors for a ${ln} vocabulary quiz. Given the correct English meaning of a ` +
-    `${ln} word, return exactly 3 plausible but INCORRECT English meanings (same part of speech, similar register, ` +
-    `never synonyms of the correct one).`,
-    `${ln} word: "${term}". Correct meaning: "${translation}".`,
-    S.object({ properties: { distractors: strList() } }))
-  const list = Array.isArray(out?.distractors) ? out!.distractors : []
-  return list.map((s) => String(s).trim()).filter(Boolean).slice(0, 3)
+  // Plain list, one per line: far faster on Nano than a JSON schema. Ask for 4 so that after dropping
+  // repeats and the correct answer there are still 3.
+  const r = await runTask('classify', `${ln} word: "${term}". Correct meaning: "${translation}".`, {
+    instructions:
+      `You write wrong answers for a ${ln} vocabulary quiz. Give exactly 4 plausible but INCORRECT English meanings ` +
+      `(same part of speech, similar register, never a synonym of the correct meaning). One per line, 1-3 words each, ` +
+      `no numbering, no explanation.`,
+  })
+  const correct = translation.split(/[/,;]/).map((s) => s.trim())
+  return parseLines(r.text, [translation, ...correct], 3)
 }
 
 // --- Sentence practice ----------------------------------------------------------
