@@ -176,11 +176,27 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
     // Second opinion: if the strict rules say a typed answer is wrong, Gemini Nano (on-device,
     // works offline) checks for a valid synonym or a harmless slip before we grade.
     let ai: AnswerResult['ai']
+    // The card's answer comes from the offline pack when it is loaded. Online, that pack arrives in the
+    // background and may not hold this card yet, so ask the server (a dry run that records nothing).
     const cached = packRef.current.get(current.cardId)
-    if (cached && toSend.trim() && !cached.cloze && !opts?.reveal
-        && !checkAnswer(cached, toSend, direction, cached.deckTolerance)) {
+    let facts: { term: string; translation: string; cloze: boolean; ruleOk: boolean } | null = cached
+      ? { term: cached.term, translation: cached.translation, cloze: !!cached.cloze, ruleOk: checkAnswer(cached, toSend, direction, cached.deckTolerance) }
+      : null
+    if (!facts && toSend.trim() && !opts?.reveal && typeof navigator !== 'undefined' && navigator.onLine) {
+      try {
+        const pre = await fetch('/api/review/answer', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...payload, preview: true }),
+        })
+        if (pre.ok) {
+          const p = await pre.json()
+          facts = { term: p.term, translation: p.translation, cloze: !!p.cloze, ruleOk: !!p.ruleCorrect }
+        }
+      } catch { /* server unreachable: fall through to the normal grading path */ }
+    }
+    if (facts && toSend.trim() && !facts.cloze && !opts?.reveal && !facts.ruleOk) {
       const j = await judgeAnswer({
-        term: cached.term, translation: cached.translation, answer: toSend.trim(),
+        term: facts.term, translation: facts.translation, answer: toSend.trim(),
         direction, lang: learningLang, nativeLang,
       })
       if (j) {

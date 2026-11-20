@@ -7,8 +7,12 @@ export function judgeInstructions(args: { learningName: string; nativeName: stri
   const task = args.direction === 'recognition'
     ? `The learner saw a ${args.learningName} word and typed its meaning in ${args.nativeName}.`
     : `The learner saw a ${args.nativeName} word and typed the ${args.learningName} word for it.`
-  return `${task} Decide if their answer is an acceptable answer: same meaning, a valid synonym, or a harmless typo or missing accent. ` +
-    `A different meaning is WRONG. Reply on two lines. Line 1: ACCEPT or REJECT. Line 2: a reason of at most 10 words in ${args.nativeName}.`
+  return `${task} Decide if their answer is acceptable: it means the same thing as the expected answer, is a common synonym or ` +
+    `a different natural phrasing, or is only a harmless typo or missing accent. Be generous with synonyms. ` +
+    `Only a different meaning is REJECT. ` +
+    `Example: expected "car", answer "automobile" -> ACCEPT. Example: expected "big", answer "large" -> ACCEPT. ` +
+    `Example: expected "house", answer "tree" -> REJECT. ` +
+    `Reply on two lines. Line 1: ACCEPT or REJECT. Line 2: a reason of at most 10 words in ${args.nativeName}.`
 }
 
 /** Parse "ACCEPT / REJECT + reason". Unclear replies are rejected, so the rules' verdict stands. */

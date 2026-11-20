@@ -33,6 +33,17 @@ export async function POST(req: NextRequest) {
   const deck = await Deck.findById(card.deckId).lean()
   const deckTolerance = deck?.answerTolerance ?? 'lenient'
 
+  // Dry run for the browser's on-device AI second opinion: report what the rules think and the card's
+  // answer, record nothing. (A wrong answer reveals this anyway.)
+  if (body.preview === true) {
+    return NextResponse.json({
+      ruleCorrect: checkAnswer(card, answer, direction, deckTolerance, spoken),
+      term: card.term,
+      translation: card.translation,
+      cloze: Boolean(card.cloze),
+    })
+  }
+
   const correct = checkAnswer(card, answer, direction, deckTolerance, spoken)
     || (aiAccepted === true && !card.cloze && String(answer).trim().length > 0)
 
