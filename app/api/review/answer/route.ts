@@ -17,11 +17,13 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json().catch(() => ({}))
-  const { cardId, answer = '', direction = 'recognition', spoken = false } = body as {
+  const { cardId, answer = '', direction = 'recognition', spoken = false, aiAccepted = false } = body as {
     cardId?: string
     answer?: string
     direction?: ReviewDirection
     spoken?: boolean
+    // The browser's on-device AI (Firebase AI Logic) judged a rule-miss to be a valid answer.
+    aiAccepted?: boolean
   }
   if (!cardId) return NextResponse.json({ error: 'cardId required' }, { status: 400 })
 
@@ -32,6 +34,7 @@ export async function POST(req: NextRequest) {
   const deckTolerance = deck?.answerTolerance ?? 'lenient'
 
   const correct = checkAnswer(card, answer, direction, deckTolerance, spoken)
+    || (aiAccepted === true && !card.cloze && String(answer).trim().length > 0)
 
   let uc = await UserCard.findOne({ userId: dbUser._id, cardId: card._id })
   const prev = uc

@@ -15,6 +15,8 @@ export interface QueuedReview {
   answer: string
   direction: string
   spoken?: boolean
+  /** On-device AI accepted an answer the rules marked wrong; replayed to the server as-is. */
+  aiAccepted?: boolean
 }
 
 const openDB = openLangiDB

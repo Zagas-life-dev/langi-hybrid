@@ -231,15 +231,18 @@ export async function gradeOffline(
   card: OfflineCard,
   answer: string,
   direction: ReviewDirection,
-  spoken = false
+  spoken = false,
+  aiAccepted = false
 ): Promise<LocalGrade> {
-  const correct = checkAnswer(
+  const ruleCorrect = checkAnswer(
     { term: card.term, translation: card.translation, acceptedAnswers: card.acceptedAnswers, answerTolerance: card.answerTolerance, cloze: card.cloze },
     answer,
     direction,
     card.deckTolerance,
     spoken
   )
+  // The on-device AI can rescue a typed synonym or slip the strict rules missed.
+  const correct = ruleCorrect || (aiAccepted && !card.cloze && answer.trim().length > 0)
   // grade() is the single source of truth for the box/interval math; we persist
   // box + dueAt (streak/lapses/reps are recomputed authoritatively on sync).
   const g = grade({ box: card.box, correctStreak: 0, lapses: 0, reps: 0 }, correct)

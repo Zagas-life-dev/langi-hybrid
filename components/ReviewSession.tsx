@@ -11,6 +11,9 @@ import { loadOfflineQueue, refreshPack, gradeOffline, type OfflineCard } from '@
 import { useToast } from '@/components/Toast'
 import { haptic } from '@/lib/haptics'
 import { generateDistractors, generateExample } from '@/lib/hybrid/tutor'
+import { judgeAnswer } from '@/lib/hybrid/review'
+import HybridBadge, { type HybridBadgeInfo } from '@/components/HybridBadge'
+import { checkAnswer } from '@/lib/srs-core'
 import { QuizSkeleton } from '@/components/Skeleton'
 import GrammarInterlude, { type InterludeQuestion } from '@/components/GrammarInterlude'
 
@@ -52,6 +55,8 @@ interface AnswerResult {
   offline?: boolean
   // Set when we couldn't even grade locally (no cached card) — queued blind.
   queued?: boolean
+  // Second opinion from the on-device AI when the rules marked a typed answer wrong.
+  ai?: { accepted: boolean; reason: string; badge: HybridBadgeInfo }
 }
 
 export default function ReviewSession({ deckId, title }: { deckId: string; title: string }) {
@@ -87,7 +92,7 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
   const current = queue[pos]
   const online = useOnline()
   const { toast } = useToast()
-  const { learningLang, speechTag, meta, ttsVoice } = useLang()
+  const { learningLang, nativeLang, speechTag, meta, ttsVoice } = useLang()
   // Pre-generated clips (overnight run) when stored, the device voice otherwise.
   const tts = useSavedVoice(speechTag, ttsVoice)
   const sttLang = current?.answerLang === learningLang ? speechTag : 'en-US'
@@ -154,7 +159,23 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
     if (!current || submitting) return
     const toSend = opts?.reveal ? '' : (opts?.answer ?? answer)
     setSubmitting(true)
-    const payload = { cardId: current.cardId, answer: toSend, direction }
+    const payload: { cardId: string; answer: string; direction: Direction; aiAccepted?: boolean } = { cardId: current.cardId, answer: toSend, direction }
+
+    // Second opinion: if the strict rules say a typed answer is wrong, Gemini Nano (on-device,
+    // works offline) checks for a valid synonym or a harmless slip before we grade.
+    let ai: AnswerResult['ai']
+    const cached = packRef.current.get(current.cardId)
+    if (cached && toSend.trim() && !cached.cloze && !opts?.reveal
+        && !checkAnswer(cached, toSend, direction, cached.deckTolerance)) {
+      const j = await judgeAnswer({
+        term: cached.term, translation: cached.translation, answer: toSend.trim(),
+        direction, lang: learningLang, nativeLang,
+      })
+      if (j) {
+        ai = { accepted: j.accepted, reason: j.reason, badge: j.badge }
+        if (j.accepted) payload.aiAccepted = true
+      }
+    }
     try {
       if (typeof navigator !== 'undefined' && !navigator.onLine) throw new Error('offline')
       const res = await fetch('/api/review/answer', {
@@ -163,7 +184,7 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
         body: JSON.stringify(payload),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data: AnswerResult = await res.json()
+      const data: AnswerResult = { ...(await res.json()), ai }
       setResult(data)
       setStats((s) => ({ reviewed: s.reviewed + 1, correct: s.correct + (data.correct ? 1 : 0), climbed: s.climbed + (data.newBox > current.box ? 1 : 0) }))
       scoreStreak(data.correct)
@@ -174,9 +195,9 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
       // server-side on replay, then grade on-device now for instant feedback.
       await queueReview(payload).catch(() => {})
       const card = packRef.current.get(current.cardId)
-      const local = card ? await gradeOffline(card, toSend, direction).catch(() => null) : null
+      const local = card ? await gradeOffline(card, toSend, direction, false, payload.aiAccepted === true).catch(() => null) : null
       if (local) {
-        setResult({ ...local, offline: true })
+        setResult({ ...local, offline: true, ai })
         setStats((s) => ({ reviewed: s.reviewed + 1, correct: s.correct + (local.correct ? 1 : 0), climbed: s.climbed + (local.newBox > current.box ? 1 : 0) }))
         scoreStreak(local.correct)
         speakAfterAnswer(local.term)
@@ -632,6 +653,15 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
                   : `It means "${result.correctAnswer}". Back to box ${result.newBox}, no stress.`}
                 {result.offline && <span className="chip bg-paper-dark"><WifiOff className="w-3.5 h-3.5" strokeWidth={2.4} /> graded offline</span>}
               </p>
+              {result.ai && (
+                <p className="mb-4 text-sm flex items-center gap-2 flex-wrap" data-testid="ai-verdict">
+                  <HybridBadge {...result.ai.badge} />
+                  <span className="text-ink-soft">
+                    {result.ai.accepted ? 'Accepted by on-device AI' : 'Checked by on-device AI'}
+                    {result.ai.reason ? `: ${result.ai.reason}` : ''}
+                  </span>
+                </p>
+              )}
               {result.term && (
                 <div className="mb-5">
                   <PronunciationCheck target={result.term} label="Now say it aloud" />

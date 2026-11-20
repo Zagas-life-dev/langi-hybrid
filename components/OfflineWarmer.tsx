@@ -17,6 +17,9 @@ const LEARN_PAGES = [
   '/learn/grammar/practice',
   '/learn/stories',
   '/learn/dictation',
+  // Hybrid features that run on-device, so they should boot offline too.
+  '/chat',
+  '/sentences',
 ]
 
 async function untilControlled(): Promise<void> {
