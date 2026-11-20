@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Volume2, Square, Mic, Send, Sparkles, MessageSquare, BookOpen, BookmarkPlus, RotateCcw, GraduationCap, Headphones, Keyboard, Loader2, PenLine, Check, Languages } from 'lucide-react'
+import { Volume2, Square, Mic, Send, Sparkles, MessageSquare, BookOpen, BookmarkPlus, RotateCcw, GraduationCap, Headphones, Keyboard, Loader2, PenLine, Check, Languages, WifiOff } from 'lucide-react'
 import Mascot from '@/components/Mascot'
 import { useTTS, useSTT } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
@@ -11,12 +11,13 @@ import { conversationStarter, randomTopic, scenarioDebrief, tutorReply } from '@
 import { useHud } from '@/lib/hybrid/hud'
 import { LiveCorrectPanel, useLiveCorrect } from '@/components/LiveCorrect'
 import HybridBadge from '@/components/HybridBadge'
+import { isLocalId, newLocalChat, pendingChats, queueTurn, syncAll, syncChat } from '@/lib/chatOffline'
 
 interface ChatCtx { level: string; lang: string; focus: string[] }
 
 type Mode = 'conversation' | 'grammar'
 interface SavedWord { term: string; translation: string; alreadySaved: boolean }
-interface Msg { role: 'user' | 'assistant'; content: string; corrections?: string; savedWords?: SavedWord[] }
+interface Msg { role: 'user' | 'assistant'; content: string; corrections?: string; savedWords?: SavedWord[]; pending?: boolean }
 interface Resumable { sessionId: string; mode: Mode; topic: string | null; scenario: string | null; messages: Msg[] }
 interface Debrief { score: number; goalsMet: boolean[]; feedback: string; phrases: { phrase: string; translation: string }[] }
 interface Recap {
@@ -56,11 +57,20 @@ export default function ChatWindow() {
   const [level, setLevel] = useState('A2')
   async function getCtx(): Promise<ChatCtx> {
     if (ctxRef.current) return ctxRef.current
-    const res = await fetch('/api/chat/context')
-    if (!res.ok) throw new Error('Could not load your profile')
-    ctxRef.current = await res.json()
-    setLevel(ctxRef.current!.level)
-    return ctxRef.current!
+    // Cached after the first online load, so the chat can start with no connection.
+    let ctx: ChatCtx | null = null
+    try {
+      const res = await fetch('/api/chat/context')
+      if (!res.ok) throw new Error('profile')
+      ctx = await res.json()
+      try { localStorage.setItem('langi.chatCtx', JSON.stringify(ctx)) } catch { /* private mode */ }
+    } catch {
+      try { ctx = JSON.parse(localStorage.getItem('langi.chatCtx') || 'null') } catch { ctx = null }
+      if (!ctx) { setLevel('A2'); return { level: 'A2', lang: learningLang, focus: [] } }
+    }
+    ctxRef.current = ctx
+    setLevel(ctx!.level)
+    return ctx!
   }
 
   const { speechTag, ttsVoice, nativeLang, learningLang } = useLang()
@@ -144,6 +154,17 @@ export default function ChatWindow() {
       .catch(() => {})
   }, [])
 
+  // Chats held while offline upload when the connection returns (never the one open on screen,
+  // which syncs on its next message).
+  const openChat = useRef<string | null>(null)
+  useEffect(() => { openChat.current = sessionId }, [sessionId])
+  useEffect(() => {
+    const run = () => { if (navigator.onLine) syncAll({ skip: openChat.current }).catch(() => {}) }
+    run()
+    window.addEventListener('online', run)
+    return () => window.removeEventListener('online', run)
+  }, [])
+
   async function start() {
     setStarting(true); setError(null)
     try {
@@ -156,12 +177,25 @@ export default function ChatWindow() {
           starter = await conversationStarter({ topic: chosenTopic, scenario: scenario || undefined, ...ctx })
         } catch { /* empty session if the opener fails */ }
       }
-      const res = await fetch('/api/chat/start', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode, topic: chosenTopic, scenario: scenario || undefined, starter }),
-      })
-      const data = await res.json()
-      if (!res.ok) { setError(data.error || 'Could not start'); setStarting(false); return }
+      let data: { sessionId: string; topic?: string; messages?: Msg[]; suggestions?: string[] }
+      try {
+        if (!navigator.onLine) throw new Error('offline')
+        const res = await fetch('/api/chat/start', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode, topic: chosenTopic, scenario: scenario || undefined, starter }),
+        })
+        data = await res.json()
+        if (!res.ok) { setError((data as { error?: string }).error || 'Could not start'); setStarting(false); return }
+      } catch {
+        // No connection: the chat lives on this device and uploads when you are back online.
+        const local = newLocalChat({ mode, topic: chosenTopic, scenario: scenario || undefined, starter })
+        data = {
+          sessionId: local.id,
+          topic: chosenTopic,
+          messages: starter ? [{ role: 'assistant', content: starter.opener, corrections: starter.translation }] : [],
+          suggestions: starter?.suggestions ?? [],
+        }
+      }
       setSessionId(data.sessionId)
       setTopic(data.topic || '')
       setMessages(data.messages || [])
@@ -185,13 +219,41 @@ export default function ChatWindow() {
         history, mode, topic: topic || null, scenario, ...ctx,
         focus: mode === 'conversation' ? ctx.focus : [],
       })
-      const res = await fetch('/api/chat/message', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId, content, ai: out }),
-      })
-      const data = await res.json()
-      if (!res.ok) { setError(data.error || 'Could not save this message'); setSending(false); return }
-      setMessages((m) => [...m, { role: 'assistant', content: out.reply, corrections: out.corrections, savedWords: data.savedWords }])
+      // Save the turn. A chat born offline upgrades to a real session the moment we are online;
+      // anything that can't reach the server waits in the queue and syncs on reconnect.
+      let sid = sessionId
+      if (isLocalId(sid) && navigator.onLine) {
+        const real = await syncChat(sid)
+        if (real) { sid = real; setSessionId(real) }
+      }
+      let savedWords: SavedWord[] | undefined
+      let pending = false
+      if (isLocalId(sid)) {
+        queueTurn(sid, { content, ai: out })
+        pending = true
+      } else {
+        const queued = `srv-${sid}`
+        // Earlier turns waiting from an offline stretch go first, so the order stays right.
+        if (navigator.onLine && pendingChats().some((r) => r.id === queued)) await syncChat(queued)
+        if (!navigator.onLine || pendingChats().some((r) => r.id === queued)) {
+          queueTurn(queued, { content, ai: out })
+          pending = true
+        } else {
+          try {
+            const res = await fetch('/api/chat/message', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ sessionId: sid, content, ai: out }),
+            })
+            const data = await res.json()
+            if (!res.ok) { setError(data.error || 'Could not save this message'); setSending(false); return }
+            savedWords = data.savedWords
+          } catch {
+            queueTurn(queued, { content, ai: out })
+            pending = true
+          }
+        }
+      }
+      setMessages((m) => [...m, { role: 'assistant', content: out.reply, corrections: out.corrections, savedWords, pending }])
       setSuggestions(out.suggestions)
       if (mode === 'conversation' && tts.supported) tts.speak(out.reply)
     } catch (e) { setError((e as Error).message || 'AI unavailable') }
@@ -240,10 +302,13 @@ export default function ChatWindow() {
           .then((d) => {
             if (!d) throw new Error('Could not score this scene.')
             setRecap((r) => r && ({ ...r, debrief: { status: 'done', ...d } }))
-            fetch('/api/chat/debrief', {
-              method: 'POST', headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ sessionId, score: d.score }),
-            }).catch(() => {})
+            // XP for the scored role-play; skipped for a chat that has not synced yet.
+            if (!isLocalId(sessionId) && navigator.onLine) {
+              fetch('/api/chat/debrief', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId, score: d.score }),
+              }).catch(() => {})
+            }
           })
           .catch((e: Error) => setRecap((r) => r && ({ ...r, debrief: { status: 'error', error: e.message || 'Could not score' } })))
       }
@@ -465,6 +530,11 @@ export default function ChatWindow() {
                 </div>
                 {m.corrections && (
                   <p className="fix-box mt-2.5 text-sm font-semibold">{m.corrections}</p>
+                )}
+                {m.pending && (
+                  <p className="meta text-muted mt-2 flex items-center gap-1.5" data-testid="chat-pending">
+                    <WifiOff className="w-3.5 h-3.5" strokeWidth={2.4} /> Saved on this device · syncs when you are back online
+                  </p>
                 )}
                 {m.savedWords && m.savedWords.length > 0 && (
                   <div className="text-sm mt-2.5 flex flex-wrap gap-1.5">

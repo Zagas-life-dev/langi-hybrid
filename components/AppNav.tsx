@@ -15,7 +15,8 @@ import { HybridHudCard, HybridHudChip } from '@/components/HybridHud'
 // because flashcard review runs from the on-device cache.
 export const NAV_LINKS = [
   { href: '/learn', label: 'Today', dot: 'var(--lime)', net: false },
-  { href: '/chat', label: 'Tutor', dot: 'var(--purple)', net: true },
+  // The tutor chats on-device (Gemini Nano) when offline and syncs later, so it stays available.
+  { href: '/chat', label: 'Tutor', dot: 'var(--purple)', net: false },
   // Sentence practice runs on-device (Gemini Nano), so it stays available offline.
   { href: '/sentences', label: 'Speak & write', dot: 'var(--orange)', net: false },
   { href: '/videos', label: 'Videos', dot: 'var(--sky)', net: true },

@@ -15,13 +15,14 @@ import { useTheme, type ThemeChoice } from '@/components/ThemeProvider'
 // `net: true` = needs a connection (greyed while offline, matching AppNav).
 const PRIMARY = [
   { href: '/learn', label: 'Today', icon: GraduationCap, net: false },
-  { href: '/chat', label: 'Tutor', icon: MessageSquare, net: true },
+  // The tutor and sentence practice run on-device (Gemini Nano), so they stay available offline.
+  { href: '/chat', label: 'Tutor', icon: MessageSquare, net: false },
   { href: '/videos', label: 'Videos', icon: Video, net: true },
   { href: '/progress', label: 'Progress', icon: BarChart3, net: true },
 ]
 
 const SECONDARY = [
-  { href: '/sentences', label: 'Speak & write', icon: PenLine, net: true },
+  { href: '/sentences', label: 'Speak & write', icon: PenLine, net: false },
   { href: '/courses', label: 'Courses', icon: ListVideo, net: true },
   { href: '/learn/stories', label: 'Stories', icon: GraduationCap, net: true },
   { href: '/league', label: 'League', icon: Trophy, net: true },
