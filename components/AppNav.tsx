@@ -7,6 +7,7 @@ import NotificationBell from '@/components/NotificationBell'
 import { ThemeToggleButton } from '@/components/ThemeToggle'
 import { Logo } from '@/components/Mascot'
 import { useOnline } from '@/lib/offlineQueue'
+import { HybridHudCard, HybridHudChip } from '@/components/HybridHud'
 
 // Each section keeps its own dot colour everywhere it appears.
 // `net: true` = the destination needs the network (AI tutor, YouTube, fresh
@@ -15,7 +16,8 @@ import { useOnline } from '@/lib/offlineQueue'
 export const NAV_LINKS = [
   { href: '/learn', label: 'Today', dot: 'var(--lime)', net: false },
   { href: '/chat', label: 'Tutor', dot: 'var(--purple)', net: true },
-  { href: '/sentences', label: 'Speak & write', dot: 'var(--orange)', net: true },
+  // Sentence practice runs on-device (Gemini Nano), so it stays available offline.
+  { href: '/sentences', label: 'Speak & write', dot: 'var(--orange)', net: false },
   { href: '/videos', label: 'Videos', dot: 'var(--sky)', net: true },
   { href: '/courses', label: 'Courses', dot: 'var(--yellow)', net: true },
   { href: '/progress', label: 'Progress', dot: 'var(--pink)', net: true },
@@ -47,6 +49,7 @@ export default function AppNav({ name, level }: { name: string; level?: string |
           <Link href="/learn" aria-label="Langi, Today"><Logo size={30} /></Link>
           <div className="flex items-center gap-2">
             {!online && <OfflineBadge />}
+            <HybridHudChip />
             {level && (
               <Link href="/placement" className="chip bg-yellow text-on-bright border-[var(--shadow-ink)]">{level}</Link>
             )}
@@ -85,6 +88,7 @@ export default function AppNav({ name, level }: { name: string; level?: string |
 
         <div className="mt-auto flex flex-col gap-3">
           {!online && <OfflineBadge />}
+          <HybridHudCard />
           <Link
             href="/placement"
             className="block p-4 rounded-[22px] bg-yellow text-on-bright border-[2.5px] border-[var(--shadow-ink)] shadow-(--shadow-sm) hover:-translate-y-0.5 transition-transform"
