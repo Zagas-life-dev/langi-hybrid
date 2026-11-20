@@ -31,6 +31,11 @@ export function adminDb(): Firestore {
   if (db) return db
   db = getFirestore(adminApp())
   // Optional fields left undefined are simply not written, like Mongoose did.
-  db.settings({ ignoreUndefinedProperties: true })
+  // Dev hot reloads re-run this module while Firebase keeps the same instance, and settings() may only run once.
+  try {
+    db.settings({ ignoreUndefinedProperties: true })
+  } catch {
+    /* already configured */
+  }
   return db
 }
