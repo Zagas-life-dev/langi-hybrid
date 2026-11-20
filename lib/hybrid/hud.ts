@@ -92,6 +92,19 @@ export function useHud(): HudState {
   return useSyncExternalStore(subscribe, () => state, () => EMPTY)
 }
 
+// Remote Config can hide the HUD counter (the `show_hud` flag) without a redeploy.
+let hudVisible = true
+
+export function setHudVisible(v: boolean) {
+  if (v === hudVisible) return
+  hudVisible = v
+  listeners.forEach((l) => l())
+}
+
+export function useHudVisible(): boolean {
+  return useSyncExternalStore(subscribe, () => hudVisible, () => true)
+}
+
 export function formatUsd(n: number) {
   if (n === 0) return '$0'
   return n < 0.01 ? '<$0.01' : '$' + n.toFixed(2)

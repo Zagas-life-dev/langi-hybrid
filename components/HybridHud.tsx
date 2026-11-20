@@ -1,7 +1,15 @@
 'use client'
 import { Cpu, Cloud } from 'lucide-react'
-import { formatBytes, formatUsd, useHud, useLifetime } from '@/lib/hybrid/hud'
+import { formatBytes, formatUsd, useHud, useHudVisible, useLifetime } from '@/lib/hybrid/hud'
+import { useRoutingStatus } from '@/lib/hybrid/remoteConfig'
 import { NanoStatusLine } from '@/components/DeviceBanner'
+
+/** Which routing is in force: built-in defaults, live Remote Config, or the cloud kill switch. */
+function RoutingLine() {
+  const r = useRoutingStatus()
+  const text = r.forceCloud ? 'Routing: forced to cloud' : r.source === 'remote' ? 'Routing: live from Remote Config' : 'Routing: built-in defaults'
+  return <p className="meta text-muted mt-1.5" data-testid="routing-status" data-source={r.source} data-force-cloud={r.forceCloud}>{text}</p>
+}
 
 // The Hybrid HUD counter: how many AI actions ran on this device (free, private, offline-ready)
 // versus in the cloud, and the data and cost the on-device ones saved. Every AI result also wears a
@@ -11,8 +19,10 @@ import { NanoStatusLine } from '@/components/DeviceBanner'
 export function HybridHudCard() {
   const s = useHud()
   const life = useLifetime()
+  const visible = useHudVisible()
   const total = s.onDevice + s.cloud
   const pct = total ? Math.round((s.onDevice / total) * 100) : 0
+  if (!visible) return null
   return (
     <div className="p-3.5 rounded-[22px] bg-paper border-[2.5px] border-line" aria-label="Hybrid HUD" data-testid="hybrid-hud">
       <p className="meta text-muted flex items-center justify-between">
@@ -34,6 +44,7 @@ export function HybridHudCard() {
         )}
       </p>
       <NanoStatusLine />
+      <RoutingLine />
     </div>
   )
 }
@@ -41,7 +52,8 @@ export function HybridHudCard() {
 /** One compact chip for the mobile top bar. Hidden until the first AI action. */
 export function HybridHudChip() {
   const s = useHud()
-  if (!s.onDevice && !s.cloud) return null
+  const visible = useHudVisible()
+  if (!visible || (!s.onDevice && !s.cloud)) return null
   return (
     <span className="chip bg-lime text-on-bright border-(--shadow-ink)" data-testid="hybrid-hud-chip"
       title={`${s.onDevice} on-device, ${s.cloud} cloud · saved ${formatBytes(s.savedBytes)}`}>

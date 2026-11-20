@@ -1,0 +1,24 @@
+{
+  "parameters": {
+    "force_cloud": {
+      "defaultValue": { "value": "false" },
+      "valueType": "BOOLEAN",
+      "description": "Kill switch. true sends every AI task to the cloud (use if the on-device model misbehaves)."
+    },
+    "show_hud": {
+      "defaultValue": { "value": "true" },
+      "valueType": "BOOLEAN",
+      "description": "Show the Hybrid HUD counter in the app."
+    },
+    "on_device_tasks": {
+      "defaultValue": { "value": "liveCorrect,explain,grade,classify" },
+      "valueType": "STRING",
+      "description": "Tasks that run on-device first. Valid: liveCorrect, explain, grade, classify, deepDive, chat. Tasks left out run in the cloud first."
+    },
+    "max_on_device_chars": {
+      "defaultValue": { "value": "{\"liveCorrect\":600,\"explain\":400,\"grade\":800,\"deepDive\":1500,\"chat\":6000,\"classify\":400}" },
+      "valueType": "JSON",
+      "description": "Per task: inputs longer than this many characters skip the on-device model and go to the cloud."
+    }
+  }
+}

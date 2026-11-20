@@ -7,6 +7,7 @@ import OfflineVoicePrompt from '@/components/OfflineVoicePrompt'
 import OfflineWarmer from '@/components/OfflineWarmer'
 import { LangProvider } from '@/components/LangProvider'
 import DeviceBanner from '@/components/DeviceBanner'
+import RemoteRouting from '@/components/RemoteRouting'
 import { requireUser } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -49,6 +50,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <main id="main" tabIndex={-1} className="flex-1 pb-nav focus-none md:pl-[calc(var(--sidebar-w)+2rem)] md:pr-4 md:py-4"><DeviceBanner />{children}</main>
         <BottomNav />
         <OfflineWarmer />
+        <RemoteRouting />
         <InstallPrompt />
         <OfflineVoicePrompt />
       </div>

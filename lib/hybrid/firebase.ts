@@ -52,3 +52,9 @@ export function getHybridAI(): AI {
   ai = getAI(app, { backend: new GoogleAIBackend() })
   return ai
 }
+
+/** The same Firebase app (App Check already attached), for Remote Config and other services. */
+export function getHybridApp(): FirebaseApp {
+  getHybridAI() // initialises the app and App Check exactly once
+  return getApps()[0]
+}
