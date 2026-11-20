@@ -6,6 +6,7 @@ import InstallPrompt from '@/components/InstallPrompt'
 import OfflineVoicePrompt from '@/components/OfflineVoicePrompt'
 import OfflineWarmer from '@/components/OfflineWarmer'
 import { LangProvider } from '@/components/LangProvider'
+import DeviceBanner from '@/components/DeviceBanner'
 import { requireUser } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -45,7 +46,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <AppNav name={name} level={level} />
         {/* pb-nav reserves room for the mobile tab bar (no-ops from md up). */}
         {/* From md up the content sits to the right of the floating sidebar. */}
-        <main id="main" tabIndex={-1} className="flex-1 pb-nav focus-none md:pl-[calc(var(--sidebar-w)+2rem)] md:pr-4 md:py-4">{children}</main>
+        <main id="main" tabIndex={-1} className="flex-1 pb-nav focus-none md:pl-[calc(var(--sidebar-w)+2rem)] md:pr-4 md:py-4"><DeviceBanner />{children}</main>
         <BottomNav />
         <OfflineWarmer />
         <InstallPrompt />

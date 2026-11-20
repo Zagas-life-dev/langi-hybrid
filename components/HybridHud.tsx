@@ -1,6 +1,7 @@
 'use client'
 import { Cpu, Cloud } from 'lucide-react'
 import { formatBytes, formatUsd, useHud, useLifetime } from '@/lib/hybrid/hud'
+import { NanoStatusLine } from '@/components/DeviceBanner'
 
 // The Hybrid HUD counter: how many AI actions ran on this device (free, private, offline-ready)
 // versus in the cloud, and the data and cost the on-device ones saved. Every AI result also wears a
@@ -32,6 +33,7 @@ export function HybridHudCard() {
           <span className="block">All time: {formatBytes(life.savedBytes)} · {formatUsd(life.savedUsd)}</span>
         )}
       </p>
+      <NanoStatusLine />
     </div>
   )
 }
