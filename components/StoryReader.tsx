@@ -183,7 +183,7 @@ export default function StoryReader({
 
       <Link href="/learn/stories" className="btn-ghost">More stories</Link>
 
-      <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} floating />
+      <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} onExplain={wordLookup.explain} floating />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { checkText, deepDive, type CheckResult } from '@/lib/hybrid/liveCorrect'
 import { highlight, type Mistake } from '@/lib/hybrid/correctCore'
 import { warmUpDevice } from '@/lib/hybrid/ai'
 import { firebaseConfigured } from '@/lib/hybrid/firebase'
+import HybridBadge from '@/components/HybridBadge'
 
 // Live Correct: as the learner types, a short pause triggers an on-device check (Gemini Nano
 // through Firebase AI Logic). Nothing is sent to a server; it works offline.
@@ -44,15 +45,6 @@ export function useLiveCorrect(text: string, lang: string, enabled = true, delay
   }, [text, lang, enabled, delayMs])
 
   return state
-}
-
-export function SourceBadge({ source, ms, reason }: { source: 'ON_DEVICE' | 'IN_CLOUD'; ms: number; reason?: string }) {
-  return (
-    <span title={reason}
-      className={`chip border-(--shadow-ink) text-on-bright ${source === 'ON_DEVICE' ? 'bg-lime' : 'bg-sky'}`}>
-      {source === 'ON_DEVICE' ? 'On-device' : 'Cloud'} · {ms} ms
-    </span>
-  )
 }
 
 /** Shows the learner's text with wrong spans underlined, the fix, and a Deep Dive per mistake. */
@@ -101,7 +93,7 @@ export function LiveCorrectPanel({
         ) : (
           <span className="chip bg-yellow text-on-bright border-(--shadow-ink)"><Sparkles className="w-3.5 h-3.5" /> {r.mistakes.length || 1} to fix</span>
         )}
-        <SourceBadge source={r.source} ms={r.firstTokenMs ?? r.ms} reason={r.reason} />
+        <HybridBadge source={r.source} ms={r.firstTokenMs ?? r.ms} reason={r.reason} />
       </div>
 
       {!r.ok && (
@@ -145,7 +137,7 @@ export function LiveCorrectPanel({
         <div className="brut-card mt-2 p-4 text-sm" data-testid="deep-dive">
           <div className="flex items-center gap-2 mb-2">
             <p className="font-extrabold flex items-center gap-1.5"><Microscope className="w-4 h-4" /> Deep Dive</p>
-            {dive.busy ? <Loader2 className="w-4 h-4 animate-spin" /> : dive.badge && <SourceBadge {...dive.badge} />}
+            {dive.busy ? <Loader2 className="w-4 h-4 animate-spin" /> : dive.badge && <HybridBadge {...dive.badge} />}
           </div>
           {dive.error ? <p className="text-accent2" role="alert">{dive.error}</p> : <p className="whitespace-pre-wrap leading-relaxed">{dive.text.replace(/\*\*/g, '') || 'Asking the cloud…'}</p>}
         </div>

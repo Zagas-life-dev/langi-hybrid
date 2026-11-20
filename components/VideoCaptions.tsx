@@ -208,7 +208,7 @@ export function CaptionOverlay({ videoId, learning, native }: { videoId: string;
           )
         })}
       </div>
-      <WordLookupCard lookup={wordLookup.lookup} onSave={saveWord} onClose={wordLookup.close} floating
+      <WordLookupCard lookup={wordLookup.lookup} onSave={saveWord} onClose={wordLookup.close} onExplain={wordLookup.explain} floating
         extra={tappedCue && (
           <button onClick={saveLine} disabled={lineSave === 'saving' || lineSave === 'saved'}
             title="Save this whole line as a fill-in-the-blank card"

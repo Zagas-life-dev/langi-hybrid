@@ -163,7 +163,7 @@ export default function DictationSession() {
                 </p>
                 <p className="text-sm text-muted pt-3 border-t border-line/10">{current.translation}</p>
                 {online && <p className="meta text-muted mt-2">Tap a word to look it up and save it.</p>}
-                <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} />
+                <WordLookupCard lookup={wordLookup.lookup} onSave={wordLookup.save} onClose={wordLookup.close} onExplain={wordLookup.explain} />
               </div>
               <button onClick={() => { wordLookup.close(); next() }} className="btn-ink w-full">{pos + 1 >= lines.length ? 'Finish' : 'Next'} <ArrowRight className="w-4 h-4" /></button>
             </div>

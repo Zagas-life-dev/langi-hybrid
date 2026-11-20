@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Volume2, Square, Mic, Send, Sparkles, MessageSquare, BookOpen, BookmarkPlus, RotateCcw, GraduationCap, Headphones, Keyboard, Loader2, PenLine, Check } from 'lucide-react'
+import { Volume2, Square, Mic, Send, Sparkles, MessageSquare, BookOpen, BookmarkPlus, RotateCcw, GraduationCap, Headphones, Keyboard, Loader2, PenLine, Check, Languages } from 'lucide-react'
 import Mascot from '@/components/Mascot'
 import { useTTS, useSTT } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
@@ -10,6 +10,7 @@ import { SCENARIOS, scenarioByKey } from '@/lib/scenarios'
 import { conversationStarter, randomTopic, scenarioDebrief, tutorReply } from '@/lib/hybrid/tutor'
 import { useHud } from '@/lib/hybrid/hud'
 import { LiveCorrectPanel, useLiveCorrect } from '@/components/LiveCorrect'
+import HybridBadge from '@/components/HybridBadge'
 
 interface ChatCtx { level: string; lang: string; focus: string[] }
 
@@ -411,12 +412,7 @@ export default function ChatWindow() {
         <span className="chip bg-yellow text-on-bright border-[var(--shadow-ink)] max-w-full truncate">
           {mode === 'grammar' ? 'Grammar help' : scenario ? scenarioLabel(scenario) : <>Topic: <strong className="font-extrabold">{topic}</strong></>}
         </span>
-        {lastEvent && (
-          <span className={`chip border-[var(--shadow-ink)] text-on-bright ${lastEvent.source === 'ON_DEVICE' ? 'bg-lime' : 'bg-sky'}`}
-            title={lastEvent.reason}>
-            {lastEvent.source === 'ON_DEVICE' ? 'On-device' : 'Cloud'} · {lastEvent.ms} ms
-          </span>
-        )}
+        {lastEvent && <HybridBadge source={lastEvent.source} ms={lastEvent.ms} reason={lastEvent.reason} />}
         <div className="flex items-center gap-2">
           {mode === 'conversation' && stt.supported && tts.supported && !handsFree && (
             <button onClick={startVoice} className="btn-ghost min-h-11 px-4 text-sm" title="Talk with Langi hands-free">
@@ -455,6 +451,15 @@ export default function ChatWindow() {
                       {spokenIdx === i && voice.speaking
                         ? <Square className="w-4 h-4" strokeWidth={2.4} />
                         : <Volume2 className="w-4 h-4" strokeWidth={2.4} />}
+                    </button>
+                  )}
+                  {m.role === 'assistant' && mode === 'conversation' && (
+                    <button
+                      onClick={() => wordLookup.explainSentence(m.content, { kind: 'chat', context: m.content })}
+                      className="shrink-0 mt-0.5 w-8 h-8 -my-1 rounded-full flex items-center justify-center hover:bg-white/80"
+                      aria-label="Explain this message" title="Explain this message"
+                    >
+                      <Languages className="w-4 h-4" strokeWidth={2.4} />
                     </button>
                   )}
                 </div>

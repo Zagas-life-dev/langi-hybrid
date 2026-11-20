@@ -8,6 +8,7 @@ import { langName } from '@/lib/langs'
 import { scenarioByKey } from '@/lib/scenarios'
 import { runTask } from './ai'
 import type { HybridTask } from './tasks'
+import type { HybridEvent } from './hud'
 
 export { langName, scenarioByKey }
 export { SCENARIOS } from '@/lib/scenarios'
@@ -23,10 +24,13 @@ const pairList = (a: string, b: string) =>
   S.array({ items: S.object({ properties: { [a]: S.string(), [b]: S.string() } }) })
 
 /** Run one structured task. Falls back to salvaging JSON from the text if the schema parse failed. */
-async function ask<T>(task: HybridTask, system: string, user: string, schema: Schema): Promise<T | null> {
+async function askEv<T>(task: HybridTask, system: string, user: string, schema: Schema): Promise<{ data: T | null; event: HybridEvent }> {
   const r = await runTask<T>(task, user, { instructions: system, schema })
-  if (r.data) return r.data
-  return loadsJsonish(r.text) as T | null
+  return { data: r.data ?? (loadsJsonish(r.text) as T | null), event: r.event }
+}
+
+async function ask<T>(task: HybridTask, system: string, user: string, schema: Schema): Promise<T | null> {
+  return (await askEv<T>(task, system, user, schema)).data
 }
 
 /** Flatten chat history into one prompt: on-device sessions are single-turn. */
@@ -95,6 +99,8 @@ export interface ContextTranslation {
   grammar: string
   /** Other ways a native might say it, with a short note on when. */
   alternatives: string[]
+  /** Where this answer was produced, for the Hybrid HUD badge. */
+  badge?: { source: 'ON_DEVICE' | 'IN_CLOUD'; ms: number; reason: string }
 }
 
 /** Nuanced, context-aware translation of a selection plus the full sentence it sits in. */
@@ -102,7 +108,9 @@ export async function translateInContext(selection: string, sentence: string, la
   const ln = langName(lang)
   const nn = langName(nativeLang)
   const around = [before && `Before: ${before}`, after && `After: ${after}`].filter(Boolean).join('\n')
-  const out = await ask<Partial<ContextTranslation>>('chat',
+  // Tap to Explain prefers the device (short input, very frequent). If Nano can't fill the whole
+  // structure, retry once on the chat route (cloud first) rather than show nothing.
+  const system =
     `You are an expert ${ln}-${nn} translator and teacher. The learner selected a ${ln} word or phrase inside a ` +
     `sentence. Translate WITH CONTEXT, never in isolation. Answer in ${nn}.\n` +
     `- meaning: what the selection means in this exact sentence (pick the right sense; say if it is an idiom or part of a fixed expression).\n` +
@@ -110,9 +118,13 @@ export async function translateInContext(selection: string, sentence: string, la
     `- literal: a word-for-word ${nn} gloss, so the learner sees the structure.\n` +
     `- nuance: register (formal/casual/slang), tone, implied meaning or cultural connotation. One or two sentences. Empty if nothing notable.\n` +
     `- grammar: the grammar that shapes this form (tense/mood, agreement, pronoun, word order). One sentence. Empty if nothing notable.\n` +
-    `- alternatives: up to 2 other natural ${ln} ways to say the same thing, each followed by a short note on when it fits.`,
-    `Selection: "${selection}"\nSentence: "${sentence}"${around ? `\n${around}` : ''}`,
-    S.object({ properties: { meaning: str(), sentence: str(), literal: str(), nuance: str(), grammar: str(), alternatives: strList() } }))
+    `- alternatives: up to 2 other natural ${ln} ways to say the same thing, each followed by a short note on when it fits.`
+  const user =
+    `Selection: "${selection}"\nSentence: "${sentence}"${around ? `\n${around}` : ''}`
+  const schema = S.object({ properties: { meaning: str(), sentence: str(), literal: str(), nuance: str(), grammar: str(), alternatives: strList() } })
+  let res = await askEv<Partial<ContextTranslation>>('explain', system, user, schema).catch(() => null)
+  if (!res?.data?.meaning && !res?.data?.sentence) res = await askEv<Partial<ContextTranslation>>('chat', system, user, schema)
+  const out = res.data
   const meaning = String(out?.meaning || '').trim()
   const full = String(out?.sentence || '').trim()
   if (!meaning && !full) return null
@@ -123,6 +135,7 @@ export async function translateInContext(selection: string, sentence: string, la
     nuance: String(out?.nuance || '').trim(),
     grammar: String(out?.grammar || '').trim(),
     alternatives: (Array.isArray(out?.alternatives) ? out!.alternatives : []).map((s) => String(s).trim()).filter(Boolean).slice(0, 2),
+    badge: { source: res.event.source, ms: res.event.ms, reason: res.event.reason },
   }
 }
 
