@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { LogOut, Settings, WifiOff } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import { signOutClient } from '@/lib/firebase/authClient'
 import NotificationBell from '@/components/NotificationBell'
 import { ThemeToggleButton } from '@/components/ThemeToggle'
 import { Logo } from '@/components/Mascot'
@@ -34,8 +34,7 @@ export default function AppNav({ name, level }: { name: string; level?: string |
   const online = useOnline()
 
   async function signOut() {
-    const supabase = createClient()
-    await supabase.auth.signOut()
+    await signOutClient()
     router.push('/login')
     router.refresh()
   }

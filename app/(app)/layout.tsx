@@ -34,7 +34,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     nativeLang = dbUser.nativeLang || 'en'
     ttsVoice = dbUser.ttsVoice
   } catch {
-    redirect('/login')
+    redirect('/login?reauth=1')
   }
 
   return (

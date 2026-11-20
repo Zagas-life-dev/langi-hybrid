@@ -20,12 +20,17 @@ export function firebaseConfigured(): boolean {
 
 let ai: AI | null = null
 
-export function getHybridAI(): AI {
-  if (ai) return ai
+/** The one Firebase app for this page (sign-in, Remote Config and AI Logic all share it). */
+export function getFirebaseApp(): FirebaseApp {
   if (!firebaseConfigured()) {
     throw new Error('Firebase is not configured: set NEXT_PUBLIC_FIREBASE_* in .env.local')
   }
-  const app: FirebaseApp = getApps()[0] ?? initializeApp(config)
+  return getApps()[0] ?? initializeApp(config)
+}
+
+export function getHybridAI(): AI {
+  if (ai) return ai
+  const app: FirebaseApp = getFirebaseApp()
 
   // Local dev: App Check debug token. The console prints a token to register in
   // Firebase console > App Check > Manage debug tokens. Never enabled in production.

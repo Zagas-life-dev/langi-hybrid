@@ -6,7 +6,7 @@ import {
   GraduationCap, MessageSquare, Video, BarChart3, MoreHorizontal,
   PenLine, ListVideo, Settings, LogOut, X, WifiOff, Sun, Moon, Monitor, Trophy,
 } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import { signOutClient } from '@/lib/firebase/authClient'
 import { useOnline } from '@/lib/offlineQueue'
 import { useTheme, type ThemeChoice } from '@/components/ThemeProvider'
 
@@ -65,8 +65,7 @@ export default function BottomNav() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
 
   async function signOut() {
-    const supabase = createClient()
-    await supabase.auth.signOut()
+    await signOutClient()
     router.push('/login')
     router.refresh()
   }

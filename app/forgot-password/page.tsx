@@ -2,7 +2,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import AuthShell, { AUTH_CARD, AuthError } from '@/components/AuthShell'
-import { createClient } from '@/lib/supabase/client'
+import { sendResetEmail } from '@/lib/firebase/authClient'
+import { authErrorMessage } from '@/lib/firebase/authCore'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -14,15 +15,13 @@ export default function ForgotPasswordPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const supabase = createClient()
-    const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${location.origin}/auth/callback?next=/learn`,
-    })
-    if (err) {
-      setError(err.message)
-      setLoading(false)
-    } else {
+    try {
+      await sendResetEmail(email)
       setSent(true)
+    } catch (err) {
+      // Never reveal whether an address has an account: "no such user" looks like success.
+      if ((err as { code?: string }).code === 'auth/user-not-found') setSent(true)
+      else { setError(authErrorMessage(err) || 'Could not send the email. Try again.'); setLoading(false) }
     }
   }
 

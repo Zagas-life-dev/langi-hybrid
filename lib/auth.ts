@@ -1,22 +1,66 @@
 import { cache } from 'react'
-import { createClient } from '@/lib/supabase/server'
+import { cookies } from 'next/headers'
+import { adminAuth } from '@/lib/firebase/admin'
 import { connectDB } from '@/lib/db'
 import LangiUser from '@/lib/models/LangiUser'
 import type { ILangiUser } from '@/lib/models/LangiUser'
 import { parseBirthdate } from '@/lib/age'
 
-export async function getUser() {
-  const supabase = await createClient()
-  // getUser() revalidates the token against Supabase (a network call). When that
-  // can't be reached — offline, or a transient Supabase outage — fall back to the
-  // session stored locally in cookies so a refresh doesn't force a logout. The
-  // cookie session IS the cached login; signing out clears it, so real sign-outs
-  // still work. Data mutations stay gated per-route, and are unreachable offline
-  // anyway, so trusting the cached session here is safe.
-  const { data: { user } } = await supabase.auth.getUser().catch(() => ({ data: { user: null } }))
-  if (user) return user
-  const { data: { session } } = await supabase.auth.getSession().catch(() => ({ data: { session: null } }))
-  return session?.user ?? null
+// Authentication is Firebase Auth (Google + email/password). The browser signs in with the Firebase
+// SDK, /api/auth/session turns that into an httpOnly session cookie, and every page and API route
+// verifies that cookie here. Profile data still lives in the existing database until each
+// collection moves to Firestore; its `supabaseUserId` field now holds the Firebase uid.
+
+export const SESSION_COOKIE = 'langi_session'
+/** How long a sign-in lasts. */
+export const SESSION_DAYS = 14
+
+/** The signed-in person as the rest of the app sees them. */
+export interface AuthUser {
+  id: string
+  email: string | null
+  user_metadata: Record<string, unknown>
+}
+
+export async function getUser(): Promise<AuthUser | null> {
+  const jar = await cookies()
+  const value = jar.get(SESSION_COOKIE)?.value
+  if (!value) return null
+  try {
+    // checkRevoked=false keeps this a local signature check (no network on every request).
+    const d = await adminAuth().verifySessionCookie(value, false)
+    return {
+      id: d.uid,
+      email: d.email ?? null,
+      user_metadata: { display_name: typeof d.name === 'string' ? d.name : undefined, picture: d.picture },
+    }
+  } catch {
+    return null
+  }
+}
+
+/** Create the profile on first sign-in; later sign-ins only refresh the email. */
+export async function ensureDbUser(
+  uid: string,
+  email: string | null,
+  profile: { displayName?: string; birthdate?: string | null } = {},
+): Promise<ILangiUser> {
+  await connectDB()
+  const doc = await LangiUser.findOneAndUpdate(
+    { supabaseUserId: uid },
+    {
+      $set: { email: email ?? '' },
+      $setOnInsert: {
+        supabaseUserId: uid,
+        displayName: profile.displayName?.trim() || undefined,
+        birthdate: parseBirthdate(profile.birthdate ?? null),
+        learningLang: 'fr',
+        nativeLang: 'en',
+      },
+    },
+    { upsert: true, returnDocument: 'after' },
+  )
+  return doc!
 }
 
 export async function getDbUser(): Promise<ILangiUser | null> {
@@ -26,27 +70,16 @@ export async function getDbUser(): Promise<ILangiUser | null> {
   return LangiUser.findOne({ supabaseUserId: user.id })
 }
 
-// React cache() dedupes within one render pass: layout + page both calling
-// requireUser() only hit Supabase + Mongo once. There is NO approval/quota gate
-// — any authenticated Supabase user gets a LangiUser doc and full access.
+// React cache() dedupes within one render pass: layout + page both calling requireUser() verify the
+// cookie and read the profile only once. There is NO approval or quota gate: any signed-in person
+// gets a profile and full access.
 export const requireUser = cache(async () => {
   const user = await getUser()
   if (!user) throw new Error('Unauthorized')
-  await connectDB()
-  const meta = (user.user_metadata ?? {}) as Record<string, unknown>
-  const dbUser = await LangiUser.findOneAndUpdate(
-    { supabaseUserId: user.id },
-    {
-      $set: { email: user.email },
-      $setOnInsert: {
-        supabaseUserId: user.id,
-        displayName: typeof meta.display_name === 'string' ? meta.display_name : undefined,
-        birthdate: parseBirthdate(typeof meta.birthdate === 'string' ? meta.birthdate : null),
-        learningLang: 'fr',
-        nativeLang: 'en',
-      },
-    },
-    { upsert: true, returnDocument: 'after' }
-  )
-  return { supabaseUser: user, dbUser: dbUser! }
+  const meta = user.user_metadata
+  const dbUser = await ensureDbUser(user.id, user.email, {
+    displayName: typeof meta.display_name === 'string' ? meta.display_name : undefined,
+  })
+  // `supabaseUser` is the legacy property name; it is the Firebase user now.
+  return { supabaseUser: user, dbUser }
 })

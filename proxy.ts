@@ -1,55 +1,32 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
+import { sessionLooksLive } from '@/lib/firebase/authCore'
 
-// Route protection (Next.js 16 renamed middleware.ts -> proxy.ts). Any logged-in
-// Supabase user may use Langi — there is no admin-approval gate.
-export async function proxy(request: NextRequest) {
-  let response = NextResponse.next({ request })
+// Route protection (Next.js 16 renamed middleware.ts -> proxy.ts). Any signed-in learner may use
+// Langi: there is no admin-approval gate.
+//
+// This guard only decides redirects, using a cheap expiry check on the session cookie. It does NOT
+// verify the signature: every page and API route verifies the cookie properly (lib/auth.ts) before
+// it shows or changes any data, so a forged cookie gets a redirect to /login at most.
+const SESSION_COOKIE = 'langi_session'
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          response = NextResponse.next({ request })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
+export function proxy(request: NextRequest) {
+  const authed = sessionLooksLive(request.cookies.get(SESSION_COOKIE)?.value)
+  const { pathname, searchParams } = request.nextUrl
 
-  // getUser() revalidates over the network; getSession() reads the cookie locally.
-  // Treat the learner as authenticated if EITHER confirms, so a transient network
-  // / Supabase failure (or a refresh right after coming back) can't bounce a
-  // logged-in user to /login. Real sign-outs clear the cookie, so getSession then
-  // returns null and protection still applies.
-  const { data: { user } } = await supabase.auth.getUser().catch(() => ({ data: { user: null } }))
-  let authed = !!user
-  if (!authed) {
-    const { data: { session } } = await supabase.auth.getSession().catch(() => ({ data: { session: null } }))
-    authed = !!session
-  }
-  const { pathname } = request.nextUrl
-
-  const publicPaths = ['/login', '/signup', '/forgot-password', '/auth/callback', '/auth/confirm']
+  const publicPaths = ['/login', '/signup', '/forgot-password', '/hybrid-lab']
   const isPublic = publicPaths.some((p) => pathname.startsWith(p))
 
   if (!authed && !isPublic && pathname !== '/') {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  if (authed && (pathname === '/login' || pathname === '/signup')) {
+  // A signed-in learner has no business on /login. But when the app sent them here because their
+  // session stopped working (?reauth=1), let the page clear it instead of redirecting back in a loop.
+  if (authed && (pathname === '/login' || pathname === '/signup') && !searchParams.has('reauth')) {
     return NextResponse.redirect(new URL('/learn', request.url))
   }
 
-  return response
+  return NextResponse.next()
 }
 
 export const config = {
