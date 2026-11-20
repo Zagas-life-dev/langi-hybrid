@@ -18,6 +18,7 @@ export interface IDeck extends Document {
 
 const Deck: Model<IDeck> = defineModel<IDeck>({
   collection: 'decks',
+  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
   key: ['slug'],
   indexed: ['languageCode'],
   defaults: () => ({ description: '', topic: '', order: 0, isSystem: true, answerTolerance: 'lenient' }),

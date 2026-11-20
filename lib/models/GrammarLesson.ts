@@ -24,6 +24,7 @@ export interface IGrammarLesson extends Document {
 
 const GrammarLesson: Model<IGrammarLesson> = defineModel<IGrammarLesson>({
   collection: 'grammarLessons',
+  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
   key: ['slug'],
   indexed: ['languageCode'],
   defaults: () => ({ topic: '', order: 0, summary: '', explanation: '', examples: [], drills: [], isSystem: true, generatedAt: new Date() }),

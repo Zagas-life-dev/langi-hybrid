@@ -12,6 +12,7 @@ export interface IPlacementQuestion extends Document {
 
 const PlacementQuestion: Model<IPlacementQuestion> = defineModel<IPlacementQuestion>({
   collection: 'placementQuestions',
+  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
   key: ['languageCode', 'prompt'],
   indexed: ['languageCode', 'level'],
   defaults: () => ({ kind: 'vocab' }),

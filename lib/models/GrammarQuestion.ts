@@ -17,6 +17,7 @@ export interface IGrammarQuestion extends Document {
 
 const GrammarQuestion: Model<IGrammarQuestion> = defineModel<IGrammarQuestion>({
   collection: 'grammarQuestions',
+  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
   key: ['languageCode', 'prompt'],
   indexed: ['languageCode', 'level', 'concept'],
   defaults: () => ({ concept: '', explanation: '', placement: false }),

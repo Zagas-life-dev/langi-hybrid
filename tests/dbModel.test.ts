@@ -134,6 +134,33 @@ describe('updates and save()', () => {
   })
 })
 
+describe('read cache for static content', () => {
+  interface IStatic extends Document { lang: string; title: string }
+  const Static = defineModel<IStatic>({ collection: 'statics', indexed: ['lang'], cacheMs: 60_000 })
+
+  it('repeated reads hit Firestore once, and any write clears the cache', async () => {
+    let scans = 0
+    const realScan = mem.scan.bind(mem)
+    mem.scan = async (c, eq) => { scans++; return realScan(c, eq) }
+    await Static.create({ lang: 'fr', title: 'one' })
+    scans = 0
+    expect((await Static.find({ lang: 'fr' })).length).toBe(1)
+    expect((await Static.find({ lang: 'fr' })).length).toBe(1)
+    expect((await Static.find({ lang: 'fr' })).length).toBe(1)
+    expect(scans).toBe(1)
+    await Static.create({ lang: 'fr', title: 'two' })
+    expect((await Static.find({ lang: 'fr' })).length).toBe(2)
+    expect(scans).toBe(2)
+  })
+
+  it('what a caller changes does not leak into the cache', async () => {
+    await Static.create({ lang: 'fr', title: 'one' })
+    const first = await Static.find({ lang: 'fr' }).lean()
+    first[0].title = 'mutated'
+    expect((await Static.find({ lang: 'fr' }).lean())[0].title).toBe('one')
+  })
+})
+
 describe('delete, count, distinct, exists, aggregate', () => {
   it('deleteOne, deleteMany and the document deleteOne()', async () => {
     const [a] = await Thing.create([{ owner: 'u', name: 'a' }, { owner: 'u', name: 'b' }, { owner: 'z', name: 'c' }])

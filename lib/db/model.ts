@@ -93,6 +93,12 @@ export interface ModelOptions {
   key?: string[]
   /** Top-level scalar fields worth filtering on inside Firestore (everything else filters in memory). */
   indexed?: string[]
+  /**
+   * For content that rarely changes (decks, cards, lessons): keep collection reads in memory this many
+   * ms, so repeated requests don't re-read Firestore (the free plan allows 50,000 reads a day). Any
+   * write through this model clears it immediately.
+   */
+  cacheMs?: number
 }
 
 const isScalar = (v: unknown): v is string | number | boolean => typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean'
@@ -123,6 +129,9 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     const d = typeof opts.defaults === 'function' ? opts.defaults() : clone(opts.defaults ?? {})
     return d
   }
+  // Short-lived read cache for static content (see `cacheMs`). Cleared by every write below.
+  const scanCache = new Map<string, { at: number; rows: { id: string; data: Doc }[] }>()
+  const invalidate = () => scanCache.clear()
   const keyOf = (values: Record<string, unknown>) => encodeId(key!.map((k) => values[k]))
   const keyComplete = (values: Record<string, unknown>) => !!key && key.every((k) => isScalar(values[k]))
 
@@ -146,11 +155,13 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
         for (const k of removed) delete base[k]
         return compact(base)
       })
+      invalidate()
       Object.defineProperty(this, '__snap', { value: clone(current), enumerable: false, writable: true, configurable: true })
       return this
     }
     async deleteOne(this: Doc & Hydrated) {
       await (await getBackend()).del(coll, String(this._id))
+      invalidate()
       return { deletedCount: 1 }
     }
     toObject(this: Doc) { return clone(plain(this)) }
@@ -194,7 +205,12 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
       const v = eqf[k]
       if (isScalar(v) && !(ci && typeof v === 'string')) push[k] = v
     }
-    return b.scan(coll, push)
+    if (!opts.cacheMs) return b.scan(coll, push)
+    const ck = JSON.stringify(push)
+    const hit = scanCache.get(ck)
+    const rows = hit && Date.now() - hit.at < opts.cacheMs ? hit.rows : await b.scan(coll, push)
+    if (rows !== hit?.rows) scanCache.set(ck, { at: Date.now(), rows })
+    return rows.map((r) => ({ id: r.id, data: clone(r.data) })) // callers may mutate what they get
   }
 
   async function matching(filter: Filter, ci = false): Promise<Doc[]> {
@@ -232,6 +248,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     const b = await getBackend()
     if (key) await b.mutate(coll, id, (cur) => { if (cur) throw new DuplicateKeyError(coll, id); return doc })
     else await b.put(coll, id, doc)
+    invalidate()
     return hydrate(id, doc)
   }
 
@@ -239,6 +256,14 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
 
   /** Shared by updateOne / updateMany / findOneAndUpdate. */
   async function updateCore(filter: Filter, update: Record<string, unknown>, o: UpdateOpts & { many?: boolean; ci?: boolean }) {
+    try {
+      return await updateCoreInner(filter, update, o)
+    } finally {
+      invalidate()
+    }
+  }
+
+  async function updateCoreInner(filter: Filter, update: Record<string, unknown>, o: UpdateOpts & { many?: boolean; ci?: boolean }) {
     const b = await getBackend()
     let rows = await matching(filter, !!o.ci)
     if (o.sort) rows = sortDocs(rows, o.sort)
@@ -319,11 +344,13 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
       const rows = await matching(filter)
       if (!rows[0]) return { deletedCount: 0 }
       await (await getBackend()).del(coll, String(rows[0]._id))
+      invalidate()
       return { deletedCount: 1 }
     },
     deleteMany: async (filter = {}) => {
       const rows = await matching(filter)
       await (await getBackend()).delMany(coll, rows.map((r) => String(r._id)))
+      invalidate()
       return { deletedCount: rows.length }
     },
     countDocuments: async (filter = {}) => (await matching(filter)).length,
@@ -372,6 +399,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
           matchedCount += chunk.length - created
         }
       }
+      invalidate()
       return { upsertedCount, matchedCount }
     },
     aggregate: async <R>(pipeline: Record<string, unknown>[]) => {
