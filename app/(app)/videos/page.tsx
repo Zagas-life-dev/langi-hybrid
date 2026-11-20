@@ -15,7 +15,6 @@ import VideoGrid from '@/components/VideoGrid'
 import RefreshFeedButton from '@/components/RefreshFeedButton'
 import Pagination from '@/components/Pagination'
 import { Video as YoutubeIcon, Zap } from 'lucide-react'
-import type { Types } from 'mongoose'
 
 export const dynamic = 'force-dynamic'
 
@@ -51,7 +50,7 @@ export default async function VideosPage({
   const seed = parseInt(sp.s || '', 10) || newSeed()
   const { dbUser } = await requireUser()
   const lang = dbUser.learningLang
-  const userId = dbUser._id as Types.ObjectId
+  const userId = dbUser._id as string
   await connectDB()
 
   // Everything the page needs, in parallel. The feed and pool are memoized

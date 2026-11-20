@@ -38,7 +38,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   const updated = await Story.findByIdAndUpdate(
     story._id,
     { $inc: { reportCount: 1 } },
-    { new: true, projection: 'reportCount' }
+    { new: true }
   )
   if (updated && updated.reportCount >= REPORT_HIDE_THRESHOLD) {
     await Story.updateOne({ _id: story._id }, { $set: { hidden: true } })

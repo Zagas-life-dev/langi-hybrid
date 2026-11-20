@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 
 // Canonical per-video index (one row per videoId). It is the single source of
@@ -27,26 +27,11 @@ export interface IVideoDoc extends Document {
   updatedAt: Date
 }
 
-const VideoDocSchema = new Schema<IVideoDoc>(
-  {
-    videoId: { type: String, required: true, unique: true, index: true },
-    languageCode: { type: String, required: true, index: true },
-    title: { type: String, default: '' },
-    channelTitle: { type: String, default: '' },
-    description: { type: String, default: '' },
-    thumbnail: { type: String, default: '' },
-    durationSeconds: { type: Number },
-    tags: { type: [String], default: [], index: true },
-    difficulty: { type: String, default: null },
-    isShort: { type: Boolean, default: false },
-    aiTagged: { type: Boolean, default: false },
-    vocab: { type: [new Schema({ w: String, n: Number }, { _id: false })], default: undefined },
-    vocabTotal: { type: Number },
-    vocabAt: { type: Date },
-  },
-  { timestamps: true }
-)
-
-if (mongoose.models.VideoDoc) mongoose.deleteModel('VideoDoc')
-const VideoDoc: Model<IVideoDoc> = mongoose.model<IVideoDoc>('VideoDoc', VideoDocSchema)
+const VideoDoc: Model<IVideoDoc> = defineModel<IVideoDoc>({
+  collection: 'videos',
+  timestamps: true,
+  key: ['videoId'],
+  indexed: ['languageCode'],
+  defaults: () => ({ title: '', channelTitle: '', description: '', thumbnail: '', tags: [], difficulty: null, isShort: false, aiTagged: false }),
+})
 export default VideoDoc

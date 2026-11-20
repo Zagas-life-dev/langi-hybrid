@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export interface ISentenceAttempt extends Document {
-  userId: Types.ObjectId
+  userId: string
   languageCode: string
   prompt: string          // the English sentence to translate
   userSentence: string
@@ -11,18 +11,9 @@ export interface ISentenceAttempt extends Document {
   at: Date
 }
 
-const SentenceAttemptSchema = new Schema<ISentenceAttempt>({
-  userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-  languageCode: { type: String, required: true },
-  prompt: { type: String, required: true },
-  userSentence: { type: String, required: true },
-  correction: { type: String, default: '' },
-  feedback: { type: String, default: '' },
-  score: { type: Number, default: 0 },
-  at: { type: Date, default: Date.now, index: true },
+const SentenceAttempt: Model<ISentenceAttempt> = defineModel<ISentenceAttempt>({
+  collection: 'sentenceAttempts',
+  indexed: ['userId'],
+  defaults: () => ({ correction: '', feedback: '', score: 0, at: new Date() }),
 })
-
-if (mongoose.models.SentenceAttempt) mongoose.deleteModel('SentenceAttempt')
-const SentenceAttempt: Model<ISentenceAttempt> =
-  mongoose.model<ISentenceAttempt>('SentenceAttempt', SentenceAttemptSchema)
 export default SentenceAttempt

@@ -1,9 +1,9 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // Tracks a learner's completion of a grammar mini-lesson's drill set. One doc
 // per (learner, lesson). `bestScore` is the highest drill accuracy (0–100).
 export interface IGrammarProgress extends Document {
-  userId: Types.ObjectId
+  userId: string
   lessonSlug: string
   languageCode: string
   completed: boolean
@@ -14,22 +14,11 @@ export interface IGrammarProgress extends Document {
   updatedAt: Date
 }
 
-const GrammarProgressSchema = new Schema<IGrammarProgress>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    lessonSlug: { type: String, required: true },
-    languageCode: { type: String, required: true },
-    completed: { type: Boolean, default: false },
-    bestScore: { type: Number, default: 0 },
-    attempts: { type: Number, default: 0 },
-    lastAttemptAt: { type: Date, default: Date.now },
-  },
-  { timestamps: true }
-)
-
-GrammarProgressSchema.index({ userId: 1, lessonSlug: 1 }, { unique: true })
-
-if (mongoose.models.GrammarProgress) mongoose.deleteModel('GrammarProgress')
-const GrammarProgress: Model<IGrammarProgress> =
-  mongoose.model<IGrammarProgress>('GrammarProgress', GrammarProgressSchema)
+const GrammarProgress: Model<IGrammarProgress> = defineModel<IGrammarProgress>({
+  collection: 'grammarProgress',
+  timestamps: true,
+  key: ['userId', 'lessonSlug'],
+  indexed: ['userId'],
+  defaults: () => ({ completed: false, bestScore: 0, attempts: 0, lastAttemptAt: new Date() }),
+})
 export default GrammarProgress

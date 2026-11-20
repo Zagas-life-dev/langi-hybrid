@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 
 // A grammar concept multiple-choice question (the bank). Seeded from
@@ -15,21 +15,10 @@ export interface IGrammarQuestion extends Document {
   placement: boolean
 }
 
-const GrammarQuestionSchema = new Schema<IGrammarQuestion>({
-  languageCode: { type: String, required: true, index: true },
-  level: { type: String, required: true, index: true },
-  concept: { type: String, default: '', index: true },
-  prompt: { type: String, required: true },
-  options: { type: [String], required: true },
-  answerIndex: { type: Number, required: true },
-  explanation: { type: String, default: '' },
-  placement: { type: Boolean, default: false },
+const GrammarQuestion: Model<IGrammarQuestion> = defineModel<IGrammarQuestion>({
+  collection: 'grammarQuestions',
+  key: ['languageCode', 'prompt'],
+  indexed: ['languageCode', 'level', 'concept'],
+  defaults: () => ({ concept: '', explanation: '', placement: false }),
 })
-
-// Stable key for idempotent seeding.
-GrammarQuestionSchema.index({ languageCode: 1, prompt: 1 }, { unique: true })
-
-if (mongoose.models.GrammarQuestion) mongoose.deleteModel('GrammarQuestion')
-const GrammarQuestion: Model<IGrammarQuestion> =
-  mongoose.model<IGrammarQuestion>('GrammarQuestion', GrammarQuestionSchema)
 export default GrammarQuestion

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 
 // A playlist OR a course (a course is just an ordered playlist where the next
@@ -13,7 +13,7 @@ export interface IPlaylistItem {
 }
 
 export interface IPlaylist extends Document {
-  ownerId: Types.ObjectId
+  ownerId: string
   ownerName: string
   languageCode: string
   title: string
@@ -27,34 +27,10 @@ export interface IPlaylist extends Document {
   updatedAt: Date
 }
 
-const PlaylistItemSchema = new Schema<IPlaylistItem>(
-  {
-    videoId: { type: String, required: true },
-    title: { type: String, default: '' },
-    channelTitle: { type: String, default: '' },
-    thumbnail: { type: String, default: '' },
-    order: { type: Number, default: 0 },
-    note: { type: String },
-  },
-  { _id: false }
-)
-
-const PlaylistSchema = new Schema<IPlaylist>(
-  {
-    ownerId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    ownerName: { type: String, default: 'Learner' },
-    languageCode: { type: String, required: true, index: true },
-    title: { type: String, required: true },
-    description: { type: String, default: '' },
-    isPublic: { type: Boolean, default: false, index: true },
-    isCourse: { type: Boolean, default: false },
-    isOfficial: { type: Boolean, default: false, index: true },
-    level: { type: String, default: null },
-    items: { type: [PlaylistItemSchema], default: [] },
-  },
-  { timestamps: true }
-)
-
-if (mongoose.models.Playlist) mongoose.deleteModel('Playlist')
-const Playlist: Model<IPlaylist> = mongoose.model<IPlaylist>('Playlist', PlaylistSchema)
+const Playlist: Model<IPlaylist> = defineModel<IPlaylist>({
+  collection: 'playlists',
+  timestamps: true,
+  indexed: ['ownerId', 'languageCode', 'isPublic', 'isOfficial'],
+  defaults: () => ({ ownerName: 'Learner', description: '', isPublic: false, isCourse: false, isOfficial: false, level: null, items: [] }),
+})
 export default Playlist

@@ -1,10 +1,10 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // The Leitner state for one (user, card) pair. Cards with no UserCard yet are
 // "new" and surfaced into the review queue up to a per-session cap.
 export interface IUserCard extends Document {
-  userId: Types.ObjectId
-  cardId: Types.ObjectId
+  userId: string
+  cardId: string
   languageCode: string
   box: number               // 1..5
   dueAt: Date
@@ -14,20 +14,10 @@ export interface IUserCard extends Document {
   reps: number
 }
 
-const UserCardSchema = new Schema<IUserCard>({
-  userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-  cardId: { type: Schema.Types.ObjectId, ref: 'Card', required: true, index: true },
-  languageCode: { type: String, required: true, index: true },
-  box: { type: Number, default: 1 },
-  dueAt: { type: Date, default: Date.now, index: true },
-  lastReviewedAt: { type: Date },
-  correctStreak: { type: Number, default: 0 },
-  lapses: { type: Number, default: 0 },
-  reps: { type: Number, default: 0 },
+const UserCard: Model<IUserCard> = defineModel<IUserCard>({
+  collection: 'userCards',
+  key: ['userId', 'cardId'],
+  indexed: ['userId', 'languageCode'],
+  defaults: () => ({ box: 1, dueAt: new Date(), correctStreak: 0, lapses: 0, reps: 0 }),
 })
-
-UserCardSchema.index({ userId: 1, cardId: 1 }, { unique: true })
-
-if (mongoose.models.UserCard) mongoose.deleteModel('UserCard')
-const UserCard: Model<IUserCard> = mongoose.model<IUserCard>('UserCard', UserCardSchema)
 export default UserCard

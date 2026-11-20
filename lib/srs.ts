@@ -1,4 +1,3 @@
-import { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import Deck from '@/lib/models/Deck'
 import Card from '@/lib/models/Card'
@@ -24,7 +23,7 @@ export interface DueItem {
 export async function getDueCards(userId: string, lang: string, deckId?: string): Promise<DueItem[]> {
   await connectDB()
   const deckQuery = deckId && deckId !== 'all'
-    ? { _id: new Types.ObjectId(deckId) }
+    ? { _id: deckId }
     : { languageCode: lang }
   const decks = await Deck.find(deckQuery).select('_id').lean()
   const deckIds = decks.map((d) => d._id)

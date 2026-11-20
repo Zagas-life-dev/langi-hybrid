@@ -8,6 +8,12 @@ export interface Backend {
   put(coll: string, id: string, data: Doc): Promise<void>
   /** Write many documents fast (seeding). */
   putMany(coll: string, items: { id: string; data: Doc }[]): Promise<void>
+  /**
+   * Bulk upsert for seeding: create `insert` when the document is new, otherwise merge only the `set`
+   * fields into it (so cached AI fields and user data on existing documents survive a re-seed).
+   * Returns how many documents were created.
+   */
+  upsertMany(coll: string, items: { id: string; insert: Doc; set: Doc }[]): Promise<number>
   del(coll: string, id: string): Promise<void>
   delMany(coll: string, ids: string[]): Promise<void>
   /** Documents whose top-level fields equal every value in `eq` (no `eq` = the whole collection). */
@@ -45,6 +51,15 @@ export class MemoryBackend implements Backend {
   }
   async putMany(coll: string, items: { id: string; data: Doc }[]) {
     for (const i of items) this.table(coll).set(i.id, clone(i.data))
+  }
+  async upsertMany(coll: string, items: { id: string; insert: Doc; set: Doc }[]) {
+    let created = 0
+    for (const i of items) {
+      const cur = this.table(coll).get(i.id)
+      if (cur) Object.assign(cur, clone(i.set))
+      else { this.table(coll).set(i.id, clone(i.insert)); created++ }
+    }
+    return created
   }
   async del(coll: string, id: string) {
     this.table(coll).delete(id)

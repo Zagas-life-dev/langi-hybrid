@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export interface ILanguage extends Document {
   code: string          // ISO code, e.g. 'fr'
@@ -8,14 +8,9 @@ export interface ILanguage extends Document {
   available: boolean     // whether content exists yet
 }
 
-const LanguageSchema = new Schema<ILanguage>({
-  code: { type: String, required: true, unique: true, index: true },
-  name: { type: String, required: true },
-  nativeName: { type: String, required: true },
-  flag: { type: String, default: '🏳️' },
-  available: { type: Boolean, default: false },
+const Language: Model<ILanguage> = defineModel<ILanguage>({
+  collection: 'languages',
+  key: ['code'],
+  defaults: () => ({ flag: '🏳️', available: false }),
 })
-
-if (mongoose.models.Language) mongoose.deleteModel('Language')
-const Language: Model<ILanguage> = mongoose.model<ILanguage>('Language', LanguageSchema)
 export default Language

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // Parsed subtitle cues for one (video, language). A video's captions don't
 // change, so the first learner to open a language pays the fetch (or, for an
@@ -20,24 +20,9 @@ export interface ICaptionCache extends Document {
   fetchedAt: Date
 }
 
-const CueSchema = new Schema<ICaptionCue>(
-  { start: Number, end: Number, text: String },
-  { _id: false }
-)
-
-const CaptionCacheSchema = new Schema<ICaptionCache>({
-  videoId: { type: String, required: true },
-  lang: { type: String, required: true },
-  cues: { type: [CueSchema], default: [] },
-  source: { type: String, enum: ['youtube', 'ai'], required: true },
-  from: { type: String },
-  parts: { type: Number },
-  ver: { type: Number },
-  fetchedAt: { type: Date, default: Date.now, expires: 60 * 60 * 24 * 30 },
+const CaptionCache: Model<ICaptionCache> = defineModel<ICaptionCache>({
+  collection: 'captionCaches',
+  key: ['videoId', 'lang'],
+  defaults: () => ({ cues: [], fetchedAt: new Date() }),
 })
-
-CaptionCacheSchema.index({ videoId: 1, lang: 1 }, { unique: true })
-
-if (mongoose.models.CaptionCache) mongoose.deleteModel('CaptionCache')
-const CaptionCache: Model<ICaptionCache> = mongoose.model<ICaptionCache>('CaptionCache', CaptionCacheSchema)
 export default CaptionCache

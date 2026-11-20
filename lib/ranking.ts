@@ -7,7 +7,6 @@ import { SWEET_SPOT } from '@/lib/wordsCore'
 import type { ILangiUser, CefrLevel } from '@/lib/models/LangiUser'
 import { getLearningVideos, searchForYou } from '@/lib/youtube'
 import { upsertVideoDocs } from '@/lib/videoIndex'
-import type { Types } from 'mongoose'
 
 // ---------------------------------------------------------------------------
 // Video recommendations. Scores candidate videos for a learner from:
@@ -30,7 +29,7 @@ function levelIndex(level?: CefrLevel | null): number {
 }
 
 /** Video IDs the user has already watched (for repetition control). */
-export async function watchedVideoIds(userId: Types.ObjectId | string, lang: string): Promise<Set<string>> {
+export async function watchedVideoIds(userId: string, lang: string): Promise<Set<string>> {
   await connectDB()
   const rows = await WatchHistory.find({ userId, languageCode: lang }).select('videoId').lean()
   return new Set(rows.map((r) => r.videoId))
@@ -57,7 +56,7 @@ const decay = (at?: Date) => (at ? Math.max(0.25, 0.5 ** ((Date.now() - new Date
  * Signals: share watched, finishing (and rewatching), likes, saves to the
  * learner's own playlists; a quick bounce (<10% watched) counts for little.
  */
-export async function engagementProfile(userId: Types.ObjectId | string, lang: string): Promise<EngagementProfile> {
+export async function engagementProfile(userId: string, lang: string): Promise<EngagementProfile> {
   await connectDB()
   const [history, likes, playlists] = await Promise.all([
     WatchHistory.find({ userId, languageCode: lang }).select('videoId completed completions position duration watchedAt').lean(),
@@ -95,7 +94,7 @@ export async function engagementProfile(userId: Types.ObjectId | string, lang: s
  * by how many they share; their completed/liked videos are scored by that.
  * Bounded queries — cheap at Langi's scale.
  */
-async function coWatchScores(userId: Types.ObjectId | string, lang: string, weight: Map<string, number>): Promise<Record<string, number>> {
+async function coWatchScores(userId: string, lang: string, weight: Map<string, number>): Promise<Record<string, number>> {
   const seeds = [...weight].filter(([, w]) => w >= 2).sort((a, b) => b[1] - a[1]).slice(0, 40).map(([id]) => id)
   if (!seeds.length) return {}
   const [peerWatches, peerLikes] = await Promise.all([
@@ -118,7 +117,7 @@ async function coWatchScores(userId: Types.ObjectId | string, lang: string, weig
 }
 
 /** Back-compat: just the topic half of the profile. */
-export async function userInterestTags(userId: Types.ObjectId | string, lang: string): Promise<Record<string, number>> {
+export async function userInterestTags(userId: string, lang: string): Promise<Record<string, number>> {
   return (await engagementProfile(userId, lang)).tags
 }
 
@@ -275,8 +274,8 @@ export async function getRankedRecommendations(
   const lang = user.learningLang
   const [pool, watched, profile] = await Promise.all([
     candidatePool(lang),
-    watchedVideoIds(user._id as Types.ObjectId, lang),
-    engagementProfile(user._id as Types.ObjectId, lang),
+    watchedVideoIds(user._id as string, lang),
+    engagementProfile(user._id as string, lang),
   ])
   if (excludeVideoId) watched.add(excludeVideoId)
   return rankVideos(user, pool, watched, profile).slice(0, limit)
@@ -291,7 +290,7 @@ export async function getRankedRecommendations(
 export async function getForYou(user: ILangiUser, opts: { limit?: number; refresh?: boolean } = {}): Promise<IVideoDoc[]> {
   const lang = user.learningLang
   const limit = opts.limit ?? 20
-  const profile = await engagementProfile(user._id as Types.ObjectId, lang)
+  const profile = await engagementProfile(user._id as string, lang)
   const topTags = Object.entries(profile.tags).sort((a, b) => b[1] - a[1]).map(([t]) => t).slice(0, 3)
 
   // Bring in fresh, profile-matched videos (cached unless refreshing).
@@ -301,7 +300,7 @@ export async function getForYou(user: ILangiUser, opts: { limit?: number; refres
 
   const [pool, watched] = await Promise.all([
     candidatePool(lang),
-    watchedVideoIds(user._id as Types.ObjectId, lang),
+    watchedVideoIds(user._id as string, lang),
   ])
   return rankVideos(user, pool, watched, profile).slice(0, limit)
 }
@@ -311,7 +310,7 @@ export async function getForYourLevel(user: ILangiUser, limit = 8): Promise<IVid
   const lang = user.learningLang
   const [pool, watched] = await Promise.all([
     candidatePool(lang),
-    watchedVideoIds(user._id as Types.ObjectId, lang),
+    watchedVideoIds(user._id as string, lang),
   ])
   const userIdx = levelIndex(user.cefrLevel)
   const atLevel = pool.filter((d) => d.difficulty && Math.abs(levelIndex(d.difficulty) - userIdx) <= 1)
@@ -345,7 +344,7 @@ export async function nextInCourse(
   const idx = items.findIndex((i) => i.videoId === currentVideoId)
   if (idx === -1) return null
 
-  const watched = await watchedVideoIds(user._id as Types.ObjectId, lang)
+  const watched = await watchedVideoIds(user._id as string, lang)
   for (let i = idx + 1; i < items.length; i++) {
     if (!watched.has(items[i].videoId)) {
       return { playlistId: String(course._id), playlistTitle: course.title, item: items[i] }

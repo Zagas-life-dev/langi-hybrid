@@ -1,10 +1,10 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // One doc per (learner, calendar day) — the source of truth for the daily-goal
 // ring and the activity heatmap. `date` is a local 'YYYY-MM-DD' string so a
 // day is whatever the learner's own clock says, independent of server TZ.
 export interface IDailyActivity extends Document {
-  userId: Types.ObjectId
+  userId: string
   date: string            // 'YYYY-MM-DD' in the learner's local time
   reviews: number         // card reviews (what the daily goal ring measures)
   correct: number
@@ -19,25 +19,11 @@ export interface IDailyActivity extends Document {
   updatedAt: Date
 }
 
-const DailyActivitySchema = new Schema<IDailyActivity>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    date: { type: String, required: true },
-    reviews: { type: Number, default: 0 },
-    correct: { type: Number, default: 0 },
-    sentences: { type: Number, default: 0 },
-    chats: { type: Number, default: 0 },
-    videos: { type: Number, default: 0 },
-    grammarDrills: { type: Number, default: 0 },
-    mistakes: { type: Number, default: 0 },
-    xp: { type: Number, default: 0 },
-    goalMet: { type: Boolean, default: false },
-  },
-  { timestamps: true }
-)
-
-DailyActivitySchema.index({ userId: 1, date: 1 }, { unique: true })
-
-if (mongoose.models.DailyActivity) mongoose.deleteModel('DailyActivity')
-const DailyActivity: Model<IDailyActivity> = mongoose.model<IDailyActivity>('DailyActivity', DailyActivitySchema)
+const DailyActivity: Model<IDailyActivity> = defineModel<IDailyActivity>({
+  collection: 'dailyActivities',
+  timestamps: true,
+  key: ['userId', 'date'],
+  indexed: ['userId'],
+  defaults: () => ({ reviews: 0, correct: 0, sentences: 0, chats: 0, videos: 0, grammarDrills: 0, mistakes: 0, xp: 0, goalMet: false }),
+})
 export default DailyActivity

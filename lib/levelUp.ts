@@ -1,4 +1,3 @@
-import { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import GrammarQuestion from '@/lib/models/GrammarQuestion'
 import Deck from '@/lib/models/Deck'
@@ -73,8 +72,8 @@ export async function gradeLevelUp(
   answers: { id: string; answer: string }[]
 ): Promise<LevelUpVerdict> {
   await connectDB()
-  const gIds = answers.filter((a) => a.id.startsWith('g:')).map((a) => a.id.slice(2)).filter(Types.ObjectId.isValid)
-  const vIds = answers.filter((a) => a.id.startsWith('v:')).map((a) => a.id.slice(2)).filter(Types.ObjectId.isValid)
+  const gIds = answers.filter((a) => a.id.startsWith('g:')).map((a) => a.id.slice(2)).filter(Boolean)
+  const vIds = answers.filter((a) => a.id.startsWith('v:')).map((a) => a.id.slice(2)).filter(Boolean)
   const [gqs, cards] = await Promise.all([
     GrammarQuestion.find({ _id: { $in: gIds }, languageCode: lang, level }).lean(),
     Card.find({ _id: { $in: vIds }, languageCode: lang }).select('translation').lean(),

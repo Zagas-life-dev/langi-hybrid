@@ -1,8 +1,8 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { AnswerTolerance } from './Deck'
 
 export interface ICard extends Document {
-  deckId: Types.ObjectId
+  deckId: string
   languageCode: string
   term: string              // the foreign-language prompt, e.g. 'bonjour'
   translation: string       // the native answer, e.g. 'hello'
@@ -32,35 +32,10 @@ export interface CardSource {
   context?: string  // the sentence the word appeared in
 }
 
-const CardSchema = new Schema<ICard>({
-  deckId: { type: Schema.Types.ObjectId, ref: 'Deck', required: true, index: true },
-  languageCode: { type: String, required: true, index: true },
-  term: { type: String, required: true },
-  translation: { type: String, required: true },
-  partOfSpeech: { type: String },
-  gender: { type: String },
-  acceptedAnswers: { type: [String], default: [] },
-  answerTolerance: { type: String, enum: ['lenient', 'strict'] },
-  exampleSentence: { type: String },
-  exampleTranslation: { type: String },
-  distractors: { type: [String], default: [] },
-  tags: { type: [String], default: [] },
-  source: {
-    type: new Schema({
-      kind: { type: String, enum: ['video', 'story', 'chat', 'dictation'] },
-      ref: String,
-      t: Number,
-      context: String,
-    }, { _id: false }),
-    default: undefined,
-  },
-  cloze: { type: String },
+const Card: Model<ICard> = defineModel<ICard>({
+  collection: 'cards',
+  key: ['deckId', 'term'],
+  indexed: ['deckId', 'languageCode'],
+  defaults: () => ({ acceptedAnswers: [], distractors: [], tags: [] }),
 })
-CardSchema.index({ 'source.kind': 1, 'source.ref': 1 }, { sparse: true })
-
-// One card per (deck, term) — the stable key the seeder upserts on.
-CardSchema.index({ deckId: 1, term: 1 }, { unique: true })
-
-if (mongoose.models.Card) mongoose.deleteModel('Card')
-const Card: Model<ICard> = mongoose.model<ICard>('Card', CardSchema)
 export default Card

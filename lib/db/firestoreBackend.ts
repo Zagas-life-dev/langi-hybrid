@@ -1,4 +1,3 @@
-import 'server-only'
 import { Timestamp, type Query } from 'firebase-admin/firestore'
 import { adminDb } from '@/lib/firebase/admin'
 import type { Backend } from './backend'
@@ -41,6 +40,21 @@ export class FirestoreBackend implements Backend {
     const writer = adminDb().bulkWriter()
     for (const i of items) writer.set(this.col(coll).doc(i.id), i.data)
     await writer.close()
+  }
+
+  async upsertMany(coll: string, items: { id: string; insert: Doc; set: Doc }[]) {
+    // Pass 1: create every document. The ones that already exist fail with ALREADY_EXISTS.
+    const creator = adminDb().bulkWriter()
+    const results = items.map((i) => creator.create(this.col(coll).doc(i.id), i.insert).then(() => null, () => i))
+    await creator.close()
+    const existing = (await Promise.all(results)).filter((i): i is (typeof items)[number] => i !== null)
+    // Pass 2: merge just the `set` fields into those, leaving everything else on them alone.
+    if (existing.length) {
+      const merger = adminDb().bulkWriter()
+      for (const i of existing) merger.set(this.col(coll).doc(i.id), i.set, { merge: true })
+      await merger.close()
+    }
+    return items.length - existing.length
   }
 
   async del(coll: string, id: string) {

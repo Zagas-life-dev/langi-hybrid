@@ -16,19 +16,13 @@ export interface LimitResult {
 async function bump(userId: string, bucket: string, windowMs: number, max: number): Promise<LimitResult> {
   const now = Date.now()
   const windowStart = Math.floor(now / windowMs) * windowMs
-  // Atomically reset the window if it rolled over, then increment.
+  // Two atomic steps: start a fresh window if the old one rolled over (this only matches a stale
+  // window), then increment the counter, creating it on first use.
+  await RateLimit.updateOne({ userId, bucket, windowStart: { $lt: windowStart } }, { $set: { windowStart, count: 0 } })
   const doc = await RateLimit.findOneAndUpdate(
     { userId, bucket },
-    [
-      {
-        $set: {
-          windowStart: { $cond: [{ $lt: ['$windowStart', windowStart] }, windowStart, '$windowStart'] },
-          count: { $cond: [{ $lt: ['$windowStart', windowStart] }, 1, { $add: ['$count', 1] }] },
-        },
-      },
-    ],
-    // Mongoose 9 requires updatePipeline:true to accept an aggregation pipeline.
-    { upsert: true, returnDocument: 'after', updatePipeline: true }
+    { $inc: { count: 1 }, $setOnInsert: { windowStart } },
+    { upsert: true, returnDocument: 'after' }
   )
   if ((doc?.count ?? 1) > max) {
     return { ok: false, retryAfter: Math.ceil((windowStart + windowMs - now) / 1000) }

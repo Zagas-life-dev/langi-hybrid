@@ -1,4 +1,3 @@
-import 'server-only'
 // Firebase Admin: the server's door to Firestore and Auth. Server-only (the key must never reach the browser).
 import { cert, getApps, initializeApp, type App } from 'firebase-admin/app'
 import { getAuth, type Auth } from 'firebase-admin/auth'

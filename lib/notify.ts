@@ -1,10 +1,9 @@
-import { Types } from 'mongoose'
 import Notification, { type LangiNotificationType } from '@/lib/models/Notification'
 import { connectDB } from '@/lib/db'
 import { sendPushToUser } from '@/lib/push'
 
 interface NotifyInput {
-  userId: string | Types.ObjectId
+  userId: string
   type: LangiNotificationType
   title: string
   body?: string

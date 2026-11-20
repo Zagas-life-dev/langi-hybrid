@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 import type { StorySentence, StoryQuestion, StoryGloss } from './Story'
 
@@ -19,28 +19,10 @@ export interface IStoryTemplate extends Document {
   order: number
 }
 
-const StoryTemplateSchema = new Schema<IStoryTemplate>({
-  slug: { type: String, required: true, unique: true, index: true },
-  languageCode: { type: String, required: true, index: true },
-  level: { type: String, required: true, index: true },
-  topic: { type: String, default: '' },
-  title: { type: String, required: true },
-  titleTranslation: { type: String, default: '' },
-  sentences: {
-    type: [new Schema<StorySentence>({ text: String, translation: String }, { _id: false })],
-    default: [],
-  },
-  glossary: {
-    type: [new Schema<StoryGloss>({ term: String, translation: String }, { _id: false })],
-    default: [],
-  },
-  questions: {
-    type: [new Schema<StoryQuestion>({ question: String, options: [String], answer: Number }, { _id: false })],
-    default: [],
-  },
-  order: { type: Number, default: 0 },
+const StoryTemplate: Model<IStoryTemplate> = defineModel<IStoryTemplate>({
+  collection: 'storyTemplates',
+  key: ['slug'],
+  indexed: ['languageCode', 'level'],
+  defaults: () => ({ topic: '', titleTranslation: '', sentences: [], glossary: [], questions: [], order: 0 }),
 })
-
-if (mongoose.models.StoryTemplate) mongoose.deleteModel('StoryTemplate')
-const StoryTemplate: Model<IStoryTemplate> = mongoose.model<IStoryTemplate>('StoryTemplate', StoryTemplateSchema)
 export default StoryTemplate

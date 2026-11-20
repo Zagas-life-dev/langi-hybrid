@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // Persists the AI cascade's per-backend 429 cooldown so the back-off survives a
 // server restart and isn't lost between invocations.
@@ -7,12 +7,8 @@ export interface IAiBackendState extends Document {
   cooldownUntil?: Date
 }
 
-const AiBackendStateSchema = new Schema<IAiBackendState>({
-  backend: { type: String, required: true, unique: true, index: true },
-  cooldownUntil: { type: Date },
+const AiBackendState: Model<IAiBackendState> = defineModel<IAiBackendState>({
+  collection: 'aiBackendStates',
+  key: ['backend'],
 })
-
-if (mongoose.models.AiBackendState) mongoose.deleteModel('AiBackendState')
-const AiBackendState: Model<IAiBackendState> =
-  mongoose.model<IAiBackendState>('AiBackendState', AiBackendStateSchema)
 export default AiBackendState

@@ -28,7 +28,7 @@ export default async function ProgressPage() {
     ReviewLog.countDocuments({ userId }),
     ReviewLog.countDocuments({ userId, result: 'correct' }),
     ReviewLog.countDocuments({ userId, at: { $gte: weekAgo } }),
-    SentenceAttempt.aggregate([
+    SentenceAttempt.aggregate<{ count: number; avg: number | null }>([
       { $match: { userId } },
       { $group: { _id: null, count: { $sum: 1 }, avg: { $avg: '$score' } } },
     ]),

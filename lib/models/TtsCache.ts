@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 // Cache of generated speech audio — deliberately PERMANENT.
 //
@@ -48,25 +48,9 @@ export interface ITtsCache extends Document {
   createdAt: Date
 }
 
-const TtsCacheSchema = new Schema<ITtsCache>({
-  key: { type: String, required: true, unique: true, index: true },
-  // Neither is `required` — which one is set depends on the active backend.
-  url: { type: String },
-  audio: { type: Buffer },
-  mimeType: { type: String, required: true },
-  bytes: { type: Number, required: true },
-  lang: { type: String, default: '' },
-  style: { type: String, default: '' },
-  genModel: { type: String },
-  hits: { type: Number, default: 0 },
-  lastUsedAt: { type: Date, default: Date.now },
-  createdAt: { type: Date, default: Date.now },
+const TtsCache: Model<ITtsCache> = defineModel<ITtsCache>({
+  collection: 'ttsCache',
+  key: ['key'],
+  defaults: () => ({ lang: '', style: '', hits: 0, lastUsedAt: new Date(), createdAt: new Date() }),
 })
-
-// No TTL index — see above. This index exists so a future cleanup job can find
-// genuinely cold entries by hand; nothing expires on its own.
-TtsCacheSchema.index({ lastUsedAt: 1 })
-
-if (mongoose.models.TtsCache) mongoose.deleteModel('TtsCache')
-const TtsCache: Model<ITtsCache> = mongoose.model<ITtsCache>('TtsCache', TtsCacheSchema)
 export default TtsCache

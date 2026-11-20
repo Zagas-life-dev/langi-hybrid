@@ -14,12 +14,11 @@
  *   2. Drop the cached casual feed and refetch it via the YouTube API
  *      (channel uploads + the casualMix searches), then index every video.
  *
- * Loads .env.local and connects to the `langi` Mongo database (MONGODB_URI).
+ * Loads .env.local and writes to Firestore (FIREBASE_SERVICE_ACCOUNT).
  */
 import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.local' })
 
-import mongoose from 'mongoose'
 import VideoCache from '../lib/models/VideoCache'
 import YtSearchCache from '../lib/models/YtSearchCache'
 import VideoDoc from '../lib/models/VideoDoc'
@@ -42,14 +41,11 @@ async function purge(titles: string[]) {
 
 async function main() {
   const lang = process.argv[2] || 'fr'
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
   if (!process.env.YOUTUBE_API_KEY) throw new Error('YOUTUBE_API_KEY is not set (check .env.local)')
   // lib/db reads MONGODB_URI at import time, so load these after dotenv.
   const { blockedChannels, getLearningVideos } = await import('../lib/youtube')
   const { upsertVideoDocs } = await import('../lib/videoIndex')
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   await purge(blockedChannels(lang))
 
@@ -64,7 +60,6 @@ async function main() {
   console.log(`\nCached ${casual.length} casual videos for "${lang}" from ${byChannel.size} channels:`)
   for (const [ch, n] of [...byChannel].sort((a, b) => b[1] - a[1])) console.log(`  ${n}\t${ch}`)
 
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {

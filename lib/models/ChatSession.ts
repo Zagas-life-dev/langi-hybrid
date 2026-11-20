@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export interface IChatMessage {
   role: 'user' | 'assistant'
@@ -8,7 +8,7 @@ export interface IChatMessage {
 }
 
 export interface IChatSession extends Document {
-  userId: Types.ObjectId
+  userId: string
   languageCode: string
   mode: 'conversation' | 'grammar'
   topic?: string
@@ -23,29 +23,10 @@ export interface IChatSession extends Document {
 // reads expensive. We retain the most recent MESSAGE_CAP entries.
 export const MESSAGE_CAP = 50
 
-const ChatMessageSchema = new Schema<IChatMessage>(
-  {
-    role: { type: String, enum: ['user', 'assistant'], required: true },
-    content: { type: String, required: true },
-    corrections: { type: String },
-    at: { type: Date, default: Date.now },
-  },
-  { _id: false }
-)
-
-const ChatSessionSchema = new Schema<IChatSession>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    languageCode: { type: String, required: true },
-    mode: { type: String, enum: ['conversation', 'grammar'], default: 'conversation' },
-    topic: { type: String },
-    scenario: { type: String },
-    messages: { type: [ChatMessageSchema], default: [] },
-    messageCount: { type: Number, default: 0 },
-  },
-  { timestamps: true }
-)
-
-if (mongoose.models.ChatSession) mongoose.deleteModel('ChatSession')
-const ChatSession: Model<IChatSession> = mongoose.model<IChatSession>('ChatSession', ChatSessionSchema)
+const ChatSession: Model<IChatSession> = defineModel<IChatSession>({
+  collection: 'chatSessions',
+  timestamps: true,
+  indexed: ['userId', 'languageCode'],
+  defaults: () => ({ mode: 'conversation', messages: [], messageCount: 0 }),
+})
 export default ChatSession

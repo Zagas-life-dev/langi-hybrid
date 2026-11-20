@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export type LangiNotificationType =
   | 'study_reminder'   // cards are due — come back and study
@@ -12,7 +12,7 @@ export type LangiNotificationType =
 
 export interface INotification extends Document {
   // Recipient's LangiUser _id.
-  userId: Types.ObjectId
+  userId: string
   type: LangiNotificationType
   title: string
   body: string
@@ -23,28 +23,10 @@ export interface INotification extends Document {
   updatedAt: Date
 }
 
-const NotificationSchema = new Schema<INotification>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    type: {
-      type: String,
-      enum: ['study_reminder', 'streak_warning', 'goal_met', 'achievement', 'mistakes_due', 'level_up', 'weekly_digest', 'friend'],
-      required: true,
-    },
-    title: { type: String, required: true },
-    body: { type: String, default: '' },
-    url: { type: String, default: null },
-    read: { type: Boolean, default: false, index: true },
-  },
-  { timestamps: true }
-)
-
-// Common query: a learner's recent notifications, newest first.
-NotificationSchema.index({ userId: 1, createdAt: -1 })
-
-if (mongoose.models.Notification) mongoose.deleteModel('Notification')
-const Notification: Model<INotification> = mongoose.model<INotification>(
-  'Notification',
-  NotificationSchema
-)
+const Notification: Model<INotification> = defineModel<INotification>({
+  collection: 'notifications',
+  timestamps: true,
+  indexed: ['userId', 'read'],
+  defaults: () => ({ body: '', url: null, read: false }),
+})
 export default Notification

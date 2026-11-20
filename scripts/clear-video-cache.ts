@@ -9,10 +9,9 @@
  *     npm run clear-video-cache -- es        # clears casual for es
  *     npm run clear-video-cache -- fr all    # clears every category for fr
  *
- * Loads .env.local and connects to the `langi` Mongo database (MONGODB_URI).
+ * Loads .env.local and writes to Firestore (FIREBASE_SERVICE_ACCOUNT).
  */
 import * as dotenv from 'dotenv'
-import mongoose from 'mongoose'
 import VideoCache from '../lib/models/VideoCache'
 
 dotenv.config({ path: '.env.local' })
@@ -21,10 +20,7 @@ async function main() {
   const lang = process.argv[2] || 'fr'
   const category = process.argv[3] || 'casual' // or "all"
 
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   const filter: Record<string, unknown> =
     category === 'all'
@@ -37,7 +33,6 @@ async function main() {
       `Next load will refetch from YouTube.`
   )
 
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {

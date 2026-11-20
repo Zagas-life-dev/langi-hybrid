@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export type MistakeSource = 'sentence' | 'chat' | 'review' | 'grammar'
 
@@ -7,7 +7,7 @@ export type MistakeSource = 'sentence' | 'chat' | 'review' | 'grammar'
 // grammar drill. Reviewed in the Mistakes deck (self-graded recall) and retired
 // once it graduates to the top box.
 export interface IMistake extends Document {
-  userId: Types.ObjectId
+  userId: string
   languageCode: string
   source: MistakeSource
   prompt: string        // front context, e.g. the English to translate / your sentence
@@ -26,28 +26,10 @@ export interface IMistake extends Document {
   updatedAt: Date
 }
 
-const MistakeSchema = new Schema<IMistake>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-    languageCode: { type: String, required: true, index: true },
-    source: { type: String, enum: ['sentence', 'chat', 'review', 'grammar'], required: true },
-    prompt: { type: String, required: true },
-    answer: { type: String, required: true },
-    userAnswer: { type: String, default: '' },
-    note: { type: String, default: '' },
-    box: { type: Number, default: 1 },
-    dueAt: { type: Date, default: Date.now, index: true },
-    correctStreak: { type: Number, default: 0 },
-    lapses: { type: Number, default: 0 },
-    reps: { type: Number, default: 0 },
-    lastReviewedAt: { type: Date },
-    resolved: { type: Boolean, default: false, index: true },
-  },
-  { timestamps: true }
-)
-
-MistakeSchema.index({ userId: 1, resolved: 1, dueAt: 1 })
-
-if (mongoose.models.Mistake) mongoose.deleteModel('Mistake')
-const Mistake: Model<IMistake> = mongoose.model<IMistake>('Mistake', MistakeSchema)
+const Mistake: Model<IMistake> = defineModel<IMistake>({
+  collection: 'mistakes',
+  timestamps: true,
+  indexed: ['userId', 'languageCode', 'resolved'],
+  defaults: () => ({ userAnswer: '', note: '', box: 1, dueAt: new Date(), correctStreak: 0, lapses: 0, reps: 0, resolved: false }),
+})
 export default Mistake

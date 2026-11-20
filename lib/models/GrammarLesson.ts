@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 
 export interface GrammarExample { fr: string; en: string }
@@ -22,24 +22,10 @@ export interface IGrammarLesson extends Document {
   generatedAt: Date
 }
 
-const GrammarLessonSchema = new Schema<IGrammarLesson>({
-  languageCode: { type: String, required: true, index: true },
-  slug: { type: String, required: true, unique: true, index: true },
-  level: { type: String, required: true },
-  title: { type: String, required: true },
-  topic: { type: String, default: '' },
-  order: { type: Number, default: 0 },
-  summary: { type: String, default: '' },
-  explanation: { type: String, default: '' },
-  examples: { type: [new Schema<GrammarExample>({ fr: String, en: String }, { _id: false })], default: [] },
-  drills: {
-    type: [new Schema<GrammarDrill>({ prompt: String, answer: String, hint: String }, { _id: false })],
-    default: [],
-  },
-  isSystem: { type: Boolean, default: true },
-  generatedAt: { type: Date, default: Date.now },
+const GrammarLesson: Model<IGrammarLesson> = defineModel<IGrammarLesson>({
+  collection: 'grammarLessons',
+  key: ['slug'],
+  indexed: ['languageCode'],
+  defaults: () => ({ topic: '', order: 0, summary: '', explanation: '', examples: [], drills: [], isSystem: true, generatedAt: new Date() }),
 })
-
-if (mongoose.models.GrammarLesson) mongoose.deleteModel('GrammarLesson')
-const GrammarLesson: Model<IGrammarLesson> = mongoose.model<IGrammarLesson>('GrammarLesson', GrammarLessonSchema)
 export default GrammarLesson

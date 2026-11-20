@@ -73,7 +73,15 @@ export interface Model<T extends Document> {
   distinct<V = unknown>(field: string, filter?: Filter): Promise<V[]>
   exists(filter: Filter): Promise<{ _id: string } | null>
   aggregate<R = Doc>(pipeline: Record<string, unknown>[]): Promise<R[]>
+  /** Seeding: upsert many `{ updateOne: { filter, update: { $set }, upsert: true } }` operations quickly. */
+  bulkWrite(ops: BulkOp[]): Promise<{ upsertedCount: number; matchedCount: number }>
+  /** No-op: Firestore needs no index creation for how Langi queries (see the model options). */
+  createIndexes(): Promise<void>
 }
+
+export type BulkOp =
+  | { updateOne: { filter: Filter; update: Record<string, unknown>; upsert?: boolean } }
+  | { insertOne: { document: Record<string, unknown> } }
 
 export interface ModelOptions {
   collection: string
@@ -268,11 +276,14 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
       id = typeof doc._id === 'string' && doc._id ? doc._id : newId()
     }
     delete doc._id
-    const created = await b.mutate(coll, id, (cur) =>
+    let inserted = false
+    const created = await b.mutate(coll, id, (cur) => {
       // Someone else inserted it a moment ago: apply the update to theirs instead of overwriting.
-      cur ? compact(stamp(applyUpdate(clone(cur), update))) : doc)
-    result.upsertedCount = 1
-    result.upsertedId = id
+      if (cur) { inserted = false; return compact(stamp(applyUpdate(clone(cur), update))) }
+      inserted = true
+      return doc
+    })
+    if (inserted) { result.upsertedCount = 1; result.upsertedId = id } else { result.matchedCount = 1; result.modifiedCount = 1 }
     result.after = created ? withId(id, created) : null
     result.id = id
     return result
@@ -327,6 +338,41 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     exists: async (filter) => {
       const rows = await matching(filter)
       return rows[0] ? { _id: String(rows[0]._id) } : null
+    },
+    createIndexes: async () => {},
+    bulkWrite: async (ops) => {
+      const items: { id: string; insert: Doc; set: Doc }[] = []
+      let upsertedCount = 0
+      let matchedCount = 0
+      for (const op of ops) {
+        if ('insertOne' in op) { await createOne(op.insertOne.document); upsertedCount++; continue }
+        const { filter, update, upsert } = op.updateOne
+        const onlySet = Object.keys(update).every((k) => k === '$set' || k === '$setOnInsert')
+        const eqf = equalityFields(filter)
+        if (upsert && key && onlySet && keyComplete(eqf)) {
+          // The fast path: a keyed upsert becomes one create-or-merge in a bulk write.
+          const now = new Date()
+          const insert = compact(applyUpdate({ ...defaults(), ...clone(eqf) }, update, true))
+          if (opts.timestamps) { insert.createdAt ??= now; insert.updatedAt ??= now }
+          const set = compact(applyUpdate({}, { $set: (update.$set as Doc) ?? {} }))
+          if (opts.timestamps) set.updatedAt = now
+          items.push({ id: keyOf(insert), insert, set })
+        } else {
+          const r = await updateCore(filter, update, { upsert })
+          upsertedCount += r.upsertedCount
+          matchedCount += r.matchedCount
+        }
+      }
+      if (items.length) {
+        const b = await getBackend()
+        for (let i = 0; i < items.length; i += 1000) {
+          const chunk = items.slice(i, i + 1000)
+          const created = await b.upsertMany(coll, chunk)
+          upsertedCount += created
+          matchedCount += chunk.length - created
+        }
+      }
+      return { upsertedCount, matchedCount }
     },
     aggregate: async <R>(pipeline: Record<string, unknown>[]) => {
       const first = pipeline[0] && '$match' in pipeline[0] ? (pipeline[0].$match as Filter) : {}

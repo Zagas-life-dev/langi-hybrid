@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { IVideoItem } from './VideoCache'
 
 // Caches the result of ANY YouTube search (query + duration + page) so the same
@@ -12,26 +12,9 @@ export interface IYtSearchCache extends Document {
   fetchedAt: Date
 }
 
-const ItemSchema = new Schema<IVideoItem>(
-  {
-    videoId: { type: String, required: true },
-    title: { type: String, default: '' },
-    channelTitle: { type: String, default: '' },
-    description: { type: String, default: '' },
-    thumbnail: { type: String, default: '' },
-    publishedAt: { type: String },
-    duration: { type: String },
-  },
-  { _id: false }
-)
-
-const YtSearchCacheSchema = new Schema<IYtSearchCache>({
-  cacheKey: { type: String, required: true, unique: true, index: true },
-  items: { type: [ItemSchema], default: [] },
-  nextPageToken: { type: String },
-  fetchedAt: { type: Date, default: Date.now },
+const YtSearchCache: Model<IYtSearchCache> = defineModel<IYtSearchCache>({
+  collection: 'ytSearchCaches',
+  key: ['cacheKey'],
+  defaults: () => ({ items: [], fetchedAt: new Date() }),
 })
-
-if (mongoose.models.YtSearchCache) mongoose.deleteModel('YtSearchCache')
-const YtSearchCache: Model<IYtSearchCache> = mongoose.model<IYtSearchCache>('YtSearchCache', YtSearchCacheSchema)
 export default YtSearchCache

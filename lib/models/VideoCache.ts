@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export interface IVideoItem {
   videoId: string
@@ -22,29 +22,9 @@ export interface IVideoCache extends Document {
   nextPageToken?: string
 }
 
-const VideoItemSchema = new Schema<IVideoItem>(
-  {
-    videoId: { type: String, required: true },
-    title: { type: String, required: true },
-    channelTitle: { type: String, default: '' },
-    description: { type: String, default: '' },
-    thumbnail: { type: String, default: '' },
-    publishedAt: { type: String },
-    duration: { type: String },
-  },
-  { _id: false }
-)
-
-const VideoCacheSchema = new Schema<IVideoCache>({
-  languageCode: { type: String, required: true },
-  category: { type: String, required: true },
-  items: { type: [VideoItemSchema], default: [] },
-  fetchedAt: { type: Date, default: Date.now },
-  nextPageToken: { type: String },
+const VideoCache: Model<IVideoCache> = defineModel<IVideoCache>({
+  collection: 'videoCaches',
+  key: ['languageCode', 'category'],
+  defaults: () => ({ items: [], fetchedAt: new Date() }),
 })
-
-VideoCacheSchema.index({ languageCode: 1, category: 1 }, { unique: true })
-
-if (mongoose.models.VideoCache) mongoose.deleteModel('VideoCache')
-const VideoCache: Model<IVideoCache> = mongoose.model<IVideoCache>('VideoCache', VideoCacheSchema)
 export default VideoCache

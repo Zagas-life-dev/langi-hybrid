@@ -1,4 +1,3 @@
-import { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import Mistake, { type MistakeSource, type IMistake } from '@/lib/models/Mistake'
 
@@ -16,7 +15,7 @@ export interface RecordMistakeInput {
  * just resets it to box 1 rather than piling up duplicates.
  */
 export async function recordMistake(
-  userId: Types.ObjectId | string,
+  userId: string,
   languageCode: string,
   m: RecordMistakeInput
 ): Promise<void> {
@@ -52,7 +51,7 @@ export async function recordMistake(
 
 /** Due, unresolved mistakes for the deck (oldest-due first). */
 export async function getDueMistakes(
-  userId: Types.ObjectId | string,
+  userId: string,
   lang: string,
   limit = 20
 ): Promise<IMistake[]> {
@@ -69,7 +68,7 @@ export async function getDueMistakes(
 }
 
 /** Count of due, unresolved mistakes. */
-export async function countDueMistakes(userId: Types.ObjectId | string, lang: string): Promise<number> {
+export async function countDueMistakes(userId: string, lang: string): Promise<number> {
   await connectDB()
   return Mistake.countDocuments({ userId, languageCode: lang, resolved: false, dueAt: { $lte: new Date() } })
 }
@@ -80,7 +79,7 @@ export async function countDueMistakes(userId: Types.ObjectId | string, lang: st
  * they actually get wrong. Cheap: one indexed query, no AI.
  */
 export async function recentMistakeFocus(
-  userId: Types.ObjectId | string,
+  userId: string,
   lang: string,
   limit = 4
 ): Promise<string[]> {

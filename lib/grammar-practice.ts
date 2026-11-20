@@ -1,4 +1,3 @@
-import { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import GrammarQuestion from '@/lib/models/GrammarQuestion'
 import GrammarQuestionState from '@/lib/models/GrammarQuestionState'
@@ -25,7 +24,7 @@ export interface DueGrammarQuestion {
 /** Due grammar questions (SRS) at/below the learner's level, plus a capped
  * number of new ones. Answers are NOT included — the answer route reveals them. */
 export async function getDueGrammarQuestions(
-  userId: Types.ObjectId | string,
+  userId: string,
   lang: string,
   cefr?: CefrLevel | null
 ): Promise<DueGrammarQuestion[]> {
@@ -65,7 +64,7 @@ export async function getDueGrammarQuestions(
 
 /** Count of grammar questions ready to practise (due + capped new). */
 export async function countDueGrammarQuestions(
-  userId: Types.ObjectId | string,
+  userId: string,
   lang: string,
   cefr?: CefrLevel | null
 ): Promise<number> {

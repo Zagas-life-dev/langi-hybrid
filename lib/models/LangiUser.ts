@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, Types } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 
 export type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 export const CEFR_LEVELS: CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
@@ -15,7 +15,7 @@ export interface ILangiUser extends Document {
   placementTakenAt?: Date
   levelUpAttemptAt?: Date   // last FAILED level-up test (retry cooldown)
   // Friends for the weekly league (other LangiUser ids) + a shareable code.
-  friends: Types.ObjectId[]
+  friends: string[]
   friendCode?: string
   // Last weekly progress digest pushed (de-dupe).
   lastDigestAt?: Date
@@ -41,43 +41,11 @@ export interface ILangiUser extends Document {
   updatedAt: Date
 }
 
-const LangiUserSchema = new Schema<ILangiUser>(
-  {
-    supabaseUserId: { type: String, required: true, unique: true, index: true },
-    email: { type: String, required: true },
-    displayName: { type: String },
-    learningLang: { type: String, default: 'fr' },
-    nativeLang: { type: String, default: 'en' },
-    cefrLevel: { type: String, enum: [...CEFR_LEVELS, null], default: null },
-    placementTakenAt: { type: Date },
-    levelUpAttemptAt: { type: Date },
-    friends: { type: [Schema.Types.ObjectId], ref: 'LangiUser', default: [] },
-    friendCode: { type: String, unique: true, sparse: true },
-    lastDigestAt: { type: Date },
-    dailyGoal: { type: Number, default: 20 },
-    dailyGoalChosen: { type: Boolean, default: false },
-    streak: { type: Number, default: 0 },
-    lastStudyDate: { type: Date },
-    xp: { type: Number, default: 0 },
-    achievements: {
-      type: [new Schema({ id: String, unlockedAt: { type: Date, default: Date.now } }, { _id: false })],
-      default: [],
-    },
-    pushReminders: { type: Boolean, default: true },
-    reminderHour: { type: Number, default: 19 },
-    lastReminderAt: { type: Date },
-    ttsVoice: { type: String },
-    birthdate: { type: Date, default: null },
-    matureContent: { type: Boolean, default: false },
-  },
-  { timestamps: true }
-)
-
-// Next.js dev HMR pins the first-compiled schema on the global mongoose
-// singleton; recreating the model guarantees the current schema wins so newly
-// added fields aren't silently dropped on save.
-if (mongoose.models.LangiUser) {
-  mongoose.deleteModel('LangiUser')
-}
-const LangiUser: Model<ILangiUser> = mongoose.model<ILangiUser>('LangiUser', LangiUserSchema)
+const LangiUser: Model<ILangiUser> = defineModel<ILangiUser>({
+  collection: 'users',
+  timestamps: true,
+  key: ['supabaseUserId'],
+  indexed: ['friendCode'],
+  defaults: () => ({ learningLang: 'fr', nativeLang: 'en', cefrLevel: null, friends: [], dailyGoal: 20, dailyGoalChosen: false, streak: 0, xp: 0, achievements: [], pushReminders: true, reminderHour: 19, birthdate: null, matureContent: false }),
+})
 export default LangiUser

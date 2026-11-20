@@ -1,4 +1,3 @@
-import type { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import Deck from '@/lib/models/Deck'
 import Card from '@/lib/models/Card'
@@ -86,7 +85,7 @@ async function savedDeck(dbUser: ILangiUser, lang: string) {
 }
 
 /** Put a card in the learner's review queue unless it's already there; true if it was. */
-async function scheduleOnce(dbUser: ILangiUser, lang: string, cardId: Types.ObjectId): Promise<boolean> {
+async function scheduleOnce(dbUser: ILangiUser, lang: string, cardId: string): Promise<boolean> {
   const existing = await UserCard.findOne({ userId: dbUser._id, cardId })
   if (!existing) {
     await UserCard.create({ userId: dbUser._id, cardId, languageCode: lang, box: 1, dueAt: new Date() })

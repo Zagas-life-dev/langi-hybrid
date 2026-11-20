@@ -11,7 +11,6 @@
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { readFileSync, readdirSync } from 'node:fs'
-import mongoose from 'mongoose'
 import Language from '../lib/models/Language'
 import Deck from '../lib/models/Deck'
 import Card from '../lib/models/Card'
@@ -74,10 +73,7 @@ function cleanSet(obj: Record<string, unknown>): Record<string, unknown> {
 }
 
 async function main() {
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   await Promise.all([Deck.createIndexes(), Card.createIndexes(), PlacementQuestion.createIndexes()])
 
@@ -214,7 +210,6 @@ async function main() {
     throw new Error(`Seed has only ${total} cards — below the pinned minimum of ${MIN_TOTAL}.`)
   }
   console.log('✓ Seed complete (minimums satisfied).')
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {

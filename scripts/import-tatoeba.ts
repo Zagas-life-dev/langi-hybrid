@@ -16,7 +16,6 @@
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { existsSync, readFileSync } from 'node:fs'
-import mongoose from 'mongoose'
 import Card from '../lib/models/Card'
 import { resolveLang } from './_lang'
 
@@ -38,9 +37,6 @@ async function main() {
     console.log(`No dump at ${file} — nothing to import. See the header of this script for setup.`)
     return
   }
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set')
-  await mongoose.connect(uri)
 
   const cards = await Card.find({ languageCode: LANG, $or: [{ exampleSentence: { $exists: false } }, { exampleSentence: '' }] })
   console.log(`${cards.length} cards need an example.`)
@@ -78,7 +74,6 @@ async function main() {
   }
 
   console.log(`✓ Imported ${filled} example sentences from Tatoeba.`)
-  await mongoose.disconnect()
 }
 
 main().catch((e) => { console.error('Import failed:', e); process.exit(1) })

@@ -14,7 +14,6 @@
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { readFileSync } from 'node:fs'
-import mongoose from 'mongoose'
 import GrammarLesson from '../lib/models/GrammarLesson'
 import { getCatalog } from '../lib/grammar'
 import type { CefrLevel } from '../lib/models/LangiUser'
@@ -650,10 +649,7 @@ ${LESSONS.length} lessons built (dry run, nothing written).`)
 
 async function main() {
   if (DRY) return dryRun()
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   let count = 0
   let drillTotal = 0
@@ -686,7 +682,6 @@ async function main() {
   }
 
   console.log(`\nSeeded ${count} grammar lessons (${drillTotal} drills) (conjugations from LEFFF, the rest hand-written)`)
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {

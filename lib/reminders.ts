@@ -1,4 +1,3 @@
-import type { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import LangiUser from '@/lib/models/LangiUser'
 import PushSubscription from '@/lib/models/PushSubscription'
@@ -32,7 +31,7 @@ function localParts(instant: Date, offsetMin: number): { hour: number; key: stri
 // Weekly digest: Sunday, at the learner's reminder hour, at most once per ~week.
 const DIGEST_DEDUPE_MS = 6 * 24 * 60 * 60 * 1000
 
-async function sendWeeklyDigest(userId: Types.ObjectId, now: Date): Promise<void> {
+async function sendWeeklyDigest(userId: string, now: Date): Promise<void> {
   const [thisWeek, lastWeek] = [weekDateKeys(now), weekDateKeys(now, 1)]
   const rows = await DailyActivity.find({ userId, date: { $in: [...thisWeek, ...lastWeek] } }).lean()
   const week = summarizeWeek(rows.filter((r) => thisWeek.includes(r.date)))

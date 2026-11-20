@@ -13,7 +13,6 @@
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { readFileSync } from 'node:fs'
-import mongoose from 'mongoose'
 import GrammarQuestion from '../lib/models/GrammarQuestion'
 import PlacementQuestion from '../lib/models/PlacementQuestion'
 import type { CefrLevel } from '../lib/models/LangiUser'
@@ -48,16 +47,13 @@ function validate(qs: RawQ[]): void {
 }
 
 async function main() {
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
 
   const file = path.join(process.cwd(), 'data', LANG_DIR, 'grammar-questions.json')
   const data = JSON.parse(readFileSync(file, 'utf8')) as { questions: RawQ[] }
   const questions = data.questions
   validate(questions)
 
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   // 1. Grammar concept bank.
   const bankOps = questions.map((q) => ({
@@ -98,7 +94,6 @@ async function main() {
   for (const [lvl, n] of Object.entries(byLevel).sort()) console.log(`  ${lvl}: ${n}`)
   console.log(`\nSeeded ${questions.length} grammar questions (${placementQs.length} also added to the placement test).`)
 
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import { defineModel, type Document, type Model } from '@/lib/db/model'
 import type { CefrLevel } from './LangiUser'
 
 // An AI-generated graded reader: a short, level-appropriate story in the target
@@ -10,7 +10,7 @@ export interface StoryQuestion { question: string; options: string[]; answer: nu
 export interface StoryGloss { term: string; translation: string }
 
 export interface IStory extends Document {
-  userId: mongoose.Types.ObjectId
+  userId: string
   languageCode: string
   level: CefrLevel
   topic: string
@@ -31,39 +31,9 @@ export interface IStory extends Document {
   createdAt: Date
 }
 
-const StorySchema = new Schema<IStory>({
-  userId: { type: Schema.Types.ObjectId, ref: 'LangiUser', required: true, index: true },
-  languageCode: { type: String, required: true, index: true },
-  level: { type: String, required: true },
-  topic: { type: String, default: '' },
-  genre: { type: String, default: '' },
-  title: { type: String, required: true },
-  titleTranslation: { type: String, default: '' },
-  sentences: {
-    type: [new Schema<StorySentence>({ text: String, translation: String }, { _id: false })],
-    default: [],
-  },
-  glossary: {
-    type: [new Schema<StoryGloss>({ term: String, translation: String }, { _id: false })],
-    default: [],
-  },
-  questions: {
-    type: [new Schema<StoryQuestion>({ question: String, options: [String], answer: Number }, { _id: false })],
-    default: [],
-  },
-  published: { type: Boolean, default: false, index: true },
-  publishedAt: { type: Date },
-  authorName: { type: String, default: '' },
-  hidden: { type: Boolean, default: false },
-  reportCount: { type: Number, default: 0 },
-  likeCount: { type: Number, default: 0 },
-  saveCount: { type: Number, default: 0 },
-  createdAt: { type: Date, default: Date.now },
+const Story: Model<IStory> = defineModel<IStory>({
+  collection: 'stories',
+  indexed: ['userId', 'languageCode', 'published'],
+  defaults: () => ({ topic: '', genre: '', titleTranslation: '', sentences: [], glossary: [], questions: [], published: false, authorName: '', hidden: false, reportCount: 0, likeCount: 0, saveCount: 0, createdAt: new Date() }),
 })
-
-// Community-feed query: published, not hidden, by language, ranked by popularity.
-StorySchema.index({ languageCode: 1, published: 1, hidden: 1, likeCount: -1, publishedAt: -1 })
-
-if (mongoose.models.Story) mongoose.deleteModel('Story')
-const Story: Model<IStory> = mongoose.model<IStory>('Story', StorySchema)
 export default Story

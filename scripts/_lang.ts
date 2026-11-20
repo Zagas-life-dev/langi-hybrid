@@ -12,6 +12,9 @@ export const LANG_DIRS: Record<string, string> = {
   de: 'german',
   it: 'italian',
   pt: 'portuguese',
+  yo: 'yoruba',
+  ig: 'igbo',
+  ha: 'hausa',
 }
 
 export function resolveLang(): { lang: string; dir: string } {

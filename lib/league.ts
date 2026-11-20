@@ -1,4 +1,3 @@
-import { Types } from 'mongoose'
 import { connectDB } from '@/lib/db'
 import LangiUser, { type ILangiUser } from '@/lib/models/LangiUser'
 import DailyActivity from '@/lib/models/DailyActivity'
@@ -18,10 +17,10 @@ export async function weeklyBoard(me: ILangiUser, scope: LeagueScope): Promise<{
   const week = weekDateKeys(new Date())
   const myId = String(me._id)
 
-  let userFilter: Types.ObjectId[] | null = null
-  if (scope === 'friends') userFilter = [me._id as Types.ObjectId, ...(me.friends || [])]
+  let userFilter: string[] | null = null
+  if (scope === 'friends') userFilter = [me._id as string, ...(me.friends || [])]
 
-  const totals = await DailyActivity.aggregate<{ _id: Types.ObjectId; xp: number }>([
+  const totals = await DailyActivity.aggregate<{ _id: string; xp: number }>([
     { $match: { date: { $in: week }, xp: { $gt: 0 }, ...(userFilter ? { userId: { $in: userFilter } } : {}) } },
     { $group: { _id: '$userId', xp: { $sum: '$xp' } } },
   ])
@@ -81,9 +80,9 @@ export async function addFriendByCode(me: ILangiUser, code: string): Promise<{ o
 }
 
 export async function removeFriend(me: ILangiUser, friendId: string): Promise<void> {
-  if (!Types.ObjectId.isValid(friendId)) return
+  if (!Boolean(friendId)) return
   await connectDB()
-  const fid = new Types.ObjectId(friendId)
+  const fid = friendId
   await Promise.all([
     LangiUser.updateOne({ _id: me._id }, { $pull: { friends: fid } }),
     LangiUser.updateOne({ _id: fid }, { $pull: { friends: me._id } }),

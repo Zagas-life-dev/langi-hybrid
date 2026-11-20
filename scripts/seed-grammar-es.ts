@@ -15,7 +15,6 @@
 import * as dotenv from 'dotenv'
 import path from 'node:path'
 import { readFileSync } from 'node:fs'
-import mongoose from 'mongoose'
 import GrammarLesson from '../lib/models/GrammarLesson'
 import type { CefrLevel } from '../lib/models/LangiUser'
 
@@ -386,10 +385,7 @@ const LESSONS: SeedLesson[] = [
 ]
 
 async function main() {
-  const uri = process.env.MONGODB_URI
-  if (!uri) throw new Error('MONGODB_URI is not set (check .env.local)')
-  await mongoose.connect(uri)
-  console.log('Connected to', mongoose.connection.name)
+  console.log('Writing to Firestore project', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 
   // The grammar index page orders lessons by the catalog in lib/grammar.ts, so
   // the stored `order` here is only a stable secondary sort — lesson sequence.
@@ -424,7 +420,6 @@ async function main() {
   }
 
   console.log(`\nSeeded ${count} Spanish grammar lessons (${drillTotal} drills) from the Jehle dataset.`)
-  await mongoose.disconnect()
 }
 
 main().catch((e) => {
