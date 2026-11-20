@@ -21,7 +21,7 @@ export interface IStoryTemplate extends Document {
 
 const StoryTemplate: Model<IStoryTemplate> = defineModel<IStoryTemplate>({
   collection: 'storyTemplates',
-  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
+  cacheMs: 60 * 60 * 1000, // static content: cached in memory for an hour, only affected entries dropped on a write
   key: ['slug'],
   indexed: ['languageCode', 'level'],
   defaults: () => ({ topic: '', titleTranslation: '', sentences: [], glossary: [], questions: [], order: 0 }),

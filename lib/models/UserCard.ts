@@ -18,6 +18,7 @@ const UserCard: Model<IUserCard> = defineModel<IUserCard>({
   collection: 'userCards',
   key: ['userId', 'cardId'],
   indexed: ['userId', 'languageCode'],
+  plain: ['box'],
   defaults: () => ({ box: 1, dueAt: new Date(), correctStreak: 0, lapses: 0, reps: 0 }),
 })
 export default UserCard

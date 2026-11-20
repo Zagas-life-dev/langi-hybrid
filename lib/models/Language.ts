@@ -10,7 +10,7 @@ export interface ILanguage extends Document {
 
 const Language: Model<ILanguage> = defineModel<ILanguage>({
   collection: 'languages',
-  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
+  cacheMs: 60 * 60 * 1000, // static content: cached in memory for an hour, only affected entries dropped on a write
   key: ['code'],
   defaults: () => ({ flag: '🏳️', available: false }),
 })

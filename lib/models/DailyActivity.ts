@@ -24,6 +24,7 @@ const DailyActivity: Model<IDailyActivity> = defineModel<IDailyActivity>({
   timestamps: true,
   key: ['userId', 'date'],
   indexed: ['userId'],
+  plain: ['goalMet'],
   defaults: () => ({ reviews: 0, correct: 0, sentences: 0, chats: 0, videos: 0, grammarDrills: 0, mistakes: 0, xp: 0, goalMet: false }),
 })
 export default DailyActivity

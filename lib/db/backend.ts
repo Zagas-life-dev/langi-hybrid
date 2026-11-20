@@ -14,9 +14,11 @@ export interface Backend {
    * Returns how many documents were created.
    */
   upsertMany(coll: string, items: { id: string; insert: Doc; set: Doc }[]): Promise<number>
+  /** How many documents match `eq` (same meaning as scan). Cheap: Firestore bills about one read per 1,000 matches. */
+  count(coll: string, eq: Record<string, unknown>): Promise<number>
   del(coll: string, id: string): Promise<void>
   delMany(coll: string, ids: string[]): Promise<void>
-  /** Documents whose top-level fields equal every value in `eq` (no `eq` = the whole collection). */
+  /** Documents whose top-level fields equal every value in `eq`; an array value means "any of these". No `eq` = the whole collection. */
   scan(coll: string, eq?: Record<string, unknown>): Promise<{ id: string; data: Doc }[]>
   /**
    * Atomic read-modify-write of one document. `fn` gets the current data (or null) and returns the new
@@ -61,6 +63,13 @@ export class MemoryBackend implements Backend {
     }
     return created
   }
+  async count(coll: string, eq: Record<string, unknown>) {
+    let n = 0
+    for (const d of this.table(coll).values()) {
+      if (Object.entries(eq).every(([k, v]) => (Array.isArray(v) ? v.includes(d[k]) : d[k] === v))) n++
+    }
+    return n
+  }
   async del(coll: string, id: string) {
     this.table(coll).delete(id)
   }
@@ -70,7 +79,7 @@ export class MemoryBackend implements Backend {
   async scan(coll: string, eq: Record<string, unknown> = {}) {
     const out: { id: string; data: Doc }[] = []
     for (const [id, d] of this.table(coll)) {
-      if (Object.entries(eq).every(([k, v]) => d[k] === v)) out.push({ id, data: clone(d) })
+      if (Object.entries(eq).every(([k, v]) => (Array.isArray(v) ? v.includes(d[k]) : d[k] === v))) out.push({ id, data: clone(d) })
     }
     return out
   }

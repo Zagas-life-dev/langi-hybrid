@@ -4,7 +4,9 @@ import { adminAuth } from '@/lib/firebase/admin'
 import { connectDB } from '@/lib/db'
 import LangiUser from '@/lib/models/LangiUser'
 import type { ILangiUser } from '@/lib/models/LangiUser'
-import { parseBirthdate } from '@/lib/age'
+import { ensureDbUser } from '@/lib/userStore'
+
+export { ensureDbUser }
 
 // Authentication is Firebase Auth (Google + email/password). The browser signs in with the Firebase
 // SDK, /api/auth/session turns that into an httpOnly session cookie, and every page and API route
@@ -37,30 +39,6 @@ export async function getUser(): Promise<AuthUser | null> {
   } catch {
     return null
   }
-}
-
-/** Create the profile on first sign-in; later sign-ins only refresh the email. */
-export async function ensureDbUser(
-  uid: string,
-  email: string | null,
-  profile: { displayName?: string; birthdate?: string | null } = {},
-): Promise<ILangiUser> {
-  await connectDB()
-  const doc = await LangiUser.findOneAndUpdate(
-    { supabaseUserId: uid },
-    {
-      $set: { email: email ?? '' },
-      $setOnInsert: {
-        supabaseUserId: uid,
-        displayName: profile.displayName?.trim() || undefined,
-        birthdate: parseBirthdate(profile.birthdate ?? null),
-        learningLang: 'fr',
-        nativeLang: 'en',
-      },
-    },
-    { upsert: true, returnDocument: 'after' },
-  )
-  return doc!
 }
 
 export async function getDbUser(): Promise<ILangiUser | null> {

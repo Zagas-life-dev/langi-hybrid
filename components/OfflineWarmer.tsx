@@ -42,8 +42,17 @@ async function untilControlled(): Promise<void> {
 export default function OfflineWarmer() {
   useEffect(() => {
     let cancelled = false
-    const warm = async () => {
+    // Each warm-up renders every learning page on the server and re-downloads the card pack, and the
+    // database meters reads, so do it at most once per WARM_EVERY (reconnecting after being offline
+    // is the exception: that is exactly when the offline copy may be stale).
+    const WARM_KEY = 'langi.warm.at'
+    const WARM_EVERY = 20 * 60 * 1000
+    const warm = async (force = false) => {
       if (typeof navigator !== 'undefined' && !navigator.onLine) return
+      try {
+        if (!force && Date.now() - Number(localStorage.getItem(WARM_KEY) || 0) < WARM_EVERY) return
+        localStorage.setItem(WARM_KEY, String(Date.now()))
+      } catch { /* storage blocked: just warm */ }
       await untilControlled()
       if (cancelled) return
       // Warm each learning page's HTML so an offline navigation can be served
@@ -55,11 +64,12 @@ export default function OfflineWarmer() {
       refreshBundle().catch(() => {})
       refreshPack('all').catch(() => {})
     }
-    warm()
-    window.addEventListener('online', warm)
+    const onOnline = () => { void warm(true) }
+    void warm()
+    window.addEventListener('online', onOnline)
     return () => {
       cancelled = true
-      window.removeEventListener('online', warm)
+      window.removeEventListener('online', onOnline)
     }
   }, [])
   return null

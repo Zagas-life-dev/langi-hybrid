@@ -93,6 +93,8 @@ export interface ModelOptions {
   key?: string[]
   /** Top-level scalar fields worth filtering on inside Firestore (everything else filters in memory). */
   indexed?: string[]
+  /** More top-level fields that are always a single value (never arrays) and so are safe to filter and count in Firestore too. */
+  plain?: string[]
   /**
    * For content that rarely changes (decks, cards, lessons): keep collection reads in memory this many
    * ms, so repeated requests don't re-read Firestore (the free plan allows 50,000 reads a day). Any
@@ -122,16 +124,30 @@ function compact(d: Doc): Doc {
 
 export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
   const coll = opts.collection
-  const indexed = new Set(opts.indexed ?? [])
+  const indexed = new Set([...(opts.indexed ?? []), ...(opts.plain ?? [])])
   const key = opts.key
 
   const defaults = (): Doc => {
     const d = typeof opts.defaults === 'function' ? opts.defaults() : clone(opts.defaults ?? {})
     return d
   }
-  // Short-lived read cache for static content (see `cacheMs`). Cleared by every write below.
-  const scanCache = new Map<string, { at: number; rows: { id: string; data: Doc }[] }>()
-  const invalidate = () => scanCache.clear()
+  // Read cache for static content (see `cacheMs`). It lives on globalThis so it is shared by every route
+  // bundle and survives dev hot reloads, and a write only drops the entries that write could change.
+  type CacheEntry = { at: number; push: Record<string, unknown>; rows: { id: string; data: Doc }[] }
+  const registry = ((globalThis as unknown as { __langiScanCaches?: Map<string, Map<string, CacheEntry>> }).__langiScanCaches ??= new Map())
+  const scanCache: Map<string, CacheEntry> = registry.get(coll) ?? new Map()
+  registry.set(coll, scanCache)
+  /** Drop cached reads that a write to `docs` could affect (all of them when `docs` is not given). */
+  const invalidate = (docs?: (Doc | null | undefined)[]) => {
+    if (!scanCache.size) return
+    const touched = docs?.filter((d): d is Doc => !!d)
+    if (!touched) { scanCache.clear(); return }
+    for (const [ck, entry] of scanCache) {
+      const hit = touched.some((d) =>
+        Object.entries(entry.push).every(([k, v]) => (Array.isArray(v) ? v.includes(d[k]) : d[k] === v)))
+      if (hit) scanCache.delete(ck)
+    }
+  }
   const keyOf = (values: Record<string, unknown>) => encodeId(key!.map((k) => values[k]))
   const keyComplete = (values: Record<string, unknown>) => !!key && key.every((k) => isScalar(values[k]))
 
@@ -141,13 +157,18 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     async save(this: Doc & Hydrated) {
       const id = String(this._id)
       const snap = (this as unknown as { __snap: Doc }).__snap
-      const now = new Date()
-      if (opts.timestamps) this.updatedAt = now
-      const current = plain(this)
+      let current = plain(this)
       const changed: Doc = {}
       const removed: string[] = []
       for (const k of Object.keys(current)) if (!sameValue(snap[k], current[k])) changed[k] = clone(current[k])
       for (const k of Object.keys(snap)) if (!(k in current)) removed.push(k)
+      // Nothing to write: skip the database round trip entirely (reads and writes are metered).
+      if (!Object.keys(changed).length && !removed.length) return this
+      if (opts.timestamps) {
+        this.updatedAt = new Date()
+        current = plain(this)
+        changed.updatedAt = this.updatedAt
+      }
       const b = await getBackend()
       await b.mutate(coll, id, (cur) => {
         const base = cur ?? clone(snap)
@@ -155,13 +176,13 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
         for (const k of removed) delete base[k]
         return compact(base)
       })
-      invalidate()
+      invalidate([snap, current])
       Object.defineProperty(this, '__snap', { value: clone(current), enumerable: false, writable: true, configurable: true })
       return this
     }
     async deleteOne(this: Doc & Hydrated) {
       await (await getBackend()).del(coll, String(this._id))
-      invalidate()
+      invalidate([plain(this)])
       return { deletedCount: 1 }
     }
     toObject(this: Doc) { return clone(plain(this)) }
@@ -201,15 +222,25 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
       return d ? [{ id, data: d }] : []
     }
     const push: Record<string, unknown> = {}
+    let listPushed = false
     for (const k of indexed) {
       const v = eqf[k]
-      if (isScalar(v) && !(ci && typeof v === 'string')) push[k] = v
+      if (isScalar(v) && !(ci && typeof v === 'string')) { push[k] = v; continue }
+      // `{ field: { $in: [...] } }` on an indexed field reads only those values, not the whole collection.
+      const cond = filter[k]
+      const list = cond && typeof cond === 'object' && !Array.isArray(cond) ? (cond as { $in?: unknown }).$in : undefined
+      if (!listPushed && !ci && Array.isArray(list) && list.every(isScalar) && list.length <= 300) {
+        if (!list.length) return [] // matches nothing
+        push[k] = [...new Set(list)]
+        listPushed = true
+      }
     }
     if (!opts.cacheMs) return b.scan(coll, push)
     const ck = JSON.stringify(push)
     const hit = scanCache.get(ck)
-    const rows = hit && Date.now() - hit.at < opts.cacheMs ? hit.rows : await b.scan(coll, push)
-    if (rows !== hit?.rows) scanCache.set(ck, { at: Date.now(), rows })
+    const fresh = hit && Date.now() - hit.at < opts.cacheMs
+    const rows = fresh ? hit.rows : await b.scan(coll, push)
+    if (!fresh) scanCache.set(ck, { at: Date.now(), push, rows })
     return rows.map((r) => ({ id: r.id, data: clone(r.data) })) // callers may mutate what they get
   }
 
@@ -248,7 +279,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     const b = await getBackend()
     if (key) await b.mutate(coll, id, (cur) => { if (cur) throw new DuplicateKeyError(coll, id); return doc })
     else await b.put(coll, id, doc)
-    invalidate()
+    invalidate([doc])
     return hydrate(id, doc)
   }
 
@@ -257,20 +288,32 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
   /** Shared by updateOne / updateMany / findOneAndUpdate. */
   async function updateCore(filter: Filter, update: Record<string, unknown>, o: UpdateOpts & { many?: boolean; ci?: boolean }) {
     try {
-      return await updateCoreInner(filter, update, o)
-    } finally {
-      invalidate()
+      const r = await updateCoreInner(filter, update, o)
+      invalidate(r.touched)
+      return r
+    } catch (e) {
+      invalidate() // unknown how far it got: drop everything
+      throw e
     }
   }
 
   async function updateCoreInner(filter: Filter, update: Record<string, unknown>, o: UpdateOpts & { many?: boolean; ci?: boolean }) {
     const b = await getBackend()
-    let rows = await matching(filter, !!o.ci)
-    if (o.sort) rows = sortDocs(rows, o.sort)
-    if (!o.many) rows = rows.slice(0, 1)
+    // Updating a known id or key: skip the pre-read. The transaction below reads the document anyway and
+    // re-checks the filter, so a read here would only be paid for twice.
+    const eq0 = equalityFields(filter)
+    const directId = typeof eq0._id === 'string' ? eq0._id : keyComplete(eq0) && !o.ci ? keyOf(eq0) : null
+    let rows: Doc[]
+    if (directId) {
+      rows = [{ _id: directId }]
+    } else {
+      rows = await matching(filter, !!o.ci)
+      if (o.sort) rows = sortDocs(rows, o.sort)
+      if (!o.many) rows = rows.slice(0, 1)
+    }
 
-    const result: UpdateResult & { before: Doc | null; after: Doc | null; id?: string } = {
-      acknowledged: true, matchedCount: 0, modifiedCount: 0, upsertedCount: 0, before: null, after: null,
+    const result: UpdateResult & { before: Doc | null; after: Doc | null; id?: string; touched: Doc[] } = {
+      acknowledged: true, matchedCount: 0, modifiedCount: 0, upsertedCount: 0, before: null, after: null, touched: [],
     }
     for (const row of rows) {
       const id = String(row._id)
@@ -281,6 +324,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
         return compact(stamp(applyUpdate(clone(cur), update)))
       })
       if (before) {
+        result.touched.push(before, ...(next ? [next] : []))
         result.matchedCount++
         result.modifiedCount++
         if (!result.before) { result.before = before; result.after = next ? withId(id, next) : null; result.id = id }
@@ -311,6 +355,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
     if (inserted) { result.upsertedCount = 1; result.upsertedId = id } else { result.matchedCount = 1; result.modifiedCount = 1 }
     result.after = created ? withId(id, created) : null
     result.id = id
+    result.touched.push(doc, ...(created ? [created] : []))
     return result
   }
 
@@ -344,16 +389,24 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
       const rows = await matching(filter)
       if (!rows[0]) return { deletedCount: 0 }
       await (await getBackend()).del(coll, String(rows[0]._id))
-      invalidate()
+      invalidate([rows[0]])
       return { deletedCount: 1 }
     },
     deleteMany: async (filter = {}) => {
       const rows = await matching(filter)
       await (await getBackend()).delMany(coll, rows.map((r) => String(r._id)))
-      invalidate()
+      invalidate(rows)
       return { deletedCount: rows.length }
     },
-    countDocuments: async (filter = {}) => (await matching(filter)).length,
+    countDocuments: async (filter = {}) => {
+      // A plain equality filter on fields Firestore can filter becomes one cheap count query,
+      // instead of reading every matching document.
+      const keys = Object.keys(filter)
+      if (keys.length && keys.every((k) => indexed.has(k) && isScalar(filter[k]))) {
+        return (await getBackend()).count(coll, equalityFields(filter))
+      }
+      return (await matching(filter)).length
+    },
     distinct: async <V>(field: string, filter: Filter = {}) => {
       const seen = new Map<string, V>()
       for (const d of await matching(filter)) {
@@ -399,7 +452,7 @@ export function defineModel<T extends Document>(opts: ModelOptions): Model<T> {
           matchedCount += chunk.length - created
         }
       }
-      invalidate()
+      invalidate(items.map((i) => i.insert))
       return { upsertedCount, matchedCount }
     },
     aggregate: async <R>(pipeline: Record<string, unknown>[]) => {

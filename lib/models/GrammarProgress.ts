@@ -19,6 +19,7 @@ const GrammarProgress: Model<IGrammarProgress> = defineModel<IGrammarProgress>({
   timestamps: true,
   key: ['userId', 'lessonSlug'],
   indexed: ['userId'],
+  plain: ['completed'],
   defaults: () => ({ completed: false, bestScore: 0, attempts: 0, lastAttemptAt: new Date() }),
 })
 export default GrammarProgress

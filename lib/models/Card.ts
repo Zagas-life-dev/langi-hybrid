@@ -34,7 +34,7 @@ export interface CardSource {
 
 const Card: Model<ICard> = defineModel<ICard>({
   collection: 'cards',
-  cacheMs: 10 * 60 * 1000, // static content: cached in memory, cleared on any write
+  cacheMs: 60 * 60 * 1000, // static content: cached in memory for an hour, only affected entries dropped on a write
   key: ['deckId', 'term'],
   indexed: ['deckId', 'languageCode'],
   defaults: () => ({ acceptedAnswers: [], distractors: [], tags: [] }),
