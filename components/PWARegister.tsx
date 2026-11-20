@@ -10,10 +10,18 @@ import { requestSync } from '@/lib/offlineQueue'
 export default function PWARegister() {
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return
-    // In dev, build assets aren't content-hashed, so the worker runs in a
-    // network-first mode (see sw.js) instead of pinning stale CSS/JS.
-    const url = process.env.NODE_ENV === 'development' ? '/sw.js?dev=1' : '/sw.js'
-    navigator.serviceWorker.register(url).catch(() => {})
+    // In dev the worker fights HMR / Ctrl+Shift+R (stale chunks + HTML => reload
+    // loops). Don't run it in dev: unregister any leftover one and drop its caches.
+    if (process.env.NODE_ENV === 'development') {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((regs) => Promise.all(regs.map((r) => r.unregister())))
+        .then(() => caches.keys())
+        .then((keys) => Promise.all(keys.filter((k) => k.startsWith('langi-v')).map((k) => caches.delete(k))))
+        .catch(() => {})
+      return
+    }
+    navigator.serviceWorker.register('/sw.js').catch(() => {})
     const onOnline = () => requestSync()
     window.addEventListener('online', onOnline)
     return () => window.removeEventListener('online', onOnline)

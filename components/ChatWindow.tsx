@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Volume2, Square, Mic, Send, Sparkles, MessageSquare, BookOpen, BookmarkPlus, RotateCcw, GraduationCap, Headphones, Keyboard, Loader2, PenLine, Check, Languages, WifiOff } from 'lucide-react'
 import Mascot from '@/components/Mascot'
-import { useTTS, useSTT } from '@/lib/speech'
+import { useTTS, useSTT, useSavedVoice } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import { useWordLookup, TappableText, WordLookupCard } from '@/components/WordLookup'
 import { SCENARIOS, scenarioByKey } from '@/lib/scenarios'
@@ -74,7 +74,7 @@ export default function ChatWindow() {
   }
 
   const { speechTag, ttsVoice, nativeLang, learningLang } = useLang()
-  const tts = useTTS(speechTag, ttsVoice)
+  const tts = useSavedVoice(speechTag, ttsVoice)
   // Live Correct: on-device feedback on what the learner is typing (conversation mode only).
   const liveOn = true
   // Grammar-mode replies are explanations written in the learner's own

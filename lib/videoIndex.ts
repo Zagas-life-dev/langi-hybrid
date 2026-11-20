@@ -2,13 +2,11 @@ import { connectDB } from '@/lib/db'
 import VideoDoc, { type IVideoDoc } from '@/lib/models/VideoDoc'
 import type { IVideoItem } from '@/lib/models/VideoCache'
 import type { CefrLevel } from '@/lib/models/LangiUser'
-import { chatJson, langName } from '@/lib/ai'
-import { checkLimit } from '@/lib/ratelimit'
 
 // ---------------------------------------------------------------------------
-// Hybrid video tagging + difficulty. Every video gets instant keyword-based
-// tags/difficulty on first sight (free); an AI pass later refines them (lazy,
-// rate-limited, cached on the VideoDoc via `aiTagged`).
+// Video tagging + difficulty. Every video gets instant keyword-based tags and difficulty on first
+// sight (free, deterministic). There is no server-side AI pass: every AI call in the app goes through
+// Firebase AI Logic in the browser.
 // ---------------------------------------------------------------------------
 
 // Topic → keywords. A tag is attached when any of its keywords appears in the
@@ -94,50 +92,4 @@ export async function upsertVideoDoc(
 /** Bulk variant for caching a search page of results. */
 export async function upsertVideoDocs(items: IVideoItem[], lang: string, isShort = false): Promise<void> {
   await Promise.all(items.map((i) => upsertVideoDoc(i, lang, { isShort })))
-}
-
-/**
- * Lazily refine a VideoDoc's tags + difficulty with AI. Rate-limited per user;
- * skipped (no-op) when already AI-tagged or when the limit is hit, so it's safe
- * to call opportunistically from a page render.
- */
-export async function refineVideoDocWithAI(doc: IVideoDoc, userId: string): Promise<void> {
-  if (doc.aiTagged) return
-  const limit = await checkLimit(userId, 'videotag')
-  if (!limit.ok) return
-
-  const ln = langName(doc.languageCode)
-  let out: { tags?: string[]; level?: string } | null = null
-  try {
-    out = await chatJson<{ tags?: string[]; level?: string }>([
-      {
-        role: 'system',
-        content:
-          `You classify ${ln} language-learning videos. Given a title and description, return up to 6 ` +
-          `short topical tags (lowercase, e.g. "grammar", "travel", "listening") and the CEFR ` +
-          `difficulty as one of A1, A2, B1, B2, C1, C2. Reply as JSON: {"tags": ["..."], "level": "A2"}.`,
-      },
-      { role: 'user', content: `Title: ${doc.title}\nDescription: ${doc.description.slice(0, 800)}` },
-    ], { temperature: 0.2, maxTokens: 160 })
-  } catch {
-    return // AI down — keep keyword baseline
-  }
-  if (!out) return
-
-  const validLevels: CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-  const level = String(out.level || '').toUpperCase() as CefrLevel
-  const tags = Array.isArray(out.tags)
-    ? out.tags.map((t) => String(t).trim().toLowerCase()).filter(Boolean).slice(0, 8)
-    : []
-
-  await VideoDoc.updateOne(
-    { _id: doc._id },
-    {
-      $set: {
-        aiTagged: true,
-        ...(tags.length ? { tags } : {}),
-        ...(validLevels.includes(level) ? { difficulty: level } : {}),
-      },
-    }
-  )
 }

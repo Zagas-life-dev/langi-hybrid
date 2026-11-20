@@ -1,12 +1,5 @@
 'use client'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import type { Model } from 'vosk-browser'
-import { offlineSttAvailable, sttModelFor } from '@/lib/sttModels'
-// Type only — lib/expressiveTts.ts is server-side (mongoose + node:crypto) and
-// must never be imported from here.
-import type { TtsStyle } from '@/lib/ttsStyles'
-import { voskRuntimeSupported, isModelDownloaded, loadModel, VoskDictation } from '@/lib/voskStt'
-import { useToast } from '@/components/Toast'
 
 // ---------------------------------------------------------------------------
 // Web Speech API hooks (TTS + STT). TTS works on Safari/iOS too (Chromium is
@@ -165,58 +158,6 @@ export function useSpeechRate(): number {
   return useSyncExternalStore(subscribeRate, getSpeechRate, () => RATE_DEFAULT)
 }
 
-// ---------------------------------------------------------------------------
-// Expressive-voice preference.
-//
-// Stored the same way as the rate, and for the same reason: it's a choice about
-// HOW the app should sound, so it has to outlive the component. Previously this
-// lived in local component state, which meant turning expressive on for a story
-// and then opening a grammar lesson silently dropped you back to the flat
-// browser voice — the setting looked like it did nothing.
-//
-// Module-level + useSyncExternalStore means toggling it anywhere updates every
-// mounted reader at once.
-// ---------------------------------------------------------------------------
-
-const EXPRESSIVE_KEY = 'langi-tts-expressive'
-let expressiveValue: boolean | null = null
-const expressiveListeners = new Set<() => void>()
-
-export function getExpressiveEnabled(): boolean {
-  if (expressiveValue !== null) return expressiveValue
-  let v = false
-  try {
-    v = localStorage.getItem(EXPRESSIVE_KEY) === '1'
-  } catch {
-    // Storage blocked — default to the free, always-available browser voice.
-  }
-  expressiveValue = v
-  return v
-}
-
-export function setExpressiveEnabled(on: boolean) {
-  expressiveValue = on
-  try {
-    localStorage.setItem(EXPRESSIVE_KEY, on ? '1' : '0')
-  } catch {
-    // Non-fatal: the choice still applies for this session.
-  }
-  expressiveListeners.forEach((l) => l())
-}
-
-function subscribeExpressive(cb: () => void) {
-  expressiveListeners.add(cb)
-  return () => { expressiveListeners.delete(cb) }
-}
-
-/**
- * Whether expressive audio is switched on. Returns false for the server
- * snapshot so hydration matches; the stored value is picked up right after.
- */
-export function useExpressiveEnabled(): boolean {
-  return useSyncExternalStore(subscribeExpressive, getExpressiveEnabled, () => false)
-}
-
 /** Live, language-filtered list of installed voices, best-first. Powers the
  *  settings voice picker. Re-renders when the async voice list arrives. */
 export function useVoices(lang = 'fr-FR'): SpeechSynthesisVoice[] {
@@ -311,78 +252,13 @@ export function useTTS(lang = 'fr-FR', defaultVoice?: string) {
 }
 
 /**
- * useTTS with the pre-generated voices in front: speak() first asks /api/tts
- * for an already-stored clip (cache only — never triggers generation, so a
- * flashcard session can't burn quota) and plays it; anything not stored is
- * spoken by the device voice exactly as useTTS would. Vocabulary clips come
- * from the overnight run (scripts/warm-tts.ts).
+ * Kept as the name callers already use. It speaks with the device voice (useTTS): free, instant and
+ * available offline. (The server-generated and pre-recorded voices were removed: every AI call now goes
+ * through Firebase AI Logic, and the device voice is the hybrid app's "on-device" speech.)
  */
 export function useSavedVoice(lang = 'fr-FR', defaultVoice?: string) {
   const tts = useTTS(lang, defaultVoice)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const genRef = useRef(0)
-  // text|style -> stored clip URL, or null when there isn't one.
-  const urls = useRef(new Map<string, string | null>())
-  const [playing, setPlaying] = useState(false)
-
-  const stopClip = useCallback(() => {
-    audioRef.current?.pause()
-    audioRef.current = null
-    setPlaying(false)
-  }, [])
-
-  const savedUrl = useCallback(async (text: string, style: TtsStyle): Promise<string | null> => {
-    const key = `${style}|${text}`
-    if (urls.current.has(key)) return urls.current.get(key)!
-    if (typeof navigator !== 'undefined' && !navigator.onLine) return null
-    try {
-      const res = await fetch('/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, lang, style, cacheOnly: true }),
-      })
-      let url: string | null = null
-      if (res.ok) {
-        if (res.headers.get('content-type')?.includes('application/json')) {
-          const data = await res.json()
-          url = typeof data?.url === 'string' ? data.url : null
-        } else {
-          url = URL.createObjectURL(await res.blob())
-        }
-      }
-      urls.current.set(key, url)
-      return url
-    } catch {
-      return null // network blip: don't remember, try again next time
-    }
-  }, [lang])
-
-  const speak = useCallback(async (text: string, style: TtsStyle = 'clear') => {
-    const gen = ++genRef.current
-    stopClip()
-    tts.cancel()
-    const url = await savedUrl(text.trim(), style)
-    if (gen !== genRef.current) return // superseded by a newer speak()/cancel()
-    if (!url) { tts.speak(text); return }
-    const el = new Audio(url)
-    el.playbackRate = getSpeechRate()
-    audioRef.current = el
-    setPlaying(true)
-    const done = () => { if (audioRef.current === el) { audioRef.current = null; setPlaying(false) } }
-    el.onended = done
-    el.onerror = () => { done(); if (gen === genRef.current) tts.speak(text) }
-    el.play().catch(() => { done(); if (gen === genRef.current) tts.speak(text) })
-  }, [savedUrl, stopClip, tts])
-
-  const cancel = useCallback(() => {
-    genRef.current++
-    stopClip()
-    tts.cancel()
-  }, [stopClip, tts])
-
-  useEffect(() => () => { audioRef.current?.pause() }, [])
-
-  return { supported: tts.supported, speaking: tts.speaking || playing, speak, cancel }
+  return { supported: tts.supported, speaking: tts.speaking, speak: (text: string) => tts.speak(text), cancel: tts.cancel }
 }
 
 // ---------------------------------------------------------------------------
@@ -420,105 +296,18 @@ export interface ReadAloudControls {
 }
 
 /**
- * How long to stop asking for NEW expressive audio after the server says the
- * quota is spent. The upstream daily cap recovers on a rolling basis (minutes),
- * so this is a pause, not a write-off — after it elapses the next sentence tries
- * generation again and expressive playback resumes on its own.
- */
-const EXHAUSTED_RETRY_MS = 5 * 60_000
-
-/** Extra state the expressive engine exposes; inert in browser-only mode. */
-export interface ExpressiveState {
-  /** The learner asked for expressive audio. */
-  enabled: boolean
-  /** A clip is being generated right now (first play has a real wait). */
-  loading: boolean
-  /** Expressive was requested but we're serving browser speech instead. */
-  degraded: boolean
-  /**
-   * Generation is used up (upstream quota or the per-user limit). Cached
-   * sentences still play in the good voice; everything else uses the device
-   * voice. Surfaced so the UI can explain the mixed playback honestly.
-   */
-  exhausted: boolean
-  setEnabled: (v: boolean) => void
-}
-
-export interface ReadAloudOptions {
-  /** Use server-generated expressive audio instead of flat browser speech. */
-  expressive?: boolean
-  /** Performance direction sent to the TTS model. */
-  style?: TtsStyle
-}
-
-/**
- * Continuous read-aloud with two interchangeable engines behind one transport.
- *
- * ENGINE 1 (default) — the browser's speechSynthesis. Free, instant, offline,
- * and completely flat: it cannot convey emotion.
- * ENGINE 2 (expressive) — server-generated audio from Gemini TTS via /api/tts,
- * which performs a style direction ("read like a warm storyteller"). Costs a
- * network round-trip of roughly 5-8s per sentence on a cache miss.
- *
- * Engine 2 is therefore always allowed to fall back to engine 1 — offline, out
- * of quota, an unsupported language, or a segment too long to synthesise all
- * degrade to flat speech rather than to silence. `degraded` reports when that
- * happened so the UI can say so honestly.
- *
- * Latency is hidden by prefetching: while sentence N plays, N+1 is already
- * being generated, so only the first sentence of a passage actually waits.
+ * Continuous read-aloud on the browser's speechSynthesis: free, instant and available offline.
+ * It walks the segments one at a time and publishes the active index so the UI can highlight it.
  */
 export function useReadAloud(
   segments: string[],
   lang = 'fr-FR',
-  defaultVoice?: string,
-  options: ReadAloudOptions = {}
-): ReadAloudControls & { expressive: ExpressiveState } {
+  defaultVoice?: string
+): ReadAloudControls {
   const supported = useCapability(ttsCheck)
   const [status, setStatus] = useState<ReadStatus>('idle')
   const [index, setIndex] = useState(-1)
-  // Comes from the shared, persisted preference — NOT component state — so it
-  // survives navigation and reloads. `options.expressive`, when passed, is a
-  // per-surface override for callers that always want one engine.
-  const storedExpressive = useExpressiveEnabled()
-  const expressiveOn = options.expressive ?? storedExpressive
-  const [loading, setLoading] = useState(false)
-  const [degraded, setDegraded] = useState(false)
-  const [exhausted, setExhausted] = useState(false)
   const rate = useSpeechRate()
-  const style: TtsStyle = options.style ?? 'clear'
-  const { toast } = useToast()
-
-  /**
-   * Set when the server reports generation is used up. Until it expires we stop
-   * asking for NEW audio and send `cacheOnly` instead: already-generated
-   * sentences keep playing in the expressive voice and the rest fall back to the
-   * device voice, without paying a doomed round-trip per sentence.
-   *
-   * Time-boxed rather than permanent because the upstream cap recovers on a
-   * rolling basis — a learner who keeps the page open shouldn't be stuck on the
-   * flat voice for the rest of the session.
-   */
-  const exhaustedUntilRef = useRef(0)
-  const notifiedRef = useRef(false)
-
-  /**
-   * Generation just ran out. Tell the learner ONCE per session why the voice
-   * changed — silently switching to the flat device voice mid-passage reads as a
-   * bug — then keep playing instead of stopping.
-   */
-  const noteExhausted = useCallback(() => {
-    const first = Date.now() >= exhaustedUntilRef.current
-    exhaustedUntilRef.current = Date.now() + EXHAUSTED_RETRY_MS
-    setExhausted(true)
-    if (first && !notifiedRef.current) {
-      notifiedRef.current = true
-      toast('Enhanced voice limit reached — playing saved audio, then your device voice.', {
-        tone: 'info',
-        duration: 5000,
-      })
-    }
-  }, [toast])
 
   // Generation counter: bumped on every transport action so a superseded
   // playback loop exits instead of advancing the position.
@@ -526,90 +315,12 @@ export function useReadAloud(
   const segRef = useRef(segments)
   const indexRef = useRef(-1)
   const statusRef = useRef<ReadStatus>('idle')
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  // text -> object URL. Keyed by text (not index) so re-ordering or re-rendering
-  // segments can never replay the wrong clip.
-  const clipsRef = useRef<Map<string, Promise<string | null>>>(new Map())
+  const langRef = useRef(lang)
 
   useEffect(() => { segRef.current = segments }, [segments])
   useEffect(() => { indexRef.current = index }, [index])
   useEffect(() => { statusRef.current = status }, [status])
-
-  const langRef = useRef(lang)
-  const styleRef = useRef(style)
-  const rateRef = useRef(rate)
   useEffect(() => { langRef.current = lang }, [lang])
-  useEffect(() => { styleRef.current = style }, [style])
-  useEffect(() => { rateRef.current = rate }, [rate])
-
-  /**
-   * Fetch (and memoise) one clip's playable URL. Resolves null when expressive
-   * playback isn't possible, which the caller treats as "say it flatly instead".
-   *
-   * Two response shapes, depending on the server's audio backend:
-   *   application/json  -> { url } on a CDN; play it directly, nothing to revoke.
-   *   audio/*           -> raw bytes; wrap in an object URL (revoked on unmount).
-   */
-  const fetchClip = useCallback((text: string): Promise<string | null> => {
-    const existing = clipsRef.current.get(text)
-    if (existing) return existing
-    const p = (async (): Promise<string | null> => {
-      if (typeof navigator !== 'undefined' && !navigator.onLine) return null
-      // Generation is spent — ask only for what's already been paid for. The
-      // server answers these from the cache with no quota involved.
-      const cacheOnly = Date.now() < exhaustedUntilRef.current
-      try {
-        const res = await fetch('/api/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text, lang: langRef.current, style: styleRef.current, cacheOnly }),
-        })
-        if (!res.ok) {
-          // `exhausted` means "stop asking for new audio", as opposed to a
-          // one-off failure (bad segment, transient 503) which shouldn't change
-          // how the remaining sentences are fetched.
-          if (res.status === 429) {
-            const info = await res.json().catch(() => null)
-            if (info?.exhausted) noteExhausted()
-          }
-          return null
-        }
-        if (res.headers.get('content-type')?.includes('application/json')) {
-          const data = await res.json()
-          return typeof data?.url === 'string' ? data.url : null
-        }
-        const blob = await res.blob()
-        return URL.createObjectURL(blob)
-      } catch {
-        return null
-      }
-    })()
-    // Memoise SUCCESSES only. A failure is usually temporary (quota spent, a
-    // blip), and caching the null would keep that sentence on the flat voice for
-    // the rest of the session even after generation recovers.
-    void p.then((url) => { if (!url) clipsRef.current.delete(text) })
-    clipsRef.current.set(text, p)
-    return p
-  }, [noteExhausted])
-
-  /** Play one generated clip through an <audio> element. False if it can't. */
-  const playClip = useCallback((url: string, gen: number): Promise<boolean> => {
-    return new Promise((resolve) => {
-      const el = new Audio(url)
-      el.playbackRate = rateRef.current
-      audioRef.current = el
-      const done = (ok: boolean) => {
-        el.onended = null
-        el.onerror = null
-        if (audioRef.current === el) audioRef.current = null
-        resolve(ok)
-      }
-      el.onended = () => done(true)
-      el.onerror = () => done(false)
-      el.play().catch(() => done(false))
-      if (gen !== genRef.current) { el.pause(); done(false) }
-    })
-  }, [])
 
   /** Speak one segment with the browser engine. Resolves when finished. */
   const speakBrowser = useCallback((text: string, gen: number): Promise<void> => {
@@ -643,13 +354,8 @@ export function useReadAloud(
     })
   }, [defaultVoice])
 
-  /** Halt whatever is currently making sound, without touching status. */
   const silence = useCallback(() => {
     if (ttsCheck()) window.speechSynthesis.cancel()
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current = null
-    }
   }, [])
 
   const play = useCallback((from = 0) => {
@@ -658,34 +364,11 @@ export function useReadAloud(
     const gen = ++genRef.current
     silence()
     setStatus('playing')
-    setDegraded(false)
-    // The back-off has elapsed — let this pass try generation again.
-    if (Date.now() >= exhaustedUntilRef.current) setExhausted(false)
 
     void (async () => {
       for (let i = Math.max(0, Math.min(from, segs.length - 1)); i < segs.length; i++) {
         if (gen !== genRef.current) return
         setIndex(i)
-
-        if (expressiveOn) {
-          // Start the NEXT sentence generating before playing this one — this is
-          // what turns a per-sentence stutter into a single wait up front.
-          if (i + 1 < segs.length) void fetchClip(segs[i + 1])
-          const pending = fetchClip(segs[i])
-          setLoading(true)
-          const url = await pending
-          if (gen !== genRef.current) return
-          setLoading(false)
-          if (url) {
-            const ok = await playClip(url, gen)
-            if (gen !== genRef.current) return
-            if (ok) continue
-          }
-          // Couldn't generate or couldn't play it — say it flatly rather than
-          // dropping the sentence entirely.
-          setDegraded(true)
-        }
-
         await speakBrowser(segs[i], gen)
         if (gen !== genRef.current) return
       }
@@ -693,7 +376,7 @@ export function useReadAloud(
       setStatus('idle')
       setIndex(-1)
     })()
-  }, [expressiveOn, fetchClip, playClip, speakBrowser, silence])
+  }, [speakBrowser, silence])
 
   // Pause is cancel-and-remember rather than speechSynthesis.pause(), which is
   // unreliable on iOS Safari (the queue can never resume). Resuming re-reads the
@@ -701,7 +384,6 @@ export function useReadAloud(
   const pause = useCallback(() => {
     genRef.current++
     silence()
-    setLoading(false)
     setStatus('paused')
   }, [silence])
 
@@ -710,7 +392,6 @@ export function useReadAloud(
   const stop = useCallback(() => {
     genRef.current++
     silence()
-    setLoading(false)
     setStatus('idle')
     setIndex(-1)
   }, [silence])
@@ -727,74 +408,26 @@ export function useReadAloud(
 
   const changeRate = useCallback((r: number) => {
     setSpeechRate(r)
-    // Generated audio can change speed in place; browser speech only picks the
-    // new rate up on the next utterance, so restart the sentence.
-    if (audioRef.current) audioRef.current.playbackRate = r
-    else if (statusRef.current === 'playing' && indexRef.current >= 0) play(indexRef.current)
+    // Browser speech only picks the new rate up on the next utterance, so restart the sentence.
+    if (statusRef.current === 'playing' && indexRef.current >= 0) play(indexRef.current)
   }, [play])
 
-  const setEnabled = useCallback((v: boolean) => {
-    // Persisted, so the choice carries to every other reader and future visits.
-    setExpressiveEnabled(v)
-    // Turning it back on is an explicit "try again" — drop the back-off so the
-    // learner isn't told the limit is reached without us re-checking.
-    if (v) {
-      exhaustedUntilRef.current = 0
-      notifiedRef.current = false
-      setExhausted(false)
-    }
-    // Switching engines mid-passage would mix two different voices; stop clean.
-    genRef.current++
-    silence()
-    setStatus('idle')
-    setIndex(-1)
-    setLoading(false)
-    setDegraded(false)
-  }, [silence])
-
-  // Never leave audio playing after the reader unmounts (route change, sheet
-  // close), and release the blob URLs we created.
+  // Never leave audio playing after the reader unmounts (route change, sheet close).
   useEffect(() => {
-    const clips = clipsRef.current
     return () => {
-      // exhaustive-deps warns about reading refs in cleanup, but that's exactly
-      // the intent here: these are mutable counters/handles, not React-rendered
-      // nodes, and we need their LATEST values to cancel whatever is in flight.
-      // Snapshotting them at effect-setup time would cancel nothing.
+      // The refs are mutable counters, not rendered nodes: we need their LATEST values to cancel
+      // whatever is in flight, so reading them in cleanup is the intent.
       /* eslint-disable react-hooks/exhaustive-deps */
       genRef.current++
       if (ttsCheck()) window.speechSynthesis.cancel()
-      audioRef.current?.pause()
-      audioRef.current = null
       /* eslint-enable react-hooks/exhaustive-deps */
-      // Only object URLs need releasing — CDN https URLs aren't ours to revoke.
-      clips.forEach((p) => {
-        void p.then((u) => { if (u?.startsWith('blob:')) URL.revokeObjectURL(u) })
-      })
-      clips.clear()
     }
   }, [])
 
-  return {
-    supported,
-    status,
-    index,
-    play,
-    pause,
-    resume,
-    stop,
-    toggle,
-    next,
-    prev,
-    jump,
-    rate,
-    setRate: changeRate,
-    expressive: { enabled: expressiveOn, loading, degraded, exhausted, setEnabled },
-  }
+  return { supported, status, index, play, pause, resume, stop, toggle, next, prev, jump, rate, setRate: changeRate }
 }
 
-// Segmentation lives in lib/segments.ts — it is the TTS cache contract and is
-// shared with the pre-warm script, which must split text identically.
+// Segmentation lives in lib/segments.ts.
 export { toSegments } from '@/lib/segments'
 
 type SpeechRecognitionResultLike = ArrayLike<{ transcript: string }> & { isFinal: boolean }
@@ -818,68 +451,24 @@ function getRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
   return w.SpeechRecognition || w.webkitSpeechRecognition || null
 }
 
-type OfflineStatus = 'idle' | 'downloading' | 'ready' | 'error'
-
 /**
- * Dictate speech in the target language. Calls `onTranscript` with the text so
- * the caller can FILL AN EDITABLE INPUT — we never auto-submit, so the user can
- * correct transcription noise before it is graded.
- *
- * Engine selection is native-first: the browser's Web Speech API is used when it
- * works (instant, no download). When it needs the network (desktop Chrome/Edge)
- * or the learner is offline, and they've opted into the on-device Vosk model, we
- * transparently switch to that (`lib/voskStt.ts`). Typing is always the fallback.
+ * Dictate speech in the target language with the browser's Web Speech API. Calls `onTranscript` with
+ * the text so the caller can FILL AN EDITABLE INPUT: we never auto-submit, so the user can correct
+ * transcription noise before it is graded. `needsNetwork` flags engines that transcribe server-side
+ * (desktop Chrome/Edge); typing is always the fallback.
  */
 export function useSTT(lang = 'fr-FR', onTranscript?: (text: string) => void) {
-  const nativeSupported = useCapability(() => getRecognitionCtor() !== null)
-  const offlineAvailable = useCapability(() => offlineSttAvailable(lang) && voskRuntimeSupported())
-  const supported = nativeSupported || offlineAvailable
-
+  const supported = useCapability(() => getRecognitionCtor() !== null)
   const [listening, setListening] = useState(false)
-  // 'network' means this device's native recogniser needs the internet (typical
-  // on desktop Chrome/Edge — audio is transcribed server-side). Mobile engines
-  // (Android/iOS) run on-device. Either way, offline Vosk or typing covers it.
   const [needsNetwork, setNeedsNetwork] = useState(false)
-  const [usingOffline, setUsingOffline] = useState(false)
-  const [offlineStatus, setOfflineStatus] = useState<OfflineStatus>('idle')
-  const [offlineProgress, setOfflineProgress] = useState(0)
 
   const recRef = useRef<SpeechRecognitionLike | null>(null)
-  const sessionRef = useRef<VoskDictation | null>(null)
-  const modelRef = useRef<Model | null>(null)
   const cbRef = useRef(onTranscript)
-  const needsNetworkRef = useRef(false)
-  const readyRef = useRef(false) // model archive is downloaded (offline-capable)
-
   useEffect(() => { cbRef.current = onTranscript }, [onTranscript])
-  useEffect(() => { needsNetworkRef.current = needsNetwork }, [needsNetwork])
 
-  // On language change, forget the loaded model and re-check whether this
-  // language's model is already downloaded (all setState is in the async
-  // continuation, never synchronously in the effect body).
-  useEffect(() => {
-    let cancelled = false
-    modelRef.current = null
-    readyRef.current = false
-    const model = sttModelFor(lang)
-    if (!offlineAvailable || !model) {
-      Promise.resolve().then(() => {
-        if (!cancelled) { setOfflineStatus('idle'); setOfflineProgress(0) }
-      })
-      return () => { cancelled = true }
-    }
-    isModelDownloaded(model).then((has) => {
-      if (cancelled) return
-      readyRef.current = has
-      setOfflineStatus(has ? 'ready' : 'idle')
-      setOfflineProgress(0)
-    })
-    return () => { cancelled = true }
-  }, [lang, offlineAvailable])
-
-  const startNative = useCallback(() => {
+  const start = useCallback(() => {
     const Ctor = getRecognitionCtor()
-    if (!Ctor) return false
+    if (!Ctor) return
     // Stop any TTS first so the mic doesn't transcribe the speaker (audio echo).
     if (ttsCheck()) window.speechSynthesis.cancel()
     const rec = new Ctor()
@@ -904,88 +493,14 @@ export function useSTT(lang = 'fr-FR', onTranscript?: (text: string) => void) {
     }
     rec.onend = () => setListening(false)
     recRef.current = rec
-    setUsingOffline(false)
     setListening(true)
     rec.start()
-    return true
   }, [lang])
-
-  const startOffline = useCallback(async () => {
-    const model = sttModelFor(lang)
-    if (!model) return
-    // Never trigger the ~40 MB download implicitly from a mic tap — that only
-    // happens via the explicit enableOffline() opt-in. Here we require the model
-    // to be loaded, or its archive already cached (a fast, local load).
-    if (!modelRef.current && !readyRef.current) return
-    if (ttsCheck()) window.speechSynthesis.cancel()
-    try {
-      if (!modelRef.current) {
-        setOfflineStatus('downloading')
-        modelRef.current = await loadModel(model, (p) => setOfflineProgress(p))
-        readyRef.current = true
-        setOfflineStatus('ready')
-      }
-      const session = new VoskDictation()
-      sessionRef.current = session
-      setUsingOffline(true)
-      setListening(true)
-      await session.start(modelRef.current, (t) => cbRef.current?.(t))
-    } catch {
-      setOfflineStatus('error')
-      setListening(false)
-      setUsingOffline(false)
-    }
-  }, [lang])
-
-  const start = useCallback(() => {
-    const offlineNow = typeof navigator !== 'undefined' && !navigator.onLine
-    // Prefer on-device Vosk when the native engine can't work here (offline, or it
-    // already failed with a network error) and we have the model cached.
-    const preferOffline = offlineAvailable && readyRef.current && (offlineNow || needsNetworkRef.current)
-    if (preferOffline) { void startOffline(); return }
-    if (startNative()) return
-    // No native engine at all — use Vosk if we can (may prompt a download first).
-    if (offlineAvailable) void startOffline()
-  }, [offlineAvailable, startNative, startOffline])
 
   const stop = useCallback(() => {
-    if (sessionRef.current) {
-      sessionRef.current.stop()
-      sessionRef.current = null
-    }
     recRef.current?.stop()
     setListening(false)
   }, [])
 
-  // Explicitly download + initialise the offline model (the "Enable offline
-  // voice" affordance). Safe to call again to retry after an error.
-  const enableOffline = useCallback(async () => {
-    const model = sttModelFor(lang)
-    if (!model) return
-    setOfflineStatus('downloading')
-    setOfflineProgress(0)
-    try {
-      modelRef.current = await loadModel(model, (p) => setOfflineProgress(p))
-      readyRef.current = true
-      setOfflineStatus('ready')
-    } catch {
-      setOfflineStatus('error')
-    }
-  }, [lang])
-
-  return {
-    supported,
-    listening,
-    needsNetwork,
-    usingOffline,
-    start,
-    stop,
-    offline: {
-      available: offlineAvailable,
-      status: offlineStatus,
-      progress: offlineProgress,
-      sizeMB: sttModelFor(lang)?.sizeMB ?? 0,
-      enable: enableOffline,
-    },
-  }
+  return { supported, listening, needsNetwork, start, stop }
 }

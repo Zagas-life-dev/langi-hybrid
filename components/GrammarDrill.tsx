@@ -5,7 +5,6 @@ import { Volume2, Check, X, ArrowRight, RotateCcw, Dumbbell } from 'lucide-react
 import { useTTS, useReadAloud } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import ReadAloudBar from '@/components/ReadAloud'
-import { SURFACE_STYLE } from '@/lib/segments'
 import { normalizeAnswer } from '@/lib/srs-core'
 
 interface Example { fr: string; en: string }
@@ -44,7 +43,7 @@ export default function GrammarDrill({
   const exampleTexts = useMemo(() => examples.map((e) => e.fr), [examples])
   // 'conversational': these are model sentences, so they should sound like a
   // native speaker actually saying them, not a pronunciation drill.
-  const exampleReader = useReadAloud(exampleTexts, speechTag, ttsVoice, { style: SURFACE_STYLE.example })
+  const exampleReader = useReadAloud(exampleTexts, speechTag, ttsVoice)
 
   const current = drills[pos]
   // Strip the parenthetical cue for the spoken sentence so TTS reads naturally.

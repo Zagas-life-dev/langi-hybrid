@@ -1,6 +1,5 @@
 import { connectDB } from '@/lib/db'
 import GrammarLesson, { type IGrammarLesson } from '@/lib/models/GrammarLesson'
-import { chatJson, langName } from '@/lib/ai'
 import type { CefrLevel } from '@/lib/models/LangiUser'
 import { CEFR_LEVELS } from '@/lib/models/LangiUser'
 
@@ -15,7 +14,7 @@ export interface GrammarTopic {
 
 // Curated French grammar curriculum, ordered within each level. Adding a row
 // here makes the lesson available. Every French row is seeded from reviewed content
-// by scripts/seed-grammar.ts; ensureLesson's AI draft is only a fallback for gaps.
+// by scripts/seed-grammar.ts.
 const FR_CATALOG: GrammarTopic[] = [
   // A1
   { slug: 'fr-a1-etre', level: 'A1', title: 'The verb être (to be)', topic: 'verbs', focus: 'present-tense conjugation of être with subject pronouns' },
@@ -171,76 +170,11 @@ export function unlockedLevels(cefr?: CefrLevel | null): Set<CefrLevel> {
   return new Set(CEFR_LEVELS.slice(0, maxIdx + 1))
 }
 
-interface GeneratedLesson {
-  summary: string
-  explanation: string
-  examples: { fr: string; en: string }[]
-  drills: { prompt: string; answer: string; hint?: string }[]
-}
-
-async function generateLesson(lang: string, t: GrammarTopic): Promise<GeneratedLesson | null> {
-  const ln = langName(lang)
-  const out = await chatJson<GeneratedLesson>([
-    {
-      role: 'system',
-      content:
-        `You are an expert ${ln} teacher writing a focused grammar mini-lesson for a CEFR ${t.level} learner. ` +
-        `Topic: "${t.title}". Focus on: ${t.focus}. ` +
-        `Explain in clear, simple English with ${ln} examples. ` +
-        `Return ONLY JSON: {` +
-        `"summary":"<one-sentence summary>",` +
-        `"explanation":"<3–5 short paragraphs in English, separated by \\n\\n, each illustrating a rule with a ${ln} example>",` +
-        `"examples":[{"fr":"<${ln} sentence>","en":"<English>"}],  // 4 natural example sentences` +
-        `"drills":[{"prompt":"<a ${ln} sentence with a single blank shown as ___ , with the verb/cue in parentheses>","answer":"<the exact ${ln} text that fills the blank>","hint":"<short tip>"}]  // 6 drills, all on THIS topic` +
-        `}. Keep every drill answerable from the explanation. Use real ${ln} (with correct accents).`,
-    },
-    { role: 'user', content: `Create the "${t.title}" lesson for a ${t.level} learner.` },
-  ], { temperature: 0.5, maxTokens: 1600 })
-
-  if (!out) return null
-  const examples = (Array.isArray(out.examples) ? out.examples : [])
-    .map((e) => ({ fr: String(e?.fr || '').trim(), en: String(e?.en || '').trim() }))
-    .filter((e) => e.fr && e.en)
-    .slice(0, 6)
-  const drills = (Array.isArray(out.drills) ? out.drills : [])
-    .map((d) => ({ prompt: String(d?.prompt || '').trim(), answer: String(d?.answer || '').trim(), hint: String(d?.hint || '').trim() || undefined }))
-    .filter((d) => d.prompt && d.answer)
-    .slice(0, 8)
-  const explanation = String(out.explanation || '').trim()
-  if (!explanation || drills.length === 0) return null
-  return { summary: String(out.summary || '').trim(), explanation, examples, drills }
-}
-
 /**
- * Load a grammar lesson, generating + caching its body on first access. Returns
- * null if the slug isn't in the catalog and nothing is cached, or if generation
- * fails and there's no cached fallback.
+ * Load a grammar lesson. Every lesson is seeded from data/<language>/grammar-lessons.json, so this is
+ * a plain read: null when the slug has no lesson.
  */
-export async function ensureLesson(lang: string, slug: string): Promise<IGrammarLesson | null> {
+export async function ensureLesson(slug: string): Promise<IGrammarLesson | null> {
   await connectDB()
-  const existing = await GrammarLesson.findOne({ slug }).lean<IGrammarLesson | null>()
-  if (existing && existing.explanation && existing.drills?.length) return existing
-
-  const t = grammarTopic(slug)
-  if (!t) return existing
-  const gen = await generateLesson(lang, t)
-  if (!gen) return existing
-
-  const doc = await GrammarLesson.findOneAndUpdate(
-    { slug },
-    {
-      $set: {
-        languageCode: lang,
-        level: t.level,
-        title: t.title,
-        topic: t.topic,
-        order: getCatalog(lang).indexOf(t),
-        ...gen,
-        isSystem: true,
-        generatedAt: new Date(),
-      },
-    },
-    { upsert: true, returnDocument: 'after' }
-  ).lean<IGrammarLesson | null>()
-  return doc
+  return GrammarLesson.findOne({ slug }).lean<IGrammarLesson | null>()
 }

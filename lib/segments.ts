@@ -1,4 +1,3 @@
-import type { TtsStyle } from '@/lib/ttsStyles'
 
 // ---------------------------------------------------------------------------
 // How readable content is split into spoken segments.
@@ -42,19 +41,6 @@ export function exampleSegments(lesson: { examples?: { fr: string }[] }): string
 export function storySegments(story: { sentences: { text: string }[] }): string[] {
   return (story.sentences || []).map((s) => s.text).filter(Boolean)
 }
-
-/**
- * Which performance style each surface uses. Kept here beside the segmentation
- * because style is part of the cache key too — warming with the wrong style
- * silently produces audio the UI will never request.
- */
-export const SURFACE_STYLE = {
-  lesson: 'teacher',
-  example: 'conversational',
-  story: 'story',
-  /** Single vocabulary words on flashcards. */
-  word: 'clear',
-} as const satisfies Record<string, TtsStyle>
 
 /**
  * Lesson explanations are written in the learner's NATIVE language, so they're

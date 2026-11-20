@@ -3,7 +3,7 @@ import VideoCache, { type IVideoItem, type VideoCategory } from '@/lib/models/Vi
 import YtSearchCache from '@/lib/models/YtSearchCache'
 import VideoDoc from '@/lib/models/VideoDoc'
 import type { CefrLevel } from '@/lib/models/LangiUser'
-import { langName } from '@/lib/ai'
+import { langName } from '@/lib/langs'
 import { upsertVideoDocs } from '@/lib/videoIndex'
 
 // Curated learning-video feed: casual immersion → structured lessons → full

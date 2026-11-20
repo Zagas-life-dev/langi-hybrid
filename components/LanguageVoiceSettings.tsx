@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { Volume2, Languages, Check, Play, Gauge, Sparkles } from 'lucide-react'
 import { useLang } from '@/components/LangProvider'
-import { useVoices, useTTS, useSpeechRate, setSpeechRate, RATE_MIN, RATE_MAX, useExpressiveEnabled, setExpressiveEnabled } from '@/lib/speech'
+import { useVoices, useTTS, useSpeechRate, setSpeechRate, RATE_MIN, RATE_MAX } from '@/lib/speech'
 import { LANGUAGES } from '@/lib/langs'
 
 const SAMPLE: Record<string, string> = {
@@ -31,7 +31,6 @@ export default function LanguageVoiceSettings() {
   const [saved, setSaved] = useState(false)
   const tts = useTTS(speechTag, voice || undefined)
   const rate = useSpeechRate()
-  const expressive = useExpressiveEnabled()
 
   function flash() {
     setSaved(true)
@@ -157,29 +156,6 @@ export default function LanguageVoiceSettings() {
             </div>
           </div>
         )}
-
-        {/* Expressive voice — the same preference the transport bar toggles,
-            surfaced here because it's a per-device setting that now persists. */}
-        <div className="mt-6 pt-6 border-t border-line/30">
-          <button
-            onClick={() => setExpressiveEnabled(!expressive)}
-            className="flex items-center justify-between w-full border-[2.5px] border-line rounded-[24px] p-4 hover:bg-paper-dark transition-colors"
-            aria-pressed={expressive}
-          >
-            <span className="text-left">
-              <span className="flex items-center gap-2 text-sm font-medium">
-                <Sparkles className="w-4 h-4 text-accent" strokeWidth={2.2} /> Expressive voice
-              </span>
-              <span className="meta text-muted block mt-1 normal-case tracking-normal">
-                Reads with real emotion instead of the flat device voice. Needs a
-                connection; falls back automatically when offline.
-              </span>
-            </span>
-            <span className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${expressive ? 'bg-accent' : 'bg-ink/20'}`}>
-              <span className={`inline-block h-4 w-4 transform rounded-full bg-paper transition-transform ${expressive ? 'translate-x-6' : 'translate-x-1'}`} />
-            </span>
-          </button>
-        </div>
       </section>
     </>
   )

@@ -3,15 +3,13 @@ import { requireUser } from '@/lib/auth'
 import { connectDB } from '@/lib/db'
 import Story from '@/lib/models/Story'
 import StoryTemplate from '@/lib/models/StoryTemplate'
-import { checkLimit } from '@/lib/ratelimit'
-import { generateStory } from '@/lib/stories'
-import { surpriseSeed } from '@/lib/genres'
+import { cleanStory } from '@/lib/hybrid/storyCore'
+import { isAdult } from '@/lib/age'
 import { CEFR_LEVELS, type CefrLevel } from '@/lib/models/LangiUser'
 import { readingUnlocked } from '@/lib/levels'
-import { isAdult } from '@/lib/age'
 
 // GET: curated suggestions (by level) + the learner's AI-generated library.
-// POST: generate a new AI story (the fallback when no curated story fits).
+// POST: save a story the browser generated through Firebase AI Logic (the fallback when no curated story fits).
 export async function GET() {
   let dbUser
   try {
@@ -76,43 +74,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const limit = await checkLimit(String(dbUser._id))
-  if (!limit.ok) {
-    return NextResponse.json({ error: 'Rate limit reached. Try again shortly.' },
-      { status: 429, headers: { 'Retry-After': String(limit.retryAfter ?? 60) } })
-  }
-
-  const body = (await req.json().catch(() => ({}))) as { topic?: string; genre?: string; surprise?: boolean }
-  let topic = (body.topic || '').toString().trim().slice(0, 120)
+  const body = (await req.json().catch(() => ({}))) as { story?: unknown; topic?: string; genre?: string }
+  const story = cleanStory((body.story ?? {}) as Parameters<typeof cleanStory>[0])
+  if (!story) return NextResponse.json({ error: 'That story was too short to save. Try again.' }, { status: 400 })
   const level = (dbUser.cefrLevel || 'A2') as CefrLevel
 
-  // "Surprise me" (true surprise): ignore inputs, roll a random genre + premise.
-  let genre = (body.genre || '').toString().trim().slice(0, 40)
-  let premise: string | undefined
-  if (body.surprise) {
-    const seed = surpriseSeed()
-    genre = seed.genre.key
-    premise = seed.premise
-    topic = ''
-  }
-
-  // Mature treatment is decided server-side: adult AND opted in. Never trust the client.
-  const mature = isAdult(dbUser.birthdate) && Boolean(dbUser.matureContent)
-
-  try {
-    const gen = await generateStory({ level, lang: dbUser.learningLang, topic, nativeLang: dbUser.nativeLang, genre, premise, mature })
-    if (!gen) return NextResponse.json({ error: 'Could not generate a story. Try again.' }, { status: 502 })
-    await connectDB()
-    const doc = await Story.create({
-      userId: dbUser._id,
-      languageCode: dbUser.learningLang,
-      level,
-      topic,
-      genre,
-      ...gen,
-    })
-    return NextResponse.json({ id: String(doc._id) })
-  } catch (e) {
-    return NextResponse.json({ error: (e as Error).message || 'AI unavailable' }, { status: 503 })
-  }
+  await connectDB()
+  const doc = await Story.create({
+    userId: dbUser._id,
+    languageCode: dbUser.learningLang,
+    level,
+    topic: (body.topic || '').toString().trim().slice(0, 120),
+    genre: (body.genre || '').toString().trim().slice(0, 40),
+    ...story,
+  })
+  return NextResponse.json({ id: String(doc._id) })
 }

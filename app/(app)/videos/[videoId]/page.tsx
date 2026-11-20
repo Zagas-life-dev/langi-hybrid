@@ -6,7 +6,7 @@ import { langName } from '@/lib/langs'
 import { connectDB } from '@/lib/db'
 import { getVideoMeta } from '@/lib/youtube'
 import { getRankedRecommendations, nextInCourse } from '@/lib/ranking'
-import { upsertVideoDoc, refineVideoDocWithAI } from '@/lib/videoIndex'
+import { upsertVideoDoc } from '@/lib/videoIndex'
 import VideoLike from '@/lib/models/VideoLike'
 import VideoComment from '@/lib/models/VideoComment'
 import WatchHistory from '@/lib/models/WatchHistory'
@@ -50,11 +50,8 @@ export default async function WatchPage({
   }
 
   const meta = await getVideoMeta(videoId, lang)
-  // Index + lazily AI-refine tags/difficulty for this video (rate-limited, cached).
-  if (meta) {
-    const doc = await upsertVideoDoc(meta, lang)
-    if (doc) await refineVideoDocWithAI(doc, String(dbUser._id))
-  }
+  // Index this video with keyword tags + difficulty.
+  if (meta) await upsertVideoDoc(meta, lang)
 
   const [recommendations, upNext] = await Promise.all([
     getRankedRecommendations(dbUser, videoId),

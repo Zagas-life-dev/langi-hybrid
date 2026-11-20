@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { BookOpen, Sparkles, ArrowRight, RefreshCw, Library, Lock, Dices, Heart, Users, Bookmark } from 'lucide-react'
 import { useLang } from '@/components/LangProvider'
-import { GENRES, genreByKey } from '@/lib/genres'
+import { GENRES, genreByKey, surpriseSeed } from '@/lib/genres'
+import { generateStory } from '@/lib/hybrid/generate'
 
 interface Suggested {
   slug: string
@@ -36,7 +37,7 @@ const IDEAS = ['a day at the market', 'a missed train', 'a small mystery', 'a fi
 
 export default function StoriesBrowser() {
   const router = useRouter()
-  const { meta } = useLang()
+  const { meta, learningLang, nativeLang } = useLang()
   const [tab, setTab] = useState<Tab>('discover')
   const [suggested, setSuggested] = useState<Suggested[]>([])
   const [library, setLibrary] = useState<LibraryStory[]>([])
@@ -83,14 +84,27 @@ export default function StoriesBrowser() {
     if (generating) return
     setGenerating(true); setError(null)
     try {
+      // "Surprise me" rolls a random genre + premise. The story itself is written by the cloud
+      // model through Firebase AI Logic; the server only stores it.
+      let genreKey = (payload.genre || '').trim()
+      let premise: string | undefined
+      let topicText = (payload.topic || '').trim()
+      if (payload.surprise) {
+        const seed = surpriseSeed()
+        genreKey = seed.genre.key
+        premise = seed.premise
+        topicText = ''
+      }
+      const story = await generateStory({ level, lang: learningLang, nativeLang, topic: topicText, genre: genreKey, premise, mature })
+      if (!story) { setError('Could not generate a story. Try again.'); setGenerating(false); return }
       const res = await fetch('/api/stories', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ story, topic: topicText, genre: genreKey }),
       })
       const data = await res.json()
-      if (!res.ok) { setError(data.error || 'Could not generate a story'); setGenerating(false); return }
+      if (!res.ok) { setError(data.error || 'Could not save the story'); setGenerating(false); return }
       router.push(`/learn/stories/${data.id}`)
-    } catch { setError('Could not generate a story'); setGenerating(false) }
+    } catch (e) { setError((e as Error).message || 'Could not generate a story'); setGenerating(false) }
   }
   const generate = () => runGenerate({ topic: topic.trim(), genre })
   const surprise = () => runGenerate({ surprise: true })

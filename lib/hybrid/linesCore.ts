@@ -23,6 +23,22 @@ export function parseLines(raw: string, exclude: string[] = [], max = 3): string
   return out
 }
 
+/** `sentence | translation` per line, for dictation. Lines without a sentence are dropped. */
+export function parseDictationLines(raw: string, max = 6): { text: string; translation: string }[] {
+  const out: { text: string; translation: string }[] = []
+  for (const line of raw.split(/\r?\n/)) {
+    const clean = line.replace(/^\s*(?:[-*•]|\d+[.)])\s*/, '').trim()
+    if (!clean) continue
+    const [text, ...rest] = clean.split('|')
+    const unquote = (s: string) => s.trim().replace(/^["“«]+|["”»]+$/g, '').trim()
+    const sentence = unquote(text)
+    if (sentence.length < 3 || sentence.length > 220) continue
+    out.push({ text: sentence, translation: unquote(rest.join('|')) })
+    if (out.length >= max) break
+  }
+  return out
+}
+
 /** Two lines: the sentence, then its translation. A single line is a sentence without a translation. */
 export function parseExample(raw: string): { sentence: string; translation: string } | null {
   const lines = raw

@@ -1,6 +1,6 @@
 'use client'
-import { Play, Pause, Square, SkipBack, SkipForward, Gauge, Sparkles, Loader2 } from 'lucide-react'
-import { RATE_STEPS, type ReadAloudControls, type ExpressiveState } from '@/lib/speech'
+import { Play, Pause, Square, SkipBack, SkipForward, Gauge } from 'lucide-react'
+import { RATE_STEPS, type ReadAloudControls } from '@/lib/speech'
 
 /**
  * Transport bar for continuous read-aloud. The parent owns the useReadAloud
@@ -13,12 +13,12 @@ export default function ReadAloudBar({
   label = 'Read aloud',
   className = '',
 }: {
-  controls: ReadAloudControls & { expressive?: ExpressiveState }
+  controls: ReadAloudControls
   count: number
   label?: string
   className?: string
 }) {
-  const { supported, status, index, toggle, stop, next, prev, rate, setRate, expressive } = controls
+  const { supported, status, index, toggle, stop, next, prev, rate, setRate } = controls
 
   if (!supported) {
     return (
@@ -31,8 +31,6 @@ export default function ReadAloudBar({
 
   const active = status !== 'idle'
 
-  const busy = expressive?.loading && status === 'playing'
-
   return (
     <div className={className}>
     <div className="flex items-center gap-2 flex-wrap border-[2.5px] border-line rounded-[24px] p-2">
@@ -41,9 +39,7 @@ export default function ReadAloudBar({
         className="btn-ink px-4 py-2 min-h-0"
         aria-label={status === 'playing' ? 'Pause reading' : 'Read aloud'}
       >
-        {busy
-          ? <Loader2 className="w-4 h-4 animate-spin" />
-          : status === 'playing' ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+        {status === 'playing' ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
         <span className="hidden sm:inline">{status === 'playing' ? 'Pause' : status === 'paused' ? 'Resume' : label}</span>
       </button>
 
@@ -65,26 +61,6 @@ export default function ReadAloudBar({
       )}
 
       <div className="flex items-center gap-2 ml-auto">
-        {/* Expressive mode: server-generated audio that performs emotion,
-            versus the browser's flat built-in voice. */}
-        {expressive && (
-          <button
-            onClick={() => expressive.setEnabled(!expressive.enabled)}
-            aria-pressed={expressive.enabled}
-            title={expressive.enabled
-              ? 'Expressive voice on — emotional delivery, needs a connection'
-              : 'Turn on expressive voice (emotional delivery)'}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 border meta transition-colors ${
-              expressive.enabled
-                ? 'border-accent bg-accent text-on-accent'
-                : 'border-line text-muted hover:text-accent'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5" strokeWidth={2} />
-            <span className="hidden sm:inline">Expressive</span>
-          </button>
-        )}
-
         <label className="flex items-center gap-1.5 meta text-muted">
           <Gauge className="w-4 h-4" strokeWidth={2.2} />
           <span className="sr-only">Reading speed</span>
@@ -101,22 +77,6 @@ export default function ReadAloudBar({
       </div>
     </div>
 
-    {/* Honest status line — expressive mode has a real first-play wait and can
-        silently degrade, and saying nothing about either feels broken. */}
-    {expressive?.enabled && (
-      <p className="meta text-muted mt-1.5" aria-live="polite">
-        {/* `exhausted` is the more specific case and must win over `degraded`:
-            saved sentences still play in the good voice, so "unavailable" would
-            be wrong as well as discouraging. */}
-        {expressive.exhausted
-          ? 'Enhanced voice limit reached. Playing saved audio, device voice for the rest. It comes back shortly.'
-          : expressive.degraded
-            ? 'Expressive voice unavailable right now. Using your device voice.'
-            : busy
-              ? 'Generating expressive audio…'
-              : 'Expressive voice on · first sentence takes a moment, then it flows.'}
-      </p>
-    )}
     </div>
   )
 }

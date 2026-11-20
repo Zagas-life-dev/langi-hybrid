@@ -11,7 +11,7 @@
 // network — see ReviewSession.tsx.
 
 // Bump this on any change to the caching strategy so old caches are dropped.
-const CACHE = 'langi-v4'
+const CACHE = 'langi-v5'
 // Registered as /sw.js?dev=1 by PWARegister under `next dev`, where build assets
 // keep the same URL across edits. Cache-first would then pin stale CSS/JS, so in
 // dev static files go network-first like pages (still cached for offline).
@@ -21,11 +21,9 @@ const DEV = new URL(self.location.href).searchParams.has('dev')
 // visit / warmed by components/OfflineWarmer) so the learner lands INSIDE the app
 // — on their flashcards — instead of a dead-end offline page.
 const SHELL_FALLBACKS = ['/learn/review/all', '/learn']
-// Offline STT model archives (~40 MB) live in their own cache, written by
-// lib/voskStt.ts. Never evict it on activate, and never route model requests
-// through the page cache (see fetch handler) — the app layer owns them.
-const STT_CACHE = 'langi-stt-v1'
-const KEEP_CACHES = [CACHE, STT_CACHE]
+// Only the current cache is kept: older ones (including the retired offline voice and
+// speech-model caches) are dropped on activate.
+const KEEP_CACHES = [CACHE]
 const OFFLINE_URL = '/offline.html'
 const PRECACHE = [
   OFFLINE_URL,
@@ -82,9 +80,6 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url)
   if (url.origin !== self.location.origin) return
   if (url.pathname.startsWith('/api/')) return
-  // Self-hosted STT model archives are cached by the app (lib/voskStt.ts) in
-  // their own store — don't let the page cache duplicate a 40 MB file.
-  if (url.pathname.startsWith('/vosk/')) return
 
   if (isStatic(url) && !DEV) {
     event.respondWith(

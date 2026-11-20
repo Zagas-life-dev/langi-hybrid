@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 import AppNav from '@/components/AppNav'
 import BottomNav from '@/components/BottomNav'
 import InstallPrompt from '@/components/InstallPrompt'
-import OfflineVoicePrompt from '@/components/OfflineVoicePrompt'
 import OfflineWarmer from '@/components/OfflineWarmer'
 import { LangProvider } from '@/components/LangProvider'
 import DeviceBanner from '@/components/DeviceBanner'
@@ -52,7 +51,6 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <OfflineWarmer />
         <RemoteRouting />
         <InstallPrompt />
-        <OfflineVoicePrompt />
       </div>
     </LangProvider>
   )

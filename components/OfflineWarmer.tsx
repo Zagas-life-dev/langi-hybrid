@@ -52,8 +52,8 @@ export default function OfflineWarmer() {
         fetch(p, { credentials: 'same-origin' }).catch(() => {})
       }
       // Download the on-device datasets.
-      refreshPack('all').catch(() => {})
       refreshBundle().catch(() => {})
+      refreshPack('all').catch(() => {})
     }
     warm()
     window.addEventListener('online', warm)

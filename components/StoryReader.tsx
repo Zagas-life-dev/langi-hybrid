@@ -5,7 +5,7 @@ import { Volume2, Languages, Check, X, BookOpen, Mic } from 'lucide-react'
 import { useTTS, useReadAloud } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import ReadAloudBar from '@/components/ReadAloud'
-import { storySegments, SURFACE_STYLE } from '@/lib/segments'
+import { storySegments } from '@/lib/segments'
 import { useWordLookup, TappableText, WordLookupCard } from '@/components/WordLookup'
 import ShadowingPanel from '@/components/ShadowingPanel'
 
@@ -43,7 +43,7 @@ export default function StoryReader({
   const segments = useMemo(() => storySegments(story), [story])
   // 'story' style: warm storyteller delivery. This is the surface expressive
   // reading matters most on — a graded story read flatly is just a word list.
-  const readAloud = useReadAloud(segments, speechTag, ttsVoice, { style: SURFACE_STYLE.story })
+  const readAloud = useReadAloud(segments, speechTag, ttsVoice)
   const toggle = (i: number) => setRevealed((r) => ({ ...r, [i]: !r[i] }))
 
   const correctCount = story.questions.reduce((n, q, i) => n + (answers[i] === q.answer ? 1 : 0), 0)

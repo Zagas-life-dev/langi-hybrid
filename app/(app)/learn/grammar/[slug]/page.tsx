@@ -16,7 +16,7 @@ export default async function GrammarLessonPage({ params }: { params: Promise<{ 
   if (!topic) notFound()
   if (!unlockedLevels(dbUser.cefrLevel).has(topic.level)) redirect('/learn/grammar')
 
-  const lesson = await ensureLesson(dbUser.learningLang, slug)
+  const lesson = await ensureLesson(slug)
 
   if (!lesson) {
     return (

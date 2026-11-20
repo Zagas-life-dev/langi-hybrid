@@ -1,6 +1,5 @@
 import { NextResponse, after, type NextRequest } from 'next/server'
 import { requireUser } from '@/lib/auth'
-import { checkLimit } from '@/lib/ratelimit'
 import { listTracks, getCaptions, baseCode } from '@/lib/captions'
 import { saveVideoProfile } from '@/lib/wordKnowledge'
 
@@ -27,23 +26,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ vide
   if (!lang) return NextResponse.json({ tracks: await listTracks(videoId) })
   if (!LANG.test(lang)) return NextResponse.json({ error: 'Bad language' }, { status: 400 })
 
-  let limited = false
-  const part = Number(req.nextUrl.searchParams.get('part')) || 0
-  const result = await getCaptions(videoId, lang, {
-    part,
-    preferFrom: dbUser.learningLang,
-    allowAi: async () => {
-      const r = await checkLimit(String(dbUser._id), 'ai')
-      limited = !r.ok
-      return r.ok
-    },
-  })
-  if (!result) {
-    return NextResponse.json(
-      { error: limited ? 'Translation limit reached — try again later' : 'No captions in this language' },
-      { status: limited ? 429 : 404 },
-    )
-  }
+  const result = await getCaptions(videoId, lang)
+  if (!result) return NextResponse.json({ error: 'No captions in this language' }, { status: 404 })
   // The learner's own-language track doubles as the video's word profile
   // ("you know 87% of the words"); stored once, after the response.
   if (result.source === 'youtube' && baseCode(lang) === dbUser.learningLang) {

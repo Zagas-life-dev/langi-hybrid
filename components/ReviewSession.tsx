@@ -667,22 +667,7 @@ export default function ReviewSession({ deckId, title }: { deckId: string; title
                 <div className="meta text-muted mt-4">
                   {!stt.supported ? (
                     <p>Voice input needs Chrome or Edge. You can still type.</p>
-                  ) : stt.offline.available ? (
-                    // Offline voice (on-device Vosk): offer the one-time download
-                    // while online; once installed the mic dictates with no network.
-                    stt.offline.status === 'downloading' ? (
-                      <p>Downloading offline voice… {Math.round(stt.offline.progress * 100)}%</p>
-                    ) : stt.offline.status === 'error' ? (
-                      <button onClick={() => stt.offline.enable()} className="underline hover:text-accent">Voice download failed. Tap to retry</button>
-                    ) : stt.offline.status === 'ready' ? (
-                      stt.usingOffline ? <p>Listening on this device (offline)…</p>
-                        : (!online || stt.needsNetwork) ? <p>Offline voice ready. Tap the mic.</p> : null
-                    ) : online ? (
-                      <button onClick={() => stt.offline.enable()} className="underline hover:text-accent">Enable offline voice (~{stt.offline.sizeMB} MB) to dictate without a connection</button>
-                    ) : (
-                      <p>Voice needs a connection. Enable the offline voice pack next time you&apos;re online, or type.</p>
-                    )
-                  ) : stt.needsNetwork ? (
+                  ) : !online || stt.needsNetwork ? (
                     <p>Voice input needs a connection on this device. Type your answer instead.</p>
                   ) : null}
                 </div>

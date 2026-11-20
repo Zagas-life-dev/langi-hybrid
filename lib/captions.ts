@@ -1,7 +1,6 @@
 import { connectDB } from '@/lib/db'
 import CaptionCache, { type ICaptionCue } from '@/lib/models/CaptionCache'
-import { chatJson, langName } from '@/lib/ai'
-import { baseCode, parseJson3, asrSentences, keyedLines } from '@/lib/captionsCore'
+import { baseCode, parseJson3, asrSentences } from '@/lib/captionsCore'
 
 export { baseCode }
 
@@ -14,10 +13,9 @@ export { baseCode }
 // web client's caption URLs now need a proof-of-origin token). Its baseUrls are
 // short-lived, so the list is only cached in memory, never in Mongo.
 //
-// When a video has no track in a wanted language (typically the learner's
-// native one), we translate another track line-by-line with the AI cascade.
-// YouTube's own `tlang` auto-translate is aggressively rate-limited (429) from
-// servers, so it isn't relied on.
+// Only the video's own tracks are used: a language the video has no track for simply isn't offered.
+// (Machine-translating subtitles with a server-side model was removed: every AI call in the app
+// goes through Firebase AI Logic in the browser.)
 // ---------------------------------------------------------------------------
 
 export interface CaptionTrack {
@@ -31,9 +29,6 @@ interface RawTrack extends CaptionTrack { baseUrl: string }
 const ANDROID_VERSION = '20.10.38'
 const UA = `com.google.android.youtube/${ANDROID_VERSION} (Linux; U; Android 14)`
 const LIST_TTL_MS = 30 * 60 * 1000
-const MAX_AI_CUES = 2400    // a couple of hours of speech
-const AI_PART = 100         // cues translated per request (~5–10 min of video)
-const AI_BATCH = 50         // cues per AI call; a part's batches run in parallel
 
 const listCache = new Map<string, { at: number; tracks: RawTrack[] }>()
 
@@ -96,74 +91,24 @@ async function fetchTrack(t: RawTrack): Promise<ICaptionCue[]> {
   return t.auto ? asrSentences(json) : parseJson3(json)
 }
 
-/**
- * Translate cues line-for-line. Lines go out keyed by number and come back
- * matched by key, so a model that merges or drops a line (common with
- * unpunctuated auto-generated captions) can't shift every later line out of
- * sync; lines still missing get one retry. `complete` is false when some
- * lines never came back, so the caller doesn't cache a gappy translation.
- */
-async function translateCues(src: ICaptionCue[], from: string, to: string): Promise<{ cues: ICaptionCue[]; complete: boolean }> {
-  const fromName = langName(from)
-  const toName = langName(to)
-
-  async function run(idx: number[]): Promise<Map<number, string>> {
-    const input = Object.fromEntries(idx.map((i) => [String(i), src[i].text]))
-    const out = await chatJson<{ lines?: unknown }>([
-      {
-        role: 'system',
-        content:
-          `You translate ${fromName} video subtitles into natural ${toName}. You get a JSON object of ` +
-          `consecutive subtitle lines keyed by line number (possibly auto-transcribed, so expect missing ` +
-          `punctuation and the odd mis-heard word); use the neighbours for context but translate each line ` +
-          `on its own — never merge or split lines. Reply as JSON with the SAME keys: {"lines": {"<key>": "...", ...}}.`,
-      },
-      { role: 'user', content: JSON.stringify(input) },
-    ], { temperature: 0.2, maxTokens: 4000 }).catch(() => null)
-    return keyedLines(out?.lines, idx)
-  }
-
-  const all = src.map((_, i) => i)
-  const batches: number[][] = []
-  for (let i = 0; i < all.length; i += AI_BATCH) batches.push(all.slice(i, i + AI_BATCH))
-  const got = new Map<number, string>()
-  for (const m of await Promise.all(batches.map(run))) for (const [k, v] of m) got.set(k, v)
-
-  const missing = all.filter((i) => !got.get(i))
-  if (missing.length && missing.length < all.length) {
-    for (const [k, v] of await run(missing)) got.set(k, v)
-  }
-  const cues = src.map((c, i) => ({ ...c, text: got.get(i) ?? '' })).filter((c) => c.text)
-  return { cues, complete: cues.length === src.length }
-}
-
 export interface CaptionResult {
   cues: ICaptionCue[]
-  source: 'youtube' | 'ai'
-  from?: string
-  /** AI translations arrive in parts so each request stays quick; fetch part+1 until `parts`. */
-  part?: number
-  parts?: number
+  source: 'youtube'
 }
 
-// Bump when parsing changes so stale cached cues (and translations indexed
-// against them) are refetched instead of served. AI rows also need
-// MIN_AI_VER: before v3, a model that merged lines shifted the rest of the
-// translation out of sync, so those rows are re-translated.
+// Bump when parsing changes so stale cached cues are refetched instead of served.
 const CACHE_VER = 3
 const MIN_OWN_VER = 2
-const MIN_AI_VER = 3
 
 async function cacheGet(videoId: string, key: string) {
   const row = await CaptionCache.findOne({ videoId, lang: key }).lean()
-  const min = row?.source === 'ai' ? MIN_AI_VER : MIN_OWN_VER
-  return row && (row.ver ?? 0) >= min && row.cues?.length ? row : null
+  return row && (row.ver ?? 0) >= MIN_OWN_VER && row.cues?.length ? row : null
 }
 
 async function cachePut(videoId: string, key: string, r: CaptionResult) {
   await CaptionCache.updateOne(
     { videoId, lang: key },
-    { $set: { cues: r.cues, source: r.source, from: r.from, parts: r.parts, ver: CACHE_VER, fetchedAt: new Date() } },
+    { $set: { cues: r.cues, source: r.source, ver: CACHE_VER, fetchedAt: new Date() } },
     { upsert: true },
   ).catch(() => {})
 }
@@ -186,47 +131,10 @@ async function ownCaptions(videoId: string, code: string, tracks: RawTrack[]): P
   }
 }
 
-/**
- * Cues for `lang`. Uses the video's own track (human or auto-generated) when it
- * has one; otherwise, when `allowAi` permits, translates the track in
- * `preferFrom` (the learner's target language) or failing that whichever
- * exists — one `part` of AI_PART cues per call. Null when nothing works.
- */
-export async function getCaptions(
-  videoId: string,
-  lang: string,
-  opts: { part?: number; preferFrom?: string; allowAi?: () => Promise<boolean> } = {},
-): Promise<CaptionResult | null> {
+/** Cues for `lang` from the video's own track (human or auto-generated). Null when it has none. */
+export async function getCaptions(videoId: string, lang: string): Promise<CaptionResult | null> {
   const code = baseCode(lang)
   await connectDB()
   const tracks = await rawTracks(videoId)
-  const own = await ownCaptions(videoId, code, tracks)
-  if (own || !tracks.length) return own
-
-  const part = Math.max(0, Math.floor(opts.part ?? 0))
-  const key = `${code}#${part}`
-  const cached = await cacheGet(videoId, key)
-  if (cached) return { cues: cached.cues, source: 'ai', from: cached.from, part, parts: cached.parts }
-
-  const base = (opts.preferFrom && pickTrack(tracks, opts.preferFrom)) || tracks.find((t) => !t.auto) || tracks[0]
-  const baseCues = await ownCaptions(videoId, base.code, tracks)
-  if (!baseCues) return null
-  const src = baseCues.cues.slice(0, MAX_AI_CUES)
-  const parts = Math.ceil(src.length / AI_PART)
-  if (part >= parts) return null
-  if (!opts.allowAi || !(await opts.allowAi())) return null
-
-  try {
-    const { cues, complete } = await translateCues(src.slice(part * AI_PART, (part + 1) * AI_PART), base.code, code)
-    if (!cues.length) return null
-    const r: CaptionResult = { cues, source: 'ai', from: base.code, part, parts }
-    // A part with lines missing is still shown, but not cached for everyone —
-    // the next viewer gets a fresh attempt at a complete one.
-    if (complete) await cachePut(videoId, key, r)
-    return r
-  } catch (e) {
-    console.warn('[captions] AI translation failed:', (e as Error).message)
-    return null
-  }
+  return ownCaptions(videoId, code, tracks)
 }
-

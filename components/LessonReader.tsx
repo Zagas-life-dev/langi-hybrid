@@ -4,7 +4,7 @@ import { useReadAloud } from '@/lib/speech'
 import { useLang } from '@/components/LangProvider'
 import ReadAloudBar from '@/components/ReadAloud'
 // Straight from the cache contract — the pre-warm script uses the same splitter.
-import { toSegments, SURFACE_STYLE, nativeSpeechTag } from '@/lib/segments'
+import { toSegments, nativeSpeechTag } from '@/lib/segments'
 
 /**
  * Read-along wrapper for grammar-lesson prose.
@@ -42,11 +42,8 @@ export default function LessonReader({
     return { segments: segs, ranges: rs }
   }, [paragraphs, summary])
 
-  // 'teacher': calm, patient explanation rather than performance. Both the tag
-  // and the style come from lib/segments so pre-warmed audio matches this key.
-  const ra = useReadAloud(segments, nativeSpeechTag(nativeLang), undefined, {
-    style: SURFACE_STYLE.lesson,
-  })
+  // Lesson explanations are written in the learner's own language, so read them with that voice.
+  const ra = useReadAloud(segments, nativeSpeechTag(nativeLang))
 
   // Keep the sentence being spoken on screen during a long lesson.
   const activeRef = useRef<HTMLSpanElement>(null)

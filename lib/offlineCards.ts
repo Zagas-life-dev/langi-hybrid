@@ -276,6 +276,20 @@ async function updateCardState(cardId: string, box: number, dueAt: number): Prom
   })
 }
 
+/** All cards in the offline deck (used to pre-download their voice clips). */
+export async function listOfflineCards(): Promise<OfflineCard[]> {
+  try {
+    const db = await openLangiDB()
+    return await new Promise<OfflineCard[]>((resolve) => {
+      const req = db.transaction(STORE_CARDS, 'readonly').objectStore(STORE_CARDS).getAll()
+      req.onsuccess = () => resolve((req.result as OfflineCard[]) || [])
+      req.onerror = () => resolve([])
+    })
+  } catch {
+    return []
+  }
+}
+
 /** How many cards are cached for offline review (for a "ready offline" badge). */
 export async function offlineCardCount(): Promise<number> {
   try {

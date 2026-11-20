@@ -26,6 +26,12 @@ export const LANGUAGES: LangMeta[] = [
   { code: 'de', name: 'German',     nativeName: 'Deutsch',   flag: '🇩🇪', bcp47: 'de-DE', curated: false },
   { code: 'it', name: 'Italian',    nativeName: 'Italiano',  flag: '🇮🇹', bcp47: 'it-IT', curated: false },
   { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹', bcp47: 'pt-PT', curated: false },
+  // Nigerian languages. Content = sentence-pair decks built from open corpora
+  // (MENYO-20k, MAFAND-MT) via scripts/build-ng-decks.mjs. Chat/explain use cloud
+  // Gemini through AI Logic. Browser TTS rarely has a voice, hence NG tags.
+  { code: 'yo', name: 'Yoruba',     nativeName: 'Yorùbá',    flag: '🇳🇬', bcp47: 'yo-NG', curated: true },
+  { code: 'ig', name: 'Igbo',       nativeName: 'Igbo',      flag: '🇳🇬', bcp47: 'ig-NG', curated: true },
+  { code: 'ha', name: 'Hausa',      nativeName: 'Hausa',     flag: '🇳🇬', bcp47: 'ha-NG', curated: true },
 ]
 
 const BY_CODE: Record<string, LangMeta> = Object.fromEntries(LANGUAGES.map((l) => [l.code, l]))
@@ -36,6 +42,7 @@ const ENGLISH_NAMES: Record<string, string> = {
   fr: 'French', es: 'Spanish', de: 'German', it: 'Italian', pt: 'Portuguese',
   en: 'English', nl: 'Dutch', ru: 'Russian', ja: 'Japanese', zh: 'Chinese',
   ar: 'Arabic', ko: 'Korean', tr: 'Turkish', pl: 'Polish', sv: 'Swedish',
+  yo: 'Yoruba', ig: 'Igbo', ha: 'Hausa',
 }
 
 const DEFAULT_LANG = BY_CODE.fr

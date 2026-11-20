@@ -8,6 +8,7 @@ import { scorePronunciation, type PronunciationResult, type WordStatus } from '@
 import { useOnline } from '@/lib/offlineQueue'
 import { saveDictationLines, loadDictationLines } from '@/lib/offlineData'
 import { useWordLookup, WordLookupCard } from '@/components/WordLookup'
+import { generateDictationLines, getLearnerContext } from '@/lib/hybrid/generate'
 
 interface Line { text: string; translation: string }
 
@@ -18,7 +19,7 @@ const WORD_CLASS: Record<WordStatus, string> = {
 }
 
 export default function DictationSession() {
-  const { speechTag, ttsVoice, meta } = useLang()
+  const { speechTag, ttsVoice, meta, learningLang, nativeLang } = useLang()
   const tts = useTTS(speechTag, ttsVoice)
   const online = useOnline()
   const [lines, setLines] = useState<Line[]>([])
@@ -36,13 +37,11 @@ export default function DictationSession() {
   const load = useCallback(async () => {
     setPhase('loading'); setError(null); setScores([]); setPos(0)
     try {
-      // Generating fresh sentences needs the AI (network). Offline, replay the
-      // last downloaded set instead of failing.
-      if (typeof navigator !== 'undefined' && !navigator.onLine) throw new Error('offline')
-      const res = await fetch('/api/dictation', { method: 'POST' })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Could not start dictation')
-      const lines: Line[] = data.lines || []
+      // The sentences are written in the browser through Firebase AI Logic (on-device when it can,
+      // so a fresh set works offline too). If that fails, replay the last saved set.
+      const ctx = await getLearnerContext(learningLang)
+      const lines: Line[] = await generateDictationLines({ level: ctx.level, lang: ctx.lang, nativeLang })
+      if (!lines.length) throw new Error('Could not generate dictation')
       setLines(lines)
       saveDictationLines(lines).catch(() => {}) // cache for offline replay
       setTyped(''); setResult(null)
@@ -54,10 +53,10 @@ export default function DictationSession() {
         setTyped(''); setResult(null)
         setPhase('active')
       } else {
-        setError('Dictation needs a connection the first time — reconnect once to download a set, then it works offline.')
+        setError('Could not make a dictation set right now. Check that on-device AI is on (or reconnect), then try again.')
       }
     }
-  }, [])
+  }, [learningLang, nativeLang])
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load() }, [load])
