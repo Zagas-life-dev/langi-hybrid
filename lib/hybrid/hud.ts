@@ -43,6 +43,11 @@ export function recordEvent(e: Omit<HybridEvent, 'id' | 'at'>): HybridEvent {
   return ev
 }
 
+/** Current HUD snapshot for non-React callers. */
+export function getHud(): HudState {
+  return state
+}
+
 function subscribe(l: () => void) {
   listeners.add(l)
   return () => listeners.delete(l)

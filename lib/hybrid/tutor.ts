@@ -8,7 +8,7 @@ import { langName } from '@/lib/langs'
 import { scenarioByKey } from '@/lib/scenarios'
 import { runTask } from './ai'
 import type { HybridTask } from './tasks'
-import type { HybridEvent } from './hud'
+import { getHud, type HybridEvent } from './hud'
 
 export { langName, scenarioByKey }
 export { SCENARIOS } from '@/lib/scenarios'
@@ -31,6 +31,12 @@ async function askEv<T>(task: HybridTask, system: string, user: string, schema: 
 
 async function ask<T>(task: HybridTask, system: string, user: string, schema: Schema): Promise<T | null> {
   return (await askEv<T>(task, system, user, schema)).data
+}
+
+/** Where the most recent AI helper ran, so a caller that only gets data back can still show a HybridBadge. */
+export function lastAiBadge(): { source: 'ON_DEVICE' | 'IN_CLOUD'; ms: number; reason: string } | null {
+  const e = getHud().events[0]
+  return e ? { source: e.source, ms: e.ms, reason: e.reason } : null
 }
 
 /** Flatten chat history into one prompt: on-device sessions are single-turn. */
