@@ -30,14 +30,19 @@ next-env.d.ts
 # local data dumps for the optional tatoeba importer
 /data/tatoeba/
 
-# self-hosted offline STT model archives (~40 MB each) — fetched, not committed
-/public/vosk/
-
 # vercel CLI link + pulled env
 /.vercel
 
 .vercel
 .env*
 
-# local TTS listening tests
-/tts-samples/
+# template with placeholders only
+!.env.example
+
+# raw corpora (license-checked before commit)
+/data/african/
+# Decks generated from those corpora (MAFAND-MT, MENYO-20k: CC BY-NC 4.0, which does not fit an Apache 2.0
+# repo). Rebuild with: node scripts/build-ng-decks.mjs all && node scripts/build-ng-placement.mjs all
+/data/yoruba/
+/data/igbo/
+/data/hausa/

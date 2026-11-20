@@ -34,6 +34,22 @@ const BOM = new RegExp(String.fromCharCode(0xfeff), 'g')
 const BAD = new RegExp('[0-9@\\[\\]{}<>_/\\\\|]|https?:|www\\.', 'i')
 const clean = (t) => !BAD.test(t)
 
+// Corpus artefacts that make poor flashcards: speaker tags ("BG:", "INEC:"), leading or unbalanced
+// quotes and dashes, brackets, ellipses, hashtags, acronyms in capitals, and pairs whose lengths
+// don't line up (usually a misaligned translation).
+const SPEAKER = /^[A-Za-z]{1,6}:\s/
+const LEAD = /^["'“”‘’«»\-–—.,;:!?#*•]/
+const oddQuotes = (s) => ((s.match(/["“”]/g) || []).length % 2) === 1
+const ACRONYM = /\b[A-Z]{3,}\b/
+const ODD = /[()\[\]…]|\.\.\.|#|\bvisit\b|[:;,]\s*$/i
+function pairOk(t, e) {
+  for (const s of [t, e]) {
+    if (SPEAKER.test(s) || LEAD.test(s) || oddQuotes(s) || ACRONYM.test(s) || ODD.test(s)) return false
+  }
+  const ratio = words(e) / words(t)
+  return ratio >= 0.4 && ratio <= 2.6
+}
+
 for (const code of targets) {
   const meta = LANGS[code]
   if (!meta) throw new Error(`Unknown lang ${code}. Use yo, ig, ha or all.`)
@@ -67,7 +83,7 @@ for (const code of targets) {
     const t = t0?.normalize('NFC').trim(), e = e0?.trim()
     if (!t || !e || t.toLowerCase() === e.toLowerCase()) continue
     const n = words(t)
-    if (n < 3 || n > 12 || words(e) > 16 || !clean(t) || !clean(e)) continue
+    if (n < 3 || n > 12 || words(e) > 16 || !clean(t) || !clean(e) || !pairOk(t, e)) continue
     const key = t.toLowerCase()
     if (seen.has(key)) continue
     seen.add(key); pairs.push({ t, e, n })

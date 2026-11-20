@@ -26,6 +26,32 @@ describe('pickRoute', () => {
   })
 })
 
+describe('pickRoute: languages Nano does not support', () => {
+  const base = { task: 'liveCorrect' as const, inputChars: 50, online: true, deviceReady: true }
+
+  it('sends Yoruba, Igbo and Hausa to the cloud even when Nano is ready', () => {
+    for (const lang of ['yo', 'ig', 'ha']) {
+      const r = pickRoute({ ...base, targetLang: lang })
+      expect(r.mode).toBe('only_in_cloud')
+      expect(r.reason).toContain('does not support this language')
+    }
+  })
+
+  it('keeps French and English on-device first', () => {
+    expect(pickRoute({ ...base, targetLang: 'fr' }).mode).toBe('prefer_on_device')
+    expect(pickRoute({ ...base, targetLang: 'en' }).mode).toBe('prefer_on_device')
+    expect(pickRoute(base).mode).toBe('prefer_on_device')
+  })
+
+  it('does not change cloud-first tasks', () => {
+    expect(pickRoute({ ...base, task: 'deepDive', targetLang: 'yo' }).mode).toBe('prefer_in_cloud')
+  })
+
+  it('offline still falls back to on-device, since there is no other choice', () => {
+    expect(pickRoute({ ...base, online: false, targetLang: 'yo' }).mode).toBe('only_on_device')
+  })
+})
+
 describe('estimateSaved', () => {
   it('counts prompt, output and HTTP overhead', () => {
     const s = estimateSaved(100, 200)

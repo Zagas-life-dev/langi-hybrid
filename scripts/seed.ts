@@ -87,7 +87,8 @@ async function main() {
 
   // --- Decks + Cards ---
   const dir = path.join(process.cwd(), 'data', LANG_DIR)
-  const files = readdirSync(dir).filter((f) => /^\d.*\.json$/.test(f)).sort()
+  // Hand-built decks are numbered (01-greetings.json); generated sentence decks are sentences-NN.json.
+  const files = readdirSync(dir).filter((f) => /^(\d.*|sentences-.*)\.json$/.test(f)).sort()
 
   let total = 0
   const report: { slug: string; level: string; count: number }[] = []

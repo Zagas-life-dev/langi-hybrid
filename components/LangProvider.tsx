@@ -1,5 +1,6 @@
 'use client'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+import { setTargetLang } from '@/lib/hybrid/ai'
 import { langMeta, speechTag, type LangMeta } from '@/lib/langs'
 
 // Carries the signed-in learner's language down to every client component so the
@@ -34,6 +35,8 @@ export function LangProvider({
   children: React.ReactNode
 }) {
   const meta = langMeta(learningLang)
+  // Tell the AI router which language is being learned (Nano only handles some of them).
+  useEffect(() => { setTargetLang(learningLang) }, [learningLang])
   return (
     <Ctx.Provider value={{ learningLang, nativeLang, meta, speechTag: speechTag(learningLang), ttsVoice }}>
       {children}

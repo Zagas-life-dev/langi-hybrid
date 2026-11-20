@@ -52,11 +52,16 @@ export const DEFAULT_RULES: Record<HybridTask, TaskRule> = {
   },
 }
 
+/** Languages Gemini Nano is set up for here. Anything else (Yoruba, Igbo, Hausa...) goes to the cloud. */
+export const NANO_LANGS = ['en', 'fr']
+
 export interface RouteInput {
   task: HybridTask
   inputChars: number
   online: boolean
   deviceReady: boolean
+  /** The language being learned: on-device only runs when Nano supports it. */
+  targetLang?: string
   forceCloud?: boolean
   rules?: Record<HybridTask, TaskRule>
 }
@@ -71,6 +76,9 @@ export function pickRoute(i: RouteInput): Route {
   }
   if (i.forceCloud) {
     return { mode: 'only_in_cloud', cloudModel: rule.cloudModel, reason: 'Cloud forced by config' }
+  }
+  if (i.targetLang && !NANO_LANGS.includes(i.targetLang) && rule.mode.includes('on_device')) {
+    return { mode: 'only_in_cloud', cloudModel: rule.cloudModel, reason: 'On-device AI does not support this language yet: cloud' }
   }
   if (i.inputChars > rule.maxOnDeviceChars && rule.mode.includes('on_device')) {
     return { mode: 'prefer_in_cloud', cloudModel: rule.cloudModel, reason: `Input over ${rule.maxOnDeviceChars} chars: cloud` }

@@ -20,6 +20,12 @@ const CLOUD_TIMEOUT_MS = 45_000
 // Remote Config can replace these later (step: "Remote Config routing").
 let rules: Record<HybridTask, TaskRule> = DEFAULT_RULES
 let forceCloud = false
+// The language being learned. Set by the app shell, so tasks in a language Nano doesn't support
+// (Yoruba, Igbo, Hausa) go to the cloud instead of answering badly on-device.
+let targetLang = 'fr'
+export function setTargetLang(lang: string) {
+  targetLang = lang
+}
 export function setRouting(next: { rules?: Record<HybridTask, TaskRule>; forceCloud?: boolean }) {
   if (next.rules) rules = next.rules
   if (next.forceCloud !== undefined) forceCloud = next.forceCloud
@@ -166,7 +172,7 @@ export async function runTask<T = string>(task: HybridTask, prompt: string, opts
   if (!deviceReady) deviceReady = (await deviceStatus()) === 'available'
   const route = opts.nanoOnly
     ? { mode: 'only_on_device' as Mode, cloudModel: rules[task].cloudModel, reason: 'Nano-only debug run' }
-    : pickRoute({ task, inputChars: full.length, online: navigator.onLine, deviceReady, forceCloud, rules })
+    : pickRoute({ task, inputChars: full.length, online: navigator.onLine, deviceReady, forceCloud, rules, targetLang })
 
   const t0 = performance.now()
   const model = modelFor(route.mode, route.cloudModel, opts.schema)

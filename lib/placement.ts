@@ -18,6 +18,7 @@ export interface PlacementFormQuestion {
 // while measuring grammar at every level. Grammar gets the larger share since
 // it's what we place on.
 const PER_LEVEL: Record<string, number> = { grammar: 3, vocab: 2, reading: 1 }
+const SINGLE_SKILL_PER_LEVEL = 6
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -44,8 +45,11 @@ export async function getPlacementForm(lang: string): Promise<PlacementFormQuest
     const inLevel = all.filter((q) => q.level === level)
     const bySkill: Record<string, typeof all> = {}
     for (const q of inLevel) (bySkill[q.kind || 'vocab'] ??= []).push(q)
+    // A language whose bank has a single kind of question (Yoruba, Igbo, Hausa: vocabulary) would
+    // otherwise get only 2 per level, too few to place anyone, so it samples more of that one kind.
+    const onlyOneSkill = Object.keys(bySkill).length === 1
     for (const [skill, qs] of Object.entries(bySkill)) {
-      picked.push(...shuffle(qs).slice(0, PER_LEVEL[skill] ?? 2))
+      picked.push(...shuffle(qs).slice(0, onlyOneSkill ? SINGLE_SKILL_PER_LEVEL : (PER_LEVEL[skill] ?? 2)))
     }
   }
   picked.sort((a, b) => order(a.level) - order(b.level))
