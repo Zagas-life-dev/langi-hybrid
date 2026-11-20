@@ -53,6 +53,8 @@ function unsetPath(obj: Doc, path: string) {
   delete (cur as Record<string, unknown>)[parts[parts.length - 1]]
 }
 
+export { deepEqual as sameValue }
+
 function deepEqual(a: unknown, b: unknown): boolean {
   const x = comparable(a)
   const y = comparable(b)
@@ -242,13 +244,13 @@ export function applyUpdate(doc: Doc, update: Record<string, unknown>, isInsert 
 
 // --- Sorting, projection, aggregation -------------------------------------------------
 
-export type SortSpec = Record<string, 1 | -1 | 'asc' | 'desc'> | string
+export type SortSpec = Record<string, number | 'asc' | 'desc'> | string
 
 function sortEntries(spec: SortSpec): [string, 1 | -1][] {
   if (typeof spec === 'string') {
     return spec.split(/\s+/).filter(Boolean).map((s) => (s.startsWith('-') ? [s.slice(1), -1] : [s.replace(/^\+/, ''), 1]) as [string, 1 | -1])
   }
-  return Object.entries(spec).map(([k, v]) => [k, v === -1 || v === 'desc' ? -1 : 1] as [string, 1 | -1])
+  return Object.entries(spec).map(([k, v]) => [k, v === -1 || v === 'desc' || (typeof v === 'number' && v < 0) ? -1 : 1] as [string, 1 | -1])
 }
 
 /** Missing values sort first ascending, like MongoDB. Stable for equal keys. */
