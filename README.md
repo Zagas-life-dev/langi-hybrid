@@ -1,126 +1,79 @@
-# Langi — AI-assisted spaced-repetition language learning
+# Langi Hybrid
 
-Langi is a standalone Next.js 16 app that teaches languages (French first) with a 5-box **Leitner
-spaced-repetition system**, an AI tutor (Mistral + Gemini), conversation & sentence practice, browser
-TTS/STT, a CEFR placement test, and a curated YouTube learning feed.
+An AI language-learning web app that **thinks on your device first**. Built for **#BuildHybridAI 2026**
+(Chrome + Gemini Nano + Firebase AI Logic).
 
-It is a sibling of the Scrappey `platform/` app: it **reuses the same Supabase auth** (shared accounts)
-but stores its data in a **separate MongoDB database** (`langi`). There is **no admin-approval gate** —
-any logged-in Supabase user can learn.
+Langi teaches French, Spanish, Yoruba, Igbo and Hausa with a 5-box Leitner spaced-repetition system. Every AI
+feature (tutor chat, sentence building, live correction, tap-to-explain, dictation, story generation, review
+answer checking) runs through **Firebase AI Logic hybrid inference**: Gemini Nano on the device when Chrome
+has it, Gemini in the cloud when it does not. Languages Nano cannot handle yet (Yoruba, Igbo, Hausa) are
+routed to the cloud on purpose.
+
+License: [Apache 2.0](LICENSE). Free to use.
+
+## How the hybrid AI works
+- `lib/hybrid/ai.ts` wraps `firebase/ai` (`getAI`, `getGenerativeModel`, `InferenceMode`). Every call goes
+  through `runTask`.
+- `lib/hybrid/tasks.ts` decides per task whether to prefer the device or the cloud (short text, a Nano-supported
+  language and an available model go on-device).
+- A **Hybrid HUD** shows where each answer ran (on-device or cloud), so the behaviour is visible.
+- **Remote Config** can force cloud, hide the HUD or change which tasks run on-device, live, without a deploy.
+- **App Check** (reCAPTCHA Enterprise) protects the Firebase AI Logic calls.
+- Offline: a service worker, IndexedDB card packs, an offline review queue and an offline chat queue.
 
 ## Stack
-- Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind v4
-- MongoDB + Mongoose (separate `langi` database)
-- Supabase Auth (`@supabase/ssr`) — route protection in `proxy.ts`
-- AI: Mistral (`mistral-small-latest`) + Gemini (`gemini-2.5-flash-lite`) cascade — cheapest first,
-  with Mongo-persisted 429 cooldown (`lib/ai.ts`)
-- Web Speech API for TTS/STT (`lib/speech.ts`) — Chromium-best, graceful text-first fallback; **offline
-  dictation** falls back to on-device Vosk (`lib/voskStt.ts`)
-- Expressive read-aloud: Gemini TTS **model cascade** (`lib/expressiveTts.ts`) — the free tier meters
-  each TTS model separately, so a model that hits its cap is parked (Mongo-persisted cooldown) and the
-  next one takes over; only when all are walled does audio drop to the browser voice.
-  Check quota any time with `npm run tts-quota` (add `-- --dry` to skip the live probe)
-- **Installable PWA** with true offline flashcards (see "Offline & install" below)
+Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind v4, Firebase (AI Logic, App Check,
+Remote Config, Auth, Firestore), Vitest.
 
-## Setup
+## Run it locally
+Requirements: Node 20+, a Firebase project, Chrome (for Gemini Nano, see below).
 
 ```bash
-cd langi
 npm install
-npm run seed     # seeds French: 15 decks (760 cards, A1→B2) + 24 placement questions
-npm run dev      # http://localhost:3001
+cp .env.example .env.local     # then fill in the values (see below)
+npm run seed                   # French decks + placement questions into Firestore
+npm run dev                    # http://localhost:3001
+npm test                       # unit tests
 ```
 
-`.env.local` is already populated (shared Supabase + AI keys, `langi` Mongo database). To enable the
-**Videos** tab, add a YouTube Data API v3 key:
+### Firebase setup
+1. Create a Firebase project. Enable **Authentication** (Email/Password and Google), **Firestore**,
+   **Firebase AI Logic** (Gemini Developer API), **App Check** and **Remote Config**.
+2. Add a Web app and copy its config into the `NEXT_PUBLIC_FIREBASE_*` values in `.env.local`.
+3. Create a service-account key (Project settings, Service accounts) and put it in `FIREBASE_SERVICE_ACCOUNT`
+   as one line of JSON or base64. **Never commit it.** `.env.local` is git-ignored.
+4. Publish `remoteconfig.template.json` as your Remote Config template (optional).
+5. For App Check on `localhost`, register a debug token and set `NEXT_PUBLIC_APPCHECK_DEBUG_TOKEN`.
 
+### Gemini Nano in Chrome
+Use a recent desktop Chrome with the Prompt API available (`chrome://flags/#prompt-api-for-gemini-nano`,
+`#optimization-guide-on-device-model`). Without it the app still works: the same calls fall back to the cloud.
+
+### Seeding other languages
+```bash
+npm run seed -- es                       # Spanish
+npx tsx --env-file=.env.local scripts/seed.ts yo   # Yoruba (after building the deck files, see below)
+npx tsx --env-file=.env.local scripts/seed-placement.ts yo
 ```
-YOUTUBE_API_KEY=your_key_here
-```
+The Yoruba, Igbo and Hausa decks are **not in this repository**: they are built from the MAFAND-MT and
+MENYO-20k parallel corpora, which are licensed CC BY-NC 4.0 and so are not redistributed here. To rebuild them,
+download [MAFAND-MT](https://github.com/masakhane-io/lafand-mt) into `data/african/mafand/` and
+[MENYO-20k](https://github.com/uds-lsv/menyo-20k_MT) into `data/african/menyo20k/`, then run
+`node scripts/build-ng-decks.mjs` and `node scripts/build-ng-placement.mjs`.
 
-Until then `/videos` shows a graceful empty state.
+## Firestore free plan
+Firestore's free plan allows 50,000 reads and 20,000 writes a day. The data layer (`lib/db/`) is built to stay
+well under that: cached static content, no write on user lookup, count queries for totals. In development the
+server prints a running `[firestore] N reads, N writes` line.
 
-## Features / routes
-- `/placement` — adaptive CEFR test (A1→C2) → sets your level
-- `/learn` — dashboard: due counts, streak, memory distribution, decks by level
-- `/learn/review/[deckId]` — SRS review (`all` = global queue): type the translation, hear it (TTS),
-  speak it (STT); per-card AI **example** and **multiple-choice** assist
-- `/chat` — Langi tutor: French conversation on a random/chosen topic, or grammar Q&A; with corrections + voice
-- `/sentences` — translate an AI prompt into French and get a scored critique + model answer
-- `/videos` — curated learning videos: casual → lessons → classes → creators (needs `YOUTUBE_API_KEY`)
-- `/progress` — level, streak, accuracy, box distribution, activity
-- `/learn/level-up` — short test on the next CEFR level (grammar bank + that level's deck vocab, no AI);
-  pass 70% overall and 60% per section to move up, 24h cooldown after a miss
-- `/league` — weekly XP leaderboard (same-language learners, or friends added by 6-char friend code)
+## Project layout
+- `app/` pages and API routes; `components/` UI
+- `lib/hybrid/` hybrid AI wrapper, task routing, HUD, Remote Config, device model handling
+- `lib/db/` small Firestore data layer; `lib/models/` data models
+- `scripts/` seeders, deck builders and live self-tests; `data/` curated decks
+- `tests/` Vitest suites
 
-### Learning loops
-- **Tap any word** in stories, tutor chat and dictation to see its meaning, then save it to *Saved words*.
-  Lookups are **database-first** (`lib/wordLookup.ts`): lexicon → curated deck cards (article-aware) →
-  conjugation tables (`lib/lemma.ts`, e.g. "sommes" → être) → AI only on a miss. Hits are cached in the lexicon.
-- **Saved words remember their source** — a video timestamp or story — and the review card links back to it.
-- **SRS** keeps growing intervals past box 5 (16d → 40d → 100d …, capped at a year) so known words fade out.
-- **Grammar interleaving**: every 8 flashcards, one due grammar question is slipped into the review session.
-- **Mistake-aware AI**: recent unresolved mistakes steer the tutor and sentence prompts toward weak spots.
-- **Role-play goals**: each scenario has 3 goals; ending the scene gives a scored debrief with useful phrases.
-- **Shadowing**: in any story, hear a sentence and repeat it for a per-word pronunciation score.
-- **Video study bar**: replay 5s, 0.5×/0.75× speed, A–B loop, and "Words from this video" jump-back chips.
-- **Weekly digest** push on Sunday (sent by the same hourly `/api/cron/reminders` sweep).
-
-## Offline & install
-
-Langi is an installable PWA (`app/manifest.webmanifest`, service worker in `public/sw.js`). Once a
-learner has opened a screen online, the service worker caches it so it boots offline; **flashcard review
-runs fully offline** — due cards (with answers + tolerances) are cached in IndexedDB (`lib/offlineCards.ts`),
-graded on-device with the same pure SRS logic (`lib/srs-core.ts`), and each answer is queued
-(`lib/offlineQueue.ts`) to be re-graded server-side on reconnect. **TTS** uses the device's built-in
-voices (already offline). AI (tutor/stories) and videos stay online by design.
-
-### Offline dictation (STT) models — hosting
-
-Speaking answers offline uses **Vosk small models (~40 MB per language)**, downloaded only when the
-learner opts in (a one-tap prompt after install), then cached in the browser forever. The download URL
-is controlled by one env var:
-
-```
-NEXT_PUBLIC_STT_MODEL_BASE=<base-url-serving-<file>.tar.gz>
-```
-
-Unset → it uses a community model host (fine for dev). **For production, self-host the archives** —
-don't commit them (they're gitignored) and don't bake them into the deployment.
-
-- **On Vercel → use a PUBLIC Vercel Blob store** (object storage, public + CORS CDN; keeps the
-  deployment tiny). Two upload paths depending on whether you can get the store's read-write token:
-  - **Local upload** (if you can read the RW token): `vercel env pull .env.local` then
-    `npm run upload-stt-models` — uploads every archive and prints the `NEXT_PUBLIC_STT_MODEL_BASE=…`
-    to set. Also works with `VERCEL_OIDC_TOKEN` + `BLOB_STORE_ID` if OIDC is enabled for Development.
-  - **Deployment upload** (if the RW token is *Sensitive*/unretrievable and dev-OIDC is off): deploy,
-    then as an admin hit **`GET /api/admin/stt-upload`** ([app/api/admin/stt-upload/route.ts](app/api/admin/stt-upload/route.ts)).
-    It runs in the deployment (where Vercel injects a production OIDC token), streams each model into the
-    public store, is idempotent, and returns the `NEXT_PUBLIC_STT_MODEL_BASE` to set. Add `?lang=fr` to
-    do one language if `all` times out. The store id defaults to the app's; override with
-    `STT_BLOB_STORE_ID`. Set `NEXT_PUBLIC_STT_MODEL_BASE` in your Vercel project env (all environments),
-    then redeploy so the client picks it up.
-- **Any CORS bucket** (Cloudflare R2, S3, Backblaze) works too — upload the `*.tar.gz` files and point
-  `NEXT_PUBLIC_STT_MODEL_BASE` at them.
-- **Same-origin / VPS**: `npm run fetch-stt-models` downloads them into `public/vosk/`, then set
-  `NEXT_PUBLIC_STT_MODEL_BASE=/vosk`. (Not recommended on Vercel — inflates every build/deploy.)
-
-## Key design notes
-- **Leitner SRS** (`lib/srs-core.ts`, `lib/srs.ts`): boxes 1–5, intervals `[1,3,7,16]` days; a wrong
-  answer drops to box 1 with a **10-minute relearn step** (not "now"), and the review UI re-queues a
-  failed card up to 3×/session so a session always terminates.
-- **Answer tolerance** is per deck/card: `lenient` ignores accents + a leading article; `strict` keeps
-  gender-bearing articles (`le chat` ≠ `la chat`).
-- **Backup Gemini key**: set `GEMINI_API_KEY_2` (from a *different* Google Cloud project — free-tier quota is per project).
-  Chat tries it after the primary Gemini key; expressive TTS tries every model on the primary key, then on the backup.
-- **AI rate limiting** (`lib/ratelimit.ts`): per-user 30/min + 300/day on every external-AI route.
-- **Chat history** is capped at the last 50 messages; only the last ~10 are sent to the model.
-
-## Dev scripts
-- `npm run seed` — (re)seed French content (idempotent; never wipes AI-enriched fields)
-- `npm test` — Vitest unit tests for the pure modules (SRS, pronunciation, lemmas, level-up, league, weekly digest) in `tests/`
-- `npx tsx scripts/verify-ai.ts` — smoke-test the live Mistral/Gemini backends
-- `npx tsx scripts/e2e-smoke.ts` — full authenticated end-to-end test against a running dev server (`E2E_BASE=http://localhost:3002` to target another port)
-- `npm run import-tatoeba` — (optional) import open Tatoeba en–fr sentence pairs for richer examples
-- `npm run upload-stt-models` — upload offline-STT (Vosk) models to Vercel Blob (see "Offline & install")
-- `npm run fetch-stt-models` — download offline-STT models into `public/vosk/` for same-origin hosting
+## Built during the hackathon
+The hybrid AI layer, the Firestore and Firebase Auth migration, offline chat, the Hybrid HUD, Remote Config
+routing and the African-language content were all built for #BuildHybridAI 2026. The base app (spaced-repetition
+decks, French and Spanish content, videos feed) was an existing project that was adapted for this entry.

@@ -3,7 +3,7 @@
  *     npm run seed            # French (default)
  *     npm run seed -- es      # Spanish
  *
- * Loads .env.local, connects to the `langi` Mongo database, and upserts the
+ * Loads .env.local, connects to Firestore, and upserts the
  * Language, every Deck (by slug), and every Card (by deckId+term) from
  * data/<lang>/*.json. Re-running is safe — it never wipes AI-enriched fields
  * (exampleSentence / distractors) because those aren't part of the $set.
