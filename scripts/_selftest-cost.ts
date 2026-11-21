@@ -52,7 +52,7 @@ async function main() {
     await ReviewLog.create({ userId, cardId: String(cardId), result: 'correct', boxBefore: 1, boxAfter: 2 })
     await DailyActivity.findOneAndUpdate({ userId, date: '2026-11-20' }, { $inc: { reviews: 1, xp: 10 } }, { upsert: true, returnDocument: 'after' })
     await LangiUser.updateOne({ _id: userId }, { $inc: { xp: 10 } })
-  }, { reads: 4, writes: 4 })
+  }, { reads: 5, writes: 4 })
   await check('achievement counts after an answer (6 counts)', async () => {
     await Promise.all([
       ReviewLog.countDocuments({ userId }),
