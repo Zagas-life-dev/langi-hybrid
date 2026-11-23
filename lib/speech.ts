@@ -1,5 +1,6 @@
 'use client'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { MAX_CLIP_CHARS, ngLangCode, playNgAudio, stopNgAudio } from '@/lib/ngAudio'
 
 // ---------------------------------------------------------------------------
 // Web Speech API hooks (TTS + STT). TTS works on Safari/iOS too (Chromium is
@@ -201,9 +202,29 @@ export function useTTS(lang = 'fr-FR', defaultVoice?: string) {
 
   const speak = useCallback(
     (text: string, voiceName?: string) => {
-      if (!ttsCheck()) return
+      const ng = ngLangCode(lang)
+      if (ng && process.env.NEXT_PUBLIC_NG_AUDIO_BASE_URL && text.trim().length <= MAX_CLIP_CHARS) {
+        // Yoruba / Igbo / Hausa / French card terms: play the pre-generated recording; no file or no network → device voice.
+        const gen = ++genRef.current
+        if (ttsCheck()) window.speechSynthesis.cancel()
+        setSpeaking(true)
+        void playNgAudio(ng, text, getSpeechRate()).then((played) => {
+          if (gen !== genRef.current) return
+          if (played) setSpeaking(false)
+          else speakWithDevice(text, voiceName, gen)
+        })
+        return
+      }
+      speakWithDevice(text, voiceName, ++genRef.current)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lang, defaultVoice]
+  )
+
+  const speakWithDevice = useCallback(
+    (text: string, voiceName: string | undefined, gen: number) => {
+      if (!ttsCheck()) { setSpeaking(false); return }
       const synth = window.speechSynthesis
-      const gen = ++genRef.current
       synth.cancel()
       const chunks = chunkText(text)
       if (!chunks.length) return
@@ -241,6 +262,7 @@ export function useTTS(lang = 'fr-FR', defaultVoice?: string) {
   )
 
   const cancel = useCallback(() => {
+    stopNgAudio()
     if (ttsCheck()) {
       genRef.current++ // invalidate any in-flight chunk queue
       window.speechSynthesis.cancel()

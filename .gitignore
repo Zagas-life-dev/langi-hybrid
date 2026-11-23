@@ -46,3 +46,11 @@ next-env.d.ts
 /data/yoruba/
 /data/igbo/
 /data/hausa/
+
+# Generated read-aloud audio (derived from CC BY-NC decks)
+/tts-out/
+/tts-samples/
+
+# Never publish: unrelated personal spreadsheets and local Claude settings
+*.xlsx
+/.claude/
