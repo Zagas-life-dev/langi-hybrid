@@ -151,7 +151,49 @@ const LANG_PACKS: Record<string, LangPack> = {
       creators: "migliori canali per imparare l'italiano",
     },
   },
+  // Nigerian languages. Native-language lesson content is thin and often titled in English
+  // ("Learn Yoruba"), so lesson queries mix both; entertainment queries use native terms.
+  // No casualChannels: add handles only after checking each channel exists and is in-language.
+  yo: {
+    native: 'Yorùbá', region: 'NG', lvl: { beg: 'fún olubere', int: 'agbedemeji', adv: 'ilọsiwaju' },
+    shortsFun: ['Yoruba comedy', 'Yoruba skit', 'Yoruba cartoon', 'Yoruba movie clip', 'Yoruba prank', 'Yoruba vlog', 'Yoruba proverbs', 'Yoruba music'],
+    shorts: ['kọ́ èdè Yorùbá', 'learn Yoruba', 'Yoruba words', 'Yoruba greetings', 'Yoruba phrases', 'Yoruba pronunciation', 'Yoruba proverbs owe', 'Yoruba for beginners', 'Yoruba culture àṣà', 'Yoruba numbers'],
+    categories: {
+      casual: 'Yorùbá ìtàn itan folktale',
+      lessons: 'kọ́ èdè Yorùbá learn Yoruba lesson',
+      classes: 'learn Yoruba full course for beginners',
+      creators: 'best channels to learn Yoruba',
+    },
+    casualMix: ['Yoruba cartoon', 'Yoruba movie', 'Yoruba comedy', 'Yoruba story itan', 'Yoruba podcast', 'ìròyìn Yorùbá news'],
+  },
+  ig: {
+    native: 'Igbo', region: 'NG', lvl: { beg: 'maka ndị mbido', int: 'etiti', adv: 'elu' },
+    shortsFun: ['Igbo comedy', 'Igbo skit', 'Igbo cartoon', 'Igbo movie clip', 'Igbo prank', 'Igbo vlog', 'Igbo proverbs', 'Igbo music'],
+    shorts: ['mụta asụsụ Igbo', 'learn Igbo', 'Igbo words', 'Igbo greetings', 'Igbo phrases', 'Igbo pronunciation', 'Igbo proverbs', 'Igbo for beginners', 'Igbo culture', 'Igbo numbers'],
+    categories: {
+      casual: 'Igbo akụkọ ifo folktale',
+      lessons: 'mụta asụsụ Igbo learn Igbo lesson',
+      classes: 'learn Igbo full course for beginners',
+      creators: 'best channels to learn Igbo',
+    },
+    casualMix: ['Igbo cartoon', 'Igbo movie', 'Igbo comedy', 'Igbo story akụkọ', 'Igbo podcast', 'BBC Igbo news'],
+  },
+  ha: {
+    native: 'Hausa', region: 'NG', lvl: { beg: 'na masu farawa', int: 'matsakaici', adv: 'ci gaba' },
+    shortsFun: ['Hausa comedy', 'Hausa skit', 'Hausa cartoon', 'Kannywood clip', 'Hausa prank', 'Hausa vlog', 'Hausa karin magana', 'Hausa music'],
+    shorts: ['koyon Hausa', 'learn Hausa', 'Hausa words', 'Hausa greetings', 'Hausa phrases', 'Hausa pronunciation', 'Hausa karin magana', 'Hausa for beginners', 'Hausa culture', 'Hausa numbers'],
+    categories: {
+      casual: 'Hausa labari tatsuniya folktale',
+      lessons: 'koyon Hausa learn Hausa lesson',
+      classes: 'learn Hausa full course for beginners',
+      creators: 'best channels to learn Hausa',
+    },
+    casualMix: ['Hausa cartoon', 'Hausa film Kannywood', 'Hausa comedy', 'Hausa labari story', 'Hausa podcast', 'BBC Hausa labarai'],
+  },
 }
+
+/** Nigerian languages: titles are often English or Pidgin, so the "looks English" filter must not apply. */
+const NG_LANGS = new Set(['yo', 'ig', 'ha'])
 
 /** Deprecated channel titles for `lang` — see LangPack.blockedChannels. */
 export function blockedChannels(lang: string): string[] {
@@ -183,7 +225,9 @@ function levelWord(p: LangPack, level?: CefrLevel | null): string {
 /** Search options that bias results to the target language's own content. */
 function langSearchOpts(lang: string): YtSearchOpts {
   const region = pack(lang).region
-  return { relevanceLanguage: lang, ...(region ? { regionCode: region } : {}) }
+  // YouTube answers 400 to relevanceLanguage=yo|ig|ha (verified Nov 21), so those rely on
+  // the native query terms + regionCode NG alone.
+  return { ...(NG_LANGS.has(lang) ? {} : { relevanceLanguage: lang }), ...(region ? { regionCode: region } : {}) }
 }
 
 export interface VideoCategoryResult {
@@ -496,7 +540,7 @@ async function fetchShortsBatch(
  * which search found a clip). Multilingual: fr / es / de / it / en terms.
  */
 const LEARN_HINT =
-  /apprend|le[cç]on|cours\b|grammaire|vocabulaire|expressions?\b|prononc|conjug|verbes?\b|dict[ée]e|niveau|d[ée]butant|\bfle\b|argot|comment (dit|dire)|learn|lesson|\bfrench\b|vocab|slang|grammar|pronunciation|aprend|lecci[oó]n|gram[aá]tica|vocabulario|deutsch lernen|wortschatz|grammatik|imparare|lezione|grammatica/i
+  /apprend|le[cç]on|cours\b|grammaire|vocabulaire|expressions?\b|prononc|conjug|verbes?\b|dict[ée]e|niveau|d[ée]butant|\bfle\b|argot|comment (dit|dire)|learn|lesson|\bfrench\b|vocab|slang|grammar|pronunciation|aprend|lecci[oó]n|gram[aá]tica|vocabulario|deutsch lernen|wortschatz|grammatik|imparare|lezione|grammatica|k[ọo]́? [èe]d[èe]|mụta|koyon|owe\b|karin magana|numbers|greetings|phrases|words\b/i
 
 type CachedShort = IVideoItem & { kind: 'learn' | 'fun' }
 
@@ -533,7 +577,7 @@ async function cachedShortsPool(lang: string): Promise<CachedShort[]> {
       }
     })
     // Lessons explained in English are still useful; English entertainment isn't immersion.
-    .filter((i) => lang === 'en' || i.kind === 'learn' || !looksEnglish(i.title))
+    .filter((i) => lang === 'en' || NG_LANGS.has(lang) || i.kind === 'learn' || !looksEnglish(i.title))
   shortsPoolMemo.set(lang, { at: Date.now(), items })
   return items
 }
