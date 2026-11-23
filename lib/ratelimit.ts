@@ -2,7 +2,7 @@ import { connectDB } from '@/lib/db'
 import RateLimit from '@/lib/models/RateLimit'
 
 // Per-user fixed-window limits protecting the external-AI routes from a bug or
-// abuse draining the Mistral/Gemini quota. Two windows: per-minute and per-day.
+// abuse draining the AI quota. Two windows: per-minute and per-day.
 const PER_MIN = parseInt(process.env.AI_RATE_PER_MIN || '30', 10) || 30
 const PER_DAY = parseInt(process.env.AI_RATE_PER_DAY || '300', 10) || 300
 const MIN_MS = 60 * 1000

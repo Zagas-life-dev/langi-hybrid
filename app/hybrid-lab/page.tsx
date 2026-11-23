@@ -41,7 +41,7 @@ je mange -> j'ai mangé (past tense)`,
   },
   chat: {
     instructions: 'You are Langi, a friendly French tutor. Reply only in simple French (A2), max 2 sentences.',
-    sample: 'Bonjour ! Je m’appelle Kachi.',
+    sample: 'Bonjour ! Je m’appelle Ada.',
   },
   classify: {
     instructions: 'Label the CEFR level (A1, A2, B1, B2) of this French sentence. Reply with the label only.',

@@ -121,7 +121,7 @@ export default function SettingsForm({ initial }: { initial: Initial }) {
           onBlur={onNameBlur}
           onKeyDown={(e) => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur() }}
           maxLength={24}
-          placeholder="e.g. Kachi"
+          placeholder="e.g. Ada"
           className="field-brut w-full"
         />
       </section>

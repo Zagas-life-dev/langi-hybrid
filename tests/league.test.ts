@@ -14,7 +14,7 @@ describe('rankRows', () => {
 })
 
 describe('publicName', () => {
-  it('uses the display name', () => expect(publicName('Kachi', 'abc123')).toBe('Kachi'))
+  it('uses the display name', () => expect(publicName('Ada', 'abc123')).toBe('Ada'))
   it('falls back to an anonymous handle, never an email', () => {
     expect(publicName('', '65f0c0ffee12ab34')).toBe('Learner AB34')
   })
