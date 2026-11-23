@@ -33,7 +33,7 @@ const SEED = Number(opt('seed', '1234'))
 const ENGINE = opt('engine', '') // '' = each language's own default (fr local, yo/ig/ha gemini)
 const WAIT = flag('wait')
 const DELAY_MS = Number(opt('delay', '5')) * 1000
-const GEMINI_MODEL = process.env.GEMINI_TTS_MODEL || 'gemini-3.1-flash-tts-preview'
+const GEMINI_MODEL = process.env.GEMINI_TTS_MODEL || 'gemini-3.8-flash-tts'
 const GEMINI_VOICE = process.env.GEMINI_TTS_VOICE || 'Kore'
 const keys = [process.env.GEMINI_API_KEY, process.env.GEMINI_API_KEY_2].filter(Boolean)
 const retiredUntil = keys.map(() => 0)
