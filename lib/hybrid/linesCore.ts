@@ -48,3 +48,15 @@ export function parseExample(raw: string): { sentence: string; translation: stri
   if (!lines.length) return null
   return { sentence: lines[0], translation: lines[1] || '' }
 }
+
+/**
+ * Models often echo the task into the text they were asked to write ("Translate this sentence into Igbo: ...").
+ * The UI already shows that label and the read-aloud would speak it, so drop a leading instruction and the
+ * quotes around what follows.
+ */
+export function stripInstruction(text: string): string {
+  let s = (text || '').trim()
+  s = s.replace(/^(?:please\s+)?(?:translate|write|say|rewrite)\b[^:\n]{0,60}?\b(?:into|to|in)\s+[A-Za-z]+\s*[:\-–—]\s*/i, '')
+  s = s.replace(/^(?:sentence|prompt|translation|correction|english)\s*:\s*/i, '')
+  return s.replace(/^["“”«']+|["“”»']+$/g, '').trim()
+}

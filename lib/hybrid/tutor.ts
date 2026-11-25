@@ -7,7 +7,7 @@ import { loadsJsonish } from '@/lib/jsonish'
 import { langName, langNotes } from '@/lib/langs'
 import { scenarioByKey } from '@/lib/scenarios'
 import { runTask } from './ai'
-import { parseExample, parseLines } from './linesCore'
+import { parseExample, parseLines, stripInstruction } from './linesCore'
 import type { HybridTask } from './tasks'
 import { getHud, type HybridEvent } from './hud'
 
@@ -170,12 +170,12 @@ export async function generateSentencePrompt(level: string, lang: string, focus?
   const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)]
   const out = await ask<{ prompt?: string }>('explain',
     `You are a ${ln} writing coach. Produce ONE short, natural English sentence for a ${level} learner to ` +
-    `translate into ${ln}. Match their level (simpler for A1/A2, richer for B1+). Vary the topic. ` +
+    `translate into ${ln}. Match their level (simpler for A1/A2, richer for B1+). Vary the topic. The prompt is ONLY the English sentence itself: no instruction, label or quotes such as "Translate this sentence". ` +
     focusClause(focus, 'About half the time, write a sentence whose translation needs one of those forms.') +
     (recent.length ? `Do NOT repeat or closely copy any of these earlier sentences: ${recent.map((r) => `"${r}"`).join(' ')}. ` : '') + langNotes(lang),
     `Give me a new level-${level} sentence to translate. Topic idea: ${topic}. (variation ${Math.floor(Math.random() * 1000)})`,
     S.object({ properties: { prompt: str() } }))
-  return String(out?.prompt || '').trim()
+  return stripInstruction(String(out?.prompt || ''))
 }
 
 export interface SentenceGrade { score: number; feedback: string; correction: string }
@@ -191,7 +191,7 @@ export async function gradeSentence(promptEnglish: string, sentence: string, lev
   return {
     score: clampScore(out?.score),
     feedback: String(out?.feedback || '').trim(),
-    correction: String(out?.correction || '').trim(),
+    correction: stripInstruction(String(out?.correction || '')),
   }
 }
 
