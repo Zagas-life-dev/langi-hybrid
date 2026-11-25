@@ -65,3 +65,29 @@ export function langName(code?: string | null): string {
 export function isCurated(code?: string | null): boolean {
   return langMeta(code).curated
 }
+
+// Short teaching notes appended to AI prompts for languages where a generic "you are a X teacher" prompt
+// goes wrong: diacritics carry meaning, there is no grammatical gender, and the model may invent forms.
+const LANG_NOTES: Record<string, string> = {
+  yo:
+    'Yoruba rules: it is tonal, so ALWAYS write Yoruba with tone marks (high ´, low `, mid unmarked) and the ' +
+    'underdots (ẹ, ọ, ṣ); never strip diacritics. Yoruba has no grammatical gender and no articles; the third-person ' +
+    'pronoun ó/wọ́n does not mark gender. Explain tense and aspect through the markers (ń, ti, yóò/á, kò). Use Standard ' +
+    'Yoruba. If you are not sure of a word or form, say so; never invent one.',
+  ig:
+    'Igbo rules: it is tonal; write Standard Igbo (Igbo Izugbe) with the subdots (ị, ọ, ụ, ṅ) and add tone marks when ' +
+    'they change the meaning (e.g. àkwà, ákwá, ákwà, àkwá). Igbo has no grammatical gender and its verbs do not ' +
+    'conjugate for person; tense and aspect come from suffixes and auxiliaries, and vowel harmony applies. Mention ' +
+    'common dialect variants when a word differs by region. If you are not sure of a word or form, say so; never invent one.',
+  ha:
+    'Hausa rules: write Standard (Kano) Hausa in the Latin (boko) script with the hooked letters ɓ, ɗ, ƙ and ʼy; never ' +
+    'replace them with b, d, k. Hausa is tonal with long and short vowels. Nouns are masculine or feminine (use "m" or ' +
+    '"f"), and the pronoun and verb agree: ya (he), ta (she). Explain tense and aspect through the pronoun-aspect ' +
+    'markers (na, kana, ya, za, bai). If you are not sure of a word or form, say so; never invent one.',
+}
+
+/** Extra prompt text for a target language, or '' when the generic prompt is enough. Starts with a space. */
+export function langNotes(code?: string | null): string {
+  const n = code ? LANG_NOTES[code] : undefined
+  return n ? ` ${n}` : ''
+}

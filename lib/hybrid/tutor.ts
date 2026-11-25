@@ -4,7 +4,7 @@
 // Flash otherwise, with a Hybrid HUD event per call. Server routes only persist results now.
 import { Schema } from 'firebase/ai'
 import { loadsJsonish } from '@/lib/jsonish'
-import { langName } from '@/lib/langs'
+import { langName, langNotes } from '@/lib/langs'
 import { scenarioByKey } from '@/lib/scenarios'
 import { runTask } from './ai'
 import { parseExample, parseLines } from './linesCore'
@@ -67,7 +67,7 @@ export async function generateExample(term: string, translation: string, lang: s
   const r = await runTask('explain', `Word: "${term}" (means: ${translation})`, {
     instructions:
       `You are a ${ln} teacher. Write ONE short, natural ${ln} example sentence (A2 level, max 12 words) that uses ` +
-      `the word. Reply on two lines only. Line 1: the ${ln} sentence. Line 2: its English translation.`,
+      `the word. Reply on two lines only. Line 1: the ${ln} sentence. Line 2: its English translation.` + langNotes(lang),
   })
   const ex = parseExample(r.text)
   if (!ex?.sentence) return null
@@ -80,7 +80,7 @@ export async function translateWord(term: string, lang: string, nativeLang = 'en
   const out = await ask<{ translation?: string; partOfSpeech?: string; gender?: string; level?: string }>('explain',
     `You are a ${ln} dictionary. Given a ${ln} word or short phrase, return its ${nn} meaning (concise dictionary ` +
     `form, not a sentence), its part of speech, (for a noun) grammatical gender as "m", "f" or "mf" (else empty), ` +
-    `and the CEFR level of the word as one of A1, A2, B1, B2, C1, C2.`,
+    `and the CEFR level of the word as one of A1, A2, B1, B2, C1, C2.` + langNotes(lang),
     `${ln} term: "${term}"`,
     S.object({ properties: { translation: str(), partOfSpeech: str(), gender: str(), level: str() } }))
   const translation = String(out?.translation || '').trim()
@@ -127,7 +127,7 @@ export async function translateInContext(selection: string, sentence: string, la
     `- literal: a word-for-word ${nn} gloss, so the learner sees the structure.\n` +
     `- nuance: register (formal/casual/slang), tone, implied meaning or cultural connotation. One or two sentences. Empty if nothing notable.\n` +
     `- grammar: the grammar that shapes this form (tense/mood, agreement, pronoun, word order). One sentence. Empty if nothing notable.\n` +
-    `- alternatives: up to 2 other natural ${ln} ways to say the same thing, each followed by a short note on when it fits.`
+    `- alternatives: up to 2 other natural ${ln} ways to say the same thing, each followed by a short note on when it fits.` + langNotes(lang)
   const user =
     `Selection: "${selection}"\nSentence: "${sentence}"${around ? `\n${around}` : ''}`
   const schema = S.object({ properties: { meaning: str(), sentence: str(), literal: str(), nuance: str(), grammar: str(), alternatives: strList() } })
@@ -156,7 +156,7 @@ export async function generateDistractors(term: string, translation: string, lan
     instructions:
       `You write wrong answers for a ${ln} vocabulary quiz. Give exactly 4 plausible but INCORRECT English meanings ` +
       `(same part of speech, similar register, never a synonym of the correct meaning). One per line, 1-3 words each, ` +
-      `no numbering, no explanation.`,
+      `no numbering, no explanation.` + langNotes(lang),
   })
   const correct = translation.split(/[/,;]/).map((s) => s.trim())
   return parseLines(r.text, [translation, ...correct], 3)
@@ -172,7 +172,7 @@ export async function generateSentencePrompt(level: string, lang: string, focus?
     `You are a ${ln} writing coach. Produce ONE short, natural English sentence for a ${level} learner to ` +
     `translate into ${ln}. Match their level (simpler for A1/A2, richer for B1+). Vary the topic. ` +
     focusClause(focus, 'About half the time, write a sentence whose translation needs one of those forms.') +
-    (recent.length ? `Do NOT repeat or closely copy any of these earlier sentences: ${recent.map((r) => `"${r}"`).join(' ')}. ` : ''),
+    (recent.length ? `Do NOT repeat or closely copy any of these earlier sentences: ${recent.map((r) => `"${r}"`).join(' ')}. ` : '') + langNotes(lang),
     `Give me a new level-${level} sentence to translate. Topic idea: ${topic}. (variation ${Math.floor(Math.random() * 1000)})`,
     S.object({ properties: { prompt: str() } }))
   return String(out?.prompt || '').trim()
@@ -185,7 +185,7 @@ export async function gradeSentence(promptEnglish: string, sentence: string, lev
   const out = await ask<{ score?: number; feedback?: string; correction?: string }>('grade',
     `You are a supportive ${ln} writing examiner. The student translated an English sentence into ${ln}. ` +
     `Judge accuracy, grammar and naturalness for a ${level} learner. Be encouraging but precise. ` +
-    `score is an integer 0-100, feedback is short English, correction is one correct, natural ${ln} translation.`,
+    `score is an integer 0-100, feedback is short English, correction is one correct, natural ${ln} translation.` + langNotes(lang),
     `English: "${promptEnglish}"\nStudent's ${ln}: "${sentence}"`,
     S.object({ properties: { score: S.integer(), feedback: str(), correction: str() } }))
   return {
@@ -218,7 +218,7 @@ export async function conversationStarter(args: { topic?: string; scenario?: str
     `${level}-appropriate sentences ending with a question. Also give 2–3 short ${ln} replies the learner could send ` +
     `back (at their level). ` +
     focusClause(focus, 'If natural, phrase your question so answering it lets them use those forms correctly.') +
-    `opener is in ${ln}, translation is English, suggestions are in ${ln}.`,
+    `opener is in ${ln}, translation is English, suggestions are in ${ln}.` + langNotes(lang),
     sc ? `Scenario: ${sc.label}` : `Topic: ${topic}`,
     S.object({ properties: { opener: str(), translation: str(), suggestions: strList() } }))
   if (!out?.opener) return null
@@ -266,12 +266,12 @@ export async function tutorReply(args: {
 
   const system = mode === 'grammar'
     ? `You are Langi, a patient ${ln} tutor for a ${level} learner. Answer the question clearly in English with ` +
-      `short ${ln} examples. Be concise.\n${shared}Leave corrections and corrected empty.`
+      `short ${ln} examples. Be concise.\n${shared}Leave corrections and corrected empty.${langNotes(lang)}`
     : `${convoLead}${shared}` +
       `- corrections: only when the learner WROTE ${ln} with mistakes that affect meaning or grammar, give a short ` +
       `English note; ignore minor punctuation/spacing. Leave empty otherwise.\n` +
       `- corrected: when corrections is non-empty, the learner's sentence rewritten correctly in ${ln}. Else empty.\n` +
-      `- reply: your ${ln} reply (or English if it is a help-question).`
+      `- reply: your ${ln} reply (or English if it is a help-question).${langNotes(lang)}`
 
   const out = await ask<{ reply?: string; corrections?: string; corrected?: string; vocab?: TutorVocab[]; suggestions?: string[] }>('chat',
     system,
@@ -316,7 +316,7 @@ export async function scenarioDebrief(args: {
     `Judge ONLY the LEARNER's lines. A goal counts as met if the learner did it themselves in understandable ${ln} ` +
     `(small errors are fine). score: 0–100 for how well they handled the situation at their level. goalsMet: one ` +
     `boolean per goal, in order. feedback: 1–2 sentences of English. phrases: 2–3 short ${ln} phrases that would ` +
-    `have helped, with English translations.`,
+    `have helped, with English translations.` + langNotes(args.lang),
     transcript(args.history.slice(-24)),
     S.object({ properties: {
       score: S.integer(), goalsMet: S.array({ items: S.boolean() }),
