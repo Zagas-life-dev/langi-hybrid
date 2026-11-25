@@ -1,0 +1,157 @@
+{
+  "_note": "AI-drafted Hausa A1 grammar lessons for Langi, not yet reviewed by a native speaker. Slugs match the ha catalog in lib/grammar.ts. Drill cues give the meaning, never the answer. Seeded by `npx tsx scripts/seed-grammar-ng.ts ha`. In examples, `fr` holds the Hausa sentence (field name kept from the original schema).",
+  "lessons": [
+    {
+      "slug": "ha-a1-completive",
+      "summary": "Na, ka, ki, ya, ta, mun, kun and sun go before the verb to say what someone did.",
+      "explanation": "Hausa joins the subject and the tense into one small word before the verb. For a finished action (the completive) the forms are: na (I), ka (you, man), ki (you, woman), ya (he), ta (she), mun (we), kun (you, plural) and sun (they).\n\nNa tafi gida means I went home. Ya ci abinci means he ate. Ta tafi kasuwa means she went to the market. Sun zo jiya means they came yesterday.\n\nThe verb itself stays the same, and the whole group sits right before it.",
+      "examples": [
+        { "fr": "Na tafi gida.", "en": "I went home." },
+        { "fr": "Ya ci abinci.", "en": "He ate." },
+        { "fr": "Ta tafi kasuwa.", "en": "She went to the market." },
+        { "fr": "Mun ga Kano.", "en": "We saw Kano." },
+        { "fr": "Sun zo jiya.", "en": "They came yesterday." }
+      ],
+      "drills": [
+        { "prompt": "___ tafi gida. (I went home)", "answer": "Na", "hint": "I, finished action" },
+        { "prompt": "___ ci abinci. (He ate)", "answer": "Ya", "hint": "he" },
+        { "prompt": "___ zo jiya. (They came yesterday)", "answer": "Sun", "hint": "they" },
+        { "prompt": "___ tafi kasuwa. (She went to the market)", "answer": "Ta", "hint": "she" },
+        { "prompt": "___ ga Kano. (We saw Kano)", "answer": "Mun", "hint": "we" }
+      ]
+    },
+    {
+      "slug": "ha-a1-continuous",
+      "summary": "Ina, kana, kina, yana, tana, muna, kuna and suna plus a verbal noun mean is doing.",
+      "explanation": "For an action in progress, use these forms: ina (I am), kana (you, man, are), kina (you, woman, are), yana (he is), tana (she is), muna (we are), kuna (you, plural, are) and suna (they are).\n\nAfter them comes a verbal noun, the form of the verb used for doing: Ina karatu (I am studying), Yana aiki (He is working), Tana girki (She is cooking), Suna wasa (They are playing), Muna cin abinci (We are eating).\n\nThe same pattern also says where someone is: Yana gida (He is at home).",
+      "examples": [
+        { "fr": "Ina karatu.", "en": "I am studying." },
+        { "fr": "Yana aiki.", "en": "He is working." },
+        { "fr": "Tana girki.", "en": "She is cooking." },
+        { "fr": "Muna cin abinci.", "en": "We are eating." },
+        { "fr": "Suna wasa.", "en": "They are playing." }
+      ],
+      "drills": [
+        { "prompt": "___ karatu. (I am studying)", "answer": "Ina", "hint": "I am" },
+        { "prompt": "___ aiki. (He is working)", "answer": "Yana", "hint": "he is" },
+        { "prompt": "___ girki. (She is cooking)", "answer": "Tana", "hint": "she is" },
+        { "prompt": "___ wasa. (They are playing)", "answer": "Suna", "hint": "they are" },
+        { "prompt": "___ aiki. (You, a man, are working)", "answer": "Kana", "hint": "you (man) are" }
+      ]
+    },
+    {
+      "slug": "ha-a1-future",
+      "summary": "Zan, zaka, zaki, zai, za ta, za mu, za ku and za su mean will do.",
+      "explanation": "The future uses another set of pronoun forms: zan (I will), zaka (you, man), zaki (you, woman), zai (he), za ta (she), za mu (we), za ku (you, plural) and za su (they).\n\nZan tafi kasuwa gobe means I will go to the market tomorrow. Zai zo means he will come. Za mu ci abinci means we will eat. Za ta karanta littafi means she will read a book.",
+      "examples": [
+        { "fr": "Zan tafi kasuwa gobe.", "en": "I will go to the market tomorrow." },
+        { "fr": "Zai zo.", "en": "He will come." },
+        { "fr": "Za mu ci abinci.", "en": "We will eat." },
+        { "fr": "Za ta karanta littafi.", "en": "She will read a book." },
+        { "fr": "Za su tafi Kano.", "en": "They will go to Kano." }
+      ],
+      "drills": [
+        { "prompt": "___ tafi gobe. (I will go tomorrow)", "answer": "Zan", "hint": "I will" },
+        { "prompt": "___ zo. (He will come)", "answer": "Zai", "hint": "he will" },
+        { "prompt": "___ ci abinci. (We will eat)", "answer": "Za mu", "hint": "we will" },
+        { "prompt": "Za ___ karanta littafi. (She will read a book)", "answer": "ta", "hint": "she" },
+        { "prompt": "Za su ___ Kano. (They will go to Kano)", "answer": "tafi", "hint": "go" }
+      ]
+    },
+    {
+      "slug": "ha-a1-gender",
+      "summary": "Every noun is masculine or feminine. Many nouns ending in -a are feminine, and the verb agrees: ya for masculine, ta for feminine.",
+      "explanation": "Hausa nouns are either masculine or feminine. A useful rule is that many nouns ending in -a are feminine: mota (car), yarinya (girl), kyanwa (cat). Others are masculine: yaro (boy), kare (dog), gida (house). Gida is an exception, since it ends in -a but is masculine, so learn the gender with each new noun.\n\nThe verb agrees with the noun: ya for a masculine subject, ta for a feminine one. Yaro ya tafi (The boy went), Yarinya ta tafi (The girl went), Mota ta lalace (The car broke down), Kyanwa ta yi barci (The cat slept).",
+      "examples": [
+        { "fr": "Yaro ya tafi.", "en": "The boy went." },
+        { "fr": "Yarinya ta tafi.", "en": "The girl went." },
+        { "fr": "Mota ta lalace.", "en": "The car broke down." },
+        { "fr": "Kare ya gudu.", "en": "The dog ran." },
+        { "fr": "Kyanwa ta yi barci.", "en": "The cat slept." }
+      ],
+      "drills": [
+        { "prompt": "Yaro ___ tafi. (The boy went)", "answer": "ya", "hint": "masculine subject" },
+        { "prompt": "Yarinya ___ tafi. (The girl went)", "answer": "ta", "hint": "feminine subject" },
+        { "prompt": "Mota ___ lalace. (The car broke down)", "answer": "ta", "hint": "mota is feminine" },
+        { "prompt": "Kare ___ gudu. (The dog ran)", "answer": "ya", "hint": "kare is masculine" },
+        { "prompt": "Kyanwa ___ yi barci. (The cat slept)", "answer": "ta", "hint": "kyanwa is feminine" }
+      ]
+    },
+    {
+      "slug": "ha-a1-be",
+      "summary": "Ne and ce mean is after a noun: ne for masculine and plural, ce for feminine.",
+      "explanation": "To say what something is, put the noun first and add ne or ce after it. Use ne with a masculine noun (and with plurals) and ce with a feminine noun.\n\nShi malami ne (He is a teacher), Ita malama ce (She is a teacher), Wannan gida ne (This is a house), Wannan mota ce (This is a car). The same pattern works with ni (I): Ni dalibi ne (I am a student, a man).\n\nTo say where someone is, use the continuous forms with no ne or ce: Yana gida (He is at home), Tana kasuwa (She is at the market).",
+      "examples": [
+        { "fr": "Shi malami ne.", "en": "He is a teacher." },
+        { "fr": "Ita malama ce.", "en": "She is a teacher." },
+        { "fr": "Wannan gida ne.", "en": "This is a house." },
+        { "fr": "Wannan mota ce.", "en": "This is a car." },
+        { "fr": "Tana kasuwa.", "en": "She is at the market." }
+      ],
+      "drills": [
+        { "prompt": "Shi malami ___. (He is a teacher)", "answer": "ne", "hint": "masculine" },
+        { "prompt": "Ita malama ___. (She is a teacher)", "answer": "ce", "hint": "feminine" },
+        { "prompt": "Wannan mota ___. (This is a car)", "answer": "ce", "hint": "mota is feminine" },
+        { "prompt": "Wannan gida ___. (This is a house)", "answer": "ne", "hint": "gida is masculine" },
+        { "prompt": "___ gida. (He is at home)", "answer": "Yana", "hint": "he is (location)" }
+      ]
+    },
+    {
+      "slug": "ha-a1-negation",
+      "summary": "Ba ... ba wraps the verb. Ban, bai, bata, basu and ba na mean did not and do not.",
+      "explanation": "A Hausa negative usually wraps the verb with ba before it and ba after it.\n\nPast negative: ban (I did not), baka (you, man), baki (you, woman), bai (he), bata (she), bamu (we), baku (you, plural) and basu (they). Ban tafi ba (I did not go), Bai zo ba (He did not come), Bata ci abinci ba (She did not eat).\n\nPresent negative: ba na, ba ka, ba ki, ba ya, ba ta, ba mu, ba ku, ba su. Ba na ci nama (I do not eat meat), Ba ya aiki (He is not working).",
+      "examples": [
+        { "fr": "Ban tafi ba.", "en": "I did not go." },
+        { "fr": "Bai zo ba.", "en": "He did not come." },
+        { "fr": "Bata ci abinci ba.", "en": "She did not eat." },
+        { "fr": "Ba na ci nama.", "en": "I do not eat meat." },
+        { "fr": "Ba ya aiki.", "en": "He is not working." }
+      ],
+      "drills": [
+        { "prompt": "___ tafi ba. (I did not go)", "answer": "Ban", "hint": "I did not" },
+        { "prompt": "___ zo ba. (He did not come)", "answer": "Bai", "hint": "he did not" },
+        { "prompt": "___ ci abinci ba. (She did not eat)", "answer": "Bata", "hint": "she did not" },
+        { "prompt": "Ba ___ ci nama. (I do not eat meat)", "answer": "na", "hint": "I (present)" },
+        { "prompt": "Ba ___ aiki. (He is not working)", "answer": "ya", "hint": "he (present)" }
+      ]
+    },
+    {
+      "slug": "ha-a1-plurals",
+      "summary": "Hausa plurals are irregular, so learn each pair: yaro to yara, mace to mata, gida to gidaje.",
+      "explanation": "Hausa has no single rule for making a plural, so learn each noun with its plural.\n\nCommon pairs: yaro, yara (boy, boys or children), mace, mata (woman, women), malami, malamai (teacher, teachers), littafi, littattafai (book, books) and gida, gidaje (house, houses).\n\nA plural noun takes the same ne or ce pattern and plural pronouns: Su malamai ne (They are teachers).",
+      "examples": [
+        { "fr": "yaro, yara", "en": "boy, boys / children" },
+        { "fr": "mace, mata", "en": "woman, women" },
+        { "fr": "malami, malamai", "en": "teacher, teachers" },
+        { "fr": "littafi, littattafai", "en": "book, books" },
+        { "fr": "gida, gidaje", "en": "house, houses" }
+      ],
+      "drills": [
+        { "prompt": "yaro → ___ (boys)", "answer": "yara", "hint": "plural of yaro" },
+        { "prompt": "mace → ___ (women)", "answer": "mata", "hint": "plural of mace" },
+        { "prompt": "malami → ___ (teachers)", "answer": "malamai", "hint": "plural of malami" },
+        { "prompt": "littafi → ___ (books)", "answer": "littattafai", "hint": "plural of littafi" },
+        { "prompt": "gida → ___ (houses)", "answer": "gidaje", "hint": "plural of gida" }
+      ]
+    },
+    {
+      "slug": "ha-a1-possession",
+      "summary": "Add na after a masculine noun and ta after a feminine one for my: gidana (my house), motata (my car).",
+      "explanation": "Hausa attaches my, your and so on to the end of the noun. The ending depends on the noun's gender.\n\nMasculine noun (gida, house): gidana (my), gidanka (your, man), gidanki (your, woman), gidansa (his), gidanta (her), gidanmu (our), gidanku (your, plural), gidansu (their).\n\nFeminine noun (mota, car): motata (my), motarka (your, man), motarki (your, woman), motarsa (his), motarta (her), motarmu (our), motarku (your, plural), motarsu (their).",
+      "examples": [
+        { "fr": "gidana", "en": "my house" },
+        { "fr": "gidansa", "en": "his house" },
+        { "fr": "gidanmu", "en": "our house" },
+        { "fr": "motata", "en": "my car" },
+        { "fr": "motarka", "en": "your car (to a man)" }
+      ],
+      "drills": [
+        { "prompt": "gida___ (my house)", "answer": "na", "hint": "my, masculine noun" },
+        { "prompt": "gidan___ (his house)", "answer": "sa", "hint": "his" },
+        { "prompt": "mota___ (my car)", "answer": "ta", "hint": "my, feminine noun" },
+        { "prompt": "motar___ (your car, to a man)", "answer": "ka", "hint": "your (man)" },
+        { "prompt": "gidan___ (our house)", "answer": "mu", "hint": "our" }
+      ]
+    }
+  ]
+}

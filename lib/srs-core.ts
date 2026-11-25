@@ -56,7 +56,8 @@ export interface AnswerCard {
 // --- Answer normalization & checking --------------------------------------
 
 function stripDiacritics(s: string): string {
-  return s.normalize('NFD').replace(/[̀-ͯ]/g, '')
+  // ɓ ɗ ƙ (Hausa) have no decomposition, so fold them to the letters a plain keyboard types.
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ɓ/g, 'b').replace(/ɗ/g, 'd').replace(/ƙ/g, 'k')
 }
 
 const LEADING_ARTICLE = /^(le|la|les|un|une|des|du|de|the|a|an|to)\s+/

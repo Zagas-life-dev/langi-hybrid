@@ -1,0 +1,157 @@
+{
+  "_note": "AI-drafted Yoruba A1 grammar lessons for Langi, not yet reviewed by a native speaker. Slugs match the yo catalog in lib/grammar.ts. Drill cues give the meaning, never the answer. Seeded by `npx tsx scripts/seed-grammar-ng.ts yo`. In examples, `fr` holds the Yoruba sentence (field name kept from the original schema).",
+  "lessons": [
+    {
+      "slug": "yo-a1-pronouns",
+      "summary": "Mo, o, ó, a, ẹ and wọ́n stand before the verb as I, you, he/she/it, we, you (plural) and they.",
+      "explanation": "Yoruba verbs never change their ending. The subject pronoun before the verb does the work. The short forms are: mo (I), o (you, one person), ó (he, she, it), a (we), ẹ (you, more than one person or a respected elder) and wọ́n (they).\n\nÓ means he, she or it. Yoruba does not mark gender in pronouns, so only the context tells you which one is meant.\n\nTones matter. Compare o (you, mid tone) with ó (he/she, high tone): O dára means you are fine, Ó dára means he/she/it is fine. Always write the tone marks when you can.\n\nThe long forms (èmi, ìwọ, òun, àwa, ẹ̀yin, àwọn) are used for emphasis or on their own, for example Èmi ni (It is me). In normal sentences use the short forms.",
+      "examples": [
+        { "fr": "Mo jẹun.", "en": "I eat / I ate." },
+        { "fr": "Ó ń sùn.", "en": "He/she is sleeping." },
+        { "fr": "A dúpẹ́.", "en": "We give thanks." },
+        { "fr": "Ẹ ṣé.", "en": "Thank you (to more than one person or an elder)." },
+        { "fr": "Wọ́n wá láti Ìbàdàn.", "en": "They come from Ibadan." }
+      ],
+      "drills": [
+        { "prompt": "___ lọ sí ọjà. (I went to the market)", "answer": "Mo", "hint": "I" },
+        { "prompt": "___ jẹun. (She eats)", "answer": "Ó", "hint": "he/she/it, high tone" },
+        { "prompt": "___ ń kọ́ Yorùbá. (We are learning Yoruba)", "answer": "A", "hint": "we" },
+        { "prompt": "___ ń sùn. (They are sleeping)", "answer": "Wọ́n", "hint": "they" },
+        { "prompt": "___ dára. (You, one person, are fine)", "answer": "O", "hint": "you, mid tone" }
+      ]
+    },
+    {
+      "slug": "yo-a1-aspect",
+      "summary": "Tense words go before the verb: ń (is doing), ti (has done), máa or yóò (will do).",
+      "explanation": "The verb itself stays the same. A small word before it tells you when and how the action happens.\n\nń shows an action in progress: Mo ń jẹun (I am eating). ti shows it is already done: Mo ti jẹun (I have eaten). máa shows the future: Mo máa lọ (I will go). Yóò also marks the future and is common in more formal speech: Yóò rọ̀ lọ́la (It will rain tomorrow).\n\nFor a habit, combine them: máa ń. Mo máa ń jẹ ìrẹsì means I usually eat rice.\n\nWith no marker, a plain action verb usually points to the past: Mo lọ means I went. Time words such as lánàá (yesterday) and lọ́la (tomorrow) make it clear.",
+      "examples": [
+        { "fr": "Mo ń jẹun.", "en": "I am eating." },
+        { "fr": "Mo ti jẹun.", "en": "I have eaten." },
+        { "fr": "Mo máa lọ lọ́la.", "en": "I will go tomorrow." },
+        { "fr": "Yóò rọ̀ lọ́la.", "en": "It will rain tomorrow." },
+        { "fr": "Mo máa ń jẹ ìrẹsì.", "en": "I usually eat rice." }
+      ],
+      "drills": [
+        { "prompt": "Mo ___ jẹun. (I am eating)", "answer": "ń", "hint": "in progress" },
+        { "prompt": "Ó ___ dé. (He has arrived)", "answer": "ti", "hint": "already done" },
+        { "prompt": "Mo ___ lọ lọ́la. (I will go tomorrow)", "answer": "máa", "hint": "future" },
+        { "prompt": "Wọ́n ___ kọ lẹ́tà. (They are writing a letter)", "answer": "ń", "hint": "in progress" },
+        { "prompt": "A ___ jẹun. (We have eaten)", "answer": "ti", "hint": "already done" }
+      ]
+    },
+    {
+      "slug": "yo-a1-negation",
+      "summary": "Put ò or kò before the verb to say not: Mi ò lọ (I don't go), Kò wá (He/she did not come).",
+      "explanation": "To make a sentence negative, a negative word goes before the verb, and it takes the place of the pronoun in several persons.\n\nThe forms are: mi ò (I do not), o ò (you do not), kò (he/she/it does not), a ò (we do not), ẹ ò (you, plural, do not) and wọn ò (they do not).\n\nMi ò mọ̀ means I do not know. Kò wá means he/she did not come. Wọn ò jẹun means they did not eat or they do not eat.\n\nThe same negative form covers the past and the present. Use a time word or the context to show which one you mean.",
+      "examples": [
+        { "fr": "Mi ò mọ̀.", "en": "I do not know." },
+        { "fr": "Kò wá.", "en": "He/she did not come." },
+        { "fr": "Wọn ò jẹun.", "en": "They did not eat." },
+        { "fr": "A ò lọ sí ilé ìwé.", "en": "We are not going to school." },
+        { "fr": "O ò gbọ́.", "en": "You did not hear." }
+      ],
+      "drills": [
+        { "prompt": "___ jẹun. (He/she did not eat)", "answer": "Kò", "hint": "he/she/it negative" },
+        { "prompt": "___ wá. (They did not come)", "answer": "Wọn ò", "hint": "they negative" },
+        { "prompt": "___ mọ̀. (We do not know)", "answer": "A ò", "hint": "we negative" },
+        { "prompt": "Mi ___ lọ. (I do not go)", "answer": "ò", "hint": "the negative word" },
+        { "prompt": "___ gbọ́. (You did not hear)", "answer": "O ò", "hint": "you negative" }
+      ]
+    },
+    {
+      "slug": "yo-a1-be",
+      "summary": "Use jẹ́ for what someone is, wà for where someone is, and ni to point out who or what it is.",
+      "explanation": "English uses one verb, to be. Yoruba splits it into three.\n\njẹ́ links a person to an identity or job: Mo jẹ́ dókítà (I am a doctor). wà says where something is, or that it exists: Ó wà nílé (He/she is at home). ni points something out: Èyí ni ilé mi (This is my house), Òun ni olùkọ́ mi (That is my teacher).\n\nBefore an adjective you need no verb at all: Ilé náà ńlá means The house is big.",
+      "examples": [
+        { "fr": "Mo jẹ́ dókítà.", "en": "I am a doctor." },
+        { "fr": "Ó wà nílé.", "en": "He/she is at home." },
+        { "fr": "Wọ́n wà ní Èkó.", "en": "They are in Lagos." },
+        { "fr": "Èyí ni ilé mi.", "en": "This is my house." },
+        { "fr": "Ilé náà ńlá.", "en": "The house is big." }
+      ],
+      "drills": [
+        { "prompt": "Mo ___ olùkọ́. (I am a teacher)", "answer": "jẹ́", "hint": "identity" },
+        { "prompt": "Ó ___ nílé. (She is at home)", "answer": "wà", "hint": "location" },
+        { "prompt": "Wọ́n ___ ní Èkó. (They are in Lagos)", "answer": "wà", "hint": "location" },
+        { "prompt": "Èyí ___ ilé mi. (This is my house)", "answer": "ni", "hint": "pointing out" },
+        { "prompt": "Ilé náà ___. (The house is big)", "answer": "ńlá", "hint": "no verb needed" }
+      ]
+    },
+    {
+      "slug": "yo-a1-questions",
+      "summary": "Ṣé opens a yes/no question. Kí, ta, ibo and mélòó ask what, who, where and how many.",
+      "explanation": "For a yes/no question, put ṣé at the front: Ṣé o ti jẹun? (Have you eaten?). You can also use a rising tone with no extra word.\n\nQuestion words usually come first or sit before ni: Kí ni orúkọ rẹ? (What is your name?), Ta ni ó wá? (Who came?), Ibo ni o ń gbé? (Where do you live?), Mélòó ni èyí? (How much is this?).\n\nThe words you will use most: kí (what), ta (who), ibo (where), nígbà wo (when), kí nìdí (why), mélòó (how many, how much).",
+      "examples": [
+        { "fr": "Ṣé o ti jẹun?", "en": "Have you eaten?" },
+        { "fr": "Kí ni orúkọ rẹ?", "en": "What is your name?" },
+        { "fr": "Ibo ni o ń gbé?", "en": "Where do you live?" },
+        { "fr": "Ta ni ó wá?", "en": "Who came?" },
+        { "fr": "Mélòó ni èyí?", "en": "How much is this?" }
+      ],
+      "drills": [
+        { "prompt": "___ o ti jẹun? (Have you eaten?)", "answer": "Ṣé", "hint": "yes/no marker" },
+        { "prompt": "___ ni orúkọ rẹ? (What is your name?)", "answer": "Kí", "hint": "what" },
+        { "prompt": "___ ni o ń gbé? (Where do you live?)", "answer": "Ibo", "hint": "where" },
+        { "prompt": "___ ni ó wá? (Who came?)", "answer": "Ta", "hint": "who" },
+        { "prompt": "___ ni èyí? (How much is this?)", "answer": "Mélòó", "hint": "how much" }
+      ]
+    },
+    {
+      "slug": "yo-a1-nouns",
+      "summary": "Yoruba nouns do not change for plural. Use àwọn, a number, kan (a) or náà (the).",
+      "explanation": "A Yoruba noun looks the same in the singular and the plural: ọmọ means child or children.\n\nTo make the plural clear, put àwọn before the noun: àwọn ọmọ (the children). With a number you need nothing else: ìwé mẹ́ta (three books).\n\nThere is no a or the in front of the noun. After it, kan means a or one: ọmọ kan (a child). náà means the, as in ilé náà (the house).",
+      "examples": [
+        { "fr": "ọmọ kan", "en": "a child" },
+        { "fr": "àwọn ọmọ", "en": "the children" },
+        { "fr": "ilé náà", "en": "the house" },
+        { "fr": "ìwé mẹ́ta", "en": "three books" },
+        { "fr": "ajá kan", "en": "a dog" }
+      ],
+      "drills": [
+        { "prompt": "ọmọ ___ (a child)", "answer": "kan", "hint": "a / one" },
+        { "prompt": "___ ọmọ (the children)", "answer": "àwọn", "hint": "plural marker" },
+        { "prompt": "ilé ___ (the house)", "answer": "náà", "hint": "the" },
+        { "prompt": "ìwé ___ (three books)", "answer": "mẹ́ta", "hint": "three" },
+        { "prompt": "ajá ___ (a dog)", "answer": "kan", "hint": "a / one" }
+      ]
+    },
+    {
+      "slug": "yo-a1-possession",
+      "summary": "Put the owner after the thing: ilé bàbá mi (my father's house), ìwé rẹ (your book).",
+      "explanation": "Yoruba has no apostrophe-s. Write the thing first and the owner after it: ilé bàbá mi (father's house, my father's house).\n\nFor my, your and so on, put these words after the noun: mi (my), rẹ (your, one person), rẹ̀ (his, her), wa (our), yín (your, plural) and wọn (their). Watch the tone: ìwé rẹ is your book, and ìwé rẹ̀ is his or her book.",
+      "examples": [
+        { "fr": "ilé bàbá mi", "en": "my father's house" },
+        { "fr": "ìwé rẹ", "en": "your book" },
+        { "fr": "ìwé rẹ̀", "en": "his/her book" },
+        { "fr": "ọkọ̀ wa", "en": "our car" },
+        { "fr": "ilé wọn", "en": "their house" }
+      ],
+      "drills": [
+        { "prompt": "ìwé ___ (my book)", "answer": "mi", "hint": "my" },
+        { "prompt": "ilé ___ (our house)", "answer": "wa", "hint": "our" },
+        { "prompt": "ọkọ̀ ___ (their car)", "answer": "wọn", "hint": "their" },
+        { "prompt": "ìwé ___ (your book, plural you)", "answer": "yín", "hint": "your (plural)" },
+        { "prompt": "orúkọ ___ (your name, one person)", "answer": "rẹ", "hint": "your (one person)" }
+      ]
+    },
+    {
+      "slug": "yo-a1-adjectives",
+      "summary": "Adjectives come after the noun: ilé ńlá (a big house), aṣọ pupa (red cloth).",
+      "explanation": "In Yoruba the adjective follows the noun: ilé ńlá (house big, a big house), ọmọ kékeré (a small child), aṣọ pupa (red cloth), ọkọ̀ tuntun (a new car).\n\nThe adjective does not change for number. If you want the, add náà at the very end: ilé ńlá náà means the big house.",
+      "examples": [
+        { "fr": "ilé ńlá", "en": "a big house" },
+        { "fr": "ọmọ kékeré", "en": "a small child" },
+        { "fr": "aṣọ pupa", "en": "red cloth" },
+        { "fr": "ọkọ̀ tuntun", "en": "a new car" },
+        { "fr": "ilé ńlá náà", "en": "the big house" }
+      ],
+      "drills": [
+        { "prompt": "ilé ___ (a big house)", "answer": "ńlá", "hint": "big" },
+        { "prompt": "aṣọ ___ (red cloth)", "answer": "pupa", "hint": "red" },
+        { "prompt": "ọmọ ___ (a small child)", "answer": "kékeré", "hint": "small" },
+        { "prompt": "ọkọ̀ ___ (a new car)", "answer": "tuntun", "hint": "new" },
+        { "prompt": "ilé ńlá ___ (the big house)", "answer": "náà", "hint": "the, goes last" }
+      ]
+    }
+  ]
+}

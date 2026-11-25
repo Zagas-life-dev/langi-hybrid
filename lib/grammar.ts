@@ -145,9 +145,21 @@ const ES_CATALOG: GrammarTopic[] = [
 // All curated curricula, keyed by language. The grammar page renders the catalog
 // for the learner's language; uncurated languages fall back to an empty list (the
 // AI tutor + on-demand lessons still cover them).
+// AI-drafted Yoruba, Igbo and Hausa A1 curricula (content in data/grammar-ng/<lang>.json, seeded by
+// scripts/seed-grammar-ng.ts). Slugs here must match the JSON.
+function ngCatalog(lang: 'yo' | 'ig' | 'ha', rows: [string, string, string, string][]): GrammarTopic[] {
+  return rows.map(([key, title, topic, focus]) => ({ slug: `${lang}-a1-${key}`, level: 'A1' as CefrLevel, title, topic, focus }))
+}
+const YO_CATALOG = ngCatalog('yo', [["pronouns","Pronouns: mo, o, ó, a, ẹ, wọ́n","pronouns","the short subject pronouns before the verb"],["aspect","Tense words: ń, ti, máa","verbs","ń for in progress, ti for done, máa and yóò for the future"],["negation","Saying no: mi ò, kò","syntax","the negative words that replace the pronoun before the verb"],["be","Being: jẹ́, wà, ni","verbs","jẹ́ for identity, wà for place, ni for pointing out"],["questions","Asking questions","syntax","ṣé and the question words kí, ta, ibo, mélòó"],["nouns","Nouns: àwọn, kan, náà","nouns","no plural form; àwọn, numbers, kan (a) and náà (the)"],["possession","Possession: mi, rẹ, wa","pronouns","owner after the noun and the possessive words"],["adjectives","Adjectives after the noun","adjectives","adjective follows the noun; náà goes last"]])
+const IG_CATALOG = ngCatalog('ig', [["pronouns","Pronouns: m, ị, ọ, anyị, unu, ha","pronouns","subject pronouns and the Ana m pattern"],["tenses","Time: na-, aga, past endings","verbs","na- progressive, aga future and -ra/-rọ past"],["be","Being: bụ and nọ","verbs","bụ for identity, nọ for place; describing words as verbs"],["negation","Saying no: -ghị","syntax","the -ghị negative ending in present, past and future"],["questions","Asking questions","syntax","gịnị, onye, ebee, kedu, ole"],["possession","Possession: m, gị, ya","pronouns","owner after the noun"],["plurals","Plurals: ndị, ụmụ, numbers","nouns","ndị and ụmụ before the noun, numbers after it"],["politeness","Greetings, please and commands","syntax","Ndewo, Biko, Daalụ and the command form"]])
+const HA_CATALOG = ngCatalog('ha', [["completive","Past: na, ya, ta, mun, sun","verbs","completive pronoun forms before the verb"],["continuous","Now: ina, yana, tana, suna","verbs","continuous forms plus a verbal noun"],["future","Future: zan, zai, za mu","verbs","future pronoun forms"],["gender","Gender: masculine and feminine","nouns","noun gender and ya/ta agreement"],["be","Being: ne and ce","syntax","ne for masculine and plural, ce for feminine"],["negation","Saying no: ba … ba","syntax","ban, bai, bata, ba na with ba at the end"],["plurals","Irregular plurals","nouns","learn each plural pair"],["possession","Possession: gidana, motata","pronouns","gendered possessive endings"]])
+
 export const GRAMMAR_CATALOGS: Record<string, GrammarTopic[]> = {
   fr: FR_CATALOG,
   es: ES_CATALOG,
+  yo: YO_CATALOG,
+  ig: IG_CATALOG,
+  ha: HA_CATALOG,
 }
 
 /** The grammar curriculum for a language (empty if none is curated yet). */

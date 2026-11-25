@@ -1,0 +1,157 @@
+{
+  "_note": "AI-drafted Igbo A1 grammar lessons for Langi, not yet reviewed by a native speaker. Slugs match the ig catalog in lib/grammar.ts. Drill cues give the meaning, never the answer. Seeded by `npx tsx scripts/seed-grammar-ng.ts ig`. In examples, `fr` holds the Igbo sentence (field name kept from the original schema).",
+  "lessons": [
+    {
+      "slug": "ig-a1-pronouns",
+      "summary": "m, ị, ọ, anyị, unu and ha mean I, you, he/she/it, we, you (plural) and they.",
+      "explanation": "Igbo has no he or she: ọ covers he, she and it. The subject pronouns are m (I), ị (you), ọ (he, she, it), anyị (we), unu (you, plural) and ha (they).\n\nFor I, the m often comes after the verb word: Ana m eri nri (I am eating food). With the others the pronoun comes first: Ị na-eri nri (You are eating food), Ọ na-ere ahịa (He/she is selling goods), Anyị na-agụ akwụkwọ (We are reading).\n\nThe dots under ị, ọ and ụ matter. They are separate letters, so keep them.",
+      "examples": [
+        { "fr": "Ana m eri nri.", "en": "I am eating food." },
+        { "fr": "Ị na-agụ akwụkwọ.", "en": "You are reading." },
+        { "fr": "Ọ na-arụ ọrụ.", "en": "He/she is working." },
+        { "fr": "Anyị na-eri nri.", "en": "We are eating." },
+        { "fr": "Ha na-eri nri.", "en": "They are eating." }
+      ],
+      "drills": [
+        { "prompt": "Ana ___ eri nri. (I am eating food)", "answer": "m", "hint": "I" },
+        { "prompt": "___ na-agụ akwụkwọ. (You are reading)", "answer": "Ị", "hint": "you, one person" },
+        { "prompt": "___ na-arụ ọrụ. (He/she is working)", "answer": "Ọ", "hint": "he/she/it" },
+        { "prompt": "___ na-eri nri. (We are eating)", "answer": "Anyị", "hint": "we" },
+        { "prompt": "___ na-eri nri. (They are eating)", "answer": "Ha", "hint": "they" }
+      ]
+    },
+    {
+      "slug": "ig-a1-tenses",
+      "summary": "na- shows an action in progress, aga- shows the future, and a verb ending in -ra or -rọ shows the past.",
+      "explanation": "Igbo shows time with a small word or an ending on the verb.\n\nProgressive: na- plus the verb, Ọ na-eri nri (He/she is eating). With m (I) you say Ana m: Ana m eri nri.\n\nFuture: aga plus the verb, Aga m eri nri (I will eat food), Aga m abịa (I will come).\n\nPast: many verbs add an ending such as -ra or -rọ: Ọ bịara ụnyaahụ (He/she came yesterday), Ọ gara ahịa (He/she went to the market).",
+      "examples": [
+        { "fr": "Ọ na-eri nri.", "en": "He/she is eating food." },
+        { "fr": "Aga m eri nri.", "en": "I will eat food." },
+        { "fr": "Aga m abịa.", "en": "I will come." },
+        { "fr": "Ọ bịara ụnyaahụ.", "en": "He/she came yesterday." },
+        { "fr": "Ọ gara ahịa.", "en": "He/she went to the market." }
+      ],
+      "drills": [
+        { "prompt": "Ọ ___ ahịa. (He/she went to the market)", "answer": "gara", "hint": "past of ga (go)" },
+        { "prompt": "___ m eri nri. (I will eat food)", "answer": "Aga", "hint": "future marker" },
+        { "prompt": "Ana m ___ nri. (I am eating food)", "answer": "eri", "hint": "the verb eat" },
+        { "prompt": "Ọ ___ ụnyaahụ. (He/she came yesterday)", "answer": "bịara", "hint": "past of bịa (come)" },
+        { "prompt": "Ọ na-___ nri. (He/she is eating food)", "answer": "eri", "hint": "the verb eat" }
+      ]
+    },
+    {
+      "slug": "ig-a1-be",
+      "summary": "Use bụ for what someone is, nọ for where someone is. Describing words work like verbs.",
+      "explanation": "Igbo splits to be into two verbs.\n\nbụ links a person to an identity: Abụ m onye nkụzi (I am a teacher), Ọ bụ nne m (She is my mother).\n\nnọ says where someone is: Anọ m n'ụlọ (I am at home), Ha nọ n'ahịa (They are at the market).\n\nDescribing words are verbs in Igbo, so you do not need to add to be: Nwa ahụ mara mma (The child is beautiful).",
+      "examples": [
+        { "fr": "Abụ m onye nkụzi.", "en": "I am a teacher." },
+        { "fr": "Ọ bụ nne m.", "en": "She is my mother." },
+        { "fr": "Anọ m n'ụlọ.", "en": "I am at home." },
+        { "fr": "Ha nọ n'ahịa.", "en": "They are at the market." },
+        { "fr": "Nwa ahụ mara mma.", "en": "The child is beautiful." }
+      ],
+      "drills": [
+        { "prompt": "___ m onye nkụzi. (I am a teacher)", "answer": "Abụ", "hint": "identity" },
+        { "prompt": "Anọ ___ n'ụlọ. (I am at home)", "answer": "m", "hint": "I" },
+        { "prompt": "Ha ___ n'ahịa. (They are at the market)", "answer": "nọ", "hint": "location" },
+        { "prompt": "Ọ ___ nne m. (She is my mother)", "answer": "bụ", "hint": "identity" },
+        { "prompt": "Nwa ahụ ___ mma. (The child is beautiful)", "answer": "mara", "hint": "the verb be beautiful" }
+      ]
+    },
+    {
+      "slug": "ig-a1-negation",
+      "summary": "Add -ghị to the verb to say not: Anaghị m eri anụ (I do not eat meat).",
+      "explanation": "Igbo makes a negative with the ending -ghị on the verb.\n\nPresent: Anaghị m eri anụ (I do not eat meat), Ọ naghị abịa (He/she does not come). Future: Anyị agaghị aga (We will not go). Past: Erighị m nri (I did not eat), Aghọtaghị m (I do not understand).\n\nNotice the m follows the negative verb, just as it does in the positive.",
+      "examples": [
+        { "fr": "Anaghị m eri anụ.", "en": "I do not eat meat." },
+        { "fr": "Ọ naghị abịa.", "en": "He/she does not come." },
+        { "fr": "Aghọtaghị m.", "en": "I do not understand." },
+        { "fr": "Anyị agaghị aga.", "en": "We will not go." },
+        { "fr": "Erighị m nri.", "en": "I did not eat." }
+      ],
+      "drills": [
+        { "prompt": "Anaghị ___ eri anụ. (I do not eat meat)", "answer": "m", "hint": "I" },
+        { "prompt": "Aghọtaghị ___. (I do not understand)", "answer": "m", "hint": "I" },
+        { "prompt": "Ọ ___ abịa. (He/she does not come)", "answer": "naghị", "hint": "negative of na-" },
+        { "prompt": "Anyị ___ aga. (We will not go)", "answer": "agaghị", "hint": "negative future" },
+        { "prompt": "___ m nri. (I did not eat food)", "answer": "Erighị", "hint": "negative of eri" }
+      ]
+    },
+    {
+      "slug": "ig-a1-questions",
+      "summary": "Gịnị (what), onye (who), ebee (where), kedu (how) and ole (how much) open a question.",
+      "explanation": "A yes/no question can be the same sentence with a rising voice, or it can end with a question tone.\n\nFor information questions, start with the question word: Gịnị bụ aha gị? (What is your name?), Onye bụ nna gị? (Who is your father?), Ebee ka ị na-ebi? (Where do you live?), Kedu ka ị mere? (How are you?), Ole ka ọ bụ? (How much is it?).\n\nka is often placed after the question word before the verb.",
+      "examples": [
+        { "fr": "Gịnị bụ aha gị?", "en": "What is your name?" },
+        { "fr": "Onye bụ nna gị?", "en": "Who is your father?" },
+        { "fr": "Ebee ka ị na-ebi?", "en": "Where do you live?" },
+        { "fr": "Kedu ka ị mere?", "en": "How are you?" },
+        { "fr": "Ole ka ọ bụ?", "en": "How much is it?" }
+      ],
+      "drills": [
+        { "prompt": "___ bụ aha gị? (What is your name?)", "answer": "Gịnị", "hint": "what" },
+        { "prompt": "___ ka ị na-ebi? (Where do you live?)", "answer": "Ebee", "hint": "where" },
+        { "prompt": "___ ka ị mere? (How are you?)", "answer": "Kedu", "hint": "how" },
+        { "prompt": "___ ka ọ bụ? (How much is it?)", "answer": "Ole", "hint": "how much" },
+        { "prompt": "___ bụ nna gị? (Who is your father?)", "answer": "Onye", "hint": "who" }
+      ]
+    },
+    {
+      "slug": "ig-a1-possession",
+      "summary": "Put the owner after the noun: ụlọ m (my house), ụlọ nna m (my father's house).",
+      "explanation": "The owner comes after the thing, with no extra word: ụlọ m (house my, my house), ụlọ gị (your house), ụlọ ya (his/her house), ụlọ anyị (our house), ụlọ unu (your house, plural) and ụlọ ha (their house).\n\nTo say someone's house, put the owner's name after the noun: ụlọ nna m (my father's house).",
+      "examples": [
+        { "fr": "ụlọ m", "en": "my house" },
+        { "fr": "akwụkwọ gị", "en": "your book" },
+        { "fr": "ụlọ ya", "en": "his/her house" },
+        { "fr": "ụgbọ ala anyị", "en": "our car" },
+        { "fr": "ụlọ nna m", "en": "my father's house" }
+      ],
+      "drills": [
+        { "prompt": "ụlọ ___ (my house)", "answer": "m", "hint": "my" },
+        { "prompt": "akwụkwọ ___ (your book)", "answer": "gị", "hint": "your (one person)" },
+        { "prompt": "ụlọ ___ (his/her house)", "answer": "ya", "hint": "his/her" },
+        { "prompt": "ụgbọ ala ___ (our car)", "answer": "anyị", "hint": "our" },
+        { "prompt": "aha ___ (their name)", "answer": "ha", "hint": "their" }
+      ]
+    },
+    {
+      "slug": "ig-a1-plurals",
+      "summary": "Igbo nouns stay the same. Use ndị or ụmụ before the noun, or a number after it.",
+      "explanation": "Most Igbo nouns do not change in the plural. Put ndị before a word for people: ndị nkụzi (teachers). Use ụmụ for children and young ones: ụmụ akwụkwọ (students, children of school).\n\nA number after the noun makes it plural without any other change: mmadụ atọ (three people). ọtụtụ means many: ọtụtụ mmadụ (many people).",
+      "examples": [
+        { "fr": "ndị nkụzi", "en": "teachers" },
+        { "fr": "ụmụ akwụkwọ", "en": "students" },
+        { "fr": "ọtụtụ mmadụ", "en": "many people" },
+        { "fr": "mmadụ atọ", "en": "three people" },
+        { "fr": "ụmụ nwanyị", "en": "girls / women" }
+      ],
+      "drills": [
+        { "prompt": "___ nkụzi (teachers)", "answer": "ndị", "hint": "plural for people" },
+        { "prompt": "___ akwụkwọ (students)", "answer": "ụmụ", "hint": "children of" },
+        { "prompt": "ọtụtụ ___ (many people)", "answer": "mmadụ", "hint": "people" },
+        { "prompt": "mmadụ ___ (three people)", "answer": "atọ", "hint": "three" },
+        { "prompt": "ndị ___ (teachers)", "answer": "nkụzi", "hint": "teacher" }
+      ]
+    },
+    {
+      "slug": "ig-a1-politeness",
+      "summary": "Greet with Ndewo and Nnọọ, ask with Biko, thank with Daalụ, and give a command with the plain verb.",
+      "explanation": "A command in Igbo is the verb on its own: Bịa ebe a (Come here), Gaa n'ụlọ (Go home), Rie nri (Eat food), Nọdụ ala (Sit down).\n\nSoften it with biko (please): Biko, nye m mmiri (Please, give me water). Thank someone with daalụ. Ndewo means hello and nnọọ means welcome.",
+      "examples": [
+        { "fr": "Bịa ebe a.", "en": "Come here." },
+        { "fr": "Nọdụ ala.", "en": "Sit down." },
+        { "fr": "Rie nri.", "en": "Eat food." },
+        { "fr": "Biko, nye m mmiri.", "en": "Please, give me water." },
+        { "fr": "Daalụ.", "en": "Thank you." }
+      ],
+      "drills": [
+        { "prompt": "___ ebe a. (Come here)", "answer": "Bịa", "hint": "come" },
+        { "prompt": "Nọdụ ___. (Sit down)", "answer": "ala", "hint": "down / ground" },
+        { "prompt": "___ nri. (Eat food)", "answer": "Rie", "hint": "eat (command)" },
+        { "prompt": "___, nye m mmiri. (Please, give me water)", "answer": "Biko", "hint": "please" },
+        { "prompt": "___! (Thank you)", "answer": "Daalụ", "hint": "thanks" }
+      ]
+    }
+  ]
+}

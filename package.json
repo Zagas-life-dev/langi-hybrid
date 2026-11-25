@@ -11,6 +11,7 @@
     "clear-video-cache": "tsx scripts/clear-video-cache.ts",
     "refresh-casual-channels": "tsx scripts/refresh-casual-channels.ts",
     "seed-grammar": "tsx --env-file=.env.local scripts/seed-grammar.ts",
+    "seed-grammar-ng": "tsx --env-file=.env.local scripts/seed-grammar-ng.ts",
     "seed-grammar-es": "tsx scripts/seed-grammar-es.ts",
     "seed-grammar-questions": "tsx scripts/seed-grammar-questions.ts",
     "import-tatoeba": "tsx scripts/import-tatoeba.ts",
