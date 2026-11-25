@@ -54,3 +54,6 @@ next-env.d.ts
 # Never publish: unrelated personal spreadsheets and local Claude settings
 *.xlsx
 /.claude/
+
+# Internal planning notes, not for the public repo
+/docs/
